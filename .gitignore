@@ -1,3 +1,9 @@
+# Created by https://www.toptal.com/developers/gitignore/api/mac,windows,node,visualtudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=mac,windows,node,visualtudiocode
+
+#!! ERROR: mac is undefined. Use list command to see defined gitignore types !!#
+
+### Node ###
 # Logs
 logs
 *.log
@@ -102,7 +108,6 @@ dist
 
 # vuepress v2.x temp and cache directory
 .temp
-.cache
 
 # Docusaurus cache and generated files
 .docusaurus
@@ -128,3 +133,42 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+### Node Patch ###
+# Serverless Webpack directories
+.webpack/
+
+# Optional stylelint cache
+
+# SvelteKit build / generate output
+.svelte-kit
+
+#!! ERROR: visualtudiocode is undefined. Use list command to see defined gitignore types !!#
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/mac,windows,node,visualtudiocode
