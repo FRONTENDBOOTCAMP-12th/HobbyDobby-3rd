@@ -1,3 +1,3 @@
-# Vite 커스텀 스캐폴드 템플릿
+# HobbyDobby
 
-멋쟁이 사자처럼 프론트엔드 스쿨 12기 공세현의 Vite 커스텀 스캐폴드 템플릿 저장소입니다.👏
+멋쟁이 사자처럼 프론트엔드 부트캠프 바닐라 프로젝트 3조, Recherin_ThreeStar의 HobbyDobby입니다! 🧙‍♂️
