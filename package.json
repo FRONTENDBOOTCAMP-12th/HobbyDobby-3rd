@@ -3,7 +3,7 @@
   "type": "module",
   "name": "likelion-vite-react",
   "version": "1.0.0",
-  "description": "Vite 빌드 도구를 사용해 React 개발 환경을 자동 스캐폴드하는 템플릿",
+  "description": "Vite 빌드 도구를 사용해 React, CSS, Zustand, React-Router를 활용한 내향인들을 위한 취미 프로젝트",
   "engines": {
     "node": ">=22.0.0",
     "npm": ">=9.0.0",
@@ -39,12 +39,17 @@
     "husky": "9.1.7",
     "lint-staged": "15.4.1",
     "prettier": "3.4.2",
+    "supabase": "2.15.8",
     "typescript": "5.7.3",
     "typescript-eslint": "8.20.0",
     "vite": "6.0.7"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.49.1",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "react-error-boundary": "5.0.0",
+    "react-router": "7.2.0",
+    "zustand": "5.0.3"
   }
 }
