@@ -1,19 +1,36 @@
 .login-input {
-  --min-width: 14.125rem;
-  --min-height: 2.25rem;
-
   input {
-    min-width: var(--min-width);
-    min-height: var(--min-height);
+    width: 14.125rem;
+    height: 2.25rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+
+    padding: 0.75rem;
+    font-size: 0.875rem;
   }
 }
 
 .login-form {
-  --min-width: 8.4375rem;
-  --min-height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 
   button {
-    min-width: var(--min-width);
-    min-height: var(--min-height);
+    width: 8.4375rem;
+    height: 2.875rem;
+
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 10px;
+
+    margin-block-start: 1.125rem;
+
+    padding-inline: 0.9375rem;
+
+    &:hover,
+    &:focus {
+      background-color: var(--lighten-secondary-color);
+    }
   }
 }
