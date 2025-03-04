@@ -1,0 +1,23 @@
+.bottom-navbar {
+  width: 22.5rem;
+  height: 4.625rem;
+  display: flex;
+}
+
+/* RR_NavLink */
+.navlink-content {
+  width: 5.625rem;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:active {
+    background-color: #bababa;
+  }
+}
+
+.navlink-image {
+  width: 2rem;
+  height: 2rem;
+}
