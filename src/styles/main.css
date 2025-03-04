@@ -1,3 +1,17 @@
 @layer base, components;
-@import "./common/normalize.css" layer(base);
-@import "./common/base.css" layer(base);
+@import './common/normalize.css' layer(base);
+@import './common/base.css' layer(base);
+
+:root {
+  /* colors */
+  --primary-color: #048998;
+  --secondary-color: #3bb4c1;
+  --tertiary-color: #e9e4e6;
+  --quntenary-color: #f6f5f5;
+
+  /* text-colors */
+  --text-white: var(--quatenary-color);
+  --text-black: #1a1717;
+  --text-green: #065b63;
+  --text-gray: #2f2f2f;
+}
