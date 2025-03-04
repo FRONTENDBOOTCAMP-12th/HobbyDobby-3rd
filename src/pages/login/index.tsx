@@ -1,8 +1,9 @@
+import './style.css';
 import LoginForm from '@/components/Login/LoginForm';
 
 function LoginPage() {
   return (
-    <>
+    <div className="login-page">
       <h1>
         <svg
           width="110"
@@ -69,11 +70,15 @@ function LoginPage() {
           />
         </svg>
       </h1>
-      <h2>로그인</h2>
-      <LoginForm />
-      <p>아직 가입하지 않았다면</p>
-      <a href="/">회원가입 하러가기</a>
-    </>
+      <main>
+        <h2>로그인</h2>
+        <LoginForm />
+        <div className="login-page__register">
+          <p>아직 가입하지 않았다면</p>
+          <a href="/">회원가입 하러가기</a>
+        </div>
+      </main>
+    </div>
   );
 }
 
