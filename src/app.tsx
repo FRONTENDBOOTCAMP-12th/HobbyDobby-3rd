@@ -1,10 +1,11 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import PrintError from './components/ErrorBoundary';
+import PrintError from '@/components/ErrorBoundary';
+import LoginPage from '@/pages/login';
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
-      <div>Hello Project!</div>
+      <LoginPage />
     </ErrorBoundary>
   );
 }

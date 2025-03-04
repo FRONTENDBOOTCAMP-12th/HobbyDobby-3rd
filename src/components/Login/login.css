@@ -1,0 +1,19 @@
+.login-input {
+  --min-width: 14.125rem;
+  --min-height: 2.25rem;
+
+  input {
+    min-width: var(--min-width);
+    min-height: var(--min-height);
+  }
+}
+
+.login-form {
+  --min-width: 8.4375rem;
+  --min-height: 2.5rem;
+
+  button {
+    min-width: var(--min-width);
+    min-height: var(--min-height);
+  }
+}
