@@ -1,18 +1,20 @@
 import { useId } from 'react';
 
-type LoginInputProps = React.ComponentProps<'input'> & {
+type LoginInputProps = Omit<React.ComponentProps<'input'>, 'value'> & {
   label: string;
   alertMessage: string;
+  regex: RegExp;
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isValidInput: boolean;
   isLabelSrOnly?: boolean;
 };
 
 function LoginInput({
   label,
   alertMessage,
+  regex,
   onChange,
-  isValidInput,
+  value,
   isLabelSrOnly = false,
   ...restProps
 }: LoginInputProps) {
@@ -24,8 +26,8 @@ function LoginInput({
       <label className={labelSrOnly} htmlFor={id}>
         {label}
       </label>
-      <input id={id} onChange={onChange} {...restProps} />
-      <p style={isValidInput ? { display: 'none' } : {}}>{alertMessage}</p>
+      <input id={id} onChange={onChange} value={value} {...restProps} />
+      {value === '' || regex.test(value) ? null : <p>{alertMessage}</p>}
     </div>
   );
 }

@@ -13,13 +13,8 @@ interface EventData {
   value: string;
 }
 
-interface AlertFlag {
-  isValidId: boolean;
-  isValidPw: boolean;
-}
-
-const idRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
-const pwRegex = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
+const ID_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
+const PW_REGEX = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
 
 function LoginForm() {
   // 입력 데이터
@@ -28,23 +23,8 @@ function LoginForm() {
     password: '',
   });
 
-  // 값에 대한 경고 플래그
-  const [alertFlag, setAlertFlag] = useState<AlertFlag>({
-    isValidId: true,
-    isValidPw: true,
-  });
-
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
-    const nextAlertFlag = { ...alertFlag };
-
-    switch (name) {
-      case 'id':
-        nextAlertFlag.isValidId = idRegex.test(value) ? true : false;
-        break;
-      case 'password':
-        nextAlertFlag.isValidPw = pwRegex.test(value) ? true : false;
-    }
 
     const nextInputData = {
       ...inputData,
@@ -52,7 +32,6 @@ function LoginForm() {
     };
 
     setInputData(nextInputData);
-    setAlertFlag(nextAlertFlag);
   };
 
   const handleLogIn = async (formData: FormData) => {
@@ -102,7 +81,7 @@ function LoginForm() {
         value={inputData.id}
         alertMessage="최소 6자가 필요합니다."
         onChange={handleInput}
-        isValidInput={alertFlag.isValidId}
+        regex={ID_REGEX}
       />
       <LoginInput
         isLabelSrOnly={true}
@@ -111,9 +90,9 @@ function LoginForm() {
         name="password"
         placeholder="비밀번호를 입력해주세요."
         value={inputData.password}
-        alertMessage="최소 8자와 특수문자가 필요합니다."
+        alertMessage="최소 8자가 필요합니다."
         onChange={handleInput}
-        isValidInput={alertFlag.isValidPw}
+        regex={PW_REGEX}
       />
       <button type="submit">로그인</button>
     </form>
