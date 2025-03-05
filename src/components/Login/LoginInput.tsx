@@ -1,14 +1,22 @@
+import { useId } from 'react';
+
 type LoginInputProps = React.ComponentProps<'input'> & {
   label: string;
+  alertMessage: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isValidInput: boolean;
   isLabelSrOnly?: boolean;
 };
 
 function LoginInput({
-  id,
   label,
+  alertMessage,
+  onChange,
+  isValidInput,
   isLabelSrOnly = false,
   ...restProps
 }: LoginInputProps) {
+  const id = useId();
   const labelSrOnly = isLabelSrOnly ? 'sr-only' : '';
 
   return (
@@ -16,7 +24,8 @@ function LoginInput({
       <label className={labelSrOnly} htmlFor={id}>
         {label}
       </label>
-      <input id={id} {...restProps} />
+      <input id={id} onChange={onChange} {...restProps} />
+      <p style={isValidInput ? { display: 'none' } : {}}>{alertMessage}</p>
     </div>
   );
 }
