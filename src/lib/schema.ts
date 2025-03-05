@@ -216,7 +216,7 @@ export interface Database {
             foreignKeyName: 'user_achievements_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
@@ -246,7 +246,7 @@ export interface Database {
             foreignKeyName: 'user_completed_challenges_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
@@ -276,7 +276,7 @@ export interface Database {
             foreignKeyName: 'user_having_items_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
@@ -306,7 +306,7 @@ export interface Database {
             foreignKeyName: 'user_having_titles_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
@@ -336,7 +336,7 @@ export interface Database {
             foreignKeyName: 'user_hobbies_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
@@ -366,12 +366,12 @@ export interface Database {
             foreignKeyName: 'user_on_challenges_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: false;
-            referencedRelation: 'users';
+            referencedRelation: 'user';
             referencedColumns: ['uid'];
           },
         ];
       };
-      users: {
+      user: {
         Row: {
           created_date: string | null;
           exp: number | null;
@@ -419,35 +419,35 @@ export interface Database {
         };
         Relationships: [
           {
-            foreignKeyName: 'users_item_fkey';
+            foreignKeyName: 'user_item_fkey';
             columns: ['item'];
             isOneToOne: false;
             referencedRelation: 'item';
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'users_main_hobby_fkey';
+            foreignKeyName: 'user_main_hobby_fkey';
             columns: ['main_hobby'];
             isOneToOne: false;
             referencedRelation: 'hobby';
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'users_now_challenge_fkey';
+            foreignKeyName: 'user_now_challenge_fkey';
             columns: ['now_challenge'];
             isOneToOne: false;
             referencedRelation: 'challenge';
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'users_now_hobby_fkey';
+            foreignKeyName: 'user_now_hobby_fkey';
             columns: ['now_hobby'];
             isOneToOne: false;
             referencedRelation: 'hobby';
             referencedColumns: ['id'];
           },
           {
-            foreignKeyName: 'users_title_fkey';
+            foreignKeyName: 'user_title_fkey';
             columns: ['title'];
             isOneToOne: false;
             referencedRelation: 'title';
