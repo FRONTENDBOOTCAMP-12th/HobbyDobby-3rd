@@ -4,18 +4,7 @@ import Logo from '/assets/large-logo.svg';
 import GemIcon from '/assets/gem.svg';
 import HobbyCard from './hobby-card';
 import { useUserStore } from '@/stores/user';
-
-// hobby_id에 따른 hobbyIcon을 리턴하는 함수
-export const getHobbyIcon = (id: number | null): string | undefined => {
-  switch (id) {
-    case 1:
-      return '/assets/book.svg';
-    case 2:
-      return '/assets/exercise-running.svg';
-    default:
-      return;
-  }
-};
+import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 function TopNavbar() {
   const [isOpen, setIsOpen] = useState(false);

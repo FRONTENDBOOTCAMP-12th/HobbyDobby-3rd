@@ -1,8 +1,8 @@
 import { useUserStore } from '@/stores/user';
 import PlusIcon from '/assets/plus.svg';
-import { getHobbyIcon } from './index';
 import { HobbyData, UserData } from '@/lib/supabase-client';
 import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
+import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbyCardProps {
   activeHobby: number | null;
