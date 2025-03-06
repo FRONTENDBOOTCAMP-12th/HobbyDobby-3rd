@@ -15,8 +15,8 @@ function Navlink({ to, image, menu }: NavLinkProps) {
         borderTop: isActive ? '3px solid var(--text-green)' : '',
       })}
     >
-      <div className="navlink-content">
-        <img src={image} alt={menu} title={menu} className="navlink-image" />
+      <div className="navlink__content">
+        <img src={image} alt={menu} title={menu} className="navlink__image" />
       </div>
     </RR_NavLink>
   );
