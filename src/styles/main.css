@@ -9,9 +9,34 @@
   --tertiary-color: #e9e4e6;
   --quntenary-color: #f6f5f5;
 
+  /* hover colors, 10% lighten */
+  --lighten-secondary-color: hsl(186, 53%, 59%);
+
   /* text-colors */
   --text-white: var(--quatenary-color);
   --text-black: #1a1717;
   --text-green: #065b63;
   --text-gray: #2f2f2f;
+}
+
+body {
+  background-color: var(--tertiary-color);
+  color: var(--text-black);
+
+  input,
+  button {
+    color: var(--text-black);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
