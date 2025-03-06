@@ -1,0 +1,84 @@
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: var(--quntenary-color);
+}
+.top-navbar__logo {
+  font-size: 1rem;
+}
+
+.top-navbar__container {
+  display: flex;
+  gap: 10px;
+}
+
+.top-navbar__cash {
+  img {
+    color: transparent;
+  }
+}
+
+/* 취미 버튼 */
+.top-navbar__button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #d9d9d9;
+}
+
+/* ------------------- 취미 상세 카드 ------------------- */
+.hobby-card {
+  width: 100%;
+  background: var(--quntenary-color);
+}
+
+.hobby-card__list {
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  button {
+    width: 5rem;
+    height: 4.6875rem;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    border: 3px solid var(--text-gray);
+    border-radius: 20px;
+  }
+
+  .activeHobby {
+    border: 3px solid var(--primary-color);
+  }
+
+  img {
+    width: 2rem;
+  }
+
+  p {
+    margin-block: 0;
+  }
+}
+
+.hobby-card__link {
+  width: 5rem;
+  height: 4.6875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-black);
+  border: 3px solid var(--text-gray);
+  border-radius: 20px;
+
+  p {
+    margin-block: 0;
+  }
+}
