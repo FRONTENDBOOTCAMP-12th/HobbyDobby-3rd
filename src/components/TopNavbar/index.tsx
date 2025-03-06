@@ -1,13 +1,9 @@
 import './top-navbar.css';
-import {
-  // useEffect,
-  useState,
-} from 'react';
-// import { supabase } from '@/lib/supabase-client';
+import { useState } from 'react';
 import Logo from '/assets/large-logo.svg';
 import GemIcon from '/assets/gem.svg';
-// import HobbyCard from './hobby-card';
-import { useHobbyStore } from '@/stores/hobby';
+import HobbyCard from './hobby-card';
+import { useUserStore } from '@/stores/user';
 
 // hobby_id에 따른 hobbyIcon을 리턴하는 함수
 export const getHobbyIcon = (id: number | null): string | undefined => {
@@ -23,29 +19,12 @@ export const getHobbyIcon = (id: number | null): string | undefined => {
 
 function TopNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const nowHobby = useHobbyStore((state) => state.nowHobby);
-  // const setNowHobby = useHobbyStore((state) => state.updateHobby);
+  const nowHobby = useUserStore((state) => state.now_hobby!.id);
   const [gem] = useState(0);
 
   const handleButton = () => {
     setIsOpen(!isOpen);
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const { data } = await supabase
-  //         .from('user')
-  //         .select('*')
-  //         .eq('user_id', userId);
-  //       setNowHobby(data?.now_hobby);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   return (
     <>
@@ -71,7 +50,7 @@ function TopNavbar() {
           </button>
         </div>
       </header>
-      {/* {isOpen ? <HobbyCard activeHobby={nowHobby} /> : ''} */}
+      {isOpen ? <HobbyCard activeHobby={nowHobby} /> : ''}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './login.css';
 import LoginInput from './LoginInput';
-import { getUserById } from '@/lib/api';
+import { getUserByID, getUserHobbiesByUID } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 
 interface FormInputData {
@@ -41,7 +41,7 @@ function LoginForm() {
     const inputId = formData.get('id') as string;
 
     try {
-      const { data: user, error } = await getUserById(inputId);
+      const { data: user, error } = await getUserByID(inputId);
 
       if (user) {
         const nextInputData = { id: '', password: '' };
@@ -51,8 +51,12 @@ function LoginForm() {
           const userData = user[0];
 
           if (userData.password === inputPw) {
-            // 필요한 데이터 저장(zustand UserStore에 저장)
-            login(userData);
+            // uid를 바탕으로 데이터 가져오기
+            const userHobbies = await getUserHobbiesByUID(userData.uid);
+
+            // 필요한 데이터 저장(zustand Store들 에 저장)
+            login({ ...userData, user_hobbies: userHobbies });
+
             // 로그인이 되었다는 토스트 / 알림
             console.log('login!!');
             // 페이지 이동

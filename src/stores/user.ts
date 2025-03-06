@@ -1,6 +1,11 @@
-import { UserData as User } from '@/lib/supabase-client';
+import { HobbyData, UserData } from '@/lib/supabase-client';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
+
+type User = Omit<UserData, 'now_hobby'> & {
+  user_hobbies: HobbyData[];
+  now_hobby: HobbyData | null;
+};
 
 // 비로그인 상태
 const initialUser: User = {
@@ -17,6 +22,7 @@ const initialUser: User = {
   password: '',
   title: null,
   uid: -1,
+  user_hobbies: [],
 };
 
 export const useUserStore = create(
@@ -34,9 +40,17 @@ export const useUserStore = create(
                 ...user,
               },
               undefined,
-              'user/login'
+              'login'
             ),
-          logout: () => set(initialUser, undefined, 'user/logout'),
+          logout: () => set(initialUser, undefined, 'logout'),
+          updateNowHobby: (hobby: HobbyData) =>
+            set(
+              {
+                now_hobby: hobby,
+              },
+              undefined,
+              'updateNowHobby'
+            ),
         })
       )
     ),
