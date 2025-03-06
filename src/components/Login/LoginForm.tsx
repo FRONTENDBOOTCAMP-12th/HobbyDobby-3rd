@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './login.css';
 import LoginInput from './LoginInput';
 import { getUserById } from '@/lib/api';
+import { useUserStore } from '@/stores/user';
 
 interface FormInputData {
   id: string;
@@ -22,6 +23,8 @@ function LoginForm() {
     id: '',
     password: '',
   });
+  // zustand User 데이터 저장소에서 데이터 전체 갱신 함수(login) 가져오기
+  const login = useUserStore((state) => state.login);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
@@ -48,19 +51,21 @@ function LoginForm() {
           const userData = user[0];
 
           if (userData.password === inputPw) {
-            console.log('login!!');
+            // 필요한 데이터 저장(zustand UserStore에 저장)
+            login(userData);
             // 로그인이 되었다는 토스트 / 알림
-            // 필요한 데이터 저장(zustand or local Storage or ...?) 페이지 이동
+            console.log('login!!');
+            // 페이지 이동
           } else {
-            console.log('invalid PW');
-            // 비밀번호가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
             nextInputData.id = inputData.id;
             setInputData(nextInputData);
+            // 비밀번호가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
+            console.log('invalid PW');
           }
         } else {
-          console.log('invalid ID');
-          // 아이디가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
           setInputData(nextInputData);
+          // 아이디가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
+          console.log('invalid ID');
         }
       } else {
         throw error;
