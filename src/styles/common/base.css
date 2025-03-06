@@ -1,10 +1,5 @@
-:root {
-  font-size: 62.5%;
-}
-
 body {
-  font-family: "Pretendard Variable", Pretendard;
-  font-size: 1.6rem;
+  font-family: 'Pretendard Variable', Pretendard;
   line-height: 1.5;
 }
 
