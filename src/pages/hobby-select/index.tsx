@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './style.css';
 import Logo from '/assets/large-logo.svg';
-import HobbySelectCard from '@/components/HobbySelecet/HobbySelectCard';
+import HobbySelectCard from '@/components/HobbySelect/HobbySelectCard';
 import { supabase } from '@/lib/supabase-client';
 
 interface HobbiesProps {

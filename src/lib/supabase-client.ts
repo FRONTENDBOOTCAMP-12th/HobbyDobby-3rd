@@ -14,3 +14,4 @@ export const supabase = createClient<Database>(
 // export type 가져올타입명 = Tables<'테이블명'>;
 
 export type UserData = Tables<'user'>;
+export type HobbyData = Tables<'hobby'>;

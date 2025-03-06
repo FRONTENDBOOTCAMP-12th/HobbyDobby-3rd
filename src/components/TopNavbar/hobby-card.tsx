@@ -1,64 +1,45 @@
-// import { useEffect, useState } from 'react';
+import { useUserStore } from '@/stores/user';
 import PlusIcon from '/assets/plus.svg';
-// import { supabase } from '@/lib/supabase-client';
-// import { getHobbyIcon } from '@/utils/getHobbyIcon';
-// import { useHobbyStore } from '@/stores/hobby';
+import { HobbyData, UserData } from '@/lib/supabase-client';
+import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
+import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
-// interface HobbyCardProps {
-//   activeHobby: number | null;
-// }
+interface HobbyCardProps {
+  activeHobby: number | null;
+}
 
-// interface HobbiesProps {
-//   hobbyId: number;
-//   hobbyName: string;
-// }
+function HobbyCard({ activeHobby }: HobbyCardProps) {
+  const [uid, hobbies, updateStoreNowHobby] = useUserStore((state) => [
+    state.uid,
+    state.user_hobbies,
+    state.updateNowHobby,
+  ]);
 
-function HobbyCard() {
-  // { activeHobby }: HobbyCardProps
-  // const [hobbies, setHobbies] = useState<HobbiesProps[] | undefined>([]);
-  // const updateHobby = useHobbyStore((state) => state.updateHobby);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const { data: userHobbies } = await supabase
-  //         .from('user_hobbies')
-  //         .select('*')
-  //         .eq('user_id', userId);
-  //       const hobbyIds = userHobbies?.map((item) => item.hobby_id) ?? [];
-  //       const { data } = await supabase
-  //         .from('hobby')
-  //         .select('*')
-  //         .in('id', hobbyIds);
-  //       setHobbies(
-  //         data?.map((item) => ({
-  //           hobbyId: item.id,
-  //           hobbyName: item.name,
-  //         }))
-  //       );
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const updateHobby = (uid: UserData['uid'], hobby: HobbyData) => {
+    updateDBUserNowHobby(uid, hobby)
+      .then(() => {
+        updateStoreNowHobby(hobby);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
 
   return (
     <div className="hobby-card">
       <ul className="hobby-card__list">
-        {/* {hobbies?.map((hobby, index) => (
+        {hobbies?.map((hobby, index) => (
           <li key={index}>
             <button
               type="button"
-              onClick={() => updateHobby(hobby.hobbyId)}
-              className={hobby.hobbyId === activeHobby ? 'activeHobby' : ''}
+              onClick={() => updateHobby(uid, hobby)}
+              className={hobby.id === activeHobby ? 'activeHobby' : ''}
             >
-              <img src={getHobbyIcon(hobby.hobbyId)} alt={hobby.hobbyName} />
-              <p>{hobby.hobbyName}/</p>
+              <img src={getHobbyIcon(hobby.id)} alt={hobby.name} />
+              <p>{hobby.name}/</p>
             </button>
           </li>
-        ))} */}
+        ))}
 
         <li>
           <a href="/hobby" className="hobby-card__link">
