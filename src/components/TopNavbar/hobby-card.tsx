@@ -1,7 +1,7 @@
 // import { useEffect, useState } from 'react';
 import PlusIcon from '/assets/plus.svg';
 // import { supabase } from '@/lib/supabase-client';
-// import { getHobbyIcon } from './index';
+// import { getHobbyIcon } from '@/utils/getHobbyIcon';
 // import { useHobbyStore } from '@/stores/hobby';
 
 // interface HobbyCardProps {
@@ -14,7 +14,7 @@ import PlusIcon from '/assets/plus.svg';
 // }
 
 function HobbyCard() {
-// { activeHobby }: HobbyCardProps
+  // { activeHobby }: HobbyCardProps
   // const [hobbies, setHobbies] = useState<HobbiesProps[] | undefined>([]);
   // const updateHobby = useHobbyStore((state) => state.updateHobby);
 

@@ -1,0 +1,16 @@
+.hobby-selecet__logo {
+  text-align: center;
+}
+
+.hobby-select__desc {
+  text-align: center;
+  font-weight: 600;
+}
+
+.hobby-select__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  padding: 0;
+  gap: 50px 0;
+}
