@@ -15,7 +15,7 @@ import PlusIcon from '/assets/plus.svg';
 
 function HobbyCard() {
 // { activeHobby }: HobbyCardProps
-  // const [hobbies, setHobbies] = useState<HobbiesProps[] | null>(null);
+  // const [hobbies, setHobbies] = useState<HobbiesProps[] | undefined>([]);
   // const updateHobby = useHobbyStore((state) => state.updateHobby);
 
   // useEffect(() => {

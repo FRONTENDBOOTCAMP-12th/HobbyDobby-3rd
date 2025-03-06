@@ -8,7 +8,6 @@ import Logo from '/assets/large-logo.svg';
 import GemIcon from '/assets/gem.svg';
 // import HobbyCard from './hobby-card';
 import { useHobbyStore } from '@/stores/hobby';
-import { useGemStore } from '@/stores/gem';
 
 // hobby_id에 따른 hobbyIcon을 리턴하는 함수
 export const getHobbyIcon = (id: number | null): string | undefined => {
@@ -26,8 +25,7 @@ function TopNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const nowHobby = useHobbyStore((state) => state.nowHobby);
   // const setNowHobby = useHobbyStore((state) => state.updateHobby);
-  const gem = useGemStore((state) => state.gem);
-  // const updateGem = useGemStore((state) => state.updateGem);
+  const [gem] = useState(0);
 
   const handleButton = () => {
     setIsOpen(!isOpen);
@@ -36,9 +34,11 @@ function TopNavbar() {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const { data } = await supabase.from('user').select('*').eq('user_id',userId);
+  //       const { data } = await supabase
+  //         .from('user')
+  //         .select('*')
+  //         .eq('user_id', userId);
   //       setNowHobby(data?.now_hobby);
-  //       updateGem(data?.gem)
   //     } catch (error) {
   //       console.log(error);
   //     }
@@ -49,24 +49,28 @@ function TopNavbar() {
 
   return (
     <>
-      <div className="top-navbar">
-        <img src={Logo} alt="Hobby Dobby" />
+      <header className="top-navbar">
+        <h1 className="top-navbar__logo">
+          <span className="sr-only">Hobby Dobby</span>
+          <img src={Logo} alt="Hobby Dobby" aria-hidden="true" />
+        </h1>
         <div className="top-navbar__container">
-          <div className="top-navbar__cash">
-            <img src={GemIcon} alt="보유 캐시" />
+          <div className="top-navbar__cash" aria-label="보유 캐시">
+            <img src={GemIcon} alt="gem" aria-hidden="true" />
             <span>{gem}</span>
           </div>
           <button
             type="button"
             className="top-navbar__button"
             onClick={handleButton}
+            aria-label="취미 변경"
           >
             {getHobbyIcon(nowHobby) && (
               <img src={getHobbyIcon(nowHobby)} alt="독서" />
             )}
           </button>
         </div>
-      </div>
+      </header>
       {/* {isOpen ? <HobbyCard activeHobby={nowHobby} /> : ''} */}
     </>
   );
