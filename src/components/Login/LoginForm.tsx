@@ -3,22 +3,22 @@ import './login.css';
 import LoginInput from './LoginInput';
 import { getUserById } from '@/lib/api';
 
-interface FormInputData {
+interface LoginFormInputData {
   id: string;
   password: string;
 }
 
 interface EventData {
-  name: keyof FormInputData;
+  name: keyof LoginFormInputData;
   value: string;
 }
 
-const ID_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
-const PW_REGEX = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
+export const ID_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
+export const PW_REGEX = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
 
 function LoginForm() {
   // 입력 데이터
-  const [inputData, setInputData] = useState<FormInputData>({
+  const [inputData, setInputData] = useState<LoginFormInputData>({
     id: '',
     password: '',
   });
