@@ -25,8 +25,6 @@ function HobbySelectPage() {
     fetchData().catch((error) => {
       console.error('Error fetching hobbies:', error);
     });
-
-    return;
   }, []);
 
   return (
