@@ -1,7 +1,9 @@
-main {
+.landing {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 1.875rem;
   text-align: center;
   width: 22.5rem;
   height: 36.625rem;
@@ -38,18 +40,13 @@ main {
   margin-top: -0.3125rem;
 }
 
-button {
-  background-color: var(--secondary-color);
-  border: none;
+.start {
   width: 8.4375rem;
   height: 2.5rem;
-  margin-top: 6.25rem;
   padding: 0.625rem 1.25rem;
-  font-size: 1rem;
+  text-decoration: none;
+  color: var(--text-black);
+  background-color: var(--secondary-color);
   border-radius: 0.5rem;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: var(--primary-color);
 }

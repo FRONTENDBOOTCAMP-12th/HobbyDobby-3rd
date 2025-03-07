@@ -46,8 +46,13 @@ export const updateUserNowHobby = async (
 export const createUserAccount = async (inputData: UserData) =>
   await supabase.from('user').insert([inputData]).select();
 
-export const getSubHobby = async () =>
-  await supabase.from('sub_hobby').select('id,info,name');
+export const getHobby = async () => await supabase.from('hobby').select('*');
+
+export const getSubHobby = async (hobbyId: string) =>
+  await supabase
+    .from('sub_hobby')
+    .select('id,info,name')
+    .eq('hobby_id', hobbyId);
 
 export const isUserInputDuplicate = async (
   inputName: string,

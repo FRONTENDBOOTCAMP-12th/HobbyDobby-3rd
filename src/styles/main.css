@@ -29,10 +29,19 @@ body {
   }
 
   min-width: 360px;
+  height: 586px;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+}
+
+.drag-prevent {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
 .sr-only {
