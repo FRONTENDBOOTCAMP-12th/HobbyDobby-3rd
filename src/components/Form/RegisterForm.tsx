@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import LoginInput from '../Login/LoginInput';
-import { ID_REGEX, PW_REGEX } from '../Login/LoginForm';
+import FormInput from './FormInput';
+import { ID_REGEX, PW_REGEX } from '@/utils/form';
+// import { createUserAccount } from '@/lib/api';
 
 interface RegisterFormInputData {
   id: string;
@@ -34,12 +35,20 @@ function RegisterForm() {
     setInputData(nextInputData);
   };
 
-  // const handleRegister = (formData: FormData) => {};
+  // const handleRegister = async () => {
+  //   try {
+  //     await createUserAccount({
+  //       id: inputData.id,
+  //     })
+  //   } catch (err) {
+  //     throw new Error(err as string);
+  //   }
+  // };
 
   return (
     // <form className="register-form" action={handleRegister}>
     <form className="register-form">
-      <LoginInput
+      <FormInput
         type="text"
         label="아이디"
         name="id"
@@ -48,8 +57,9 @@ function RegisterForm() {
         alertMessage="최소 6자가 필요합니다."
         onChange={handleInput}
         regex={ID_REGEX}
+        isCheckDuplication={true}
       />
-      <LoginInput
+      <FormInput
         type="password"
         label="비밀번호"
         name="password"
@@ -59,9 +69,9 @@ function RegisterForm() {
         onChange={handleInput}
         regex={PW_REGEX}
       />
-      <LoginInput
+      <FormInput
         type="password"
-        label="비밀번호"
+        label="비밀번호 확인"
         name="passwordCheck"
         placeholder="비밀번호를 한번 더 입력해주세요."
         value={inputData.passwordCheck}
@@ -69,7 +79,7 @@ function RegisterForm() {
         onChange={handleInput}
         regex={PW_REGEX}
       />
-      <LoginInput
+      <FormInput
         type="text"
         label="닉네임"
         name="nickname"
@@ -78,6 +88,7 @@ function RegisterForm() {
         alertMessage="최소 6자가 필요합니다."
         onChange={handleInput}
         regex={ID_REGEX}
+        isCheckDuplication={true}
       />
       <button type="submit">회원 가입</button>
     </form>

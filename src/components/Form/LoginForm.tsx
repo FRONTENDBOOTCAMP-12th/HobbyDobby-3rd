@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './login.css';
-import LoginInput from './LoginInput';
+import FormInput from './FormInput';
 import { getUserByID, getUserHobbiesByUID } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
+import { ID_REGEX, PW_REGEX } from '@/utils/form';
 
 interface LoginFormInputData {
   id: string;
@@ -13,9 +14,6 @@ interface EventData {
   name: keyof LoginFormInputData;
   value: string;
 }
-
-export const ID_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
-export const PW_REGEX = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
 
 function LoginForm() {
   // 입력 데이터
@@ -37,20 +35,20 @@ function LoginForm() {
     setInputData(nextInputData);
   };
 
-  const handleLogIn = async (formData: FormData) => {
-    const inputId = formData.get('id') as string;
+  const handleLogIn = async () => {
+    const inputID = inputData.id;
 
     try {
-      const { data: user, error } = await getUserByID(inputId);
+      const { data: user, error } = await getUserByID(inputID);
 
       if (user) {
         const nextInputData = { id: '', password: '' };
 
         if (user?.length > 0) {
-          const inputPw = formData.get('password') as string;
+          const inputPW = inputData.password;
           const userData = user[0];
 
-          if (userData.password === inputPw) {
+          if (userData.password === inputPW) {
             // uid를 바탕으로 데이터 가져오기
             const userHobbies = await getUserHobbiesByUID(userData.uid);
 
@@ -81,7 +79,8 @@ function LoginForm() {
 
   return (
     <form className="login-form" action={handleLogIn}>
-      <LoginInput
+      <FormInput
+        className="login-input"
         isLabelSrOnly={true}
         type="text"
         label="아이디"
@@ -92,7 +91,8 @@ function LoginForm() {
         onChange={handleInput}
         regex={ID_REGEX}
       />
-      <LoginInput
+      <FormInput
+        className="login-input"
         isLabelSrOnly={true}
         type="password"
         label="비밀번호"

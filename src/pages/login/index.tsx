@@ -1,6 +1,6 @@
 import './style.css';
 import HeadingLogo from '@/components/HeadingLogo';
-import LoginForm from '@/components/Login/LoginForm';
+import LoginForm from '@/components/Form/LoginForm';
 
 function LoginPage() {
   return (

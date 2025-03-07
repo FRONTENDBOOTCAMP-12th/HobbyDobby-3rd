@@ -1,5 +1,5 @@
 import HeadingLogo from '@/components/HeadingLogo';
-import RegisterForm from '@/components/Register/RegisterForm';
+import RegisterForm from '@/components/Form/RegisterForm';
 
 function RegisterPage() {
   return (

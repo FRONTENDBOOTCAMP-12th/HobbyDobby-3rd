@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-type LoginInputProps = Omit<React.ComponentProps<'input'>, 'value'> & {
+type FormInputProps = Omit<React.ComponentProps<'input'>, 'value'> & {
   label: string;
   alertMessage: string;
   regex: RegExp;
@@ -10,21 +10,22 @@ type LoginInputProps = Omit<React.ComponentProps<'input'>, 'value'> & {
   isCheckDuplication?: boolean;
 };
 
-function LoginInput({
+function FormInput({
   label,
   alertMessage,
   regex,
-  onChange,
   value,
+  className,
+  onChange,
   isLabelSrOnly = false,
   isCheckDuplication = false,
   ...restProps
-}: LoginInputProps) {
+}: FormInputProps) {
   const id = useId();
   const labelSrOnly = isLabelSrOnly ? 'sr-only' : '';
 
   return (
-    <div className="login-input">
+    <div className={className}>
       {isCheckDuplication ? (
         <>
           <div>
@@ -49,4 +50,4 @@ function LoginInput({
   );
 }
 
-export default LoginInput;
+export default FormInput;
