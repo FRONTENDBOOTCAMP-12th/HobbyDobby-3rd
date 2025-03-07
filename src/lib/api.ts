@@ -44,3 +44,6 @@ export const updateUserNowHobby = async (
     .eq('uid', uid)
     .select();
 };
+
+export const createUserAccount = async (inputData: UserData) =>
+  await supabase.from('user').insert([inputData]).select();
