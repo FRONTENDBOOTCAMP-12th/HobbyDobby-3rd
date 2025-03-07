@@ -44,5 +44,10 @@ export const updateUserNowHobby = async (
     .select();
 };
 
-export const getSubHobby = async () =>
-  await supabase.from('sub_hobby').select('id,info,name');
+export const getHobby = async () => await supabase.from('hobby').select('*');
+
+export const getSubHobby = async (hobbyId: string) =>
+  await supabase
+    .from('sub_hobby')
+    .select('id,info,name')
+    .eq('hobby_id', hobbyId);

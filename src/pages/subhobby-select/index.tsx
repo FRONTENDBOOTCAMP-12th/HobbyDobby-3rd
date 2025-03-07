@@ -4,7 +4,7 @@ import Logo from '/assets/large-logo.svg';
 import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
 import { useEffect, useState } from 'react';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
-import { Link, useParams } from 'react-router';
+import { Link, useLocation, useParams } from 'react-router';
 import { getSubHobby } from '@/lib/api';
 
 interface subHobbiesProps {
@@ -13,14 +13,23 @@ interface subHobbiesProps {
   name: string;
 }
 
+interface locationState {
+  hobbyId: string;
+}
+
 function SubHobbySelectPage() {
   const [subHobbies, setSubHobbies] = useState<subHobbiesProps[] | null>([]);
   const params = useParams();
+  const selectedHobby = params.hobby_name?.slice(1);
+  const location = useLocation();
+  const locationState = { ...(location.state as locationState) };
+  const hobbyId = locationState.hobbyId;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await getSubHobby();
+        const { data } = await getSubHobby(hobbyId);
+
         if (data) {
           setSubHobbies(data);
         } else {
@@ -53,8 +62,8 @@ function SubHobbySelectPage() {
       </header>
       <div className="subhobby-select__content">
         <div className="subhobby-select__selected">
-          <img src={getHobbyIcon(params.name!)} alt={params.name} />
-          <span>{params.name}</span>
+          <img src={getHobbyIcon(selectedHobby)} alt={selectedHobby} />
+          <span>{selectedHobby}</span>
         </div>
       </div>
       {subHobbies?.map((data) => (
