@@ -23,33 +23,47 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
-}
 
-/* 상단바 영역 */
-header {
-  background-color: var(--quntenary-color);
+  /* 상단바 영역 */
+  header {
+    background-color: var(--quntenary-color);
 
-  inline-size: 100%;
-  min-width: 22.5rem;
-  block-size: 3.5rem;
+    inline-size: 100%;
+    min-width: 22.5rem;
+    block-size: 3.5rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* 바디 영역 */
-main {
-  background-color: transparent;
-  inline-size: 100%;
-  block-size: 100%;
+  /* 바디 영역 */
+  main {
+    background-color: transparent;
+    inline-size: 100%;
+    block-size: 100%;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  overflow: auto;
+    overflow: auto;
 
-  scrollbar-width: none; /* Firefox */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* 하단바 영역 */
+  footer {
+    background-color: var(--quntenary-color);
+    inline-size: 100%;
+    min-width: 22.5rem;
+    block-size: 3.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    justify-self: flex-end;
+  }
 }
 
 main::-webkit-scrollbar {
@@ -186,18 +200,4 @@ main::-webkit-scrollbar {
       color: var(--text-green);
     }
   }
-}
-
-/* 하단바 영역 */
-footer {
-  background-color: var(--quntenary-color);
-  inline-size: 100%;
-  min-width: 22.5rem;
-  block-size: 3.5rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  justify-self: flex-end;
 }
