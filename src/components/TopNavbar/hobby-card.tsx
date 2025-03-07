@@ -5,7 +5,7 @@ import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbyCardProps {
-  activeHobby: number | null;
+  activeHobby: string | null;
 }
 
 function HobbyCard({ activeHobby }: HobbyCardProps) {
@@ -33,9 +33,9 @@ function HobbyCard({ activeHobby }: HobbyCardProps) {
             <button
               type="button"
               onClick={() => updateHobby(uid, hobby)}
-              className={hobby.id === activeHobby ? 'activeHobby' : ''}
+              className={hobby.name === activeHobby ? 'activeHobby' : ''}
             >
-              <img src={getHobbyIcon(hobby.id)} alt={hobby.name} />
+              <img src={getHobbyIcon(hobby.name)} alt={hobby.name} />
               <p>{hobby.name}/</p>
             </button>
           </li>
