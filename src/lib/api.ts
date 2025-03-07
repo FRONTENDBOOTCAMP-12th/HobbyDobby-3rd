@@ -36,13 +36,12 @@ export const getUserHobbiesByUID = async (inputUID: UserData['uid']) => {
 export const updateUserNowHobby = async (
   uid: UserData['uid'],
   nowHobby: HobbyData
-) => {
+) =>
   await supabase
     .from('user')
     .update({ now_hobby: nowHobby.name })
     .eq('uid', uid)
     .select();
-};
 
 export const createUserAccount = async (inputData: UserData) =>
   await supabase.from('user').insert([inputData]).select();

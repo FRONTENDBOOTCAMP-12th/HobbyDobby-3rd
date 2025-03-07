@@ -1,3 +1,4 @@
+import './form-input.css';
 import { useId } from 'react';
 
 type FormInputProps = Omit<React.ComponentProps<'input'>, 'value'> & {
@@ -15,7 +16,6 @@ function FormInput({
   alertMessage,
   regex,
   value,
-  className,
   onChange,
   isLabelSrOnly = false,
   isCheckDuplication = false,
@@ -24,28 +24,30 @@ function FormInput({
   const id = useId();
   const labelSrOnly = isLabelSrOnly ? 'sr-only' : '';
 
+  const handleClick = () => {
+    value = '';
+  };
+
   return (
-    <div className={className}>
-      {isCheckDuplication ? (
-        <>
-          <div>
-            <label className={labelSrOnly} htmlFor={id}>
-              {label}
-            </label>
-            <input id={id} onChange={onChange} value={value} {...restProps} />
-            {value === '' || regex.test(value) ? null : <p>{alertMessage}</p>}
-          </div>
-          <button type="button">중복 확인</button>
-        </>
-      ) : (
-        <>
-          <label className={labelSrOnly} htmlFor={id}>
-            {label}
-          </label>
+    <div className="form-input">
+      <>
+        <label className={labelSrOnly} htmlFor={id}>
+          {label}
+        </label>
+        <div className="form-input__wrapper">
           <input id={id} onChange={onChange} value={value} {...restProps} />
-          {value === '' || regex.test(value) ? null : <p>{alertMessage}</p>}
-        </>
-      )}
+          {isCheckDuplication ? (
+            <button
+              className="form-input__button"
+              type="button"
+              onClick={handleClick}
+            >
+              중복 확인
+            </button>
+          ) : null}
+        </div>
+        {value === '' || regex.test(value) ? null : <p>{alertMessage}</p>}
+      </>
     </div>
   );
 }

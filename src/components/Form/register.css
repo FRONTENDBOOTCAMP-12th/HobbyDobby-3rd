@@ -1,0 +1,24 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    width: 8.4375rem;
+    height: 2.875rem;
+
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 10px;
+
+    margin-block-start: 1.125rem;
+
+    padding-inline: 0.9375rem;
+
+    &:hover,
+    &:focus {
+      background-color: var(--lighten-secondary-color);
+    }
+  }
+}

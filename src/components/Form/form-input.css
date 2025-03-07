@@ -1,0 +1,37 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  font-size: 0.875rem;
+
+  .form-input__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  input {
+    width: 14.125rem;
+    height: 2.25rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+
+    padding: 0.75rem;
+  }
+
+  p {
+    color: red;
+    margin: 0;
+    margin-inline-start: 4px;
+  }
+
+  .form-input__button {
+    width: 5rem;
+    height: 2.25rem;
+
+    margin: 0;
+    padding: 6px;
+  }
+}

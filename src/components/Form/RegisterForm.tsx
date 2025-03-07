@@ -1,3 +1,4 @@
+import './register.css';
 import { useState } from 'react';
 import FormInput from './FormInput';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
