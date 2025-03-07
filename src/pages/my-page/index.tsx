@@ -36,11 +36,11 @@ function MyPage() {
           </article>
           <article className="board">
             <h2>통계</h2>
-            {isAchievements ? <p>통계</p> : <p>통계가 없습니다.</p>}
+            {isStatistics ? <p>통계</p> : <p>통계가 없습니다.</p>}
           </article>
           <article className="board">
             <h2>업적</h2>
-            {isStatistics ? <p>업적</p> : <p>업적이 없습니다.</p>}
+            {isAchievements ? <p>업적</p> : <p>업적이 없습니다.</p>}
           </article>
         </section>
       </main>
