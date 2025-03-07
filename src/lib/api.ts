@@ -45,3 +45,6 @@ export const updateUserNowHobby = async (
 
 export const createUserAccount = async (inputData: UserData) =>
   await supabase.from('user').insert([inputData]).select();
+
+export const getSubHobby = async () =>
+  await supabase.from('sub_hobby').select('id,info,name');

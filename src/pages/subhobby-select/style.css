@@ -1,0 +1,48 @@
+.subhobby-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.subhobby-select__header {
+  width: 22.5rem;
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  padding-block: 1.25rem;
+}
+
+.subhobby-select__button {
+  position: absolute;
+  left: 30px;
+  background: none;
+  border: none;
+  padding-inline: 15px;
+  height: 40%;
+}
+
+.subhobby-select__logo {
+  margin: 0 auto;
+}
+
+.subhobby-select__content {
+  display: flex;
+  justify-content: center;
+}
+
+.subhobby-select__selected {
+  width: 18.75rem;
+  height: 2.1875rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  background-color: var(--quntenary-color);
+  border-radius: 5px;
+
+  img {
+    height: 100%;
+  }
+}
