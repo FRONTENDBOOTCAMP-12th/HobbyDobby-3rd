@@ -5,7 +5,7 @@ import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbyCardProps {
-  activeHobby: number | null;
+  activeHobby: string | null;
 }
 
 function HobbyCard({ activeHobby }: HobbyCardProps) {
@@ -28,18 +28,22 @@ function HobbyCard({ activeHobby }: HobbyCardProps) {
   return (
     <div className="hobby-card">
       <ul className="hobby-card__list">
-        {hobbies?.map((hobby, index) => (
-          <li key={index}>
-            <button
-              type="button"
-              onClick={() => updateHobby(uid, hobby)}
-              className={hobby.id === activeHobby ? 'activeHobby' : ''}
-            >
-              <img src={getHobbyIcon(hobby.id)} alt={hobby.name} />
-              <p>{hobby.name}/</p>
-            </button>
-          </li>
-        ))}
+        {hobbies?.map((item, index) => {
+          const hobby = item!;
+
+          return (
+            <li key={index}>
+              <button
+                type="button"
+                onClick={() => updateHobby(uid, hobby)}
+                className={hobby.name === activeHobby ? 'activeHobby' : ''}
+              >
+                <img src={getHobbyIcon(hobby.name)} alt={hobby.name} />
+                <p>{hobby.name}/</p>
+              </button>
+            </li>
+          );
+        })}
 
         <li>
           <a href="/hobby" className="hobby-card__link">

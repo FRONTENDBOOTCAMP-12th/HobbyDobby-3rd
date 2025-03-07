@@ -6,7 +6,7 @@ export const getUserByID = async (inputID: UserData['id']) =>
     .select(
       `
       *,
-      now_hobby(*)
+      now_hobby:hobby!now_hobby(id,name)
     `
     )
     .eq('id', inputID);
@@ -28,10 +28,9 @@ export const getUserHobbiesByUID = async (inputUID: UserData['uid']) => {
     throw error;
   }
 
-  return userHobbies.map((item) => ({
-    id: item.hobby.id,
-    name: item.hobby.name,
-  }));
+  return userHobbies.map(({ hobby }) => {
+    return hobby;
+  });
 };
 
 export const updateUserNowHobby = async (
@@ -40,7 +39,7 @@ export const updateUserNowHobby = async (
 ) => {
   await supabase
     .from('user')
-    .update({ now_hobby: nowHobby.id })
+    .update({ now_hobby: nowHobby.name })
     .eq('uid', uid)
     .select();
 };
