@@ -27,6 +27,12 @@ body {
   button {
     color: var(--text-black);
   }
+
+  min-width: 360px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sr-only {

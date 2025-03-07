@@ -3,15 +3,17 @@ import { Link } from 'react-router';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbySelectCardProps {
-  id: number;
   name: string;
 }
 
-function HobbySelectCard({ id, name }: HobbySelectCardProps) {
+function HobbySelectCard({ name }: HobbySelectCardProps) {
   return (
     <li className="hobby-select-card">
-      <Link to={`/select-sub_hobby/:${id}`} className="hobby-select-card__link">
-        <img src={getHobbyIcon(id)} alt={name} />
+      <Link
+        to={`/select-sub_hobby/:${name}`}
+        className="hobby-select-card__link"
+      >
+        <img src={getHobbyIcon(name)} alt={name} />
         <p className="hobby-select-card__desc">{name}</p>
       </Link>
     </li>
