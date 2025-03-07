@@ -33,7 +33,7 @@ body {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .drag-prevent {
