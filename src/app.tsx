@@ -5,6 +5,8 @@ import SubHobbySelectPage from './pages/subhobby-select';
 import LoginPage from '@/pages/login';
 import LandingPage from '@/pages/landing-page';
 import HobbySelectPage from '@/pages/hobby-select';
+import MyPage from '@/pages/my-page';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
