@@ -1,3 +1,4 @@
+import './style.css';
 import HeadingLogo from '@/components/HeadingLogo';
 import RegisterForm from '@/components/Form/RegisterForm';
 

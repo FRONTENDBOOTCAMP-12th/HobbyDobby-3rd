@@ -2,9 +2,10 @@ import './register.css';
 import { useState } from 'react';
 import FormInput from './FormInput';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
+import { isUserInputDuplicate } from '@/lib/api';
 // import { createUserAccount } from '@/lib/api';
 
-interface RegisterFormInputData {
+export interface RegisterFormInputData {
   id: string;
   password: string;
   passwordCheck: string;
@@ -25,6 +26,8 @@ function RegisterForm() {
     nickname: '',
   });
 
+  // const [checkDuplicate]
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
 
@@ -34,6 +37,16 @@ function RegisterForm() {
     };
 
     setInputData(nextInputData);
+  };
+
+  const handleCheckDuplication = async (name: keyof RegisterFormInputData) => {
+    const isDuplicated = await isUserInputDuplicate(name, inputData[name]);
+
+    if (isDuplicated) {
+      console.log('중복된 ID입니다.');
+    } else {
+      console.log('사용 가능한 ID입니다.');
+    }
   };
 
   // const handleRegister = async () => {
@@ -58,7 +71,8 @@ function RegisterForm() {
         alertMessage="최소 6자가 필요합니다."
         onChange={handleInput}
         regex={ID_REGEX}
-        isCheckDuplication={true}
+        checkDuplicateButton={true}
+        onClick={handleCheckDuplication}
       />
       <FormInput
         type="password"
@@ -89,7 +103,8 @@ function RegisterForm() {
         alertMessage="최소 6자가 필요합니다."
         onChange={handleInput}
         regex={ID_REGEX}
-        isCheckDuplication={true}
+        checkDuplicateButton={true}
+        onClick={handleCheckDuplication}
       />
       <button type="submit">회원 가입</button>
     </form>

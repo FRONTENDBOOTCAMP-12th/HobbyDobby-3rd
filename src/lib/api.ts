@@ -48,3 +48,17 @@ export const createUserAccount = async (inputData: UserData) =>
 
 export const getSubHobby = async () =>
   await supabase.from('sub_hobby').select('id,info,name');
+
+export const isUserInputDuplicate = async (
+  inputName: string,
+  inputData: string
+) => {
+  const { data: response } = await supabase
+    .from('user')
+    .select(inputName)
+    .eq(inputName, inputData);
+
+  if (response?.length === 0) return false;
+
+  return true;
+};

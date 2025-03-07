@@ -1,0 +1,13 @@
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-block-start: 10%;
+
+  h2 {
+    font-size: 1.875rem;
+    text-align: center;
+    font-weight: 600;
+  }
+}
