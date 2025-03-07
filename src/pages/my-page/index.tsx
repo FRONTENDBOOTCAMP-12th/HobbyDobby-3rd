@@ -7,7 +7,7 @@ function MyPage() {
   const [isAchievements] = useState(false);
 
   return (
-    <>
+    <div className="my-page drag-prevent">
       <h1 className="sr-only">마이페이지</h1>
       <header>상단바 공간</header>
       <main>
@@ -45,7 +45,7 @@ function MyPage() {
         </section>
       </main>
       <footer>하단바 공간</footer>
-    </>
+    </div>
   );
 }
 

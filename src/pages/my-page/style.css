@@ -12,9 +12,23 @@
   /* text */
 }
 
+.my-page {
+  background-color: transparent;
+
+  inline-size: 100%;
+  block-size: 100%;
+  min-height: 586px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+}
+
 /* 상단바 영역 */
 header {
   background-color: var(--quntenary-color);
+
   inline-size: 100%;
   min-width: 22.5rem;
   block-size: 3.5rem;
@@ -32,6 +46,14 @@ main {
 
   display: flex;
   flex-direction: column;
+
+  overflow: auto;
+
+  scrollbar-width: none; /* Firefox */
+}
+
+main::-webkit-scrollbar {
+  display: none;
 }
 
 /* 프로필 헤더 */
@@ -40,6 +62,8 @@ main {
   inline-size: 100%;
   block-size: 9rem;
   position: relative;
+
+  flex-shrink: 0;
 }
 
 .edit-profile-btn {
@@ -100,8 +124,9 @@ main {
 .profile-body {
   background-color: transparent;
   inline-size: 100%;
-  block-size: 100%;
   padding: 2.5rem 1rem;
+
+  flex-grow: 1;
 
   position: relative;
 
@@ -173,4 +198,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  justify-self: flex-end;
 }
