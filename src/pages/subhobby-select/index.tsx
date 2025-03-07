@@ -3,12 +3,11 @@ import LeftArrow from '/assets/left-arrow.svg';
 import Logo from '/assets/large-logo.svg';
 import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase-client';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { Link, useParams } from 'react-router';
+import { getSubHobby } from '@/lib/api';
 
 interface subHobbiesProps {
-  hobby_id: string | null;
   id: string;
   info: string;
   name: string;
@@ -21,8 +20,12 @@ function SubHobbySelectPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await supabase.from('sub_hobby').select('*');
-        setSubHobbies(data);
+        const { data } = await getSubHobby();
+        if (data) {
+          setSubHobbies(data);
+        } else {
+          throw new Error('데이터를 불러오는데 실패했습니다..');
+        }
       } catch (error) {
         console.log(error);
       }
