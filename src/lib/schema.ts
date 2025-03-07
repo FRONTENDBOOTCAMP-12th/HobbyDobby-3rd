@@ -12,21 +12,21 @@ export interface Database {
       achievement: {
         Row: {
           condition: string;
-          id: number;
+          id: string;
           max_progress: number;
           name: string;
           reward: string;
         };
         Insert: {
           condition: string;
-          id?: number;
+          id?: string;
           max_progress: number;
           name: string;
           reward: string;
         };
         Update: {
           condition?: string;
-          id?: number;
+          id?: string;
           max_progress?: number;
           name?: string;
           reward?: string;
@@ -37,67 +37,67 @@ export interface Database {
         Row: {
           completed_date: string | null;
           created_date: string | null;
-          id: number;
+          id: string;
           name: string;
           progress: string | null;
-          sub_hobby_id: number | null;
+          sub_hobby_name: string | null;
         };
         Insert: {
           completed_date?: string | null;
           created_date?: string | null;
-          id?: number;
+          id?: string;
           name: string;
           progress?: string | null;
-          sub_hobby_id?: number | null;
+          sub_hobby_name?: string | null;
         };
         Update: {
           completed_date?: string | null;
           created_date?: string | null;
-          id?: number;
+          id?: string;
           name?: string;
           progress?: string | null;
-          sub_hobby_id?: number | null;
+          sub_hobby_name?: string | null;
         };
         Relationships: [
           {
-            foreignKeyName: 'challenge_sub_hobby_id_fkey';
-            columns: ['sub_hobby_id'];
+            foreignKeyName: 'challenge_sub_hobby_name_fkey';
+            columns: ['sub_hobby_name'];
             isOneToOne: false;
             referencedRelation: 'sub_hobby';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
         ];
       };
       hobby: {
         Row: {
-          id: number;
+          id: string;
           name: string;
         };
         Insert: {
-          id?: number;
+          id?: string;
           name: string;
         };
         Update: {
-          id?: number;
+          id?: string;
           name?: string;
         };
         Relationships: [];
       };
       item: {
         Row: {
-          id: number;
+          id: string;
           image: string | null;
           name: string;
           price: number;
         };
         Insert: {
-          id?: number;
+          id?: string;
           image?: string | null;
           name: string;
           price: number;
         };
         Update: {
-          id?: number;
+          id?: string;
           image?: string | null;
           name?: string;
           price?: number;
@@ -106,18 +106,21 @@ export interface Database {
       };
       sub_hobby: {
         Row: {
-          hobby_id: number | null;
-          id: number;
+          hobby_id: string | null;
+          id: string;
+          info: string;
           name: string;
         };
         Insert: {
-          hobby_id?: number | null;
-          id?: number;
+          hobby_id?: string | null;
+          id?: string;
+          info: string;
           name: string;
         };
         Update: {
-          hobby_id?: number | null;
-          id?: number;
+          hobby_id?: string | null;
+          id?: string;
+          info?: string;
           name?: string;
         };
         Relationships: [
@@ -132,77 +135,164 @@ export interface Database {
       };
       title: {
         Row: {
-          achievement_id: number | null;
-          id: number;
+          achievement_name: string | null;
+          id: string;
           name: string;
         };
         Insert: {
-          achievement_id?: number | null;
-          id?: number;
+          achievement_name?: string | null;
+          id?: string;
           name: string;
         };
         Update: {
-          achievement_id?: number | null;
-          id?: number;
+          achievement_name?: string | null;
+          id?: string;
           name?: string;
         };
         Relationships: [
           {
-            foreignKeyName: 'title_achievement_id_fkey';
-            columns: ['achievement_id'];
+            foreignKeyName: 'title_achevement_name_fkey';
+            columns: ['achievement_name'];
             isOneToOne: false;
             referencedRelation: 'achievement';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
         ];
       };
       unit: {
         Row: {
-          id: number;
-          level: string | null;
+          id: string;
+          level: string;
           name: string;
-          question: string | null;
-          section: number | null;
-          sub_hobby_id: number | null;
+          question: string;
+          section: number;
+          sub_hobby: string | null;
         };
         Insert: {
-          id?: number;
-          level?: string | null;
+          id?: string;
+          level: string;
           name: string;
-          question?: string | null;
-          section?: number | null;
-          sub_hobby_id?: number | null;
+          question: string;
+          section: number;
+          sub_hobby?: string | null;
         };
         Update: {
-          id?: number;
-          level?: string | null;
+          id?: string;
+          level?: string;
           name?: string;
-          question?: string | null;
-          section?: number | null;
-          sub_hobby_id?: number | null;
+          question?: string;
+          section?: number;
+          sub_hobby?: string | null;
         };
         Relationships: [
           {
-            foreignKeyName: 'unit_sub_hobby_id_fkey';
-            columns: ['sub_hobby_id'];
+            foreignKeyName: 'unit_sub_hobby_name_fkey';
+            columns: ['sub_hobby'];
             isOneToOne: false;
             referencedRelation: 'sub_hobby';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
+          },
+        ];
+      };
+      user: {
+        Row: {
+          created_date: string | null;
+          exp: number | null;
+          gem: number | null;
+          id: string;
+          image: string | null;
+          item: string | null;
+          main_hobby: string | null;
+          nickname: string;
+          now_challenge: string | null;
+          now_hobby: string | null;
+          password: string;
+          title: string | null;
+          uid: string;
+        };
+        Insert: {
+          created_date?: string | null;
+          exp?: number | null;
+          gem?: number | null;
+          id: string;
+          image?: string | null;
+          item?: string | null;
+          main_hobby?: string | null;
+          nickname: string;
+          now_challenge?: string | null;
+          now_hobby?: string | null;
+          password: string;
+          title?: string | null;
+          uid?: string;
+        };
+        Update: {
+          created_date?: string | null;
+          exp?: number | null;
+          gem?: number | null;
+          id?: string;
+          image?: string | null;
+          item?: string | null;
+          main_hobby?: string | null;
+          nickname?: string;
+          now_challenge?: string | null;
+          now_hobby?: string | null;
+          password?: string;
+          title?: string | null;
+          uid?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'user_item_fkey';
+            columns: ['item'];
+            isOneToOne: false;
+            referencedRelation: 'item';
+            referencedColumns: ['name'];
+          },
+          {
+            foreignKeyName: 'user_main_hobby_fkey';
+            columns: ['main_hobby'];
+            isOneToOne: false;
+            referencedRelation: 'hobby';
+            referencedColumns: ['name'];
+          },
+          {
+            foreignKeyName: 'user_now_challenge_fkey';
+            columns: ['now_challenge'];
+            isOneToOne: false;
+            referencedRelation: 'challenge';
+            referencedColumns: ['name'];
+          },
+          {
+            foreignKeyName: 'user_now_hobby_fkey';
+            columns: ['now_hobby'];
+            isOneToOne: false;
+            referencedRelation: 'hobby';
+            referencedColumns: ['name'];
+          },
+          {
+            foreignKeyName: 'user_title_fkey';
+            columns: ['title'];
+            isOneToOne: false;
+            referencedRelation: 'title';
+            referencedColumns: ['name'];
           },
         ];
       };
       user_achievements: {
         Row: {
-          achievement_id: number;
-          user_id: number;
+          achievement_id: string | null;
+          id: string;
+          user_id: string | null;
         };
         Insert: {
-          achievement_id: number;
-          user_id: number;
+          achievement_id?: string | null;
+          id: string;
+          user_id?: string | null;
         };
         Update: {
-          achievement_id?: number;
-          user_id?: number;
+          achievement_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -223,16 +313,19 @@ export interface Database {
       };
       user_completed_challenges: {
         Row: {
-          challenge_id: number;
-          user_id: number;
+          challenge_id: string | null;
+          id: string;
+          user_id: string | null;
         };
         Insert: {
-          challenge_id: number;
-          user_id: number;
+          challenge_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Update: {
-          challenge_id?: number;
-          user_id?: number;
+          challenge_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -253,16 +346,19 @@ export interface Database {
       };
       user_having_items: {
         Row: {
-          item_id: number;
-          user_id: number;
+          id: string;
+          item_id: string | null;
+          user_id: string | null;
         };
         Insert: {
-          item_id: number;
-          user_id: number;
+          id?: string;
+          item_id?: string | null;
+          user_id?: string | null;
         };
         Update: {
-          item_id?: number;
-          user_id?: number;
+          id?: string;
+          item_id?: string | null;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -283,16 +379,19 @@ export interface Database {
       };
       user_having_titles: {
         Row: {
-          title_id: number;
-          user_id: number;
+          id: string;
+          title_id: string | null;
+          user_id: string | null;
         };
         Insert: {
-          title_id: number;
-          user_id: number;
+          id?: string;
+          title_id?: string | null;
+          user_id?: string | null;
         };
         Update: {
-          title_id?: number;
-          user_id?: number;
+          id?: string;
+          title_id?: string | null;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -313,16 +412,19 @@ export interface Database {
       };
       user_hobbies: {
         Row: {
-          hobby_id: number;
-          user_id: number;
+          hobby_id: string | null;
+          id: string;
+          user_id: string | null;
         };
         Insert: {
-          hobby_id: number;
-          user_id: number;
+          hobby_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Update: {
-          hobby_id?: number;
-          user_id?: number;
+          hobby_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -343,16 +445,19 @@ export interface Database {
       };
       user_on_challenges: {
         Row: {
-          challenge_id: number;
-          user_id: number;
+          challenge_id: string | null;
+          id: string;
+          user_id: string | null;
         };
         Insert: {
-          challenge_id: number;
-          user_id: number;
+          challenge_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Update: {
-          challenge_id?: number;
-          user_id?: number;
+          challenge_id?: string | null;
+          id?: string;
+          user_id?: string | null;
         };
         Relationships: [
           {
@@ -368,90 +473,6 @@ export interface Database {
             isOneToOne: false;
             referencedRelation: 'user';
             referencedColumns: ['uid'];
-          },
-        ];
-      };
-      user: {
-        Row: {
-          created_date: string | null;
-          exp: number | null;
-          gem: number | null;
-          id: string;
-          image: string | null;
-          item: number | null;
-          main_hobby: number | null;
-          nickname: string;
-          now_challenge: number | null;
-          now_hobby: number | null;
-          password: string;
-          title: number | null;
-          uid: number;
-        };
-        Insert: {
-          created_date?: string | null;
-          exp?: number | null;
-          gem?: number | null;
-          id: string;
-          image?: string | null;
-          item?: number | null;
-          main_hobby?: number | null;
-          nickname: string;
-          now_challenge?: number | null;
-          now_hobby?: number | null;
-          password: string;
-          title?: number | null;
-          uid?: number;
-        };
-        Update: {
-          created_date?: string | null;
-          exp?: number | null;
-          gem?: number | null;
-          id?: string;
-          image?: string | null;
-          item?: number | null;
-          main_hobby?: number | null;
-          nickname?: string;
-          now_challenge?: number | null;
-          now_hobby?: number | null;
-          password?: string;
-          title?: number | null;
-          uid?: number;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'user_item_fkey';
-            columns: ['item'];
-            isOneToOne: false;
-            referencedRelation: 'item';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'user_main_hobby_fkey';
-            columns: ['main_hobby'];
-            isOneToOne: false;
-            referencedRelation: 'hobby';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'user_now_challenge_fkey';
-            columns: ['now_challenge'];
-            isOneToOne: false;
-            referencedRelation: 'challenge';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'user_now_hobby_fkey';
-            columns: ['now_hobby'];
-            isOneToOne: false;
-            referencedRelation: 'hobby';
-            referencedColumns: ['id'];
-          },
-          {
-            foreignKeyName: 'user_title_fkey';
-            columns: ['title'];
-            isOneToOne: false;
-            referencedRelation: 'title';
-            referencedColumns: ['id'];
           },
         ];
       };

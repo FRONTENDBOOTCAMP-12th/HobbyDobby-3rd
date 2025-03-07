@@ -5,7 +5,7 @@ import HobbySelectCard from '@/components/HobbySelect/HobbySelectCard';
 import { supabase } from '@/lib/supabase-client';
 
 interface HobbiesProps {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -36,7 +36,7 @@ function HobbySelectPage() {
       <p className="hobby-select__desc">관심있는 취미 활동을 선택해주세요!</p>
       <ul className="hobby-select__list">
         {hobbies?.map((item) => (
-          <HobbySelectCard key={item.id} id={item.id} name={item.name} />
+          <HobbySelectCard key={item.id} name={item.name} />
         ))}
       </ul>
     </>

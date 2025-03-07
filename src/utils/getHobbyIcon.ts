@@ -1,17 +1,17 @@
 // hobby_id에 따른 hobbyIcon을 리턴하는 함수
-export const getHobbyIcon = (id: number | null): string | undefined => {
+export const getHobbyIcon = (id: string | null): string | undefined => {
   switch (id) {
-    case 1:
+    case '독서':
       return '/assets/book.svg';
-    case 2:
+    case '운동':
       return '/assets/exercise-running.svg';
-    case 3:
+    case '미술':
       return '/assets/art.svg';
-    case 4:
+    case '음악':
       return '/assets/music.svg';
-    case 5:
+    case '여행':
       return '/assets/travel.svg';
-    case 6:
+    case '요리':
       return '/assets/cooking.svg';
     default:
       return;
