@@ -2,8 +2,7 @@ import './register.css';
 import { useState } from 'react';
 import FormInput from './FormInput';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
-import { isUserInputDuplicate } from '@/lib/api';
-// import { createUserAccount } from '@/lib/api';
+import { isUserInputDuplicate, createUserAccount } from '@/lib/api';
 
 export interface RegisterFormInputData {
   id: string;
@@ -26,7 +25,11 @@ function RegisterForm() {
     nickname: '',
   });
 
-  // const [checkDuplicate]
+  // 입력 데이터에 중복이 있는지 없는지 확인용 상태
+  const [isDuplicate, setIsDuplicate] = useState({
+    id: true,
+    nickname: true,
+  });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
@@ -43,25 +46,40 @@ function RegisterForm() {
     const isDuplicated = await isUserInputDuplicate(name, inputData[name]);
 
     if (isDuplicated) {
+      const nextInputData = {
+        ...inputData,
+        [name]: '',
+      };
+      setInputData(nextInputData);
+      // 이후엔 alertMessage 출력? 뭔가 알림이 필요.
       console.log('중복된 ID입니다.');
     } else {
+      const nextIsDuplicate = {
+        ...isDuplicate,
+        [name]: false,
+      };
+      setIsDuplicate(nextIsDuplicate);
+      // 이후엔 alertMessage 출력? 뭔가 알림이 필요.
       console.log('사용 가능한 ID입니다.');
     }
   };
 
-  // const handleRegister = async () => {
-  //   try {
-  //     await createUserAccount({
-  //       id: inputData.id,
-  //     })
-  //   } catch (err) {
-  //     throw new Error(err as string);
-  //   }
-  // };
+  const handleRegister = async () => {
+    // vaildation이 끝났다고 생각하고 개발
+    const { data, error } = await createUserAccount({
+      id: inputData.id,
+      nickname: inputData.nickname,
+      password: inputData.password,
+    });
+
+    if (data === null) {
+      throw error;
+    }
+    console.log('생성 완료!');
+  };
 
   return (
-    // <form className="register-form" action={handleRegister}>
-    <form className="register-form">
+    <form className="register-form" action={handleRegister}>
       <FormInput
         type="text"
         label="아이디"
