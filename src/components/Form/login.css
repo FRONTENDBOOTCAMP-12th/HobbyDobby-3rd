@@ -1,6 +1,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 
@@ -20,5 +21,12 @@
     &:focus {
       background-color: var(--lighten-secondary-color);
     }
+  }
+  button:disabled {
+    background-color: var(--primary-color);
+  }
+
+  .form-input__wrapper {
+    justify-content: center;
   }
 }

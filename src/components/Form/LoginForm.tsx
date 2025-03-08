@@ -21,8 +21,16 @@ function LoginForm() {
     id: '',
     password: '',
   });
+
   // zustand User 데이터 저장소에서 데이터 전체 갱신 함수(login) 가져오기
   const login = useUserStore((state) => state.login);
+
+  const isLoginDisable = !(
+    inputData.id !== '' &&
+    inputData.password !== '' &&
+    ID_REGEX.test(inputData.id) &&
+    PW_REGEX.test(inputData.password)
+  );
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
@@ -58,6 +66,8 @@ function LoginForm() {
             // 로그인이 되었다는 토스트 / 알림
             console.log('login!!');
             // 페이지 이동
+            // react-router의 useNavigation() 함수를 활용해 개발 예정
+            // 로그인 된 유저 정보에 따라 다른 페이지로 이동(신규=취미 선택/기존 유저=메인)
           } else {
             nextInputData.id = inputData.id;
             setInputData(nextInputData);
@@ -78,9 +88,14 @@ function LoginForm() {
   };
 
   return (
-    <form className="login-form" action={handleLogIn}>
+    <form
+      className="login-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        void handleLogIn();
+      }}
+    >
       <FormInput
-        className="login-input"
         isLabelSrOnly={true}
         type="text"
         label="아이디"
@@ -92,7 +107,6 @@ function LoginForm() {
         regex={ID_REGEX}
       />
       <FormInput
-        className="login-input"
         isLabelSrOnly={true}
         type="password"
         label="비밀번호"
@@ -103,7 +117,9 @@ function LoginForm() {
         onChange={handleInput}
         regex={PW_REGEX}
       />
-      <button type="submit">로그인</button>
+      <button type="submit" disabled={isLoginDisable}>
+        로그인
+      </button>
     </form>
   );
 }
