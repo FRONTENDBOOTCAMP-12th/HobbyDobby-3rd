@@ -1,6 +1,7 @@
 import './style.css';
 import HeadingLogo from '@/components/HeadingLogo';
 import LoginForm from '@/components/Form/LoginForm';
+import { Link } from 'react-router';
 
 function LoginPage() {
   return (
@@ -11,7 +12,7 @@ function LoginPage() {
         <LoginForm />
         <div className="login-page__register">
           <p>아직 가입하지 않았다면</p>
-          <a href="/">회원가입 하러가기</a>
+          <Link to="/register">회원가입 하러가기</Link>
         </div>
       </main>
     </div>

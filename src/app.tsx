@@ -6,7 +6,7 @@ import LoginPage from '@/pages/login';
 import LandingPage from '@/pages/landing-page';
 import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
-
+import RegisterPage from './pages/register';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route index path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/select-hobby" element={<HobbySelectPage />} />
           <Route
             path="/select-hobby/:hobby_name"
