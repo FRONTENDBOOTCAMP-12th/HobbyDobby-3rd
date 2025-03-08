@@ -1,30 +1,36 @@
 import { useState } from 'react';
 import './login.css';
-import LoginInput from './LoginInput';
+import FormInput from './FormInput';
 import { getUserByID, getUserHobbiesByUID } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
+import { ID_REGEX, PW_REGEX } from '@/utils/form';
 
-interface FormInputData {
+interface LoginFormInputData {
   id: string;
   password: string;
 }
 
 interface EventData {
-  name: keyof FormInputData;
+  name: keyof LoginFormInputData;
   value: string;
 }
 
-const ID_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
-const PW_REGEX = /^[a-zA-Z0-9!@#$%^&*()-_+=]{8,}$/;
-
 function LoginForm() {
   // 입력 데이터
-  const [inputData, setInputData] = useState<FormInputData>({
+  const [inputData, setInputData] = useState<LoginFormInputData>({
     id: '',
     password: '',
   });
+
   // zustand User 데이터 저장소에서 데이터 전체 갱신 함수(login) 가져오기
   const login = useUserStore((state) => state.login);
+
+  const isLoginDisable = !(
+    inputData.id !== '' &&
+    inputData.password !== '' &&
+    ID_REGEX.test(inputData.id) &&
+    PW_REGEX.test(inputData.password)
+  );
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget as EventData;
@@ -37,20 +43,20 @@ function LoginForm() {
     setInputData(nextInputData);
   };
 
-  const handleLogIn = async (formData: FormData) => {
-    const inputId = formData.get('id') as string;
+  const handleLogIn = async () => {
+    const inputID = inputData.id;
 
     try {
-      const { data: user, error } = await getUserByID(inputId);
+      const { data: user, error } = await getUserByID(inputID);
 
       if (user) {
         const nextInputData = { id: '', password: '' };
 
         if (user?.length > 0) {
-          const inputPw = formData.get('password') as string;
+          const inputPW = inputData.password;
           const userData = user[0];
 
-          if (userData.password === inputPw) {
+          if (userData.password === inputPW) {
             // uid를 바탕으로 데이터 가져오기
             const userHobbies = await getUserHobbiesByUID(userData.uid);
 
@@ -60,6 +66,8 @@ function LoginForm() {
             // 로그인이 되었다는 토스트 / 알림
             console.log('login!!');
             // 페이지 이동
+            // react-router의 useNavigation() 함수를 활용해 개발 예정
+            // 로그인 된 유저 정보에 따라 다른 페이지로 이동(신규=취미 선택/기존 유저=메인)
           } else {
             nextInputData.id = inputData.id;
             setInputData(nextInputData);
@@ -80,8 +88,14 @@ function LoginForm() {
   };
 
   return (
-    <form className="login-form" action={handleLogIn}>
-      <LoginInput
+    <form
+      className="login-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        void handleLogIn();
+      }}
+    >
+      <FormInput
         isLabelSrOnly={true}
         type="text"
         label="아이디"
@@ -92,7 +106,7 @@ function LoginForm() {
         onChange={handleInput}
         regex={ID_REGEX}
       />
-      <LoginInput
+      <FormInput
         isLabelSrOnly={true}
         type="password"
         label="비밀번호"
@@ -103,7 +117,9 @@ function LoginForm() {
         onChange={handleInput}
         regex={PW_REGEX}
       />
-      <button type="submit">로그인</button>
+      <button type="submit" disabled={isLoginDisable}>
+        로그인
+      </button>
     </form>
   );
 }
