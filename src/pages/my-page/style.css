@@ -6,7 +6,7 @@
 
   /* size */
   --profile-edit-btn-size: 1.8rem;
-  --board-padding: 1rem;
+  --board-padding: 0.9rem;
   --board-border-radius: 1rem;
 
   /* text */
@@ -17,7 +17,7 @@
 
   inline-size: 100%;
   block-size: 100%;
-  min-height: 586px;
+  max-width: 29rem;
 
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
     background-color: var(--quntenary-color);
 
     inline-size: 100%;
-    min-width: 22.5rem;
+    min-width: 25rem;
     block-size: 3.5rem;
 
     display: flex;
@@ -56,7 +56,7 @@
     background-color: var(--quntenary-color);
     inline-size: 100%;
     min-width: 22.5rem;
-    block-size: 3.5rem;
+    block-size: 4.625rem;
 
     display: flex;
     justify-content: center;
@@ -64,10 +64,10 @@
 
     justify-self: flex-end;
   }
-}
 
-main::-webkit-scrollbar {
-  display: none;
+  main::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* 프로필 헤더 */
@@ -78,59 +78,59 @@ main::-webkit-scrollbar {
   position: relative;
 
   flex-shrink: 0;
-}
 
-.edit-profile-btn {
-  background-color: var(--white-color);
-  inline-size: var(--profile-edit-btn-size);
-  block-size: var(--profile-edit-btn-size);
+  .edit-profile-btn {
+    background-color: var(--white-color);
+    inline-size: var(--profile-edit-btn-size);
+    block-size: var(--profile-edit-btn-size);
 
-  padding: 0.4375rem;
+    padding: 0.4375rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 
-  border: 2px solid var(--black-color);
-  border-radius: 0.6rem;
+    border: 2px solid var(--black-color);
+    border-radius: 0.6rem;
 
-  &:hover {
-    filter: brightness(0.9);
+    &:hover {
+      filter: brightness(0.9);
+    }
+
+    &:active {
+      filter: brightness(0.7);
+    }
+
+    img {
+      margin: 0;
+      padding: 0;
+
+      inline-size: 100%;
+      block-size: 100%;
+    }
   }
 
-  &:active {
-    filter: brightness(0.7);
-  }
+  .profile-image-frame {
+    background-color: var(--profile-image-frame-color);
+    inline-size: 6.5rem;
+    block-size: 6.5rem;
+    border-radius: 50%;
 
-  img {
-    margin: 0;
-    padding: 0;
+    position: absolute;
 
-    inline-size: 100%;
-    block-size: 100%;
-  }
-}
+    /* Center the image frame */
+    top: 4rem;
+    left: 50%;
 
-.profile-image-frame {
-  background-color: var(--profile-image-frame-color);
-  inline-size: 6.5rem;
-  block-size: 6.5rem;
-  border-radius: 50%;
+    transform: translate(-50%, 0);
 
-  position: absolute;
-
-  /* Center the image frame */
-  top: 4rem;
-  left: 50%;
-
-  transform: translate(-50%, 0);
-
-  &:hover {
-    filter: brightness(0.97);
+    &:hover {
+      filter: brightness(0.97);
+    }
   }
 }
 
@@ -138,7 +138,7 @@ main::-webkit-scrollbar {
 .profile-body {
   background-color: transparent;
   inline-size: 100%;
-  padding: 2.5rem 1rem;
+  padding: 2.5rem 1.8rem;
 
   flex-grow: 1;
 
@@ -159,6 +159,7 @@ main::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 0.5rem;
 
   padding: var(--board-padding);
 
@@ -172,7 +173,6 @@ main::-webkit-scrollbar {
 
 .profile-details-board {
   .profile-main-hobby-icon-frame {
-    /* background-color: var(--profile-image-frame-color); */
     background-color: var(--profile-image-frame-color);
     inline-size: 2rem;
     block-size: 2rem;
@@ -182,7 +182,7 @@ main::-webkit-scrollbar {
 
     /* Center the image frame */
     top: 3.3rem;
-    right: 1.8rem;
+    right: 2.5rem;
 
     &:hover {
       filter: brightness(0.97);
@@ -194,10 +194,19 @@ main::-webkit-scrollbar {
     padding-left: 0;
     margin: 0;
 
+    font-size: 1.125rem;
     font-weight: 600;
 
     :nth-child(2) {
       color: var(--text-green);
     }
   }
+}
+
+.stat-cards-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  gap: 1rem;
+  flex-wrap: wrap;
 }

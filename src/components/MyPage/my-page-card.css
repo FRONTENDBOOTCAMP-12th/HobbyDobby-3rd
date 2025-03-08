@@ -1,0 +1,52 @@
+.card {
+  background-color: var(--secondary-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  flex: 1 1 calc(50% - 0.5rem); /* 기본적으로 2개씩 배치되도록 설정 */
+  box-sizing: border-box; /* 여백을 포함한 크기 계산 */
+
+  min-width: min-content;
+  min-height: 3.75rem;
+
+  padding: 0.8125rem;
+
+  border-radius: 1rem;
+
+  gap: 2rem;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  img {
+    inline-size: 1.8rem;
+    min-width: 1.8rem;
+  }
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 0.5rem;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+}
