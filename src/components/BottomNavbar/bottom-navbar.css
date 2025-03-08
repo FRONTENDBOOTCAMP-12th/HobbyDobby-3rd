@@ -2,6 +2,7 @@
   width: 100%;
   height: auto;
   display: flex;
+  background-color: var(--quntenary-color);
 }
 
 /* RR_NavLink */
