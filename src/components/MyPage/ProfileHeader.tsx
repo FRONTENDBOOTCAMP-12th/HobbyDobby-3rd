@@ -1,7 +1,6 @@
 import { getPublicImage } from '@/utils/getPublic';
 
 interface ProfileHeaderProps {
-  id?: string;
   profileImage?: string;
 }
 

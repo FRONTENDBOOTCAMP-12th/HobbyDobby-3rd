@@ -2,7 +2,6 @@ import { getPublicImage } from '@/utils/getPublic';
 import './my-page-card.css';
 
 interface StatCardProps {
-  id?: string;
   value?: number;
   name?: string;
 }

@@ -1,5 +1,4 @@
 interface ProfileCardProps {
-  id?: string;
   nickName?: string;
   mainTitle?: string;
   mainHobby?: string;

@@ -21,11 +21,11 @@
   &:hover {
     filter: brightness(1.05);
   }
-}
 
-img {
-  inline-size: 1.8rem;
-  min-width: 1.8rem;
+  img {
+    inline-size: 1.8rem;
+    min-width: 1.8rem;
+  }
 }
 
 .stats {
