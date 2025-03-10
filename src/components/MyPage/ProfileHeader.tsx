@@ -1,3 +1,5 @@
+import './styles/my-page-user-profile.css';
+
 import { getPublicImage } from '@/utils/getPublic';
 
 interface ProfileHeaderProps {

@@ -1,14 +1,16 @@
+import './styles/my-page-user-profile.css';
+
 interface ProfileCardProps {
-  nickName?: string;
+  nickName: string;
   mainTitle?: string;
-  mainHobby?: string;
-  mainHobbyIcon?: string;
-  joinDate?: string;
+  mainHobby: string;
+  mainHobbyIcon: string;
+  joinDate: string;
 }
 
-function ProfileCard({
+function ProfileInfo({
   nickName = '닉네임',
-  mainTitle = '대표 칭호',
+  mainTitle = '취미 입문자',
   mainHobbyIcon = '',
   mainHobby = '대표 취미 이름',
   joinDate = '2025년 3월',
@@ -31,4 +33,4 @@ function ProfileCard({
   );
 }
 
-export default ProfileCard;
+export default ProfileInfo;
