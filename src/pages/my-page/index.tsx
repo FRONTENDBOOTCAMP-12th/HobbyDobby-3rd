@@ -24,7 +24,7 @@ function MyPage() {
             mainHobbyIcon=""
             joinDate="2025년 3월"
           />
-          <article className="board">
+          <article className="article-container">
             <h2>통계</h2>
             {isStatistics ? (
               <div className="stat-cards-list">
@@ -34,7 +34,7 @@ function MyPage() {
               <p>통계가 없습니다.</p>
             )}
           </article>
-          <article className="board">
+          <article className="article-container">
             <h2>업적</h2>
             {isAchievements ? (
               <AchievementCard
@@ -42,7 +42,7 @@ function MyPage() {
                 name="7일 연속 출석"
                 total={7}
                 current={2}
-                description="업적에 대한 내용"
+                description="7일 연속으로 출석하면 업적이 달성됩니다."
               />
             ) : (
               <p>업적이 없습니다.</p>

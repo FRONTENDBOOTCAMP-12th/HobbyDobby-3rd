@@ -7,7 +7,7 @@ interface StatCardProps {
 }
 
 // 통계 카드 컴포넌트
-function StatCard({ value = 121554, name = '통계 제목' }: StatCardProps) {
+function StatCard({ name, value }: StatCardProps) {
   const formattedValue = value.toLocaleString();
 
   return (

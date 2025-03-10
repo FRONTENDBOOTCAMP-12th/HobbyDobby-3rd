@@ -12,11 +12,11 @@ interface AchievementCardProps {
 
 // 업적 카드 컴포넌트
 function AchievementCard({
-  level = '1',
-  name = '업적 제목',
-  total = 10,
-  current = 1,
-  description = '업적에 대한 내용',
+  level,
+  name,
+  total,
+  current,
+  description,
 }: AchievementCardProps) {
   return (
     <div className="card achievement-card">

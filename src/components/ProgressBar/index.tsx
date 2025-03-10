@@ -1,17 +1,17 @@
 import './style.css';
 
 interface ProgressBarProps {
+  value: number;
+  max: number;
   width?: number | string;
   height?: number | string;
   containerColor?: string;
   varColor?: string;
-  value: number;
-  max: number;
 }
 
 function ProgressBar({
-  value = 1,
-  max = 10,
+  value,
+  max,
   width = '100%',
   height = '0.5rem',
   containerColor = 'white',
