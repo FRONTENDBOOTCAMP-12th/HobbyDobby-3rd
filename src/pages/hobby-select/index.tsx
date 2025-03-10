@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './style.css';
 import Logo from '/assets/large-logo.svg';
 import HobbySelectCard from '@/components/HobbySelect/HobbySelectCard';
-import { supabase } from '@/lib/supabase-client';
+import { getHobby } from '@/lib/api';
 
 interface HobbiesProps {
   id: string;
@@ -15,8 +15,13 @@ function HobbySelectPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await supabase.from('hobby').select('*');
-        setHobbies(data);
+        const { data } = await getHobby();
+
+        if (data) {
+          setHobbies(data);
+        } else {
+          throw new Error('데이터를 불러오는데 실패했습니다..');
+        }
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +41,7 @@ function HobbySelectPage() {
       <p className="hobby-select__desc">관심있는 취미 활동을 선택해주세요!</p>
       <ul className="hobby-select__list">
         {hobbies?.map((item) => (
-          <HobbySelectCard key={item.id} name={item.name} />
+          <HobbySelectCard key={item.id} id={item.id} name={item.name} />
         ))}
       </ul>
     </>

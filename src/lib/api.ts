@@ -6,7 +6,7 @@ export const getUserByID = async (inputID: UserData['id']) =>
     .select(
       `
       *,
-      now_hobby(*)
+      now_hobby:hobby!now_hobby(id,name)
     `
     )
     .eq('id', inputID);
@@ -28,19 +28,49 @@ export const getUserHobbiesByUID = async (inputUID: UserData['uid']) => {
     throw error;
   }
 
-  return userHobbies.map((item) => ({
-    id: item.hobby.id,
-    name: item.hobby.name,
-  }));
+  return userHobbies.map(({ hobby }) => {
+    return hobby;
+  });
 };
 
 export const updateUserNowHobby = async (
   uid: UserData['uid'],
   nowHobby: HobbyData
-) => {
+) =>
   await supabase
     .from('user')
-    .update({ now_hobby: nowHobby.id })
+    .update({ now_hobby: nowHobby.name })
     .eq('uid', uid)
     .select();
+
+export const createUserAccount = async ({
+  id,
+  nickname,
+  password,
+}: {
+  id: string;
+  nickname: string;
+  password: string;
+}) => await supabase.from('user').insert({ id, nickname, password }).select();
+
+export const getHobby = async () => await supabase.from('hobby').select('*');
+
+export const getSubHobby = async (hobbyId: string) =>
+  await supabase
+    .from('sub_hobby')
+    .select('id,info,name')
+    .eq('hobby_id', hobbyId);
+
+export const isUserInputDuplicate = async (
+  inputName: string,
+  inputData: string
+) => {
+  const { data: response } = await supabase
+    .from('user')
+    .select(inputName)
+    .eq(inputName, inputData);
+
+  if (response?.length === 0) return false;
+
+  return true;
 };

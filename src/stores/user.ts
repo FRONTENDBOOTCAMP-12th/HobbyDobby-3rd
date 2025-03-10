@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
 type User = Omit<UserData, 'now_hobby'> & {
-  user_hobbies: HobbyData[];
+  user_hobbies: (HobbyData | null)[];
   now_hobby: HobbyData | null;
 };
 
@@ -21,7 +21,7 @@ const initialUser: User = {
   now_hobby: null,
   password: '',
   title: null,
-  uid: -1,
+  uid: '',
   user_hobbies: [],
 };
 

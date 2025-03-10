@@ -1,8 +1,9 @@
+import { Link } from 'react-router';
 import './style.css';
 
 function LandingPage() {
   return (
-    <main>
+    <main className="landing">
       <h1 className="sr-only">Hobby Dobby</h1>
       <header>
         <div>
@@ -24,9 +25,9 @@ function LandingPage() {
 
       {/* 버튼 */}
       <div>
-        <button type="button" className="start">
+        <Link to="/login" className="start">
           시작하기
-        </button>
+        </Link>
       </div>
     </main>
   );

@@ -1,0 +1,49 @@
+.subhobby-select-card {
+  width: 18.75rem;
+  height: 8.125rem;
+  display: flex;
+  background-color: var(--quntenary-color);
+  border-radius: 10px;
+}
+
+.subhobby-select-card__figure {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 3.75rem;
+    padding: 13px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+  }
+
+  figcaption {
+    font-weight: 600;
+  }
+}
+
+.subhobby-select-card__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.subhobby-select-card__desc {
+  margin: 0;
+  padding: 10px;
+  line-height: 1.2;
+}
+
+.subhobby-select-card__button {
+  width: 11.25rem;
+  height: 1.5rem;
+  font-weight: 600;
+  background-color: var(--secondary-color);
+  border: 0;
+  border-radius: 5px;
+}
