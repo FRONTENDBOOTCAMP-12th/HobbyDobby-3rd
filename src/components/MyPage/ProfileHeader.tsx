@@ -1,10 +1,12 @@
+import './styles/my-page-user-profile.css';
+
 import { getPublicImage } from '@/utils/getPublic';
 
 interface ProfileHeaderProps {
   profileImage?: string;
 }
 
-function ProfileHeader({ profileImage }: ProfileHeaderProps) {
+function ProfileHeader({ profileImage = '' }: ProfileHeaderProps) {
   const handleEditProfile = () => {
     console.log('프로필 수정하기');
   };
