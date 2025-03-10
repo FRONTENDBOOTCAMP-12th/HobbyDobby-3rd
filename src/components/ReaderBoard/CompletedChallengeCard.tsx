@@ -1,25 +1,43 @@
+import { Link } from 'react-router';
 import './completed-challenge-card.css';
 
 interface CompletedChallengeProps {
+  id: number;
   name: string;
-  date: string;
-  period: number;
+  createdDate: string;
+  completedDate: string;
 }
 
 function CompletedChallengeCard({
+  id,
   name,
-  date,
-  period,
+  createdDate,
+  completedDate,
 }: CompletedChallengeProps) {
-  const dateArr = date.split('-');
+  // 챌린지 완주 날짜 구하기
+  const date = new Date(completedDate);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  // 챌린지 활동 기간 구하기
+  const start = new Date(createdDate).getTime();
+  const end = new Date(completedDate).getTime();
+  const difference = end - start;
+  const period = Math.floor(difference / (1000 * 60 * 60 * 24));
 
   return (
-    <li className="completed-challenge">
-      <h3 className="completed-challenge__name">{name}</h3>
-      <p className="completed-challenge__date">
-        완주 {dateArr[0]}년 {dateArr[1]}월 {dateArr[2]}일
-      </p>
-      <p className="completed-challenge__period">기간 {period}일</p>
+    <li className="completed-challenge-card">
+      <Link
+        to={`/reader-board/:${id}`}
+        className="completed-challenge-card__link"
+      >
+        <h3 className="completed-challenge-card__name">{name}</h3>
+        <p className="completed-challenge-card__date">
+          완주 {year}년 {month}월 {day}일
+        </p>
+        <p className="completed-challenge__period">기간 {period}일</p>
+      </Link>
     </li>
   );
 }

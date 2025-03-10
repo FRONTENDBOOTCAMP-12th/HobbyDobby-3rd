@@ -33,7 +33,7 @@ function HobbySelectPage() {
   }, []);
 
   return (
-    <>
+    <div className="hobby-select">
       <h1 className="hobby-selecet__logo">
         <span className="sr-only">Hobby Dobby</span>
         <img src={Logo} alt="Hobby Dobby" aria-hidden="true" />
@@ -44,7 +44,7 @@ function HobbySelectPage() {
           <HobbySelectCard key={item.id} id={item.id} name={item.name} />
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 

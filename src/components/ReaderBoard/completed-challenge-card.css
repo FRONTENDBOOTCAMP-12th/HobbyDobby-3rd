@@ -1,4 +1,4 @@
-.completed-challenge {
+.completed-challenge-card {
   width: 10.625rem;
   height: 6.25rem;
   padding: 10px;
@@ -12,12 +12,17 @@
 
   p {
     margin: 0;
+    padding-block: 2px;
     font-size: 14px;
     color: var(--text-gray);
   }
 }
 
-.completed-challenge__name {
+.completed-challenge-card__link {
+  text-decoration: none;
+}
+
+.completed-challenge-card__name {
   margin: 0;
   padding-bottom: 5px;
   color: var(--text-green);
