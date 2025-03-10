@@ -6,7 +6,7 @@ interface ProfileHeaderProps {
   profileImage?: string;
 }
 
-function ProfileHeader({ profileImage }: ProfileHeaderProps) {
+function ProfileHeader({ profileImage = '' }: ProfileHeaderProps) {
   const handleEditProfile = () => {
     console.log('프로필 수정하기');
   };

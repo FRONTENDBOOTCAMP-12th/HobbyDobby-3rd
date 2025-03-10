@@ -84,7 +84,7 @@
   gap: 1rem;
 }
 
-.board {
+.article-container {
   background-color: var(--white-color);
   inline-size: 100%;
 

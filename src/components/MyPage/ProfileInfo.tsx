@@ -9,14 +9,14 @@ interface ProfileCardProps {
 }
 
 function ProfileInfo({
-  nickName = '닉네임',
+  nickName,
   mainTitle = '취미 입문자',
-  mainHobbyIcon = '',
   mainHobby = '대표 취미 이름',
-  joinDate = '2025년 3월',
+  mainHobbyIcon,
+  joinDate,
 }: ProfileCardProps) {
   return (
-    <article className="board profile-details-board">
+    <article className="article-container profile-details">
       <span className="profile-main-hobby-icon-frame">
         {mainHobbyIcon ? (
           <img src={mainHobbyIcon} alt={`${mainHobby} 아이콘`} />

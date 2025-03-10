@@ -67,24 +67,8 @@
   }
 }
 
-/* 프로필 정보(보드) */
-.profile-details-board {
-  .profile-main-hobby-icon-frame {
-    background-color: var(--profile-image-frame-color);
-    inline-size: 2rem;
-    block-size: 2rem;
-    border-radius: 50%;
-
-    position: absolute;
-
-    top: 3.3rem;
-    right: 2.5rem;
-
-    &:hover {
-      filter: brightness(0.97);
-    }
-  }
-
+/* 프로필 정보 */
+.profile-details {
   ul {
     list-style-type: none;
     padding-left: 0;
@@ -95,10 +79,27 @@
 
     :nth-child(1) {
       font-size: 1.375rem;
+      margin-bottom: 0.4rem;
     }
 
     :nth-child(2) {
       color: var(--text-green);
     }
+  }
+}
+
+.profile-main-hobby-icon-frame {
+  background-color: var(--profile-image-frame-color);
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+
+  position: absolute;
+
+  top: 3.3rem;
+  right: 2.5rem;
+
+  &:hover {
+    filter: brightness(0.97);
   }
 }
