@@ -1,0 +1,14 @@
+.reader-board-completed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reader-board-completed__list {
+  width: 360px;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 10px;
+}

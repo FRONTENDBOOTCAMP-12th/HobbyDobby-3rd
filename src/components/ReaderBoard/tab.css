@@ -1,0 +1,26 @@
+.reader-board-tab {
+  width: 22.5rem;
+  height: 3.125rem;
+  display: flex;
+  padding-inline: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  list-style-type: none;
+  background-color: var(--quatenary-color);
+
+  li {
+    width: 50%;
+    height: 100%;
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #c2c1c2;
+    font-weight: 600;
+  }
+}

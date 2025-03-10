@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  background-color: var(--quntenary-color);
+  background-color: var(--quatenary-color);
 }
 .top-navbar__logo {
   font-size: 1rem;
@@ -32,7 +32,7 @@
 /* ------------------- 취미 상세 카드 ------------------- */
 .hobby-card {
   width: 100%;
-  background: var(--quntenary-color);
+  background: var(--quatenary-color);
 }
 
 .hobby-card__list {

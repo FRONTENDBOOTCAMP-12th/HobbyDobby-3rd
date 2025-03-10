@@ -7,13 +7,14 @@ import LandingPage from '@/pages/landing-page';
 import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
 import RegisterPage from './pages/register';
+import ReaderBoardCompletedPage from './pages/reader-board-completed';
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route index path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/select-hobby" element={<HobbySelectPage />} />
@@ -21,6 +22,9 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
+          <Route path="/reader-board">
+            <Route index element={<ReaderBoardCompletedPage />} />
+          </Route>
           <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
