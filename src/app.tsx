@@ -3,6 +3,7 @@ import PrintError from '@/components/ErrorBoundary';
 // import LoginPage from '@/pages/login';
 // import LandingPage from '@/pages/landing-page';
 // import HobbySelectPage from '@/pages/hobby-select';
+import MainpageStart from '@/pages/mainpage-start';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       {/* <LoginPage /> */}
       {/* <LandingPage /> */}
       {/* <HobbySelectPage /> */}
+      <MainpageStart />
     </ErrorBoundary>
   );
 }
