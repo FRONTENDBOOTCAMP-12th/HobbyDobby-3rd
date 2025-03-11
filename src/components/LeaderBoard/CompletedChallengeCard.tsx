@@ -29,7 +29,7 @@ function CompletedChallengeCard({
   return (
     <li className="completed-challenge-card">
       <Link
-        to={`/reader-board/:${id}`}
+        to={`/leader-board/:${id}`}
         className="completed-challenge-card__link"
       >
         <h3 className="completed-challenge-card__name">{name}</h3>

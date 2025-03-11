@@ -1,11 +1,11 @@
-.reader-board-completed {
+.leader-board-completed {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.reader-board-completed__list {
+.leader-board-completed__list {
   width: 100%;
   padding-left: 0;
   display: grid;

@@ -8,7 +8,7 @@ import LandingPage from '@/pages/landing-page';
 import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
-import ReaderBoardCompletedPage from '@/pages/reader-board-completed';
+import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
             element={<SubHobbySelectPage />}
           />
           <Route element={<MainLayout />}>
-            <Route path="/reader-board">
-              <Route index element={<ReaderBoardCompletedPage />} />
+            <Route path="/leader-board">
+              <Route index element={<LeaderBoardCompletedPage />} />
             </Route>
             <Route path="/mypage" element={<MyPage />} />
           </Route>
