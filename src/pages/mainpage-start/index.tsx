@@ -1,19 +1,20 @@
 import './style.css';
+import TextForm from '@/components/Form/TextForm';
 
 function MainpageStart() {
   return (
-    <main>
+    <main className="Challengstart">
       <h1 className="sr-only">Hobby Dobby</h1>
       <header></header>
-      <p>챌린지의 이름을 정해주세요.</p>
+      <p className="ChallengeName">챌린지의 이름을 정해주세요.</p>
       <form>
-        <button type="submit">로그인</button>
+        <TextForm />
       </form>
-      <p>Tip. 나중에 변경할 수 있어요.</p>
+      <p className="tip">Tip. 나중에 변경할 수 있어요.</p>
 
-      {/* 버튼 */}
+      {/* 버튼 부분 */}
       <div>
-        <button type="button" className="start">
+        <button type="button" className="decide">
           정했어요
         </button>
       </div>
