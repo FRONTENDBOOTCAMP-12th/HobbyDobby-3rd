@@ -10,17 +10,13 @@ const TextForm = () => {
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            placeholder="25년 첫 독서 챌린지_"
-            value={ChallengeName}
-            onChange={(e) => setChallengeName(e.target.value)}
-          />
-        </form>
-      </div>
-    </div>
+    <form className="startform" onSubmit={handleSubmit}>
+      <textarea
+        placeholder="25년 첫 독서 챌린지_"
+        value={ChallengeName}
+        onChange={(e) => setChallengeName(e.target.value)}
+      />
+    </form>
   );
 };
 
