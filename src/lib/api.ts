@@ -74,3 +74,17 @@ export const isUserInputDuplicate = async (
 
   return true;
 };
+
+export const getUserCompletedChallenge = async (userId: string) => {
+  const { data, error } = await supabase
+    .from('user_completed_challenges')
+    .select(`challenge(name,created_date,completed_date)`)
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching completed challenges:', error.message);
+    throw error;
+  }
+
+  return data;
+};
