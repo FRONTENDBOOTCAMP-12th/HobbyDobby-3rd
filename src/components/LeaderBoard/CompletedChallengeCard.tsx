@@ -2,9 +2,9 @@ import { Link } from 'react-router';
 import './completed-challenge-card.css';
 
 interface CompletedChallengeProps {
-  name: string;
-  createdDate: string;
-  completedDate: string;
+  name: string | undefined;
+  createdDate: string | null | undefined;
+  completedDate: string | null | undefined;
 }
 
 function CompletedChallengeCard({
@@ -13,14 +13,14 @@ function CompletedChallengeCard({
   completedDate,
 }: CompletedChallengeProps) {
   // 챌린지 완주 날짜 구하기
-  const date = new Date(completedDate);
+  const date = new Date(completedDate!);
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
 
   // 챌린지 활동 기간 구하기
-  const start = new Date(createdDate).getTime();
-  const end = new Date(completedDate).getTime();
+  const start = new Date(createdDate!).getTime();
+  const end = new Date(completedDate!).getTime();
   const difference = end - start;
   const period = Math.floor(difference / (1000 * 60 * 60 * 24));
 
