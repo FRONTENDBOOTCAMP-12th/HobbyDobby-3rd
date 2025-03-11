@@ -1,0 +1,15 @@
+form {
+  width: 302px;
+  height: 99px;
+  background-color: white;
+
+  input {
+    width: 302px;
+    height: 99px;
+    background-color: red;
+
+    &::placeholder {
+      color: blue;
+    }
+  }
+}
