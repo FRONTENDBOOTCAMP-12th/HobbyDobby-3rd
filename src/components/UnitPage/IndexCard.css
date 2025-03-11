@@ -1,0 +1,55 @@
+* {
+  --font-size-s: 1.2rem;
+  --font-size-l: 1.45rem;
+  --padding-y-size: 0.75rem;
+  --padding-x-size: 0.9375rem;
+}
+
+.index-card {
+  background-color: var(--secondary-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+
+  position: relative;
+
+  inline-size: 100%;
+  min-height: 3.75rem;
+
+  padding: var(--padding-y-size) var(--padding-x-size);
+
+  border-radius: 1rem;
+
+  p,
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    font-size: var(--font-size-l);
+    font-weight: 700;
+  }
+
+  p {
+    font-size: var(--font-size-s);
+    font-weight: 650;
+    color: var(--text-green);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: calc(var(--padding-y-size) + 0.3rem);
+  right: var(--padding-x-size);
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    filter: brightness(0.8);
+  }
+}

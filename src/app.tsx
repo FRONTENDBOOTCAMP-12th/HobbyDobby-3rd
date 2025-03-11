@@ -9,6 +9,7 @@ import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
+import UnitPage from './pages/unit-page';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             </Route>
             <Route path="/mypage" element={<MyPage />} />
           </Route>
+          <Route path="/unit-page" element={<UnitPage />}></Route>
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>

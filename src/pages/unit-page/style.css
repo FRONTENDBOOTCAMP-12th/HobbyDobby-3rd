@@ -1,0 +1,34 @@
+* {
+  --gap-size: 1rem;
+}
+
+.unit-page {
+  inline-size: 100%;
+  max-width: 27rem;
+  block-size: 100%;
+
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--gap-size);
+}
+
+.unit-header {
+  inline-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.unit-content {
+  inline-size: 100%;
+  block-size: 100%;
+
+  margin-block: 1rem;
+}
