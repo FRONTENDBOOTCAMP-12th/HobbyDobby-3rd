@@ -11,7 +11,7 @@ function HobbySelectCard({ id, name }: HobbySelectCardProps) {
   const navigate = useNavigate();
 
   const handleSelectHobby = (id: string) => {
-    void navigate(`/select-hobby/:${name}`, {
+    void navigate(`/select-hobby/${name}`, {
       state: {
         hobbyId: id,
       },
