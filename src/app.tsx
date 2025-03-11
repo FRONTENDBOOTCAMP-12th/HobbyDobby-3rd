@@ -9,6 +9,7 @@ import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
+import MainPage from './pages/main-page';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             element={<SubHobbySelectPage />}
           />
           <Route element={<MainLayout />}>
+            <Route path="/home">
+              <Route index element={<MainPage />} />
+            </Route>
             <Route path="/leader-board">
               <Route index element={<LeaderBoardCompletedPage />} />
             </Route>

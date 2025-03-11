@@ -1,0 +1,19 @@
+.main-card {
+  width: 18.75rem;
+  height: 5.625rem;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding-block: 13px;
+  padding-inline: 16px;
+
+  h3 {
+    font-size: 16px;
+    opacity: 0.5;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
