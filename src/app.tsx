@@ -9,6 +9,7 @@ import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
+import LeaderBoardDetailPage from './pages/leader-board-detail';
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/leader-board">
               <Route index element={<LeaderBoardCompletedPage />} />
+              <Route
+                path="detail/:challenge_name"
+                element={<LeaderBoardDetailPage />}
+              />
             </Route>
             <Route path="/mypage" element={<MyPage />} />
           </Route>
