@@ -2,14 +2,12 @@ import { Link } from 'react-router';
 import './completed-challenge-card.css';
 
 interface CompletedChallengeProps {
-  id: number;
   name: string;
   createdDate: string;
   completedDate: string;
 }
 
 function CompletedChallengeCard({
-  id,
   name,
   createdDate,
   completedDate,
@@ -29,7 +27,10 @@ function CompletedChallengeCard({
   return (
     <li className="completed-challenge-card">
       <Link
-        to={`/leader-board/:${id}`}
+        to={{
+          pathname: `/leader-board/detail/${name}`,
+          search: `?date=${year}-${month}-${day}&period=${period}`,
+        }}
         className="completed-challenge-card__link"
       >
         <h3 className="completed-challenge-card__name">{name}</h3>

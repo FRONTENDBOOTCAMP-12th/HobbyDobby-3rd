@@ -21,7 +21,7 @@ interface locationState {
 function SubHobbySelectPage() {
   const [subHobbies, setSubHobbies] = useState<subHobbiesProps[] | null>([]);
   const params = useParams();
-  const selectedHobby = params.hobby_name?.slice(1);
+  const selectedHobby = params.hobby_name;
   const location = useLocation();
   const locationState = { ...(location.state as locationState) };
   const hobbyId = locationState.hobbyId;

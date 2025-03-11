@@ -62,7 +62,6 @@ function LeaderBoardCompletedPage() {
         {exampleData.map((data) => (
           <CompletedChallengeCard
             key={data.id}
-            id={data.id}
             name={data.name}
             createdDate={data.created_date}
             completedDate={data.completed_date}
