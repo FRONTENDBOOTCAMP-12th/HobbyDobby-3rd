@@ -1,0 +1,18 @@
+/* 몸통 부분 */
+.progress-bar {
+  inline-size: 100%;
+  block-size: 0.5rem;
+  min-width: 6.25rem;
+  background-color: white;
+
+  border-radius: 0.5rem;
+
+  overflow: hidden;
+}
+
+/* 진행도 표시 부분 */
+.progress-bar-value {
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--primary-color);
+}
