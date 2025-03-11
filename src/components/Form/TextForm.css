@@ -1,6 +1,6 @@
 form {
-  width: 302px;
-  height: 99px;
+  width: 18.875rem;
+  height: 6.1875rem;
 
   textarea {
     width: 100%;
@@ -8,7 +8,7 @@ form {
     word-wrap: break-word;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    padding: 10px;
+    padding: 0.625rem;
     box-sizing: border-box;
 
     &::placeholder {
