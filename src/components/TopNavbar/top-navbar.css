@@ -1,4 +1,9 @@
 .top-navbar {
+  width: 100%;
+  max-width: 27rem;
+  position: fixed;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,12 +17,6 @@
 .top-navbar__container {
   display: flex;
   gap: 10px;
-}
-
-.top-navbar__cash {
-  img {
-    color: transparent;
-  }
 }
 
 /* 취미 버튼 */

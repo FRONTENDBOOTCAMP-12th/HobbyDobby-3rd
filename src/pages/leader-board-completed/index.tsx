@@ -1,6 +1,7 @@
-import CompletedChallengeCard from '@/components/ReaderBoard/CompletedChallengeCard';
-import ReaderBoardTab from '@/components/ReaderBoard/Tab';
+import CompletedChallengeCard from '@/components/LeaderBoard/CompletedChallengeCard';
+import LeaderBoardTab from '@/components/LeaderBoard/Tab';
 import './style.css';
+import Title from '@/layouts/title';
 // import { useUserStore } from '@/stores/user';
 // import { useEffect } from 'react';
 // import { supabase } from '@/lib/supabase-client';
@@ -26,7 +27,7 @@ const exampleData = [
   },
 ];
 
-function ReaderBoardCompletedPage() {
+function LeaderBoardCompletedPage() {
   // const userId = useUserStore((state) => state.id);
 
   // useEffect(() => {
@@ -54,9 +55,10 @@ function ReaderBoardCompletedPage() {
   // }, []);
 
   return (
-    <div className="reader-board-completed">
-      <ReaderBoardTab />
-      <ul className="reader-board-completed__list">
+    <div className="leader-board-completed">
+      <Title>리더보드</Title>
+      <LeaderBoardTab />
+      <ul className="leader-board-completed__list">
         {exampleData.map((data) => (
           <CompletedChallengeCard
             key={data.id}
@@ -71,4 +73,4 @@ function ReaderBoardCompletedPage() {
   );
 }
 
-export default ReaderBoardCompletedPage;
+export default LeaderBoardCompletedPage;

@@ -3,6 +3,7 @@ import './style.css';
 import Logo from '/assets/large-logo.svg';
 import HobbySelectCard from '@/components/HobbySelect/HobbySelectCard';
 import { getHobby } from '@/lib/api';
+import Title from '@/layouts/title';
 
 interface HobbiesProps {
   id: string;
@@ -34,6 +35,7 @@ function HobbySelectPage() {
 
   return (
     <div className="hobby-select">
+      <Title>취미 선택</Title>
       <h1 className="hobby-selecet__logo">
         <span className="sr-only">Hobby Dobby</span>
         <img src={Logo} alt="Hobby Dobby" aria-hidden="true" />

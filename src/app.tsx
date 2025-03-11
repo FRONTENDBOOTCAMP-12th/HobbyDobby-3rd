@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { ErrorBoundary } from 'react-error-boundary';
 import PrintError from '@/components/ErrorBoundary';
-import SubHobbySelectPage from './pages/subhobby-select';
+import MainLayout from '@/layouts/main-layout';
+import SubHobbySelectPage from '@/pages/subhobby-select';
 import LoginPage from '@/pages/login';
 import LandingPage from '@/pages/landing-page';
 import HobbySelectPage from '@/pages/hobby-select';
 import MyPage from '@/pages/my-page';
-import RegisterPage from './pages/register';
-import ReaderBoardCompletedPage from './pages/reader-board-completed';
+import RegisterPage from '@/pages/register';
+import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 
 function App() {
   return (
@@ -22,10 +23,12 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
-          <Route path="/reader-board">
-            <Route index element={<ReaderBoardCompletedPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/leader-board">
+              <Route index element={<LeaderBoardCompletedPage />} />
+            </Route>
+            <Route path="/mypage" element={<MyPage />} />
           </Route>
-          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>

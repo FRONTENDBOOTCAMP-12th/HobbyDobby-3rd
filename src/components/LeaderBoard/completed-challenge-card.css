@@ -1,6 +1,6 @@
 .completed-challenge-card {
-  width: 10.625rem;
-  height: 6.25rem;
+  width: 100%;
+  height: auto;
   padding: 10px;
   list-style-type: none;
   font-weight: 600;
