@@ -1,6 +1,6 @@
 .reader-board-tab {
-  width: 22.5rem;
-  height: 3.125rem;
+  width: 100%;
+  height: auto;
   display: flex;
   padding-inline: 0;
   margin-top: 0;
@@ -16,6 +16,7 @@
   a {
     width: 100%;
     height: 100%;
+    padding-block: 15px;
     display: flex;
     justify-content: center;
     align-items: center;

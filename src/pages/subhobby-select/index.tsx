@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { Link, useLocation, useParams } from 'react-router';
 import { getSubHobby } from '@/lib/api';
+import Title from '@/layouts/title';
 
 interface subHobbiesProps {
   id: string;
@@ -47,6 +48,7 @@ function SubHobbySelectPage() {
 
   return (
     <div className="subhobby-select">
+      <Title>상세 취미 선택</Title>
       <header className="subhobby-select__header">
         <Link
           to="/select-hobby"

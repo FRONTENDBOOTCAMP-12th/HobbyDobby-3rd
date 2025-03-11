@@ -1,6 +1,8 @@
 .bottom-navbar {
   width: 100%;
+  max-width: 27rem;
   height: auto;
+  z-index: 100;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -27,6 +29,5 @@
 }
 
 .navlink__image {
-  width: 8vw;
-  max-width: 3rem;
+  width: 2rem;
 }

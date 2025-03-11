@@ -1,6 +1,7 @@
 import CompletedChallengeCard from '@/components/ReaderBoard/CompletedChallengeCard';
 import ReaderBoardTab from '@/components/ReaderBoard/Tab';
 import './style.css';
+import Title from '@/layouts/title';
 // import { useUserStore } from '@/stores/user';
 // import { useEffect } from 'react';
 // import { supabase } from '@/lib/supabase-client';
@@ -55,6 +56,7 @@ function ReaderBoardCompletedPage() {
 
   return (
     <div className="reader-board-completed">
+      <Title>리더보드</Title>
       <ReaderBoardTab />
       <ul className="reader-board-completed__list">
         {exampleData.map((data) => (

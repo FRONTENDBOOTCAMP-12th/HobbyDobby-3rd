@@ -3,6 +3,7 @@ import { useState } from 'react';
 import StatCard from '@/components/MyPage/StatCard';
 import ProfileCard from '@/components/MyPage/ProfileCard';
 import ProfileHeader from '@/components/MyPage/ProfileHeader';
+import Title from '@/layouts/title';
 
 function MyPage() {
   const [isStatistics] = useState(true);
@@ -10,7 +11,7 @@ function MyPage() {
 
   return (
     <div className="my-page drag-prevent">
-      <header>상단바 공간</header>
+      <Title>마이페이지</Title>
       <main>
         <section className="profile-header">
           <ProfileHeader />
@@ -35,7 +36,6 @@ function MyPage() {
           </article>
         </section>
       </main>
-      <footer>하단바 공간</footer>
     </div>
   );
 }
