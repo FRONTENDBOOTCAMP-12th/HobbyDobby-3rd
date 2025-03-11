@@ -1,0 +1,105 @@
+* {
+  --profile-image-frame-color: #d9d9d9;
+  --profile-edit-btn-size: 1.8rem;
+}
+
+/* 프로필 헤더 */
+.profile-header {
+  background-color: var(--secondary-color);
+  inline-size: 100%;
+  block-size: 9rem;
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+.edit-profile-btn {
+  background-color: var(--white-color);
+  inline-size: var(--profile-edit-btn-size);
+  block-size: var(--profile-edit-btn-size);
+
+  padding: 0.4375rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  border: 2px solid var(--black-color);
+  border-radius: 0.6rem;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    filter: brightness(0.7);
+  }
+}
+
+.profile-image-frame {
+  background-color: var(--profile-image-frame-color);
+  inline-size: 6.5rem;
+  block-size: 6.5rem;
+  border-radius: 50%;
+
+  position: absolute;
+
+  /* Center the image frame */
+  top: 4rem;
+  left: 50%;
+
+  transform: translate(-50%, 0);
+
+  img {
+    margin: 0;
+    padding: 0;
+
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  &:hover {
+    filter: brightness(0.97);
+  }
+}
+
+/* 프로필 정보 */
+.profile-details {
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    :nth-child(1) {
+      font-size: 1.375rem;
+      margin-bottom: 0.4rem;
+    }
+
+    :nth-child(2) {
+      color: var(--text-green);
+    }
+  }
+}
+
+.profile-main-hobby-icon-frame {
+  background-color: var(--profile-image-frame-color);
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+
+  position: absolute;
+
+  top: 3.3rem;
+  right: 2.5rem;
+
+  &:hover {
+    filter: brightness(0.97);
+  }
+}

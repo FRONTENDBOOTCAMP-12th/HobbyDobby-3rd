@@ -1,0 +1,111 @@
+* {
+  --font-size-s: 1.1875rem;
+  --font-size-l: 1.25rem;
+}
+
+/* 기본 스타일 */
+.card {
+  background-color: var(--secondary-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: 20rem;
+  min-height: 3.75rem;
+
+  padding: 0.8125rem 0.9375rem;
+
+  border-radius: 1rem;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  img {
+    inline-size: 1.8rem;
+    min-width: 1.8rem;
+  }
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  h2 {
+    font-size: var(--font-size-s);
+  }
+
+  p {
+    font-size: var(--font-size-l);
+  }
+}
+
+/* 통계 카드 */
+.stat-card {
+  flex: 1 1 calc(50% - 0.5rem); /* 기본적으로 2개씩 배치되도록 설정 */
+  box-sizing: border-box;
+
+  h2 {
+    font-weight: 400;
+  }
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 0.4rem;
+}
+
+/* 업적 카드 */
+.achievement-card {
+  h2 {
+    font-size: var(--font-size-l);
+  }
+
+  gap: 1rem;
+}
+
+.level-badge {
+  min-width: 3.75rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.achievements {
+  block-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0;
+
+  flex-grow: 1;
+
+  .title-and-progress {
+    inline-size: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .description {
+    font-size: var(--font-size-s);
+
+    line-height: 1.4;
+    white-space: normal;
+  }
+}
