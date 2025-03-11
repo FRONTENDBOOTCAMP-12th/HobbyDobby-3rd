@@ -2,10 +2,12 @@ import './style.css';
 import HeadingLogo from '@/components/HeadingLogo';
 import LoginForm from '@/components/Form/LoginForm';
 import { Link } from 'react-router';
+import Title from '@/layouts/title';
 
 function LoginPage() {
   return (
     <div className="login-page">
+      <Title>로그인</Title>
       <HeadingLogo />
       <main>
         <h2>로그인</h2>

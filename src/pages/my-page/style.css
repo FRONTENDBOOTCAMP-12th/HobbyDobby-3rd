@@ -2,14 +2,10 @@
   /* color */
   --white-color: #ffffff;
   --black-color: #000000;
-  --profile-image-frame-color: #d9d9d9;
 
   /* size */
-  --profile-edit-btn-size: 1.8rem;
   --board-padding: 0.9rem;
   --board-border-radius: 1rem;
-
-  /* text */
 }
 
 .my-page {
@@ -17,7 +13,7 @@
 
   inline-size: 100%;
   block-size: 100%;
-  max-width: 29rem;
+  max-width: 27rem;
 
   display: flex;
   flex-direction: column;
@@ -26,7 +22,7 @@
 
   /* 상단바 영역 */
   header {
-    background-color: var(--quntenary-color);
+    background-color: var(--quatenary-color);
 
     inline-size: 100%;
     min-width: 25rem;
@@ -53,7 +49,7 @@
 
   /* 하단바 영역 */
   footer {
-    background-color: var(--quntenary-color);
+    background-color: var(--quatenary-color);
     inline-size: 100%;
     min-width: 22.5rem;
     block-size: 4.625rem;
@@ -67,70 +63,6 @@
 
   main::-webkit-scrollbar {
     display: none;
-  }
-}
-
-/* 프로필 헤더 */
-.profile-header {
-  background-color: var(--secondary-color);
-  inline-size: 100%;
-  block-size: 9rem;
-  position: relative;
-
-  flex-shrink: 0;
-
-  .edit-profile-btn {
-    background-color: var(--white-color);
-    inline-size: var(--profile-edit-btn-size);
-    block-size: var(--profile-edit-btn-size);
-
-    padding: 0.4375rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-
-    border: 2px solid var(--black-color);
-    border-radius: 0.6rem;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-
-    &:active {
-      filter: brightness(0.7);
-    }
-
-    img {
-      margin: 0;
-      padding: 0;
-
-      inline-size: 100%;
-      block-size: 100%;
-    }
-  }
-
-  .profile-image-frame {
-    background-color: var(--profile-image-frame-color);
-    inline-size: 6.5rem;
-    block-size: 6.5rem;
-    border-radius: 50%;
-
-    position: absolute;
-
-    /* Center the image frame */
-    top: 4rem;
-    left: 50%;
-
-    transform: translate(-50%, 0);
-
-    &:hover {
-      filter: brightness(0.97);
-    }
   }
 }
 
@@ -152,7 +84,7 @@
   gap: 1rem;
 }
 
-.board {
+.article-container {
   background-color: var(--white-color);
   inline-size: 100%;
 
@@ -168,38 +100,6 @@
   h2 {
     font-size: 1.25rem;
     margin: 0;
-  }
-}
-
-.profile-details-board {
-  .profile-main-hobby-icon-frame {
-    background-color: var(--profile-image-frame-color);
-    inline-size: 2rem;
-    block-size: 2rem;
-    border-radius: 50%;
-
-    position: absolute;
-
-    /* Center the image frame */
-    top: 3.3rem;
-    right: 2.5rem;
-
-    &:hover {
-      filter: brightness(0.97);
-    }
-  }
-
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-
-    font-size: 1.125rem;
-    font-weight: 600;
-
-    :nth-child(2) {
-      color: var(--text-green);
-    }
   }
 }
 

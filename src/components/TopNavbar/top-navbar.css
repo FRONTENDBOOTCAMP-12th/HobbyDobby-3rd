@@ -1,9 +1,14 @@
 .top-navbar {
+  width: 100%;
+  max-width: 27rem;
+  position: fixed;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  background-color: var(--quntenary-color);
+  background-color: var(--quatenary-color);
 }
 .top-navbar__logo {
   font-size: 1rem;
@@ -12,12 +17,6 @@
 .top-navbar__container {
   display: flex;
   gap: 10px;
-}
-
-.top-navbar__cash {
-  img {
-    color: transparent;
-  }
 }
 
 /* 취미 버튼 */
@@ -32,7 +31,7 @@
 /* ------------------- 취미 상세 카드 ------------------- */
 .hobby-card {
   width: 100%;
-  background: var(--quntenary-color);
+  background: var(--quatenary-color);
 }
 
 .hobby-card__list {

@@ -7,7 +7,7 @@
   --primary-color: #048998;
   --secondary-color: #3bb4c1;
   --tertiary-color: #e9e4e6;
-  --quntenary-color: #f6f5f5;
+  --quatenary-color: #f6f5f5;
 
   /* hover colors, 10% lighten */
   --lighten-secondary-color: hsl(186, 53%, 59%);
@@ -29,11 +29,24 @@ body {
   }
 
   min-width: 360px;
-  height: 586px;
+  min-height: 780px;
+  height: 100vh;
+  max-width: 27rem;
 
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
+
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 27rem;
 }
 
 .drag-prevent {

@@ -5,7 +5,7 @@ import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbyCardProps {
-  activeHobby: string | null;
+  activeHobby: string | undefined;
 }
 
 function HobbyCard({ activeHobby }: HobbyCardProps) {
