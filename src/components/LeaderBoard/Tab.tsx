@@ -1,7 +1,7 @@
 import './tab.css';
 import TabLink from './TabLink';
 
-function leaderBoardTab() {
+function LeaderBoardTab() {
   return (
     <ul className="leader-board-tab">
       <li>
@@ -14,4 +14,4 @@ function leaderBoardTab() {
   );
 }
 
-export default leaderBoardTab;
+export default LeaderBoardTab;
