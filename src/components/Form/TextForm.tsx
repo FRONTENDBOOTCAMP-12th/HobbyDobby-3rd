@@ -13,8 +13,7 @@ const TextForm = () => {
     <div>
       <div>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
+          <textarea
             placeholder="25년 첫 독서 챌린지_"
             value={ChallengeName}
             onChange={(e) => setChallengeName(e.target.value)}
