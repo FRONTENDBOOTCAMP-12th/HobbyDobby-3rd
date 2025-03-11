@@ -5,15 +5,21 @@
   border-radius: 10px;
   padding-block: 13px;
   padding-inline: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   h3 {
     font-size: 16px;
-    opacity: 0.5;
-    font-weight: bold;
+    color: color-mix(in srgb, var(--text-black) 50%, var(--secondary-color));
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   h4 {
     font-size: 22px;
-    font-weight: 700;
   }
 }
