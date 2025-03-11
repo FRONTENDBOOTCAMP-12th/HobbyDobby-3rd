@@ -2,6 +2,7 @@
 .progress-bar {
   inline-size: 100%;
   block-size: 0.5rem;
+  min-width: 6.25rem;
   background-color: white;
 
   border-radius: 0.5rem;
