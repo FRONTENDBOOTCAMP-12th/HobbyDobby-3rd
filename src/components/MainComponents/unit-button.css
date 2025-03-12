@@ -19,16 +19,16 @@
   transition:
     transform 0.1s ease,
     box-shadow 0.1s ease;
-  box-shadow: 0 6px 0 var(--primary-color);
+  box-shadow: 0 6px 0 var(--lighten-secondary-color);
 
   &:hover {
     transform: translateY(2px);
-    box-shadow: 0 4px 0 var(--primary-color);
+    box-shadow: 0 4px 0 var(--lighten-secondary-color);
   }
 
   &:active {
     transform: translateY(6px);
-    box-shadow: 0 0px 0;
+    box-shadow: 0 0px 0 var(--lighten-secondary-color);
   }
 }
 
@@ -36,4 +36,17 @@
   position: absolute;
   top: 5rem;
   z-index: 2;
+}
+
+.unit-section__button-disabled {
+  background-color: var(--primary-color);
+  box-shadow: 0 6px 0 var(--secondary-color);
+
+  &:hover {
+    box-shadow: 0 4px 0 var(--secondary-color);
+  }
+
+  &:active {
+    box-shadow: 0 0px 0 var(--secondary-color);
+  }
 }

@@ -1,6 +1,5 @@
 .unit-card {
   width: 16.875rem;
-  height: 9rem;
   border-radius: 10px;
   background-color: var(--secondary-color);
   padding-inline: 18px;
@@ -10,6 +9,7 @@
 
   display: flex;
   flex-direction: column;
+  gap: 10px;
   justify-content: space-between;
 
   &::before {
@@ -20,7 +20,7 @@
     transform: translateX(-50%);
     width: 20px;
     height: 12px;
-    background-color: var(--secondary-color);
+    background-color: inherit;
     /* 삼각형 */
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
   }
@@ -38,12 +38,17 @@
     font-size: 17px;
     margin: 0;
   }
+
+  &:has(button:disabled) {
+    background-color: var(--primary-color);
+  }
 }
 
 .unit-card__link-button {
   display: block;
   width: 100%;
   background-color: var(--quatenary-color);
+  border: none;
   border-radius: 8px;
 
   line-height: 2;
@@ -51,6 +56,7 @@
   text-decoration: none;
   text-align: center;
   color: var(--text-black);
+  font-weight: bold;
 
   &:hover {
     background-color: color-mix(
@@ -58,5 +64,15 @@
       var(--quatenary-color) 90%,
       var(--secondary-color) 10%
     );
+  }
+
+  &:disabled {
+    background-color: color-mix(
+      in srgb,
+      var(--text-black) 50%,
+      var(--secondary-color) 50%
+    );
+
+    cursor: not-allowed;
   }
 }

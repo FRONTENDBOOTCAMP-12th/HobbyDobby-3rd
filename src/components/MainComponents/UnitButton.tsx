@@ -1,22 +1,23 @@
 import './unit-button.css';
+import BurnIcon from '/assets/burning.svg';
+import CheckIcon from '/assets/check.svg';
 import ProgressBar from '@/components/ProgressBar';
 import UnitCard from './UnitCard';
-import { useEffect, useState, useId, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface UnitButtonProps {
-  buttonIcon: string;
   unitTitle: string;
+  buttonIcon?: string;
   buttonState?: 'complete' | 'disabled' | 'now';
   progressVisible?: boolean;
 }
 
 function UnitButton({
-  buttonIcon,
+  buttonIcon = BurnIcon,
   unitTitle,
   buttonState = 'disabled',
   progressVisible = false,
 }: UnitButtonProps) {
-  const unitSectionId = useId();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const [cardExpandOptions, setCardExpandOptions] = useState({
@@ -68,14 +69,20 @@ function UnitButton({
   }, [cardExpandOptions]);
 
   return (
-    <section className="unit-section" id={unitSectionId} ref={sectionRef}>
+    <section className="unit-section" ref={sectionRef}>
       <button
-        className="unit-section__button"
+        className={`
+          unit-section__button${
+            buttonState === 'disabled' ? ' unit-section__button-disabled' : ''
+          }`}
         type="button"
         aria-expanded={cardExpandOptions.ariaExpanded}
         onClick={handleCardExpand}
       >
-        <img src={buttonIcon} alt={unitTitle} />
+        <img
+          src={buttonState === 'complete' ? CheckIcon : buttonIcon}
+          alt={unitTitle}
+        />
       </button>
       {progressVisible ? <ProgressBar width="70px" value={0} max={5} /> : null}
       <UnitCard
