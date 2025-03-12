@@ -11,6 +11,7 @@ import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 import LeaderBoardDetailPage from './pages/leader-board-detail';
 import LeaderBoardRankingPage from './pages/leader-board-ranking';
+import UnitPage from './pages/unit-page';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             </Route>
             <Route path="/mypage" element={<MyPage />} />
           </Route>
+          <Route path="/unit-page" element={<UnitPage />}></Route>
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
