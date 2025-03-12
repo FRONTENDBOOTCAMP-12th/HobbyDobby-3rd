@@ -1,10 +1,9 @@
-* {
+.card {
+  /* 디자인 토큰 */
   --font-size-s: 1.1875rem;
   --font-size-l: 1.25rem;
-}
 
-/* 기본 스타일 */
-.card {
+  /* 기본 스타일링 */
   background-color: var(--secondary-color);
 
   display: flex;

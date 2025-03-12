@@ -1,11 +1,16 @@
 * {
-  --font-size-s: 1.2rem;
-  --font-size-l: 1.45rem;
-  --padding-y-size: 0.75rem;
-  --padding-x-size: 0.9375rem;
 }
 
 .index-card {
+  /* 디자인 토큰 */
+  --font-size-s: 1.2rem;
+  --font-size-l: 1.45rem;
+
+  --padding-y-size: 0.75rem;
+  --padding-x-size: 0.9375rem;
+
+  /* 기본 스타일링 */
+
   background-color: var(--secondary-color);
 
   display: flex;

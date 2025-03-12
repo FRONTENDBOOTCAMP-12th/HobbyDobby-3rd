@@ -1,8 +1,3 @@
-* {
-  --profile-image-frame-color: #d9d9d9;
-  --profile-edit-btn-size: 1.8rem;
-}
-
 /* 프로필 헤더 */
 .profile-header {
   background-color: var(--secondary-color);
@@ -14,6 +9,8 @@
 }
 
 .edit-profile-btn {
+  --profile-edit-btn-size: 1.8rem;
+
   background-color: var(--white-color);
   inline-size: var(--profile-edit-btn-size);
   block-size: var(--profile-edit-btn-size);
@@ -41,7 +38,7 @@
 }
 
 .profile-image-frame {
-  background-color: var(--profile-image-frame-color);
+  background-color: #d9d9d9;
   inline-size: 6.5rem;
   block-size: 6.5rem;
   border-radius: 50%;
@@ -89,7 +86,7 @@
 }
 
 .profile-main-hobby-icon-frame {
-  background-color: var(--profile-image-frame-color);
+  background-color: #d9d9d9;
   inline-size: 2rem;
   block-size: 2rem;
   border-radius: 50%;
