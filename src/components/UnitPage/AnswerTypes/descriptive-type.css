@@ -1,9 +1,9 @@
-.answer {
+.text-area {
   inline-size: 100%;
-  max-height: 400px;
+  max-height: 68vh;
   resize: none;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0.625rem;
   padding: 20px;
   font-size: 16px;
   overflow-y: auto;
@@ -13,11 +13,11 @@
     border: 1px solid var(--primary-color);
   }
 
-  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  scrollbar-width: none; /* 파이어폭스 스크롤바 숨기기 */
 }
 
-.answer::-webkit-scrollbar {
-  display: none; /* 크롬, 사파리에서 스크롤바 숨기기 */
+.text-area::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리 스크롤바 숨기기 */
 }
 
 .word-counter {
@@ -25,5 +25,4 @@
   display: flex;
   justify-content: flex-end;
   font-size: 14px;
-  color: var(--qua);
 }

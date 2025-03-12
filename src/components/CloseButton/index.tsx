@@ -1,4 +1,6 @@
+import clsx from 'clsx';
 import './style.css';
+import { useFilteredClassName } from '@/hooks/useFilteredClassName';
 
 interface CloseButtonProps {
   size?: number;
@@ -14,14 +16,10 @@ function CloseButton({
   className = '',
   onClick,
 }: CloseButtonProps) {
+  const filteredClassName = useFilteredClassName(clsx('close-btn', className));
+
   return (
-    <button
-      type="button"
-      className={
-        className.includes('close-btn') ? className : `close-btn ${className}`
-      }
-      onClick={onClick}
-    >
+    <button type="button" className={filteredClassName} onClick={onClick}>
       <svg
         width={size}
         height={size}

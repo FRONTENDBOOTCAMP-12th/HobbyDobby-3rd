@@ -1,6 +1,6 @@
 export interface ButtonUIProps {
   type: 'button' | 'submit' | 'reset';
-  content: string;
+  buttonText: string;
   className?: string;
   onClick: () => void;
   bgColor?: string;

@@ -1,11 +1,23 @@
-/* 서술형 */
-import { ChangeEvent, useState } from 'react';
+import { useFilteredClassName } from '@/hooks/useFilteredClassName';
 import './descriptive-type.css';
+import clsx from 'clsx';
+import { ChangeEvent, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-function DescriptiveType() {
+interface DescriptiveTypeProps {
+  className?: string;
+  placeholder?: string;
+}
+
+/* 서술형 인풋 컴포넌트 */
+function DescriptiveType({
+  className = '',
+  placeholder = '답안을 작성해주세요.',
+}: DescriptiveTypeProps) {
   const MAX_LENGTH = 1000;
   const [inputCount, setInputCount] = useState(0);
+
+  const filteredClassName = useFilteredClassName(clsx('text-area', className));
 
   const handleInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length > MAX_LENGTH) {
@@ -21,8 +33,8 @@ function DescriptiveType() {
       </label>
       <TextareaAutosize
         id="descriptive-answer"
-        className="answer"
-        placeholder="답안을 작성해주세요."
+        className={filteredClassName}
+        placeholder={placeholder}
         minRows={10}
         onFocus={(placeholder) => (placeholder.target.placeholder = '')}
         onBlur={(placeholder) =>

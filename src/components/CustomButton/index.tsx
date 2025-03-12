@@ -1,17 +1,20 @@
+import './style.css';
+import clsx from 'clsx';
 import { ButtonUIProps } from './button.type';
-import './button-ui.css';
 
-function RoundButton({
+function CustomButton({
   type,
-  content,
+  buttonText,
   bgColor = 'var(--primary-color)',
   color = 'var(--text-black)',
   className = '',
   onClick,
 }: ButtonUIProps) {
+  const filteredClassName = clsx('button-ui', 'square-button', className);
+
   return (
     <button
-      className={`button-ui round-button ${className}`}
+      className={filteredClassName}
       type={type}
       style={{
         backgroundColor: bgColor,
@@ -19,9 +22,9 @@ function RoundButton({
       }}
       onClick={onClick}
     >
-      {content}
+      {buttonText}
     </button>
   );
 }
 
-export default RoundButton;
+export default CustomButton;

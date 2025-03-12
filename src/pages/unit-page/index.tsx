@@ -3,18 +3,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import ProgressBar from '@/components/ProgressBar';
 import IndexCard from '@/components/UnitPage/IndexCard';
-import SquareButton from '@/components/ButtonUI/SquareButton';
-import DescriptiveType from '@/components/UnitPage/QuestionTypes/DescriptiveType';
+import CustomButton from '@/components/CustomButton';
+import DescriptiveType from '@/components/UnitPage/AnswerTypes/DescriptiveType';
+import Title from '@/layouts/title';
 
-interface UnitPageProps {
-  currentStep: number;
-  totalSteps: number;
-}
-
-function UnitPage({ currentStep = 2, totalSteps = 7 }: UnitPageProps) {
+function UnitPage() {
   const [isQuestion] = useState(true);
+  const [challengeName] = useState('여름의 시집 읽기');
+  const [currentSection] = useState(2);
+  const [currentUnit] = useState(2);
+  const [totalUnits] = useState(7);
 
-  /* 임시로 만든 닫기 버튼 이벤트 핸들러 */
+  const currentStep = 2;
+  const totalSteps = 7;
+
+  // 임시로 만든 닫기 버튼 이벤트 핸들러
   const navigate = useNavigate();
   const handleClickClose = () => {
     void navigate('/mainpage'); // /mainpage로 이동
@@ -22,20 +25,26 @@ function UnitPage({ currentStep = 2, totalSteps = 7 }: UnitPageProps) {
 
   return (
     <div className="unit-page">
+      <Title>{challengeName}</Title>
       <header className="unit-header">
         <IndexCard
-          section={2}
-          totalUnits={7}
-          currentUnit={2}
+          section={currentSection}
+          totalUnits={totalUnits}
+          currentUnit={currentUnit}
           unitTitle="책의 중반부"
           handleClickClose={handleClickClose}
         />
         <ProgressBar value={currentStep} max={totalSteps} height="0.8rem" />
       </header>
+
       <section className="unit-content">
+        <h2 className="question">문항에 대한 짧은 제목/설명</h2>
         {isQuestion ? (
           <form action="post">
-            <DescriptiveType />
+            <DescriptiveType
+              className="answer"
+              placeholder="여기에 생각을 적어주세요!"
+            />
           </form>
         ) : (
           <div>
@@ -43,10 +52,13 @@ function UnitPage({ currentStep = 2, totalSteps = 7 }: UnitPageProps) {
           </div>
         )}
       </section>
-      <footer>
-        <SquareButton
+
+      <footer className="unit-footer">
+        <CustomButton
           type="submit"
-          content="작성완료"
+          buttonText="작성완료"
+          className="submit-btn"
+          bgColor="var(--secondary-color)"
           onClick={() => {
             console.log('저장, 다음으로');
           }}
