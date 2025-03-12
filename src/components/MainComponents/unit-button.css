@@ -1,12 +1,15 @@
-.unit-button-wrapper {
+.unit-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
   width: fit-content;
+
+  position: relative;
+  overflow: visible;
 }
 
-.unit-button {
+.unit-section__button {
   width: 70px;
   height: 59px;
   border-radius: 100%;
@@ -27,4 +30,10 @@
     transform: translateY(6px);
     box-shadow: 0 0px 0;
   }
+}
+
+.unit-card {
+  position: absolute;
+  top: 5rem;
+  z-index: 2;
 }
