@@ -9,18 +9,18 @@
 
 .challeng {
   color: var(--text-green);
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 700;
 }
 
 .challengother {
   color: var(--black);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 .listsave {
   color: var(--black);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
