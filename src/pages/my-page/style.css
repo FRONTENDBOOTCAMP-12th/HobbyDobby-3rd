@@ -1,12 +1,10 @@
-* {
-  .my-page {
-    /* 디자인 토큰 */
-    --white-color: #ffffff;
-    --black-color: #000000;
+.my-page {
+  /* 디자인 토큰 */
+  --white-color: #ffffff;
+  --black-color: #000000;
 
-    --board-padding: 0.9rem;
-    --board-border-radius: 1rem;
-  }
+  --board-padding: 0.9rem;
+  --board-border-radius: 1rem;
 
   /* 기본 스타일링 */
 

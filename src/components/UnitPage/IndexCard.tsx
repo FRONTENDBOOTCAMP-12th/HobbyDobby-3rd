@@ -1,4 +1,4 @@
-import './IndexCard.css';
+import './index-card.css';
 import CloseButton from '@/components/CloseButton';
 
 interface IndexCardProps {
