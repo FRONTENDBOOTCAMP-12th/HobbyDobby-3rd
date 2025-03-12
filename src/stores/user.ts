@@ -2,9 +2,10 @@ import { HobbyData, UserData } from '@/lib/supabase-client';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
-type User = Omit<UserData, 'now_hobby'> & {
+type User = Omit<UserData, 'now_hobby' | 'created_date'> & {
   user_hobbies: (HobbyData | null)[];
   now_hobby: HobbyData | null;
+  created_date: string | null;
 };
 
 // 비로그인 상태

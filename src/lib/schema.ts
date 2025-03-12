@@ -11,27 +11,38 @@ export interface Database {
     Tables: {
       achievement: {
         Row: {
-          condition: string;
           id: string;
+          level: number;
           max_progress: number;
-          name: string;
-          reward: string;
+          reward_gem: number | null;
+          reward_title: string | null;
+          type: Database['public']['Enums']['achievement_type'];
         };
         Insert: {
-          condition: string;
           id?: string;
+          level: number;
           max_progress: number;
-          name: string;
-          reward: string;
+          reward_gem?: number | null;
+          reward_title?: string | null;
+          type: Database['public']['Enums']['achievement_type'];
         };
         Update: {
-          condition?: string;
           id?: string;
+          level?: number;
           max_progress?: number;
-          name?: string;
-          reward?: string;
+          reward_gem?: number | null;
+          reward_title?: string | null;
+          type?: Database['public']['Enums']['achievement_type'];
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: 'achievement_reward_title_fkey';
+            columns: ['reward_title'];
+            isOneToOne: false;
+            referencedRelation: 'title';
+            referencedColumns: ['name'];
+          },
+        ];
       };
       challenge: {
         Row: {
@@ -39,7 +50,8 @@ export interface Database {
           created_date: string | null;
           id: string;
           name: string;
-          progress: string | null;
+          now_unit: string | null;
+          progress: Json | null;
           sub_hobby_name: string | null;
         };
         Insert: {
@@ -47,7 +59,8 @@ export interface Database {
           created_date?: string | null;
           id?: string;
           name: string;
-          progress?: string | null;
+          now_unit?: string | null;
+          progress?: Json | null;
           sub_hobby_name?: string | null;
         };
         Update: {
@@ -55,10 +68,18 @@ export interface Database {
           created_date?: string | null;
           id?: string;
           name?: string;
-          progress?: string | null;
+          now_unit?: string | null;
+          progress?: Json | null;
           sub_hobby_name?: string | null;
         };
         Relationships: [
+          {
+            foreignKeyName: 'challenge_now_unit_fkey';
+            columns: ['now_unit'];
+            isOneToOne: false;
+            referencedRelation: 'unit';
+            referencedColumns: ['name'];
+          },
           {
             foreignKeyName: 'challenge_sub_hobby_name_fkey';
             columns: ['sub_hobby_name'];
@@ -104,6 +125,66 @@ export interface Database {
         };
         Relationships: [];
       };
+      question: {
+        Row: {
+          blank_content: string[] | null;
+          id: number;
+          is_answer_record: boolean;
+          is_input_optional: boolean;
+          not_question_content: string | null;
+          order: number;
+          parent_question: number | null;
+          previous_response: string[] | null;
+          question: string;
+          select_content: string[] | null;
+          type: Database['public']['Enums']['question_type'][];
+          unit: string;
+        };
+        Insert: {
+          blank_content?: string[] | null;
+          id?: number;
+          is_answer_record?: boolean;
+          is_input_optional?: boolean;
+          not_question_content?: string | null;
+          order: number;
+          parent_question?: number | null;
+          previous_response?: string[] | null;
+          question: string;
+          select_content?: string[] | null;
+          type: Database['public']['Enums']['question_type'][];
+          unit: string;
+        };
+        Update: {
+          blank_content?: string[] | null;
+          id?: number;
+          is_answer_record?: boolean;
+          is_input_optional?: boolean;
+          not_question_content?: string | null;
+          order?: number;
+          parent_question?: number | null;
+          previous_response?: string[] | null;
+          question?: string;
+          select_content?: string[] | null;
+          type?: Database['public']['Enums']['question_type'][];
+          unit?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'question_parent_question_fkey';
+            columns: ['parent_question'];
+            isOneToOne: false;
+            referencedRelation: 'question';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'question_unit_fkey';
+            columns: ['unit'];
+            isOneToOne: false;
+            referencedRelation: 'unit';
+            referencedColumns: ['name'];
+          },
+        ];
+      };
       sub_hobby: {
         Row: {
           hobby_id: string | null;
@@ -135,58 +216,47 @@ export interface Database {
       };
       title: {
         Row: {
-          achievement_name: string | null;
           id: string;
           name: string;
         };
         Insert: {
-          achievement_name?: string | null;
           id?: string;
           name: string;
         };
         Update: {
-          achievement_name?: string | null;
           id?: string;
           name?: string;
         };
-        Relationships: [
-          {
-            foreignKeyName: 'title_achevement_name_fkey';
-            columns: ['achievement_name'];
-            isOneToOne: false;
-            referencedRelation: 'achievement';
-            referencedColumns: ['name'];
-          },
-        ];
+        Relationships: [];
       };
       unit: {
         Row: {
           id: string;
-          level: string;
+          level: number;
           name: string;
-          question: string;
           section: number;
-          sub_hobby: string | null;
+          sub_hobby: string;
+          title: string | null;
         };
         Insert: {
           id?: string;
-          level: string;
+          level: number;
           name: string;
-          question: string;
           section: number;
-          sub_hobby?: string | null;
+          sub_hobby: string;
+          title?: string | null;
         };
         Update: {
           id?: string;
-          level?: string;
+          level?: number;
           name?: string;
-          question?: string;
           section?: number;
-          sub_hobby?: string | null;
+          sub_hobby?: string;
+          title?: string | null;
         };
         Relationships: [
           {
-            foreignKeyName: 'unit_sub_hobby_name_fkey';
+            foreignKeyName: 'unit_sub_hobby_fkey';
             columns: ['sub_hobby'];
             isOneToOne: false;
             referencedRelation: 'sub_hobby';
@@ -196,7 +266,7 @@ export interface Database {
       };
       user: {
         Row: {
-          created_date: string | null;
+          created_date: string;
           exp: number | null;
           gem: number | null;
           id: string;
@@ -211,7 +281,7 @@ export interface Database {
           uid: string;
         };
         Insert: {
-          created_date?: string | null;
+          created_date?: string;
           exp?: number | null;
           gem?: number | null;
           id: string;
@@ -226,7 +296,7 @@ export interface Database {
           uid?: string;
         };
         Update: {
-          created_date?: string | null;
+          created_date?: string;
           exp?: number | null;
           gem?: number | null;
           id?: string;
@@ -286,7 +356,7 @@ export interface Database {
         };
         Insert: {
           achievement_id?: string | null;
-          id: string;
+          id?: string;
           user_id?: string | null;
         };
         Update: {
@@ -479,7 +549,16 @@ export interface Database {
     };
     Views: Record<never, never>;
     Functions: Record<never, never>;
-    Enums: Record<never, never>;
+    Enums: {
+      achievement_type: 'completed_challenges' | 'exp' | 'attendance_days';
+      question_type:
+        | 'select'
+        | 'file'
+        | 'descript'
+        | 'fill'
+        | 'short_descript'
+        | 'not_question';
+    };
     CompositeTypes: Record<never, never>;
   };
 }
@@ -555,7 +634,7 @@ export type TablesUpdate<
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | Exclude<PublicSchema['Enums'], never>
+    | keyof PublicSchema['Enums']
     | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
