@@ -15,7 +15,7 @@ interface ChallengesProps {
 }
 
 function LeaderBoardCompletedPage() {
-  const userId = useUserStore((state) => state.id);
+  const userId = useUserStore((state) => state.uid);
   const [challenges, setChallenges] = useState<ChallengesProps[] | null>([]);
 
   useEffect(() => {
