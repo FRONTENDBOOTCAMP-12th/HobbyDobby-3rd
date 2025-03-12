@@ -1,0 +1,49 @@
+.main-card {
+  width: 18.75rem;
+  height: 5.625rem;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding-block: 13px;
+  padding-inline: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: bold;
+
+  h4 {
+    font-size: 22px;
+  }
+
+  h3,
+  p {
+    width: 100%;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h3 {
+    color: color-mix(in srgb, var(--text-black) 50%, var(--secondary-color));
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.main-card__link {
+  background-color: var(--quatenary-color);
+  border-radius: 8px;
+  color: var(--text-black);
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--quatenary-color) 90%,
+      var(--secondary-color)
+    );
+  }
+}

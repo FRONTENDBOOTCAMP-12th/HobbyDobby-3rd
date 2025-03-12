@@ -12,6 +12,7 @@ import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 import LeaderBoardDetailPage from './pages/leader-board-detail';
 import LeaderBoardRankingPage from './pages/leader-board-ranking';
 import UnitPage from './pages/unit-page';
+import MainPage from './pages/main-page';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             element={<SubHobbySelectPage />}
           />
           <Route element={<MainLayout />}>
+            <Route path="/home">
+              <Route index element={<MainPage />} />
+            </Route>
             <Route path="/leader-board">
               <Route index element={<LeaderBoardCompletedPage />} />
               <Route
