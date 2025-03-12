@@ -10,6 +10,7 @@ import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 import LeaderBoardDetailPage from './pages/leader-board-detail';
+import LeaderBoardRankingPage from './pages/leader-board-ranking';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                 path="detail/:challenge_name"
                 element={<LeaderBoardDetailPage />}
               />
+              <Route path="ranking" element={<LeaderBoardRankingPage />} />
             </Route>
             <Route path="/mypage" element={<MyPage />} />
           </Route>

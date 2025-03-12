@@ -9,6 +9,7 @@ function TabLink({ to, name }: TabLinkProps) {
   return (
     <RR_NavLink
       to={to}
+      end
       style={({ isActive }) => ({
         color: isActive ? 'var(--text-green)' : '',
         borderBottom: isActive ? '3px solid var(--text-green)' : '',
