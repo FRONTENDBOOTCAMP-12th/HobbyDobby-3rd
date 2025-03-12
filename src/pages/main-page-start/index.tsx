@@ -2,7 +2,7 @@ import './style.css';
 import TextForm from '@/components/Form/TextForm';
 import ProgressBar from '@/components/ProgressBar';
 
-function MainpageStart() {
+function MainPageStart() {
   return (
     <main className="Challengstart">
       <h1 className="sr-only">Hobby Dobby</h1>
@@ -19,4 +19,4 @@ function MainpageStart() {
   );
 }
 
-export default MainpageStart;
+export default MainPageStart;

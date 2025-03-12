@@ -88,3 +88,14 @@ export const getUserCompletedChallenge = async (userId: string) => {
 
   return data;
 };
+
+export const getUserRank = async () => {
+  const { data } = await supabase
+    .from('user')
+    .select('uid, nickname,image,title,exp');
+
+  // exp의 값을 비교하여 큰 값부터 내림차순으로 재정렬
+  const sortedData = data?.sort((a, b) => b.exp! - a.exp!);
+
+  return sortedData;
+};

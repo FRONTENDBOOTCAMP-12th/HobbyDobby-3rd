@@ -1,0 +1,13 @@
+.leader-board-ranking__desc {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-green);
+  margin: 0;
+  padding-inline: 5px;
+}
+
+.leader-board-ranking__list {
+  padding-left: 0;
+  list-style-type: none;
+  border-top: 1px solid var(--text-gray);
+}
