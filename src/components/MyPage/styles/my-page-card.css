@@ -1,7 +1,7 @@
 .card {
   /* 디자인 토큰 */
-  --font-size-s: 1.1875rem;
-  --font-size-l: 1.25rem;
+  --font-size-s: 17px;
+  --font-size-l: 18px;
 
   /* 기본 스타일링 */
   background-color: var(--secondary-color);
@@ -11,16 +11,12 @@
   justify-content: space-between;
   align-items: center;
 
-  min-width: 20rem;
+  min-width: 15s625rem;
   min-height: 3.75rem;
 
   padding: 0.8125rem 0.9375rem;
 
   border-radius: 1rem;
-
-  &:hover {
-    filter: brightness(1.05);
-  }
 
   img {
     inline-size: 1.8rem;
@@ -43,7 +39,7 @@
 
 /* 통계 카드 */
 .stat-card {
-  flex: 1 1 calc(50% - 0.5rem); /* 기본적으로 2개씩 배치되도록 설정 */
+  flex: 1 1 calc(50% - 1rem); /* 기본적으로 2개씩 배치되도록 설정 */
   box-sizing: border-box;
 
   h2 {

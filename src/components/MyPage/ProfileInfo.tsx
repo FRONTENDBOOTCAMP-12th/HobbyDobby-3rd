@@ -2,10 +2,10 @@ import './styles/my-page-user-profile.css';
 
 interface ProfileCardProps {
   nickName: string;
-  mainTitle?: string;
+  mainTitle?: string | null;
   mainHobby: string;
   mainHobbyIcon: string;
-  joinDate: string;
+  joinDate: string | null;
 }
 
 function ProfileInfo({
@@ -17,6 +17,7 @@ function ProfileInfo({
 }: ProfileCardProps) {
   return (
     <article className="article-container profile-details">
+      <h2 className="sr-only">프로필 정보</h2>
       <span className="profile-main-hobby-icon-frame">
         {mainHobbyIcon ? (
           <img src={mainHobbyIcon} alt={`${mainHobby} 아이콘`} />

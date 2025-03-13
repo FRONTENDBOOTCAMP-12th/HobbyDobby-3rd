@@ -1,14 +1,7 @@
 import './styles/my-page-card.css';
 import { getPublicImage } from '@/utils/getPublic';
 import ProgressBar from '@/components/ProgressBar';
-
-interface AchievementCardProps {
-  level: string;
-  name: string;
-  total: number;
-  current: number;
-  description: string;
-}
+import { AchievementCardProps } from '@/types/my-page/achievement';
 
 // 업적 카드 컴포넌트
 function AchievementCard({

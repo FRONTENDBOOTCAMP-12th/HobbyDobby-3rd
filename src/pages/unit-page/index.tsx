@@ -20,7 +20,7 @@ function UnitPage() {
   // 임시로 만든 닫기 버튼 이벤트 핸들러
   const navigate = useNavigate();
   const handleClickClose = () => {
-    void navigate('/mainpage'); // /mainpage로 이동
+    void navigate('/home'); // /mainpage로 이동
   };
 
   return (

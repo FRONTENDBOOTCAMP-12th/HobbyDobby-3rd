@@ -99,3 +99,17 @@ export const getUserRank = async () => {
 
   return sortedData;
 };
+
+export const getUserAchievement = async (userId: string) => {
+  const { data, error } = await supabase
+    .from('user_achievements')
+    .select(`achievement(name,created_date)`)
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching achievements:', error.message);
+    throw error;
+  }
+
+  return data;
+};

@@ -15,15 +15,15 @@
   inline-size: var(--profile-edit-btn-size);
   block-size: var(--profile-edit-btn-size);
 
-  padding: 0.4375rem;
+  padding: 7px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 15px;
+  right: 8px;
 
   border: 2px solid var(--black-color);
   border-radius: 0.6rem;
@@ -66,16 +66,18 @@
 
 /* 프로필 정보 */
 .profile-details {
+  min-height: 7.45rem;
+
   ul {
     list-style-type: none;
     padding-left: 0;
     margin: 0;
 
-    font-size: 1.2rem;
+    font-size: 18px;
     font-weight: 600;
 
     :nth-child(1) {
-      font-size: 1.375rem;
+      font-size: 20px;
       margin-bottom: 0.4rem;
     }
 
@@ -93,8 +95,8 @@
 
   position: absolute;
 
-  top: 3.3rem;
-  right: 2.5rem;
+  top: 3.75rem;
+  right: 2.625rem;
 
   &:hover {
     filter: brightness(0.97);

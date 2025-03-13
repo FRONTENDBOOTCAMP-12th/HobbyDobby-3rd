@@ -19,19 +19,6 @@
   justify-content: stretch;
   align-items: center;
 
-  /* 상단바 영역 */
-  header {
-    background-color: var(--quatenary-color);
-
-    inline-size: 100%;
-    min-width: 25rem;
-    block-size: 3.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   /* 바디 영역 */
   main {
     background-color: transparent;
@@ -46,20 +33,6 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  /* 하단바 영역 */
-  footer {
-    background-color: var(--quatenary-color);
-    inline-size: 100%;
-    min-width: 22.5rem;
-    block-size: 4.625rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    justify-self: flex-end;
-  }
-
   main::-webkit-scrollbar {
     display: none;
   }
@@ -69,7 +42,7 @@
 .profile-body {
   background-color: transparent;
   inline-size: 100%;
-  padding: 2.5rem 1.8rem;
+  padding: 48px 1.8rem 1.8rem 1.8rem;
 
   flex-grow: 1;
 
@@ -86,6 +59,7 @@
 .article-container {
   background-color: var(--white-color);
   inline-size: 100%;
+  min-height: 7.45rem;
 
   display: flex;
   flex-direction: column;
@@ -97,7 +71,7 @@
   border-radius: var(--board-border-radius);
 
   h2 {
-    font-size: 1.25rem;
+    font-size: 20px;
     margin: 0;
   }
 }
