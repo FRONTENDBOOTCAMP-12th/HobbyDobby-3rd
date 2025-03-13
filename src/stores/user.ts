@@ -1,10 +1,11 @@
-import { HobbyData, UserData } from '@/lib/supabase-client';
+import { ChallengeData, HobbyData, UserData } from '@/lib/supabase-client';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
-type User = Omit<UserData, 'now_hobby' | 'created_date'> & {
+type User = Omit<UserData, 'now_hobby' | 'created_date' | 'now_challenge'> & {
   user_hobbies: (HobbyData | null)[];
   now_hobby: HobbyData | null;
+  now_challenge: ChallengeData | null;
   created_date: string | null;
 };
 

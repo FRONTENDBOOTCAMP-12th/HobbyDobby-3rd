@@ -9,11 +9,9 @@ interface HobbyCardProps {
 }
 
 function HobbyCard({ activeHobby }: HobbyCardProps) {
-  const [uid, hobbies, updateStoreNowHobby] = useUserStore((state) => [
-    state.uid,
-    state.user_hobbies,
-    state.updateNowHobby,
-  ]);
+  const uid = useUserStore((state) => state.uid);
+  const hobbies = useUserStore((state) => state.user_hobbies);
+  const updateStoreNowHobby = useUserStore((state) => state.updateNowHobby);
 
   const updateHobby = (uid: UserData['uid'], hobby: HobbyData) => {
     updateDBUserNowHobby(uid, hobby)
