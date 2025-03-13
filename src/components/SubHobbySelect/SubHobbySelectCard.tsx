@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router';
 import './subhobby-select.css';
 import { getSubHobbyIcon } from '@/utils/getSubHobbyIcon';
+import Swal from 'sweetalert2';
 
 interface SubHobbySelectCardProps {
   name: string;
@@ -7,6 +9,27 @@ interface SubHobbySelectCardProps {
 }
 
 function SubHobbySelectCard({ name, info }: SubHobbySelectCardProps) {
+  const navigate = useNavigate();
+
+  const handleSubhobbySelect = (subhobby: string) => {
+    void Swal.fire({
+      title: '선택하시겠습니까?',
+      confirmButtonText: '선택',
+      showCancelButton: true,
+      cancelButtonText: '취소',
+      confirmButtonColor: `var(--primary-color)`,
+      heightAuto: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        void navigate('/challenge-start', {
+          state: {
+            subhobby,
+          },
+        });
+      }
+    });
+  };
+
   return (
     <div className="subhobby-select-card">
       <figure className="subhobby-select-card__figure">
@@ -15,7 +38,11 @@ function SubHobbySelectCard({ name, info }: SubHobbySelectCardProps) {
       </figure>
       <div className="subhobby-select-card__container">
         <p className="subhobby-select-card__desc">{info}</p>
-        <button type="button" className="subhobby-select-card__button">
+        <button
+          type="button"
+          className="subhobby-select-card__button"
+          onClick={() => handleSubhobbySelect(name)}
+        >
           선택
         </button>
       </div>

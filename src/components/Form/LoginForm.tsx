@@ -74,6 +74,7 @@ function LoginForm() {
                 icon: 'success',
                 title: '로그인 성공',
                 text: '메인페이지로 이동합니다.',
+                confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
               });
 
@@ -83,6 +84,7 @@ function LoginForm() {
                 icon: 'success',
                 title: '로그인 성공',
                 text: '취미선택페이지로 이동합니다.',
+                confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
               });
               void navigate('/select-hobby');
@@ -95,6 +97,7 @@ function LoginForm() {
               icon: 'error',
               title: '로그인 실패',
               text: '비밀번호가 올바르지 않습니다.',
+              confirmButtonColor: `var(--primary-color)`,
               heightAuto: false,
             });
           }
@@ -105,6 +108,7 @@ function LoginForm() {
             icon: 'error',
             title: '로그인 실패',
             text: '아이디가 올바르지 않습니다.',
+            confirmButtonColor: `var(--primary-color)`,
             heightAuto: false,
           }).catch((error) => {
             console.log(error);

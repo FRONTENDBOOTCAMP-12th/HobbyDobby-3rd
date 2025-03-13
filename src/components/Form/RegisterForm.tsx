@@ -72,6 +72,7 @@ function RegisterForm() {
         await Swal.fire({
           icon: 'warning',
           text: '중복된 ID입니다.',
+          confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
         });
       } else {
@@ -83,6 +84,7 @@ function RegisterForm() {
         await Swal.fire({
           icon: 'success',
           text: '사용 가능한 ID입니다.',
+          confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
         });
       }
@@ -105,6 +107,7 @@ function RegisterForm() {
         await Swal.fire({
           icon: 'warning',
           text: '중복된 닉네임입니다.',
+          confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
         });
       } else {
@@ -116,6 +119,7 @@ function RegisterForm() {
         await Swal.fire({
           icon: 'success',
           text: '사용 가능한 닉네임입니다.',
+          confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
         });
       }
@@ -139,6 +143,7 @@ function RegisterForm() {
       icon: 'success',
       title: '회원가입 완료',
       text: '로그인 페이지로 이동합니다.',
+      confirmButtonColor: `var(--primary-color)`,
       heightAuto: false,
     });
     // react-router 함수, 페이지 이동

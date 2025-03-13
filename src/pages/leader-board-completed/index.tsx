@@ -32,7 +32,7 @@ function LeaderBoardCompletedPage() {
     fetchData().catch((error) => {
       console.log('Error fetching subhobbies:', error);
     });
-  }, []);
+  }, [userId]);
 
   return (
     <div className="leader-board-completed">
