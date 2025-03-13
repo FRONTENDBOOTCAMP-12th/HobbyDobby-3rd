@@ -44,7 +44,7 @@ function SubHobbySelectPage() {
     fetchData().catch((error) => {
       console.log('Error fetching subhobbies:', error);
     });
-  }, []);
+  }, [hobbyId]);
 
   return (
     <div className="subhobby-select">

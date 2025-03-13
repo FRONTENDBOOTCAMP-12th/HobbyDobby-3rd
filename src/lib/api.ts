@@ -99,3 +99,42 @@ export const getUserRank = async () => {
 
   return sortedData;
 };
+
+export const insertChallenge = async (
+  challengeName: string,
+  createdDate: string,
+  subhobby: string
+) => {
+  // challenge table에 데이터 저장
+  const { data, error } = await supabase
+    .from('challenge')
+    .insert([
+      {
+        name: challengeName,
+        created_date: createdDate,
+        sub_hobby_name: subhobby,
+      },
+    ])
+    .select('name');
+
+  return { data, error };
+};
+
+export const updateUserNowChallenge = async (
+  insertData:
+    | {
+        name: string;
+      }[]
+    | null,
+  userUid: string
+) => {
+  // user now_challenge 업데이트
+  const { error } = await supabase
+    .from('user')
+    .update({
+      now_challenge: insertData?.[0].name,
+    })
+    .eq('uid', userUid);
+
+  return { error };
+};
