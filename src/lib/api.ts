@@ -113,6 +113,7 @@ export const insertChallenge = async (
         name: challengeName,
         created_date: createdDate,
         sub_hobby_name: subhobby,
+        now_unit: `${subhobby} 유닛 1-1`,
       },
     ])
     .select('name');
