@@ -1,37 +1,13 @@
-import { useEffect, useState } from 'react';
 import './style.css';
 import Logo from '/assets/large-logo.svg';
 import HobbySelectCard from '@/components/HobbySelect/HobbySelectCard';
 import { getHobby } from '@/lib/api';
 import Title from '@/layouts/title';
-
-interface HobbiesProps {
-  id: string;
-  name: string;
-}
+import useFetchData from '@/hooks/useFetchData';
 
 function HobbySelectPage() {
-  const [hobbies, setHobbies] = useState<HobbiesProps[] | null>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getHobby();
-
-        if (data) {
-          setHobbies(data);
-        } else {
-          throw new Error('데이터를 불러오는데 실패했습니다..');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {
-      console.error('Error fetching hobbies:', error);
-    });
-  }, []);
+  const { data: hobbyData } = useFetchData(getHobby);
+  const hobbies = hobbyData?.data;
 
   return (
     <div className="hobby-select">
