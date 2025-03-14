@@ -99,3 +99,6 @@ export const getUserRank = async () => {
 
   return sortedData;
 };
+
+export const getUnitsBySubHobby = async (subHobby: string) =>
+  await supabase.from('unit').select('*').eq('sub_hobby', subHobby);

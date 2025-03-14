@@ -236,7 +236,7 @@ export interface Database {
           name: string;
           section: number;
           sub_hobby: string;
-          title: string | null;
+          title: string;
         };
         Insert: {
           id?: string;
@@ -244,7 +244,7 @@ export interface Database {
           name: string;
           section: number;
           sub_hobby: string;
-          title?: string | null;
+          title: string;
         };
         Update: {
           id?: string;
@@ -252,7 +252,7 @@ export interface Database {
           name?: string;
           section?: number;
           sub_hobby?: string;
-          title?: string | null;
+          title?: string;
         };
         Relationships: [
           {

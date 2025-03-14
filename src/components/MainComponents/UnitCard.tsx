@@ -3,8 +3,8 @@ import { useId } from 'react';
 
 type UnitCardProps = React.ComponentProps<'div'> & {
   title: string;
-  level: number;
-  max_level: number;
+  level?: number;
+  max_level?: number;
   cardState?: 'complete' | 'disabled' | 'now';
 };
 

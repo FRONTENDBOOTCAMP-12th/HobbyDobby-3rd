@@ -1,3 +1,32 @@
 .main-page {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: 3rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 25%;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  ul li:nth-child(odd) {
+    align-self: flex-start;
+  }
+
+  ul li:nth-child(even) {
+    align-self: flex-end;
+  }
+
+  ul li:first-child,
+  ul li:last-child {
+    align-self: center;
+  }
 }

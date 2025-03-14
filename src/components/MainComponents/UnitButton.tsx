@@ -3,23 +3,29 @@ import BurnIcon from '/assets/burning.svg';
 import CheckIcon from '/assets/check.svg';
 import ProgressBar from '@/components/ProgressBar';
 import UnitCard from './UnitCard';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 
 interface UnitButtonProps {
+  id: string;
   unitTitle: string;
+  onExpand: React.Dispatch<React.SetStateAction<string | null>>;
+  maxUnit?: number;
+  level?: number;
   buttonIcon?: string;
   buttonState?: 'complete' | 'disabled' | 'now';
   progressVisible?: boolean;
 }
 
 function UnitButton({
-  buttonIcon = BurnIcon,
+  id,
   unitTitle,
+  level,
+  maxUnit,
+  onExpand,
+  buttonIcon = BurnIcon,
   buttonState = 'disabled',
   progressVisible = false,
 }: UnitButtonProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   const [cardExpandOptions, setCardExpandOptions] = useState({
     ariaExpanded: false,
     hidden: true,
@@ -30,46 +36,18 @@ function UnitButton({
       ariaExpanded: !cardExpandOptions.ariaExpanded,
       hidden: !cardExpandOptions.hidden,
     };
+
     setCardExpandOptions(nextCardExpandOptions);
+
+    if (nextCardExpandOptions.ariaExpanded) {
+      console.log(onExpand);
+
+      // onExpand();
+    }
   };
 
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-
-      if (
-        cardExpandOptions.ariaExpanded === true &&
-        !sectionRef.current?.contains(target)
-      ) {
-        const nextCardExpandOptions = {
-          ariaExpanded: !cardExpandOptions.ariaExpanded,
-          hidden: !cardExpandOptions.hidden,
-        };
-        setCardExpandOptions(nextCardExpandOptions);
-      }
-    };
-
-    const handleESCKeyEvent = (e: KeyboardEvent) => {
-      if (cardExpandOptions.ariaExpanded === true && e.key === 'Escape') {
-        const nextCardExpandOptions = {
-          ariaExpanded: !cardExpandOptions.ariaExpanded,
-          hidden: !cardExpandOptions.hidden,
-        };
-        setCardExpandOptions(nextCardExpandOptions);
-      }
-    };
-
-    globalThis.addEventListener('click', handleClick);
-    globalThis.addEventListener('keyup', handleESCKeyEvent);
-
-    return () => {
-      globalThis.removeEventListener('click', handleClick);
-      globalThis.removeEventListener('keyup', handleESCKeyEvent);
-    };
-  }, [cardExpandOptions]);
-
   return (
-    <section className="unit-section" ref={sectionRef}>
+    <section className="unit-section" id={id}>
       <button
         className={`
           unit-section__button${
@@ -84,13 +62,15 @@ function UnitButton({
           alt={unitTitle}
         />
       </button>
-      {progressVisible ? <ProgressBar width="70px" value={0} max={5} /> : null}
+      {progressVisible ? (
+        <ProgressBar width="70px" value={level!} max={maxUnit!} />
+      ) : null}
       <UnitCard
         hidden={cardExpandOptions.hidden}
         cardState={buttonState}
         title={unitTitle}
-        level={2}
-        max_level={4}
+        level={level}
+        max_level={maxUnit}
       />
     </section>
   );
