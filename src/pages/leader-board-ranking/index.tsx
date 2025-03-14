@@ -2,34 +2,11 @@ import LeaderBoardTab from '@/components/LeaderBoard/Tab';
 import Title from '@/layouts/title';
 import './style.css';
 import LeaderBoardRankCard from '@/components/LeaderBoard/RankCard';
-import { useEffect, useState } from 'react';
 import { getUserRank } from '@/lib/api';
-
-interface RankProps {
-  uid: string;
-  nickname: string;
-  image: string | null;
-  title: string | null;
-  exp: number | null;
-}
+import useFetchData from '@/hooks/useFetchData';
 
 function LeaderBoardRankingPage() {
-  const [rank, setRank] = useState<RankProps[] | undefined>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getUserRank();
-        setRank(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {
-      console.log('Error fetching rank:', error);
-    });
-  }, []);
+  const { data: rank } = useFetchData(getUserRank);
 
   return (
     <>

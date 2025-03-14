@@ -13,6 +13,7 @@ import LeaderBoardDetailPage from './pages/leader-board-detail';
 import LeaderBoardRankingPage from './pages/leader-board-ranking';
 import UnitPage from './pages/unit-page';
 import MainPage from './pages/main-page';
+import MainPageStart from './pages/main-page-start';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
+          <Route path="/challenge-start" element={<MainPageStart />} />
           <Route element={<MainLayout />}>
             <Route path="/home">
               <Route index element={<MainPage />} />

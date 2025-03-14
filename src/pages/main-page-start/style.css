@@ -38,3 +38,26 @@
   cursor: pointer;
   border: none;
 }
+
+/* ----------------------- textarea Form ------------------------ */
+.startform {
+  width: 100%;
+  min-width: 18.875rem;
+  height: 6.1875rem;
+
+  textarea {
+    width: 90%;
+    height: 100%;
+    margin-left: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    padding: 0.625rem;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: var(--text-green);
+      font-weight: 700;
+    }
+  }
+}
