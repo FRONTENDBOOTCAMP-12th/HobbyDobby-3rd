@@ -87,11 +87,13 @@
   }
 }
 
-.profile-main-hobby-icon-frame {
+.profile-details-main-hobby-icon-frame {
   background-color: #d9d9d9;
   inline-size: 2rem;
   block-size: 2rem;
   border-radius: 50%;
+
+  padding: 4px;
 
   position: absolute;
 

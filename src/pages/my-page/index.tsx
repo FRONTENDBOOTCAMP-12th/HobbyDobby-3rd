@@ -6,12 +6,15 @@ import { useUserStore } from '@/stores/user';
 import { getDate } from '@/utils/getDate';
 import StatCardList from '@/components/MyPage/StatCardList';
 import AchievementCardList from '@/components/MyPage/AchievementCardList';
+import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 function MyPage() {
   const userPhoto = useUserStore((state) => state.image);
   const userNickname = useUserStore((state) => state.nickname);
   const userTitle = useUserStore((state) => state.title);
   const joinDate = useUserStore((state) => state.created_date);
+  const userHobby = useUserStore((state) => state.main_hobby);
+  const userHobbyIcon = getHobbyIcon(userHobby);
 
   const daysSinceJoin = joinDate
     ? Math.floor(
@@ -31,8 +34,8 @@ function MyPage() {
           <ProfileInfo
             nickName={userNickname}
             mainTitle={userTitle}
-            mainHobby="독서"
-            mainHobbyIcon=""
+            mainHobby={userHobby}
+            mainHobbyIcon={userHobbyIcon}
             joinDate={joinDate ? getDate(joinDate) : ''}
           />
           <article className="article-container">
