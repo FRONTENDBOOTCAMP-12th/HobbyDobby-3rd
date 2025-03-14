@@ -3,12 +3,12 @@ import BurnIcon from '/assets/burning.svg';
 import CheckIcon from '/assets/check.svg';
 import ProgressBar from '@/components/ProgressBar';
 import UnitCard from './UnitCard';
-import { useState } from 'react';
 
 interface UnitButtonProps {
   id: string;
   unitTitle: string;
-  onExpand: React.Dispatch<React.SetStateAction<string | null>>;
+  onExpand: (id: string | null) => void;
+  isExpanded: boolean;
   maxUnit?: number;
   level?: number;
   buttonIcon?: string;
@@ -18,32 +18,17 @@ interface UnitButtonProps {
 
 function UnitButton({
   id,
-  unitTitle,
   level,
   maxUnit,
+  isExpanded,
+  unitTitle,
   onExpand,
   buttonIcon = BurnIcon,
   buttonState = 'disabled',
   progressVisible = false,
 }: UnitButtonProps) {
-  const [cardExpandOptions, setCardExpandOptions] = useState({
-    ariaExpanded: false,
-    hidden: true,
-  });
-
   const handleCardExpand = () => {
-    const nextCardExpandOptions = {
-      ariaExpanded: !cardExpandOptions.ariaExpanded,
-      hidden: !cardExpandOptions.hidden,
-    };
-
-    setCardExpandOptions(nextCardExpandOptions);
-
-    if (nextCardExpandOptions.ariaExpanded) {
-      console.log(onExpand);
-
-      // onExpand();
-    }
+    onExpand(isExpanded ? null : id);
   };
 
   return (
@@ -54,7 +39,7 @@ function UnitButton({
             buttonState === 'disabled' ? ' unit-section__button-disabled' : ''
           }`}
         type="button"
-        aria-expanded={cardExpandOptions.ariaExpanded}
+        aria-expanded={isExpanded}
         onClick={handleCardExpand}
       >
         <img
@@ -66,7 +51,7 @@ function UnitButton({
         <ProgressBar width="70px" value={level!} max={maxUnit!} />
       ) : null}
       <UnitCard
-        hidden={cardExpandOptions.hidden}
+        hidden={!isExpanded}
         cardState={buttonState}
         title={unitTitle}
         level={level}

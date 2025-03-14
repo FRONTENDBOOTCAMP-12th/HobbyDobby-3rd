@@ -1,12 +1,12 @@
 import './style.css';
-import MainCard from '@/components/MainComponents/MainCard';
-import UnitButton from '@/components/MainComponents/UnitButton';
 import Title from '@/layouts/title';
+import { useUserStore } from '@/stores/user';
 import { getUnitsBySubHobby } from '@/lib/api';
 import { UnitData } from '@/lib/supabase-client';
-import { useUserStore } from '@/stores/user';
 import { useEffect, useState } from 'react';
-import ChallengeSection from './../../components/MainComponents/ChallengeSection';
+import MainCard from '@/components/MainComponents/MainCard';
+import UnitButton from '@/components/MainComponents/UnitButton';
+import ChallengeSection from '@/components/MainComponents/ChallengeSection';
 
 function MainPage() {
   const nowChallenge = useUserStore((store) => store.now_challenge);
@@ -16,7 +16,7 @@ function MainPage() {
 
   const [sectionList, setSectionList] = useState<UnitData[][]>([]);
 
-  const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
+  const [openCardSection, setOpenCardSection] = useState<string | null>(null);
 
   useEffect(() => {
     if (nowChallenge) {
@@ -51,14 +51,14 @@ function MainPage() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      if (expandedCardId && target.closest(`#${expandedCardId}`)) {
-        setExpandedCardId(null);
+      if (openCardSection && !target.closest(`#${openCardSection}`)) {
+        setOpenCardSection(null);
       }
     };
 
     const handleESCKeyEvent = (e: KeyboardEvent) => {
-      if (expandedCardId && e.key === 'Escape') {
-        setExpandedCardId(null);
+      if (e.key === 'Escape') {
+        setOpenCardSection(null);
       }
     };
 
@@ -69,7 +69,11 @@ function MainPage() {
       globalThis.removeEventListener('click', handleClick);
       globalThis.removeEventListener('keyup', handleESCKeyEvent);
     };
-  }, []);
+  }, [openCardSection]);
+
+  const handleExpand = (id: string | null) => {
+    setOpenCardSection(id);
+  };
 
   return (
     <>
@@ -80,18 +84,24 @@ function MainPage() {
           <>
             <MainCard
               challengeName={nowChallenge.name}
-              section={nowChallenge.now_unit?.section ?? 1}
+              section={nowChallenge.now_unit!.section ?? 1}
               hobby={nowHobby!.name}
             />
-            <ul>
+            <ul className="main-page__section-list">
               {sectionList.map((item, index) => {
                 return (
                   <li key={`section-${index}`}>
                     <ChallengeSection
                       nowUnit={nowUnit!}
                       unitSection={item}
-                      onExpand={setExpandedCardId}
+                      onExpand={handleExpand}
+                      openCardSection={openCardSection}
                     />
+                    <p className="main-page__section-list__divider">
+                      {nowUnit!.section > item[0].section
+                        ? `섹션 ${item[0].section}`
+                        : '잠긴 섹션'}
+                    </p>
                   </li>
                 );
               })}
@@ -104,43 +114,49 @@ function MainPage() {
               section={null}
               hobby={nowHobby!.name}
             />
-            <ul>
+            <ul className="main-page__section-list">
               <li>
                 <UnitButton
                   id="empty-unit-1"
                   unitTitle="빈 유닛입니다."
-                  onExpand={setExpandedCardId}
+                  onExpand={handleExpand}
+                  isExpanded={openCardSection === 'empty-unit-1'}
                 />
               </li>
               <li>
                 <UnitButton
                   id="empty-unit-2"
                   unitTitle="빈 유닛입니다."
-                  onExpand={setExpandedCardId}
+                  onExpand={handleExpand}
+                  isExpanded={openCardSection === 'empty-unit-2'}
                 />
               </li>
               <li>
                 <UnitButton
                   id="empty-unit-3"
                   unitTitle="빈 유닛입니다."
-                  onExpand={setExpandedCardId}
+                  onExpand={handleExpand}
+                  isExpanded={openCardSection === 'empty-unit-3'}
                 />
               </li>
               <li>
                 <UnitButton
                   id="empty-unit-4"
                   unitTitle="빈 유닛입니다."
-                  onExpand={setExpandedCardId}
+                  onExpand={handleExpand}
+                  isExpanded={openCardSection === 'empty-unit-4'}
                 />
               </li>
               <li>
                 <UnitButton
                   id="empty-unit-5"
                   unitTitle="빈 유닛입니다."
-                  onExpand={setExpandedCardId}
+                  onExpand={handleExpand}
+                  isExpanded={openCardSection === 'empty-unit-5'}
                 />
               </li>
             </ul>
+            <p className="main-page__section-list__divider">잠긴 섹션</p>
           </>
         )}
       </main>

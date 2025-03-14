@@ -10,6 +10,10 @@
   gap: 8px;
   font-weight: bold;
 
+  position: sticky;
+  top: 7.375rem;
+  z-index: 3;
+
   h4 {
     font-size: 22px;
   }

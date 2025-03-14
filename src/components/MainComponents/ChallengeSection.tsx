@@ -4,12 +4,15 @@ import UnitButton from './UnitButton';
 interface ChallengeSectionProps {
   unitSection: UnitData[];
   nowUnit: UnitData;
-  onExpand: React.Dispatch<React.SetStateAction<string | null>>;
+  openCardSection: string | null;
+
+  onExpand: (id: string | null) => void;
 }
 
 function ChallengeSection({
-  unitSection,
   nowUnit,
+  unitSection,
+  openCardSection,
   onExpand,
 }: ChallengeSectionProps) {
   return (
@@ -32,6 +35,7 @@ function ChallengeSection({
               buttonState={buttonState}
               maxUnit={unitSection.length}
               onExpand={onExpand}
+              isExpanded={openCardSection === `unit-${unit.id}`}
             />
           </li>
         );

@@ -2,16 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block-start: 3rem;
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    width: 25%;
-    padding: 0;
-    margin: 0;
-  }
 
   li {
     list-style: none;
@@ -28,5 +18,40 @@
   ul li:first-child,
   ul li:last-child {
     align-self: center;
+  }
+}
+
+.main-page__section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 25%;
+  padding: 0;
+  margin: 0;
+  margin-block-start: 5rem;
+}
+
+.main-page__section-list__divider {
+  position: relative;
+
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    border-bottom: 1px solid var(--text-black);
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  &::before {
+    left: 0;
   }
 }
