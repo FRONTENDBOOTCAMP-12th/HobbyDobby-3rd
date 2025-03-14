@@ -1,4 +1,4 @@
-.Challengereview {
+.Challenge-review {
   align-items: center;
   justify-content: space-between;
   text-align: center;
@@ -28,18 +28,15 @@
   margin-bottom: 0.625rem;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
-
-.hobbyinfo {
+.hobbyment {
   display: flex;
-  flex-direction: column;
-  gap: 0.0625rem;
-  color: var(--text-gray);
+  align-items: center;
+  padding-left: 0.625rem;
+  width: 11.9644rem;
+  height: 2.5706rem;
+  border-radius: 0.625rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .hobbystart-end {

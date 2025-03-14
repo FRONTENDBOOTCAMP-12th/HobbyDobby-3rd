@@ -2,7 +2,7 @@ import './ChallengeReview.css';
 
 function ChallengeReview() {
   return (
-    <main className="Challengereview">
+    <main className="Challenge-review">
       <h1 className="sr-only">Hobby Dobby</h1>
       <div className="hobbytitle">
         <p className="hobbytotalday">총 24일</p>

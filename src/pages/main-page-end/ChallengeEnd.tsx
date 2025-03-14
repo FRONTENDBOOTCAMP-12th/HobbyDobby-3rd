@@ -2,7 +2,7 @@ import './ChallengeEnd.css';
 
 function ChallengeEnd() {
   return (
-    <main className="Challengend">
+    <main className="Challenge-end">
       <h1 className="sr-only">Hobby Dobby</h1>
       <img src="/assets/book.svg" alt="" className="bookmark" />
       <p className="challengname"> 25년 첫 독서 챌린지</p>

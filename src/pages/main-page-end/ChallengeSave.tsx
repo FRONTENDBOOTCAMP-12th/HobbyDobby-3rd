@@ -2,7 +2,7 @@ import './ChallengeSave.css';
 
 function ChallengeSave() {
   return (
-    <main className="Challengsave">
+    <main className="Challeng-save">
       <h1 className="sr-only">Hobby Dobby</h1>
       <p>
         <span className="challeng">25년 첫 독서 챌린지</span>
