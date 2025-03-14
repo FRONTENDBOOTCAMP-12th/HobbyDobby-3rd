@@ -10,6 +10,10 @@ import MyPage from '@/pages/my-page';
 import RegisterPage from '@/pages/register';
 import LeaderBoardCompletedPage from '@/pages/leader-board-completed';
 import LeaderBoardDetailPage from './pages/leader-board-detail';
+import ChallengeSave from './pages/main-page-end/ChallengeSave';
+import ChallengeEnd from './pages/main-page-end/ChallengeEnd';
+import ChallengeReview from './pages/main-page-end/ChallengeReview';
+import ChallengeExit from './pages/main-page-end/ChallengeExit';
 
 function App() {
   return (
@@ -24,6 +28,10 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
+          <Route path="/challengeend" element={<ChallengeExit />} />
+          <Route path="/challengeend" element={<ChallengeReview />} />
+          <Route path="/challengeend" element={<ChallengeEnd />} />
+          <Route path="/challengeend" element={<ChallengeSave />} />
           <Route element={<MainLayout />}>
             <Route path="/leader-board">
               <Route index element={<LeaderBoardCompletedPage />} />
