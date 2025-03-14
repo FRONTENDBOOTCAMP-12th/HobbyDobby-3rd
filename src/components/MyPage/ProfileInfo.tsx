@@ -2,7 +2,7 @@ import './styles/my-page-user-profile.css';
 
 interface ProfileCardProps {
   nickName: string;
-  mainTitle?: string;
+  mainTitle?: string | null;
   mainHobby?: string | null;
   mainHobbyIcon?: string | null;
   joinDate: string | null;

@@ -14,6 +14,7 @@ function LoginPage() {
     void Swal.fire({
       icon: 'info',
       text: '이미 로그인되었습니다.',
+      confirmButtonColor: `var(--primary-color)`,
       heightAuto: false,
     }).then(() => {
       void navigate('/home', { replace: true });

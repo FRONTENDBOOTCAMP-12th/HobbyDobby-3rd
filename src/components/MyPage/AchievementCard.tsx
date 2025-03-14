@@ -10,6 +10,7 @@ function AchievementCard({
   total,
   current,
   description,
+  // onLevelUp
 }: AchievementCardProps) {
   return (
     <div className="card achievement-card">
@@ -30,6 +31,15 @@ function AchievementCard({
         <ProgressBar value={current} max={total} />
         <p className="description">{description}</p>
       </div>
+
+      {/* 레벨업 버튼 */}
+      {/* <button
+        className="level-up-button"
+        onClick={() => onLevelUp('some-id')}
+        disabled={current < total}
+      >
+        레벨업
+      </button> */}
     </div>
   );
 }

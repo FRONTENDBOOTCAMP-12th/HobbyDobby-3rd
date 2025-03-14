@@ -100,11 +100,52 @@ export const getUserRank = async () => {
   return sortedData;
 };
 
-export const getUserAchievement = async (userId: string) => {
+export const insertChallenge = async (
+  challengeName: string,
+  createdDate: string,
+  subhobby: string
+) => {
+  // challenge table에 데이터 저장
   const { data, error } = await supabase
-    .from('user_achievements')
-    .select(`achievement(name,created_date)`)
-    .eq('user_id', userId);
+    .from('challenge')
+    .insert([
+      {
+        name: challengeName,
+        created_date: createdDate,
+        sub_hobby_name: subhobby,
+        now_unit: `${subhobby} 유닛 1-1`,
+      },
+    ])
+    .select('name');
+
+  return { data, error };
+};
+
+export const updateUserNowChallenge = async (
+  insertData:
+    | {
+        name: string;
+      }[]
+    | null,
+  userUid: string
+) => {
+  // user now_challenge 업데이트
+  const { error } = await supabase
+    .from('user')
+    .update({
+      now_challenge: insertData?.[0].name,
+    })
+    .eq('uid', userUid);
+
+  return { error };
+};
+
+export const getAchievementsByTypeName = async (
+  type: 'attendance_days' | 'exp' | 'completed_challenges'
+) => await supabase.from('achievement').select('*').eq('type', type);
+
+export const getAchievement = async () => {
+  const { data, error } = await supabase.from('achievement').select('*');
 
   if (error) {
     console.error('Error fetching achievements:', error.message);

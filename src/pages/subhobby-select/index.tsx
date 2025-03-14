@@ -2,49 +2,28 @@ import './style.css';
 import LeftArrow from '/assets/left-arrow.svg';
 import Logo from '/assets/large-logo.svg';
 import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
-import { useEffect, useState } from 'react';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { Link, useLocation, useParams } from 'react-router';
 import { getSubHobby } from '@/lib/api';
 import Title from '@/layouts/title';
-
-interface subHobbiesProps {
-  id: string;
-  info: string;
-  name: string;
-}
+import useFetchData from '@/hooks/useFetchData';
 
 interface locationState {
   hobbyId: string;
 }
 
 function SubHobbySelectPage() {
-  const [subHobbies, setSubHobbies] = useState<subHobbiesProps[] | null>([]);
   const params = useParams();
   const selectedHobby = params.hobby_name;
   const location = useLocation();
   const locationState = { ...(location.state as locationState) };
   const hobbyId = locationState.hobbyId;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getSubHobby(hobbyId);
-
-        if (data) {
-          setSubHobbies(data);
-        } else {
-          throw new Error('데이터를 불러오는데 실패했습니다..');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {
-      console.log('Error fetching subhobbies:', error);
-    });
-  }, []);
+  const { data: subHobbyData } = useFetchData(
+    () => getSubHobby(hobbyId),
+    hobbyId
+  );
+  const subHobbies = subHobbyData?.data;
 
   return (
     <div className="subhobby-select">
