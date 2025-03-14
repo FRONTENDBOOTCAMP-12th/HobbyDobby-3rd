@@ -1,0 +1,95 @@
+.Challengereview {
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 22.5rem;
+  height: 36.625rem;
+  padding-bottom: 1.25rem;
+}
+
+.hobbytitle {
+  margin-top: 3.75rem;
+}
+
+.hobbytotalday {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--secondary-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.3125rem;
+  margin-right: 2.1875rem;
+}
+
+.hobbyname {
+  color: var(--text-green);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.625rem;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.hobbyinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  color: var(--text-gray);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.hobbystart-end {
+  margin-top: 2.5rem;
+  margin-left: 3.125rem;
+}
+
+.hobbylog {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.3125rem;
+  margin-right: 2.1875rem;
+}
+
+.hobbyday {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1rem;
+  margin-top: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.3125rem;
+}
+
+.hobbyment {
+  display: flex;
+  align-items: center;
+  width: 11.9644rem;
+  height: 2.5706rem;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.3125rem;
+}
+
+.endsave {
+  display: block;
+  margin: 30% auto 0 auto;
+  justify-content: center;
+  width: 6.25rem;
+  height: 2.5rem;
+  padding: 0.5rem 0.625rem;
+  text-decoration: none;
+  color: var(--text-black);
+  background-color: var(--secondary-color);
+  border-radius: 0.625rem;
+  cursor: pointer;
+  border: none;
+  margin: 1.25rem auto 0 auto;
+  margin-top: 2.5rem;
+}
