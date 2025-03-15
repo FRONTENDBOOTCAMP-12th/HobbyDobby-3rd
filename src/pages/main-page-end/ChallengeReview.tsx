@@ -1,4 +1,4 @@
-import './ChallengeReview.css';
+import './style.css';
 
 function ChallengeReview() {
   return (

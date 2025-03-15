@@ -1,3 +1,47 @@
+.Challenge-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 360px;
+  height: 586px;
+}
+
+.bookmark {
+  width: 110px;
+  height: 110px;
+  margin-top: 110px;
+  margin-left: 110px;
+}
+
+.challengname {
+  color: var(--text-green);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.theend {
+  color: var(--black);
+  font-size: 50px;
+  font-weight: 700;
+  margin-top: -5%;
+}
+
+.Challenge-exit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 22.5rem;
+  height: 36.625rem;
+}
+
+.Challengsavesucceed {
+  color: var(--text-green);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
 .Challenge-review {
   align-items: center;
   justify-content: space-between;
@@ -88,4 +132,31 @@
   cursor: pointer;
   border: none;
   margin: 2.5rem auto 0 auto;
+}
+
+.Challenge-save {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 22.5rem;
+  height: 36.625rem;
+}
+
+.challengetarget {
+  color: var(--text-green);
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.challengeother {
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.listsave {
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
 }
