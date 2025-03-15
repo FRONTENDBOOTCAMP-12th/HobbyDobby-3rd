@@ -67,13 +67,14 @@ function LoginForm() {
             // 필요한 데이터 저장(zustand Store들에 저장)
             login({
               ...userData,
-              user_hobbies: userHobbies,
-              now_challenge: null,
+              user_hobbies: userHobbies.map(
+                (item) => item?.name as string | null
+              ),
             });
 
             // 페이지 이동
             // 로그인 된 유저 정보에 따라 다른 페이지로 이동(신규=취미 선택/기존 유저=메인)
-            if (userData.main_hobby) {
+            if (userData.now_hobby) {
               await Swal.fire({
                 icon: 'success',
                 title: '로그인 성공',

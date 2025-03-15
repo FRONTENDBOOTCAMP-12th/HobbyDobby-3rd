@@ -29,6 +29,7 @@ function MainPageStart() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       const { data: challengeData, error: insertError } = await insertChallenge(
         challengeName,
