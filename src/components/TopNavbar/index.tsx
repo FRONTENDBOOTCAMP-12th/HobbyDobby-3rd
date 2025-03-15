@@ -8,7 +8,7 @@ import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 function TopNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const nowHobby = useUserStore((state) => state.now_hobby?.name);
+  const nowHobby = useUserStore((state) => state.now_hobby);
   const gem = useUserStore((state) => state.gem);
 
   const handleButton = () => {

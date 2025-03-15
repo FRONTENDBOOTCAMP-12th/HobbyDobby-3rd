@@ -4,14 +4,15 @@ import { getSubHobbyIcon } from '@/utils/getSubHobbyIcon';
 import Swal from 'sweetalert2';
 
 interface SubHobbySelectCardProps {
+  hobby: string;
   name: string;
   info: string;
 }
 
-function SubHobbySelectCard({ name, info }: SubHobbySelectCardProps) {
+function SubHobbySelectCard({ hobby, name, info }: SubHobbySelectCardProps) {
   const navigate = useNavigate();
 
-  const handleSubhobbySelect = (subhobby: string) => {
+  const handleSubHobbySelect = (hobby: string, subHobby: string) => {
     void Swal.fire({
       title: '선택하시겠습니까?',
       confirmButtonText: '선택',
@@ -23,7 +24,8 @@ function SubHobbySelectCard({ name, info }: SubHobbySelectCardProps) {
       if (result.isConfirmed) {
         void navigate('/challenge-start', {
           state: {
-            subhobby,
+            hobby,
+            subHobby,
           },
         });
       }
@@ -41,7 +43,7 @@ function SubHobbySelectCard({ name, info }: SubHobbySelectCardProps) {
         <button
           type="button"
           className="subhobby-select-card__button"
-          onClick={() => handleSubhobbySelect(name)}
+          onClick={() => handleSubHobbySelect(hobby, name)}
         >
           선택
         </button>

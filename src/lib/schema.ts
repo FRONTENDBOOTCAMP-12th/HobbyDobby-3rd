@@ -184,19 +184,19 @@ export interface Database {
       };
       sub_hobby: {
         Row: {
-          hobby_id: string | null;
+          hobby_name: string;
           id: string;
           info: string;
           name: string;
         };
         Insert: {
-          hobby_id?: string | null;
+          hobby_name: string;
           id?: string;
           info: string;
           name: string;
         };
         Update: {
-          hobby_id?: string | null;
+          hobby_name?: string;
           id?: string;
           info?: string;
           name?: string;
@@ -204,10 +204,10 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: 'sub_hobby_hobby_id_fkey';
-            columns: ['hobby_id'];
+            columns: ['hobby_name'];
             isOneToOne: false;
             referencedRelation: 'hobby';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
         ];
       };

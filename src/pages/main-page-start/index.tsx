@@ -1,48 +1,54 @@
 import './style.css';
-import ProgressBar from '@/components/ProgressBar';
-import Title from '@/layouts/title';
-import { insertChallenge, updateUserNowChallenge } from '@/lib/api';
-import { useUserStore } from '@/stores/user';
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import Title from '@/layouts/title';
+import { useUserStore } from '@/stores/user';
+import ProgressBar from '@/components/ProgressBar';
+import { useLocation, useNavigate } from 'react-router';
+import { insertChallenge, updateUserNowChallenge } from '@/lib/api';
 
 interface locationState {
-  subhobby: string;
+  hobby: string;
+  subHobby: string;
 }
 
 function MainPageStart() {
   const navigate = useNavigate();
   const userUid = useUserStore((state) => state.uid);
+  const updateStoreNowChallenge = useUserStore(
+    (state) => state.updateNowChllange
+  );
 
   // 상세 취미
   const location = useLocation();
   const locationState = { ...(location.state as locationState) };
-  const subhobby = locationState.subhobby;
+  const { hobby, subHobby } = locationState;
 
   // 챌린지명
   const [challengeName, setChallengeName] = useState<string>('');
 
-  // 생성 날짜
-  const createdDate = new Date().toISOString();
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
-      const { data: insertData, error: insertError } = await insertChallenge(
+      const { data: challengeData, error: insertError } = await insertChallenge(
         challengeName,
-        createdDate,
-        subhobby
+        subHobby
       );
 
       if (insertError) throw insertError;
 
       const { error: updateError } = await updateUserNowChallenge(
-        insertData,
+        challengeData,
+        hobby,
         userUid
       );
 
-      if (updateError) throw updateError;
+      if (updateError) {
+        throw updateError;
+      }
+
+      updateStoreNowChallenge(hobby, challengeData![0]);
 
       // 성공 알림
       await Swal.fire({

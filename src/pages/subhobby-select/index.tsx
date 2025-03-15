@@ -7,9 +7,10 @@ import { Link, useLocation, useParams } from 'react-router';
 import { getSubHobby } from '@/lib/api';
 import Title from '@/layouts/title';
 import useFetchData from '@/hooks/useFetchData';
+import { useCallback } from 'react';
 
 interface locationState {
-  hobbyId: string;
+  hobbyName: string;
 }
 
 function SubHobbySelectPage() {
@@ -17,12 +18,11 @@ function SubHobbySelectPage() {
   const selectedHobby = params.hobby_name;
   const location = useLocation();
   const locationState = { ...(location.state as locationState) };
-  const hobbyId = locationState.hobbyId;
+  const hobbyName = locationState.hobbyName;
 
-  const { data: subHobbyData } = useFetchData(
-    () => getSubHobby(hobbyId),
-    hobbyId
-  );
+  const fetchSubHobby = useCallback(() => getSubHobby(hobbyName), [hobbyName]);
+
+  const { data: subHobbyData } = useFetchData(fetchSubHobby, hobbyName);
   const subHobbies = subHobbyData?.data;
 
   return (
@@ -48,7 +48,12 @@ function SubHobbySelectPage() {
         </div>
       </div>
       {subHobbies?.map((data) => (
-        <SubHobbySelectCard key={data.id} name={data.name} info={data.info} />
+        <SubHobbySelectCard
+          key={data.id}
+          name={data.name}
+          info={data.info}
+          hobby={hobbyName}
+        />
       ))}
     </div>
   );

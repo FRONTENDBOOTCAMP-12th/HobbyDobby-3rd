@@ -14,12 +14,12 @@ function MainCard({ challengeName, section, hobby }: MainCardProps) {
       <h4>섹션 {section}</h4>
     </section>
   ) : (
-    <section className="main-card">
+    <div className="main-card">
       <p>챌린지를 생성해주세요.🥰</p>
       <Link className="main-card__link" to={`/select-hobby/${hobby}`}>
         새 챌린지 생성
       </Link>
-    </section>
+    </div>
   );
 }
 
