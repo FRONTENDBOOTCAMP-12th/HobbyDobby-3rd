@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
   width: 22.5rem;
   height: 36.625rem;
+  text-align: center;
 }
 
 .Challengsavesucceed {

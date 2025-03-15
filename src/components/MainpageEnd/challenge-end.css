@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
   width: 360px;
   height: 586px;
+  text-align: center;
 }
 
 .bookmark {
@@ -22,7 +22,7 @@
 
 .theend {
   color: var(--black);
+  margin-top: -5%;
   font-size: 50px;
   font-weight: 700;
-  margin-top: -5%;
 }

@@ -1,10 +1,10 @@
 .Challengereview {
   align-items: center;
   justify-content: space-between;
-  text-align: center;
   width: 22.5rem;
   height: 36.625rem;
   padding-bottom: 1.25rem;
+  text-align: center;
 }
 
 .hobbytitle {
@@ -14,23 +14,18 @@
 .hobbytotalday {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 0.3125rem;
+  margin-right: 2.1875rem;
   color: var(--secondary-color);
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.3125rem;
-  margin-right: 2.1875rem;
 }
 
 .hobbyname {
+  margin-bottom: 0.625rem;
   color: var(--text-green);
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.625rem;
-}
-
-p {
-  margin: 0;
-  padding: 0;
 }
 
 .hobbyinfo {
@@ -40,6 +35,11 @@ p {
   color: var(--text-gray);
   font-size: 0.875rem;
   font-weight: 500;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .hobbystart-end {
@@ -50,19 +50,19 @@ p {
 .hobbylog {
   display: flex;
   justify-content: flex-end;
-  font-size: 1.125rem;
-  font-weight: 700;
   margin-bottom: 0.3125rem;
   margin-right: 2.1875rem;
+  font-size: 1.125rem;
+  font-weight: 700;
 }
 
 .hobbyday {
   display: flex;
   justify-content: flex-start;
-  font-size: 1rem;
   margin-top: 1.25rem;
-  font-weight: 600;
   margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .hobbyment {
@@ -70,26 +70,24 @@ p {
   align-items: center;
   width: 11.9644rem;
   height: 2.5706rem;
-  background-color: white;
+  padding: 0.3125rem;
   border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 700;
-  padding: 0.3125rem;
+  background-color: white;
 }
 
 .endsave {
   display: block;
-  margin: 30% auto 0 auto;
   justify-content: center;
   width: 6.25rem;
   height: 2.5rem;
+  margin: 2.5rem auto 0 auto;
   padding: 0.5rem 0.625rem;
-  text-decoration: none;
-  color: var(--text-black);
-  background-color: var(--secondary-color);
+  border: none;
   border-radius: 0.625rem;
   cursor: pointer;
-  border: none;
-  margin: 1.25rem auto 0 auto;
-  margin-top: 2.5rem;
+  color: var(--text-black);
+  text-decoration: none;
+  background-color: var(--secondary-color);
 }
