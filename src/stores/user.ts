@@ -1,29 +1,28 @@
-import { ChallengeData, HobbyData, UserData } from '@/lib/supabase-client';
+import { ChallengeData, UserData } from '@/lib/supabase-client';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
-type User = Omit<UserData, 'now_hobby' | 'created_date' | 'now_challenge'> & {
-  user_hobbies: (HobbyData | null)[];
-  now_hobby: HobbyData | null;
+type User = Omit<UserData, 'created_date' | 'now_challenge'> & {
+  user_hobbies: (string | null)[];
   now_challenge: ChallengeData | null;
   created_date: string | null;
 };
 
 // 비로그인 상태
 const initialUser: User = {
+  uid: '',
+  id: '',
+  password: '',
+  nickname: '',
   created_date: null,
+  image: null,
   exp: null,
   gem: null,
-  id: '',
-  image: null,
   item: null,
-  main_hobby: null,
-  nickname: '',
-  now_challenge: null,
-  now_hobby: null,
-  password: '',
   title: null,
-  uid: '',
+  main_hobby: null,
+  now_hobby: null,
+  now_challenge: null,
   user_hobbies: [],
 };
 
@@ -45,7 +44,16 @@ export const useUserStore = create(
               'login'
             ),
           logout: () => set(initialUser, undefined, 'logout'),
-          updateNowHobby: (hobby: HobbyData) =>
+          updateNowChllange: (hobby: string, challenge: ChallengeData) =>
+            set(
+              {
+                now_hobby: hobby,
+                now_challenge: challenge,
+              },
+              undefined,
+              'updateNowChallenge'
+            ),
+          updateNowHobby: (hobby: string) =>
             set(
               {
                 now_hobby: hobby,
