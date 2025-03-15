@@ -5,12 +5,18 @@ import Title from '@/layouts/title';
 import { useUserStore } from '@/stores/user';
 import { getUserCompletedChallenge } from '@/lib/api';
 import useFetchData from '@/hooks/useFetchData';
+import { useCallback } from 'react';
 
 function LeaderBoardCompletedPage() {
   const userId = useUserStore((state) => state.uid);
 
-  const { data: challenges } = useFetchData(
+  const fetchUserCompletedChallenge = useCallback(
     () => getUserCompletedChallenge(userId),
+    [userId]
+  );
+
+  const { data: challenges } = useFetchData(
+    fetchUserCompletedChallenge,
     userId
   );
 

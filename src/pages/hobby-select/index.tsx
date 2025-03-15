@@ -6,7 +6,7 @@ import Title from '@/layouts/title';
 import useFetchData from '@/hooks/useFetchData';
 
 function HobbySelectPage() {
-  const { data: hobbyData } = useFetchData(getHobby);
+  const { data: hobbyData } = useFetchData(getHobby, undefined);
   const hobbies = hobbyData?.data;
 
   return (
@@ -19,7 +19,7 @@ function HobbySelectPage() {
       <p className="hobby-select__desc">관심있는 취미 활동을 선택해주세요!</p>
       <ul className="hobby-select__list">
         {hobbies?.map((item) => (
-          <HobbySelectCard key={item.id} id={item.id} name={item.name} />
+          <HobbySelectCard key={item.id} name={item.name} />
         ))}
       </ul>
     </div>
