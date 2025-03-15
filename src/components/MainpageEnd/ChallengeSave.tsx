@@ -1,4 +1,4 @@
-import './style.css';
+import './challenge-save.css';
 
 function ChallengeSave() {
   return (

@@ -1,6 +1,6 @@
-import './style.css';
+import './challenge-finsh.css';
 
-function ChallengeEnd() {
+function ChallengeFinsh() {
   return (
     <main className="Challenge-end">
       <h1 className="sr-only">Hobby Dobby</h1>
@@ -11,4 +11,4 @@ function ChallengeEnd() {
   );
 }
 
-export default ChallengeEnd;
+export default ChallengeFinsh;

@@ -1,4 +1,4 @@
-import './style.css';
+import './challenge-exit.css';
 
 function ChallengeExit() {
   return (
