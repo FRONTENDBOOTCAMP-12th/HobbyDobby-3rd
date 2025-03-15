@@ -16,7 +16,7 @@ function ChallengeSection({
   onExpand,
 }: ChallengeSectionProps) {
   return (
-    <ul>
+    <ul className="main-page__unit-list">
       {unitSection.map((unit) => {
         const buttonState =
           nowUnit.name === unit.name

@@ -85,12 +85,15 @@ function MainPage() {
             <MainCard
               challengeName={nowChallenge.name}
               section={nowChallenge.now_unit!.section ?? 1}
-              hobby={nowHobby!.name}
+              hobby={nowHobby!}
             />
             <ul className="main-page__section-list">
               {sectionList.map((item, index) => {
                 return (
-                  <li key={`section-${index}`}>
+                  <li
+                    className="main-page__section-li"
+                    key={`section-${index}`}
+                  >
                     <ChallengeSection
                       nowUnit={nowUnit!}
                       unitSection={item}
@@ -109,12 +112,8 @@ function MainPage() {
           </>
         ) : (
           <>
-            <MainCard
-              challengeName={null}
-              section={null}
-              hobby={nowHobby!.name}
-            />
-            <ul className="main-page__section-list">
+            <MainCard challengeName={null} section={null} hobby={nowHobby!} />
+            <ul className="main-page__unit-list main-page__empty-section">
               <li>
                 <UnitButton
                   id="empty-unit-1"

@@ -34,10 +34,9 @@ function UnitButton({
   return (
     <section className="unit-section" id={id}>
       <button
-        className={`
-          unit-section__button${
-            buttonState === 'disabled' ? ' unit-section__button-disabled' : ''
-          }`}
+        className={`unit-section__button${
+          buttonState === 'disabled' ? ' unit-section__button-disabled' : ''
+        }`}
         type="button"
         aria-expanded={isExpanded}
         onClick={handleCardExpand}
