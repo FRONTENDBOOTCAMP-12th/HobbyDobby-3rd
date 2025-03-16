@@ -17,6 +17,9 @@
   --text-black: #1a1717;
   --text-green: #065b63;
   --text-gray: #2f2f2f;
+
+  /* primary-color을 배경으로 쓸 때의 검정색 */
+  --primary-text-black: #0f0e0e;
 }
 
 body {
