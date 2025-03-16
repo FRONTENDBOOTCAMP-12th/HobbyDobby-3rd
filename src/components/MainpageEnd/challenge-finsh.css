@@ -1,4 +1,4 @@
-.Challengend {
+.Challenge-end {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,20 +7,20 @@
   text-align: center;
 }
 
-.bookmark {
+.Challenge-end_bookmark {
   width: 110px;
   height: 110px;
   margin-top: 110px;
   margin-left: 110px;
 }
 
-.challengname {
+.Challenge-end_challeng-name {
   color: var(--text-green);
   font-size: 30px;
   font-weight: 700;
 }
 
-.theend {
+.Challenge-end_the-end {
   color: var(--black);
   margin-top: -5%;
   font-size: 50px;
