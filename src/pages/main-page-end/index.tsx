@@ -3,7 +3,7 @@ import ChallengeFinsh from '@/components/MainpageEnd/ChallengeFinish';
 
 function MainPageEnd() {
   return (
-    <main className="MainPageend">
+    <main className="main-page-end">
       <h1 className="sr-only">Hobby Dobby</h1>
       <ChallengeFinsh />
       {/* 컴포넌트의 순서는 finish -> review -> save -> exit 의 순서로 진행*/}
