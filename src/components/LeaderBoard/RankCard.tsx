@@ -31,7 +31,7 @@ function LeaderBoardRankCard({
           </div>
         </div>
       </div>
-      <p>{exp}점</p>
+      <p>{exp?.toLocaleString()}점</p>
     </li>
   );
 }
