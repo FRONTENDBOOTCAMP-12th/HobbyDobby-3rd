@@ -13,7 +13,6 @@ export interface Database {
         Row: {
           id: string;
           level: number;
-          max_progress: number;
           reward_gem: number | null;
           reward_title: string | null;
           type: Database['public']['Enums']['achievement_type'];
@@ -21,7 +20,6 @@ export interface Database {
         Insert: {
           id?: string;
           level: number;
-          max_progress: number;
           reward_gem?: number | null;
           reward_title?: string | null;
           type: Database['public']['Enums']['achievement_type'];
@@ -29,7 +27,6 @@ export interface Database {
         Update: {
           id?: string;
           level?: number;
-          max_progress?: number;
           reward_gem?: number | null;
           reward_title?: string | null;
           type?: Database['public']['Enums']['achievement_type'];
@@ -50,27 +47,27 @@ export interface Database {
           created_date: string | null;
           id: string;
           name: string;
-          now_unit: string | null;
+          now_unit: string;
           progress: Json | null;
-          sub_hobby_name: string | null;
+          sub_hobby_name: string;
         };
         Insert: {
           completed_date?: string | null;
           created_date?: string | null;
           id?: string;
           name: string;
-          now_unit?: string | null;
+          now_unit: string;
           progress?: Json | null;
-          sub_hobby_name?: string | null;
+          sub_hobby_name: string;
         };
         Update: {
           completed_date?: string | null;
           created_date?: string | null;
           id?: string;
           name?: string;
-          now_unit?: string | null;
+          now_unit?: string;
           progress?: Json | null;
-          sub_hobby_name?: string | null;
+          sub_hobby_name?: string;
         };
         Relationships: [
           {
@@ -187,19 +184,19 @@ export interface Database {
       };
       sub_hobby: {
         Row: {
-          hobby_id: string | null;
+          hobby_name: string;
           id: string;
           info: string;
           name: string;
         };
         Insert: {
-          hobby_id?: string | null;
+          hobby_name: string;
           id?: string;
           info: string;
           name: string;
         };
         Update: {
-          hobby_id?: string | null;
+          hobby_name?: string;
           id?: string;
           info?: string;
           name?: string;
@@ -207,10 +204,10 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: 'sub_hobby_hobby_id_fkey';
-            columns: ['hobby_id'];
+            columns: ['hobby_name'];
             isOneToOne: false;
             referencedRelation: 'hobby';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
         ];
       };
@@ -236,7 +233,7 @@ export interface Database {
           name: string;
           section: number;
           sub_hobby: string;
-          title: string | null;
+          title: string;
         };
         Insert: {
           id?: string;
@@ -244,7 +241,7 @@ export interface Database {
           name: string;
           section: number;
           sub_hobby: string;
-          title?: string | null;
+          title: string;
         };
         Update: {
           id?: string;
@@ -252,7 +249,7 @@ export interface Database {
           name?: string;
           section?: number;
           sub_hobby?: string;
-          title?: string | null;
+          title?: string;
         };
         Relationships: [
           {

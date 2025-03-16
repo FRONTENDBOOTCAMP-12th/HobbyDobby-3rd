@@ -1,11 +1,11 @@
 import { useUserStore } from '@/stores/user';
 import PlusIcon from '/assets/plus.svg';
-import { HobbyData, UserData } from '@/lib/supabase-client';
+import { UserData } from '@/lib/supabase-client';
 import { updateUserNowHobby as updateDBUserNowHobby } from '@/lib/api';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbyCardProps {
-  activeHobby: string | undefined;
+  activeHobby: string | null;
 }
 
 function HobbyCard({ activeHobby }: HobbyCardProps) {
@@ -13,7 +13,7 @@ function HobbyCard({ activeHobby }: HobbyCardProps) {
   const hobbies = useUserStore((state) => state.user_hobbies);
   const updateStoreNowHobby = useUserStore((state) => state.updateNowHobby);
 
-  const updateHobby = (uid: UserData['uid'], hobby: HobbyData | null) => {
+  const updateHobby = (uid: UserData['uid'], hobby: string | null) => {
     if (hobby) {
       updateDBUserNowHobby(uid, hobby)
         .then(() => {
@@ -33,10 +33,10 @@ function HobbyCard({ activeHobby }: HobbyCardProps) {
             <button
               type="button"
               onClick={() => updateHobby(uid, hobby)}
-              className={hobby?.name === activeHobby ? 'activeHobby' : ''}
+              className={hobby === activeHobby ? 'activeHobby' : ''}
             >
-              <img src={getHobbyIcon(hobby?.name)} alt={hobby?.name} />
-              <p>{hobby?.name}</p>
+              <img src={getHobbyIcon(hobby)} alt={hobby!} />
+              <p>{hobby}</p>
             </button>
           </li>
         ))}
