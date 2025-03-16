@@ -7,20 +7,20 @@
   text-align: center;
 }
 
-.Challenge-end_bookmark {
+.Challenge-end__bookmark {
   width: 110px;
   height: 110px;
   margin-top: 110px;
   margin-left: 110px;
 }
 
-.Challenge-end_challeng-name {
+.Challenge-end__challeng-name {
   color: var(--text-green);
   font-size: 30px;
   font-weight: 700;
 }
 
-.Challenge-end_the-end {
+.Challenge-end__the-end {
   color: var(--black);
   margin-top: -5%;
   font-size: 50px;
