@@ -29,4 +29,9 @@
   .form-input__wrapper {
     justify-content: center;
   }
+
+  .form-input__alert {
+    width: 14.125rem;
+    text-align: center;
+  }
 }
