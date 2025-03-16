@@ -6,6 +6,24 @@ const viteConfig = defineConfig((env) => {
   const isDevMode = env.mode.includes('development');
   return {
     base: isDevMode ? '/' : '/hobby-dobby',
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: [
+              'react',
+              'react-dom',
+              'react-router',
+              'react-error-boundary',
+              'react-textarea-autosize',
+            ],
+            ecosystem: ['zustand', 'clsx'],
+            sweetalert: ['sweetalert2'],
+            supabase: ['@supabase/supabase-js'],
+          },
+        },
+      },
+    },
     plugins: [
       react({
         jsxRuntime: 'automatic',
