@@ -26,7 +26,7 @@ function UnitCard({
   return (
     <div
       className="unit-card"
-      aria-modal="true"
+      role="group"
       aria-labelledby={unitCardId}
       {...restProps}
     >
