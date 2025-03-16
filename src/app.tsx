@@ -25,7 +25,7 @@ function App() {
             path="/select-hobby/:hobby_name"
             element={<SubHobbySelectPage />}
           />
-          <Route path="/ChallengeEnd" element={<ChallengeEnd />} />
+          <Route path="/challenge-end" element={<ChallengeEnd />} />
 
           <Route element={<MainLayout />}>
             <Route path="/leader-board">
