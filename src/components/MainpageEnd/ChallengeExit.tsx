@@ -2,9 +2,9 @@ import './challenge-exit.css';
 
 function ChallengeExit() {
   return (
-    <main className="Challenge-exit">
+    <main className="challenge-exit">
       <h1 className="sr-only">Hobby Dobby</h1>
-      <p className="Challenge-exit__savesucceed">저장 완료 !</p>
+      <p className="challenge-exit__savesucceed">저장 완료 !</p>
     </main>
   );
 }

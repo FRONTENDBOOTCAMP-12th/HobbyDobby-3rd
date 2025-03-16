@@ -1,4 +1,4 @@
-.Challenge-review {
+.challenge-review {
   align-items: center;
   justify-content: space-between;
   width: 22.5rem;
@@ -7,11 +7,11 @@
   text-align: center;
 }
 
-.Challenge-review__hobbytitle {
+.challenge-review__hobbytitle {
   margin-top: 3.75rem;
 }
 
-.Challenge-review__hobbytotalday {
+.challenge-review__hobbytotalday {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.3125rem;
@@ -21,14 +21,14 @@
   font-weight: 700;
 }
 
-.Challenge-review__hobbyname {
+.challenge-review__hobbyname {
   margin-bottom: 0.625rem;
   color: var(--text-green);
   font-size: 2rem;
   font-weight: 700;
 }
 
-.Challenge-review__hobbyinfo {
+.challenge-review__hobbyinfo {
   display: flex;
   flex-direction: column;
   gap: 0.0625rem;
@@ -42,12 +42,12 @@
   }
 }
 
-.Challenge-review__hobby-start-end {
+.challenge-review__hobby-start-end {
   margin-top: 2.5rem;
   margin-left: 3.125rem;
 }
 
-.Challenge-review__hobbylog {
+.challenge-review__hobbylog {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.3125rem;
@@ -56,7 +56,7 @@
   font-weight: 700;
 }
 
-.Challenge-review__hobbyday {
+.challenge-review__hobbyday {
   display: flex;
   justify-content: flex-start;
   margin-top: 1.25rem;
@@ -65,7 +65,7 @@
   font-weight: 600;
 }
 
-.Challenge-review__hobbyment {
+.challenge-review__hobbyment {
   display: flex;
   align-items: center;
   width: 11.9644rem;
@@ -77,7 +77,7 @@
   background-color: white;
 }
 
-.Challenge-review__save {
+.challenge-review__save {
   display: block;
   justify-content: center;
   width: 6.25rem;

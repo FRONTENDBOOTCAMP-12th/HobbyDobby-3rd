@@ -1,4 +1,4 @@
-.Challengsavesucceed {
+.challengsavesucceed {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.Challenge-exit__savesucceed {
+.challenge-exit__savesucceed {
   color: var(--text-green);
   font-size: 2.5rem;
   font-weight: 700;

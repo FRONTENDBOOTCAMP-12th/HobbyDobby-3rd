@@ -1,4 +1,4 @@
-.Challenge-end {
+.challenge-end {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,20 +7,20 @@
   text-align: center;
 }
 
-.Challenge-end__bookmark {
+.challenge-end__bookmark {
   width: 110px;
   height: 110px;
   margin-top: 110px;
   margin-left: 110px;
 }
 
-.Challenge-end__challeng-name {
+.challenge-end__challeng-name {
   color: var(--text-green);
   font-size: 30px;
   font-weight: 700;
 }
 
-.Challenge-end__the-end {
+.challenge-end__the-end {
   color: var(--black);
   margin-top: -5%;
   font-size: 50px;
