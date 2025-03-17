@@ -9,6 +9,7 @@
     font-size: 1.875rem;
     text-align: center;
     font-weight: 600;
+    margin-block-end: 2rem;
   }
 }
 
@@ -20,7 +21,9 @@
   margin-block-start: 4px;
 
   a {
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
+    font-weight: 700;
+    color: var(--text-green);
     text-decoration: none;
   }
 }

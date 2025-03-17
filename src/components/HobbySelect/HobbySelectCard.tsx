@@ -3,17 +3,16 @@ import './hobby-select.css';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 
 interface HobbySelectCardProps {
-  id: string;
   name: string;
 }
 
-function HobbySelectCard({ id, name }: HobbySelectCardProps) {
+function HobbySelectCard({ name }: HobbySelectCardProps) {
   const navigate = useNavigate();
 
-  const handleSelectHobby = (id: string) => {
+  const handleSelectHobby = (name: string) => {
     void navigate(`/select-hobby/${name}`, {
       state: {
-        hobbyId: id,
+        hobbyName: name,
       },
     });
   };
@@ -23,7 +22,7 @@ function HobbySelectCard({ id, name }: HobbySelectCardProps) {
       <button
         type="button"
         className="hobby-select-card__button"
-        onClick={() => handleSelectHobby(id)}
+        onClick={() => handleSelectHobby(name)}
       >
         <img src={getHobbyIcon(name)} alt={name} />
         <p className="hobby-select-card__desc">{name}</p>
