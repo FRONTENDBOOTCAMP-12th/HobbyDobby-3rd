@@ -26,7 +26,6 @@ const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
-
       <Suspense fallback={<div role="status">페이지 로딩 중...</div>}>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
