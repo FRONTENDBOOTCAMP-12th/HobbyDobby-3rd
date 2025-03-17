@@ -7,8 +7,8 @@ function LandingPage() {
       <header>
         <h1 className="sr-only">Hobby Dobby</h1>
         <figure>
-          <img src="/assets/logo.svg" alt="" className="logo" />
-          <div className="logo-text">
+          <img src="/assets/logo.svg" alt="" className="landing__logo" />
+          <div className="landing__logo-text">
             <img src="/assets/hobby.svg" alt="" className="hobby-image" />
             <img src="/assets/dobby.svg" alt="" className="dobby-image" />
           </div>
@@ -16,7 +16,7 @@ function LandingPage() {
       </header>
 
       <div>
-        <Link to="/login" className="start">
+        <Link to="/login" className="landing__start">
           시작하기
         </Link>
       </div>
