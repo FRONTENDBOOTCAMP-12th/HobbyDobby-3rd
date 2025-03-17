@@ -30,12 +30,9 @@
   }
 
   p {
-    color: color-mix(
-      in srgb,
-      var(--text-black) 50%,
-      var(--secondary-color) 50%
-    );
+    color: var(--primary-text-black);
     font-size: 17px;
+    font-weight: 500;
     margin: 0;
   }
 

@@ -10,14 +10,14 @@
   background-color: var(--tertiary-color);
 }
 
-.logo {
+.landing__logo {
   width: 7.125rem;
   height: 7.375rem;
   margin-top: 5.9375rem;
   margin-bottom: 0.625rem;
 }
 
-.logo-text {
+.landing__logo-text {
   margin-top: 1.1875rem;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
   margin-top: -0.3125rem;
 }
 
-.start {
+.landing__start {
   width: 8.4375rem;
   height: 2.5rem;
   padding: 0.625rem 1.25rem;

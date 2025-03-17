@@ -58,7 +58,9 @@ function FormInput({
             </button>
           ) : null}
         </div>
-        {value === '' || regex.test(value) ? null : <p>{alertMessage}</p>}
+        {value === '' || regex.test(value) ? null : (
+          <p className="form-input__alert">{alertMessage}</p>
+        )}
       </>
     </div>
   );

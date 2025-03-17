@@ -19,6 +19,8 @@ function UnitPage() {
 
   // 임시로 만든 닫기 버튼 이벤트 핸들러
   const navigate = useNavigate();
+
+  // 추후에 페이지 나가기 전 confirm 경고창 띄워줘야 함
   const handleClickClose = () => {
     void navigate('/home'); // /mainpage로 이동
   };
