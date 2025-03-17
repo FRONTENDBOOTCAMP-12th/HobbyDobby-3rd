@@ -51,7 +51,7 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
-            <Route path="/unit-page" element={<UnitPage />}></Route>
+            <Route path="/unit-page" element={<UnitPage />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
