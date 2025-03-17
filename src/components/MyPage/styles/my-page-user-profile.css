@@ -43,7 +43,13 @@
   block-size: 6.5rem;
   border-radius: 50%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: absolute;
+
+  overflow: hidden;
 
   /* Center the image frame */
   top: 4rem;
@@ -52,11 +58,13 @@
   transform: translate(-50%, 0);
 
   img {
+    inline-size: 100%;
+    block-size: 100%;
+
     margin: 0;
     padding: 0;
 
-    inline-size: 100%;
-    block-size: 100%;
+    object-fit: cover;
   }
 
   &:hover {
@@ -93,6 +101,10 @@
   block-size: 2rem;
   border-radius: 50%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 4px;
 
   position: absolute;
@@ -102,5 +114,15 @@
 
   &:hover {
     filter: brightness(0.97);
+  }
+
+  img {
+    inline-size: 100%;
+    block-size: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    object-fit: cover;
   }
 }

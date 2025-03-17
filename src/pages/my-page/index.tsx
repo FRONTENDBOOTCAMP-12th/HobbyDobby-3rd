@@ -16,6 +16,8 @@ function MyPage() {
   const userHobby = useUserStore((state) => state.main_hobby);
   const userHobbyIcon = getHobbyIcon(userHobby);
 
+  console.log(userPhoto);
+
   const daysSinceJoin = joinDate
     ? Math.floor(
         (new Date().getTime() - new Date(joinDate).getTime()) /
@@ -28,7 +30,7 @@ function MyPage() {
       <Title>마이페이지</Title>
       <main>
         <section className="profile-header">
-          <ProfileHeader profileImage={userPhoto ? userPhoto : null} />
+          <ProfileHeader profileImage={userPhoto ?? null} />
         </section>
         <section className="profile-body">
           <ProfileInfo
