@@ -3,36 +3,22 @@ import LeaderBoardTab from '@/components/LeaderBoard/Tab';
 import './style.css';
 import Title from '@/layouts/title';
 import { useUserStore } from '@/stores/user';
-import { useEffect, useState } from 'react';
 import { getUserCompletedChallenge } from '@/lib/api';
-
-interface ChallengesProps {
-  challenge: {
-    name: string;
-    created_date: string | null;
-    completed_date: string | null;
-  } | null;
-}
+import useFetchData from '@/hooks/useFetchData';
+import { useCallback } from 'react';
 
 function LeaderBoardCompletedPage() {
-  const userId = useUserStore((state) => state.id);
-  const [challenges, setChallenges] = useState<ChallengesProps[] | null>([]);
+  const userId = useUserStore((state) => state.uid);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getUserCompletedChallenge(userId);
+  const fetchUserCompletedChallenge = useCallback(
+    () => getUserCompletedChallenge(userId),
+    [userId]
+  );
 
-        setChallenges(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {
-      console.log('Error fetching subhobbies:', error);
-    });
-  }, []);
+  const { data: challenges } = useFetchData(
+    fetchUserCompletedChallenge,
+    userId
+  );
 
   return (
     <div className="leader-board-completed">

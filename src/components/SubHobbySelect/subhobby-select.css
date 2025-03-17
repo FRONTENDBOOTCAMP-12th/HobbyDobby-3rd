@@ -1,5 +1,5 @@
 .subhobby-select-card {
-  width: 18.75rem;
+  width: 90%;
   height: 8.125rem;
   display: flex;
   background-color: var(--quatenary-color);
@@ -8,7 +8,7 @@
 
 .subhobby-select-card__figure {
   margin: 0;
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,8 +27,11 @@
 }
 
 .subhobby-select-card__container {
+  width: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
 }
@@ -40,7 +43,8 @@
 }
 
 .subhobby-select-card__button {
-  width: 11.25rem;
+  min-width: 11.25rem;
+  width: 90%;
   height: 1.5rem;
   font-weight: 600;
   background-color: var(--secondary-color);

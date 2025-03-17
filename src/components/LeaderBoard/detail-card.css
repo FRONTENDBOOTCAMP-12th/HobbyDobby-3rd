@@ -1,6 +1,6 @@
 .leader-board-detail-card {
   width: 100%;
-  height: 90px;
+  height: 5.625rem;
   display: flex;
   gap: 30px;
   background-color: var(--secondary-color);

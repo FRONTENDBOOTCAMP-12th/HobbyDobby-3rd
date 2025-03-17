@@ -15,3 +15,13 @@ export const supabase = createClient<Database>(
 
 export type UserData = Tables<'user'>;
 export type HobbyData = Tables<'hobby'>;
+export type SubHobbyData = Tables<'sub_hobby'>;
+export type UnitData = Tables<'unit'>;
+
+export type ChallengeData = Omit<
+  Tables<'challenge'>,
+  'now_unit' | 'sub_hobby_name'
+> & {
+  now_unit: UnitData | null;
+  sub_hobby_name: SubHobbyData | null;
+};

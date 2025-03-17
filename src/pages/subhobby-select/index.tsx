@@ -2,49 +2,28 @@ import './style.css';
 import LeftArrow from '/assets/left-arrow.svg';
 import Logo from '/assets/large-logo.svg';
 import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
-import { useEffect, useState } from 'react';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { Link, useLocation, useParams } from 'react-router';
 import { getSubHobby } from '@/lib/api';
 import Title from '@/layouts/title';
-
-interface subHobbiesProps {
-  id: string;
-  info: string;
-  name: string;
-}
+import useFetchData from '@/hooks/useFetchData';
+import { useCallback } from 'react';
 
 interface locationState {
-  hobbyId: string;
+  hobbyName: string;
 }
 
 function SubHobbySelectPage() {
-  const [subHobbies, setSubHobbies] = useState<subHobbiesProps[] | null>([]);
   const params = useParams();
   const selectedHobby = params.hobby_name;
   const location = useLocation();
   const locationState = { ...(location.state as locationState) };
-  const hobbyId = locationState.hobbyId;
+  const hobbyName = locationState.hobbyName;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getSubHobby(hobbyId);
+  const fetchSubHobby = useCallback(() => getSubHobby(hobbyName), [hobbyName]);
 
-        if (data) {
-          setSubHobbies(data);
-        } else {
-          throw new Error('데이터를 불러오는데 실패했습니다..');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {
-      console.log('Error fetching subhobbies:', error);
-    });
-  }, []);
+  const { data: subHobbyData } = useFetchData(fetchSubHobby, hobbyName);
+  const subHobbies = subHobbyData?.data;
 
   return (
     <div className="subhobby-select">
@@ -69,7 +48,12 @@ function SubHobbySelectPage() {
         </div>
       </div>
       {subHobbies?.map((data) => (
-        <SubHobbySelectCard key={data.id} name={data.name} info={data.info} />
+        <SubHobbySelectCard
+          key={data.id}
+          name={data.name}
+          info={data.info}
+          hobby={hobbyName}
+        />
       ))}
     </div>
   );

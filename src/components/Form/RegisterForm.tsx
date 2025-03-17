@@ -4,6 +4,7 @@ import FormInput from './FormInput';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
 import { isUserInputDuplicate, createUserAccount } from '@/lib/api';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 export interface RegisterFormInputData {
   id: string;
@@ -55,26 +56,73 @@ function RegisterForm() {
     setInputData(nextInputData);
   };
 
-  // 입력값 중복 확인 함수, supabase db와 통신
-  const handleCheckDuplication = async (name: keyof RegisterFormInputData) => {
-    const isDuplicated = await isUserInputDuplicate(name, inputData[name]);
+  // 아이디 입력값 중복 확인 함수, supabase db와 통신
+  const handleCheckDuplicationId = async (
+    name: keyof RegisterFormInputData
+  ) => {
+    if (inputData.id) {
+      const isDuplicated = await isUserInputDuplicate(name, inputData[name]);
 
-    if (isDuplicated) {
-      const nextInputData = {
-        ...inputData,
-        [name]: '',
-      };
-      setInputData(nextInputData);
-      // 이후엔 alertMessage 출력? 뭔가 알림이 필요.
-      console.log('중복된 ID입니다.');
-    } else {
-      const nextIsDuplicate = {
-        ...isDuplicate,
-        [name]: false,
-      };
-      setIsDuplicate(nextIsDuplicate);
-      // 이후엔 alertMessage 출력? 뭔가 알림이 필요.
-      console.log('사용 가능한 ID입니다.');
+      if (isDuplicated) {
+        const nextInputData = {
+          ...inputData,
+          [name]: '',
+        };
+        setInputData(nextInputData);
+        await Swal.fire({
+          icon: 'warning',
+          text: '중복된 ID입니다.',
+          confirmButtonColor: `var(--primary-color)`,
+          heightAuto: false,
+        });
+      } else {
+        const nextIsDuplicate = {
+          ...isDuplicate,
+          [name]: false,
+        };
+        setIsDuplicate(nextIsDuplicate);
+        await Swal.fire({
+          icon: 'success',
+          text: '사용 가능한 ID입니다.',
+          confirmButtonColor: `var(--primary-color)`,
+          heightAuto: false,
+        });
+      }
+    }
+  };
+
+  // 닉네임 입력 중복 확인
+  const handleCheckDuplicationNickname = async (
+    name: keyof RegisterFormInputData
+  ) => {
+    if (inputData.nickname) {
+      const isDuplicated = await isUserInputDuplicate(name, inputData[name]);
+
+      if (isDuplicated) {
+        const nextInputData = {
+          ...inputData,
+          [name]: '',
+        };
+        setInputData(nextInputData);
+        await Swal.fire({
+          icon: 'warning',
+          text: '중복된 닉네임입니다.',
+          confirmButtonColor: `var(--primary-color)`,
+          heightAuto: false,
+        });
+      } else {
+        const nextIsDuplicate = {
+          ...isDuplicate,
+          [name]: false,
+        };
+        setIsDuplicate(nextIsDuplicate);
+        await Swal.fire({
+          icon: 'success',
+          text: '사용 가능한 닉네임입니다.',
+          confirmButtonColor: `var(--primary-color)`,
+          heightAuto: false,
+        });
+      }
     }
   };
 
@@ -91,11 +139,15 @@ function RegisterForm() {
       throw error;
     }
 
-    // alertmessage
-    console.log('ID 생성 완료!');
-
+    await Swal.fire({
+      icon: 'success',
+      title: '회원가입 완료',
+      text: '로그인 페이지로 이동합니다.',
+      confirmButtonColor: `var(--primary-color)`,
+      heightAuto: false,
+    });
     // react-router 함수, 페이지 이동
-    await navigate('/login');
+    void navigate('/login');
   };
 
   return (
@@ -116,7 +168,7 @@ function RegisterForm() {
         onChange={handleInput}
         regex={ID_REGEX}
         checkDuplicateButton={true}
-        onClick={handleCheckDuplication}
+        onClick={handleCheckDuplicationId}
       />
       <FormInput
         type="password"
@@ -148,7 +200,7 @@ function RegisterForm() {
         onChange={handleInput}
         regex={ID_REGEX}
         checkDuplicateButton={true}
-        onClick={handleCheckDuplication}
+        onClick={handleCheckDuplicationNickname}
       />
       <button type="submit" disabled={isRegisterDisable}>
         회원 가입

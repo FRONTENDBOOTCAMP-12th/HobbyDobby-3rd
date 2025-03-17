@@ -4,6 +4,8 @@ import FormInput from './FormInput';
 import { getUserByID, getUserHobbiesByUID } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 interface LoginFormInputData {
   id: string;
@@ -16,6 +18,8 @@ interface EventData {
 }
 
 function LoginForm() {
+  const navigate = useNavigate();
+
   // 입력 데이터
   const [inputData, setInputData] = useState<LoginFormInputData>({
     id: '',
@@ -61,23 +65,59 @@ function LoginForm() {
             const userHobbies = await getUserHobbiesByUID(userData.uid);
 
             // 필요한 데이터 저장(zustand Store들에 저장)
-            login({ ...userData, user_hobbies: userHobbies });
+            login({
+              ...userData,
+              user_hobbies: userHobbies.map(
+                (item) => item?.name as string | null
+              ),
+            });
 
-            // 로그인이 되었다는 토스트 / 알림
-            console.log('login!!');
             // 페이지 이동
-            // react-router의 useNavigation() 함수를 활용해 개발 예정
             // 로그인 된 유저 정보에 따라 다른 페이지로 이동(신규=취미 선택/기존 유저=메인)
+            if (userData.now_hobby) {
+              await Swal.fire({
+                icon: 'success',
+                title: '로그인 성공',
+                text: '메인페이지로 이동합니다.',
+                confirmButtonColor: `var(--primary-color)`,
+                heightAuto: false,
+              });
+
+              void navigate('/home');
+            } else {
+              await Swal.fire({
+                icon: 'success',
+                title: '로그인 성공',
+                text: '취미선택페이지로 이동합니다.',
+                confirmButtonColor: `var(--primary-color)`,
+                heightAuto: false,
+              });
+              void navigate('/select-hobby');
+            }
           } else {
             nextInputData.id = inputData.id;
             setInputData(nextInputData);
-            // 비밀번호가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
-            console.log('invalid PW');
+
+            await Swal.fire({
+              icon: 'error',
+              title: '로그인 실패',
+              text: '비밀번호가 올바르지 않습니다.',
+              confirmButtonColor: `var(--primary-color)`,
+              heightAuto: false,
+            });
           }
         } else {
           setInputData(nextInputData);
-          // 아이디가 올바르지 않다는 토스트(라이브러리 사용?) / 알림
-          console.log('invalid ID');
+
+          await Swal.fire({
+            icon: 'error',
+            title: '로그인 실패',
+            text: '아이디가 올바르지 않습니다.',
+            confirmButtonColor: `var(--primary-color)`,
+            heightAuto: false,
+          }).catch((error) => {
+            console.log(error);
+          });
         }
       } else {
         throw error;
