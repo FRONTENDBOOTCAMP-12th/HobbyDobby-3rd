@@ -48,7 +48,7 @@ export interface Database {
           id: string;
           name: string;
           now_unit: string;
-          progress: Json | null;
+          progress: Json[] | null;
           sub_hobby_name: string;
         };
         Insert: {
@@ -57,7 +57,7 @@ export interface Database {
           id?: string;
           name: string;
           now_unit: string;
-          progress?: Json | null;
+          progress?: Json[] | null;
           sub_hobby_name: string;
         };
         Update: {
@@ -66,7 +66,7 @@ export interface Database {
           id?: string;
           name?: string;
           now_unit?: string;
-          progress?: Json | null;
+          progress?: Json[] | null;
           sub_hobby_name?: string;
         };
         Relationships: [
@@ -104,19 +104,19 @@ export interface Database {
       item: {
         Row: {
           id: string;
-          image: string | null;
+          image: string;
           name: string;
           price: number;
         };
         Insert: {
           id?: string;
-          image?: string | null;
+          image: string;
           name: string;
           price: number;
         };
         Update: {
           id?: string;
-          image?: string | null;
+          image?: string;
           name?: string;
           price?: number;
         };
@@ -347,19 +347,19 @@ export interface Database {
       };
       user_achievements: {
         Row: {
-          achievement_id: string | null;
+          achievement_id: string;
           id: string;
-          user_id: string | null;
+          user_id: string;
         };
         Insert: {
-          achievement_id?: string | null;
+          achievement_id?: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Update: {
-          achievement_id?: string | null;
+          achievement_id?: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Relationships: [
           {
@@ -447,26 +447,26 @@ export interface Database {
       user_having_titles: {
         Row: {
           id: string;
-          title_id: string | null;
-          user_id: string | null;
+          title: string;
+          user_id: string;
         };
         Insert: {
           id?: string;
-          title_id?: string | null;
-          user_id?: string | null;
+          title: string;
+          user_id?: string;
         };
         Update: {
           id?: string;
-          title_id?: string | null;
-          user_id?: string | null;
+          title?: string;
+          user_id?: string;
         };
         Relationships: [
           {
-            foreignKeyName: 'user_having_titles_title_id_fkey';
-            columns: ['title_id'];
+            foreignKeyName: 'user_having_titles_title_fkey';
+            columns: ['title'];
             isOneToOne: false;
             referencedRelation: 'title';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
           {
             foreignKeyName: 'user_having_titles_user_id_fkey';
