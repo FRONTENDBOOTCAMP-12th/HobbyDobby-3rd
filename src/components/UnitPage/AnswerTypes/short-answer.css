@@ -1,0 +1,9 @@
+.short-answer {
+  width: 100%;
+  background-color: var(--quatenary-color);
+  border: none;
+  border-radius: 6px;
+
+  font-size: 14px;
+  padding: 9px;
+}
