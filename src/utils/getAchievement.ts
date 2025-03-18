@@ -38,26 +38,13 @@ export const getAchievementMaxValue = (type: string | null): number => {
 };
 
 export const calculateAchievement = (type: string, value: number) => {
-  switch (type) {
-    case 'attendance_days': {
-      const level = Math.floor(value / 7 + 1);
-      const progress = value % 7;
-      return { level: String(level), current: progress };
-    }
+  const maxValue = getAchievementMaxValue(type);
 
-    case 'exp': {
-      const level = Math.floor(value / 100 + 1);
-      const progress = value % 100;
-      return { level: String(level), current: progress };
-    }
+  const level = Math.floor(value / maxValue + 1);
+  const progress = value % maxValue == 0 ? maxValue : value % maxValue;
 
-    case 'completed_challenges': {
-      const level = Math.floor(value / 4 + 1);
-      const progress = value % 4;
-      return { level: String(level), current: progress };
-    }
-
-    default:
-      return { level: '0', current: 0 };
-  }
+  return {
+    level,
+    current: progress,
+  };
 };

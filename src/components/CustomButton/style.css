@@ -14,7 +14,7 @@
   font-size: 1rem;
 
   &:hover {
-    filter: brightness(1.05);
+    filter: brightness(1.08);
   }
 
   &:active {

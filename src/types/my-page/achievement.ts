@@ -6,5 +6,10 @@ export interface AchievementCardProps {
   current: number;
   total: number;
   description: string;
-  // onLevelUp: (id: string) => void;
+  isMax: boolean;
+  onReward: () => void;
+
+  // 테스트용
+  isRewarded: boolean;
+  resetReward: () => void;
 }

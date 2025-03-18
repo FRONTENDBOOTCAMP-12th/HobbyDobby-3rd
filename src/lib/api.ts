@@ -119,6 +119,9 @@ export const updateUserNowChallenge = async (
   return { error };
 };
 
+export const updateUserGem = async (uid: UserData['uid'], gem: number | null) =>
+  await supabase.from('user').update({ gem }).eq('uid', uid).select();
+
 // insert
 
 export const createUserAccount = async ({
@@ -150,10 +153,23 @@ export const insertChallenge = async (
   return { data, error };
 };
 
-export const getAchievementsByTypeName = async (
-  type: 'attendance_days' | 'exp' | 'completed_challenges'
-) => await supabase.from('achievement').select('*').eq('type', type);
+// delete
 
+export const deleteUserAchievement = async (
+  userId: string,
+  achievementId: string
+) => {
+  const { data, error } = await supabase
+    .from('user_achievements')
+    .delete()
+    .eq('user_id', userId)
+    .eq('achievement_id', achievementId)
+    .select(`id,user_id,achievement_id`);
+
+  return { data, error };
+};
+
+/* 업적 데이터 */
 export const getAchievement = async () => {
   const { data, error } = await supabase.from('achievement').select('*');
 
@@ -163,4 +179,88 @@ export const getAchievement = async () => {
   }
 
   return data;
+};
+
+export const getAchievementByLevelType = async (
+  level: number,
+  type: 'attendance_days' | 'exp' | 'completed_challenges'
+) => {
+  const { data, error } = await supabase
+    .from('achievement')
+    .select('*')
+    .eq('type', type);
+
+  if (error) {
+    console.error('Error fetching achievement data:', error);
+    return null;
+  }
+
+  const achievement = data.find(
+    (achievement) => achievement.level === level - 1
+  );
+
+  return achievement;
+};
+
+export const getUserGem = async (userId: string) => {
+  const { data, error } = await supabase
+    .from('user')
+    .select('gem')
+    .eq('uid', userId);
+
+  if (error) {
+    console.error('Error fetching user gem:', error.message);
+    throw error;
+  }
+
+  return data?.[0].gem;
+};
+
+export const insertUserAchievement = async (
+  userId: string,
+  achievementId: string
+) => {
+  // challenge table에 데이터 저장
+  const { data, error } = await supabase
+    .from('user_achievements')
+    .insert([
+      {
+        user_id: userId,
+        achievement_id: achievementId,
+      },
+    ])
+    .select(`id,user_id,achievement_id`);
+
+  return { data, error };
+};
+
+export const insertUserTitle = async (userId: string, titleName: string) => {
+  // challenge table에 데이터 저장
+  const { data, error } = await supabase
+    .from('user_having_titles')
+    .insert([
+      {
+        user_id: userId,
+        title: titleName,
+      },
+    ])
+    .select(`id,user_id,title`);
+
+  if (error) {
+    console.error('Supabase Error:', error.message);
+    return { error: error.message };
+  }
+
+  return { data };
+};
+
+export const deleteUserTitle = async (userId: string, titleName: string) => {
+  const { data, error } = await supabase
+    .from('user_having_titles')
+    .delete()
+    .eq('user_id', userId)
+    .eq('title', titleName)
+    .select(`id,user_id,title`);
+
+  return { data, error };
 };

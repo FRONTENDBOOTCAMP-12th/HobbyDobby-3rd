@@ -1,12 +1,12 @@
-import './style.css';
+import AchievementCardList from '@/components/MyPage/AchievementCardList';
 import ProfileHeader from '@/components/MyPage/ProfileHeader';
 import ProfileInfo from '@/components/MyPage/ProfileInfo';
+import StatCardList from '@/components/MyPage/StatCardList';
 import Title from '@/layouts/title';
 import { useUserStore } from '@/stores/user';
 import { getDate } from '@/utils/getDate';
-import StatCardList from '@/components/MyPage/StatCardList';
-import AchievementCardList from '@/components/MyPage/AchievementCardList';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
+import './style.css';
 
 function MyPage() {
   const userPhoto = useUserStore((state) => state.image);
@@ -15,8 +15,6 @@ function MyPage() {
   const joinDate = useUserStore((state) => state.created_date);
   const userHobby = useUserStore((state) => state.main_hobby);
   const userHobbyIcon = getHobbyIcon(userHobby);
-
-  console.log(userPhoto);
 
   const daysSinceJoin = joinDate
     ? Math.floor(
