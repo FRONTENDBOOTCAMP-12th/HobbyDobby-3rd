@@ -5,6 +5,7 @@ import { lazy, Suspense } from 'react';
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
 
+const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
 const LoginPage = lazy(() => import('@/pages/login'));
 const LandingPage = lazy(() => import('@/pages/landing-page'));
@@ -37,6 +38,7 @@ function App() {
               element={<SubHobbySelectPage />}
             />
             <Route path="/challenge-start" element={<MainPageStart />} />
+            <Route path="/challenge-end" element={<ChallengeEndPage />} />
             <Route element={<MainLayout />}>
               <Route path="/home">
                 <Route index element={<MainPage />} />

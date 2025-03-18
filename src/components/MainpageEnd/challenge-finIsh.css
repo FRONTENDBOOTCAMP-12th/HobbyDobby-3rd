@@ -1,0 +1,28 @@
+.challenge-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 360px;
+  height: 586px;
+  text-align: center;
+}
+
+.challenge-end__bookmark {
+  width: 110px;
+  height: 110px;
+  margin-top: 110px;
+  margin-left: 110px;
+}
+
+.challenge-end__challeng-name {
+  color: var(--text-green);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.challenge-end__the-end {
+  color: var(--black);
+  margin-top: -5%;
+  font-size: 50px;
+  font-weight: 700;
+}
