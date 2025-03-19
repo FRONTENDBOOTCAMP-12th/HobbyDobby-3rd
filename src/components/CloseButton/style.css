@@ -8,4 +8,12 @@
 
   background-color: transparent;
   border: 0;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
 }

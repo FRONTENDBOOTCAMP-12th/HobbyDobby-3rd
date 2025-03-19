@@ -1,30 +1,56 @@
 import './styles/my-page-card.css';
 import { getPublicImage } from '@/utils/getPublic';
 import ProgressBar from '@/components/ProgressBar';
-
-interface AchievementCardProps {
-  level: string;
-  name: string;
-  total: number;
-  current: number;
-  description: string;
-}
+import { AchievementCardProps } from '@/types/my-page/achievement';
+import CustomButton from '../CustomButton';
 
 // 업적 카드 컴포넌트
 function AchievementCard({
-  level,
-  name,
-  total,
-  current,
-  description,
-}: AchievementCardProps) {
+  achievement,
+}: {
+  achievement: AchievementCardProps;
+}) {
+  const {
+    level,
+    name,
+    total,
+    current,
+    description,
+    isMax,
+    onReward,
+    isRewarded,
+    resetReward,
+  } = achievement;
+
   return (
     <div className="card achievement-card">
       {/* 아이콘과 레벨 - 좌측 */}
-      <span className="level-badge">
-        <img src={getPublicImage('burning.svg')} alt="불꽃 아이콘" />
-        <h2>레벨{level}</h2>
-      </span>
+      {isMax ? (
+        <span className="level-badge">
+          {!isRewarded ? (
+            <CustomButton
+              type="button"
+              className="level-up-button"
+              buttonText="보상 받기"
+              bgColor="var(--quatenary-color)"
+              onClick={onReward}
+            />
+          ) : (
+            <CustomButton
+              type="button"
+              className="level-up-button"
+              buttonText="보상 초기화"
+              bgColor="var(--quatenary-color)"
+              onClick={resetReward}
+            />
+          )}
+        </span>
+      ) : (
+        <span className="level-badge">
+          <img src={getPublicImage('burning.svg')} alt="불꽃 아이콘" />
+          <h2>레벨 {level}</h2>
+        </span>
+      )}
 
       {/* 업적 내용 - 우측 */}
       <div className="achievements">
