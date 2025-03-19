@@ -91,6 +91,9 @@ export const getChallengeDetail = async (challengeName: string | undefined) => {
     .select('created_date,sub_hobby_name,progress')
     .eq('name', challengeName!);
 
+  return data;
+};
+
 export const getUnitsBySubHobby = async (subHobby: string) =>
   await supabase.from('unit').select('*').eq('sub_hobby', subHobby);
 
@@ -145,7 +148,6 @@ export const getUserGem = async (userId: string) => {
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
-
 
 export const updateUserNowHobby = async (
   uid: UserData['uid'],
