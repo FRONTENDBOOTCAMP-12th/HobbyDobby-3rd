@@ -110,7 +110,7 @@ export const updateUserNowHobby = async (
 export const updateUserNowChallenge = async (
   nowChallenge:
     | {
-        name: string;
+        id: string;
       }[]
     | null,
   nowHobby: string,
@@ -121,7 +121,7 @@ export const updateUserNowChallenge = async (
     .from('user')
     .update({
       now_hobby: nowHobby,
-      now_challenge: nowChallenge?.[0].name,
+      now_challenge: nowChallenge?.[0].id,
     })
     .eq('uid', userUid);
 
