@@ -169,7 +169,7 @@ export const deleteUserAchievement = async (
   return { data, error };
 };
 
-/* 업적 데이터 */
+//  업적 데이터
 export const getAchievement = async () => {
   const { data, error } = await supabase.from('achievement').select('*');
 
@@ -220,7 +220,6 @@ export const insertUserAchievement = async (
   userId: string,
   achievementId: string
 ) => {
-  // challenge table에 데이터 저장
   const { data, error } = await supabase
     .from('user_achievements')
     .insert([
@@ -235,7 +234,6 @@ export const insertUserAchievement = async (
 };
 
 export const insertUserTitle = async (userId: string, titleName: string) => {
-  // challenge table에 데이터 저장
   const { data, error } = await supabase
     .from('user_having_titles')
     .insert([
