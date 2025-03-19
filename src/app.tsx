@@ -53,7 +53,7 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
-            <Route path="/unit-page" element={<UnitPage />} />
+            <Route path="/unit/:unit_name" element={<UnitPage />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

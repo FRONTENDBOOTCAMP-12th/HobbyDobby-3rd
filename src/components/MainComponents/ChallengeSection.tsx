@@ -30,6 +30,7 @@ function ChallengeSection({
           <li key={unit.id}>
             <UnitButton
               id={`unit-${unit.id}`}
+              name={unit.name}
               unitTitle={unit.title}
               level={unit.level}
               buttonState={buttonState}

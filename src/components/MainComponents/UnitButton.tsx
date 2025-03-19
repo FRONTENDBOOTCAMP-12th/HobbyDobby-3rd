@@ -9,6 +9,7 @@ interface UnitButtonProps {
   unitTitle: string;
   onExpand: (id: string | null) => void;
   isExpanded: boolean;
+  name?: string;
   maxUnit?: number;
   level?: number;
   buttonIcon?: string;
@@ -18,6 +19,7 @@ interface UnitButtonProps {
 
 function UnitButton({
   id,
+  name,
   level,
   maxUnit,
   isExpanded,
@@ -50,6 +52,7 @@ function UnitButton({
         <ProgressBar width="70px" value={level!} max={maxUnit!} />
       ) : null}
       <UnitCard
+        name={name}
         hidden={!isExpanded}
         cardState={buttonState}
         title={unitTitle}

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import MainCard from '@/components/MainComponents/MainCard';
 import UnitButton from '@/components/MainComponents/UnitButton';
 import ChallengeSection from '@/components/MainComponents/ChallengeSection';
+import { useUnitsStore } from '@/stores/units';
 
 function MainPage() {
   const nowChallenge = useUserStore((store) => store.now_challenge);
@@ -14,12 +15,13 @@ function MainPage() {
 
   const nowUnit = nowChallenge?.now_unit;
 
-  const [sectionList, setSectionList] = useState<UnitData[][]>([]);
+  const sectionList = useUnitsStore((item) => item.sections);
+  const setSections = useUnitsStore((item) => item.setSections);
 
   const [openCardSection, setOpenCardSection] = useState<string | null>(null);
 
   useEffect(() => {
-    if (nowChallenge) {
+    if (nowChallenge && sectionList.length === 0) {
       getUnitsBySubHobby(nowChallenge.sub_hobby_name!.name)
         .then(({ data }) => {
           if (data) {
@@ -38,14 +40,15 @@ function MainPage() {
                 sectionUnits.sort((a, b) => a.level - b.level)
               );
 
-            setSectionList(orderedSectionList);
+            const nextOrderedSections = { sections: orderedSectionList };
+            setSections(nextOrderedSections);
           }
         })
         .catch((error) => {
           throw error;
         });
     }
-  }, [nowChallenge]);
+  }, [nowChallenge, setSections, sectionList]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {

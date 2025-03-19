@@ -1,14 +1,17 @@
 import './unit-card.css';
 import { useId } from 'react';
+import { useNavigate } from 'react-router';
 
 type UnitCardProps = React.ComponentProps<'div'> & {
   title: string;
+  name?: string;
   level?: number;
   max_level?: number;
   cardState?: 'complete' | 'disabled' | 'now';
 };
 
 function UnitCard({
+  name,
   title,
   level,
   max_level,
@@ -16,11 +19,14 @@ function UnitCard({
   ...restProps
 }: UnitCardProps) {
   const unitCardId = useId();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(
-      '클릭 시 해당 유닛 페이지로 이동.(상세 페이지 개발과 함께 진행 예정)'
-    );
+    void navigate(`/unit/${name}`, {
+      state: {
+        unitName: name,
+      },
+    });
   };
 
   return (
