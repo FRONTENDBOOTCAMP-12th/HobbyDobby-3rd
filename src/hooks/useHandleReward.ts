@@ -82,11 +82,18 @@ export const useHandleReward = () => {
           rewardTitle: rewardTitle,
         });
 
-        // 보상 지급 알림
-        await Swal.fire({
-          icon: 'success',
-          title: '보상이 지급되었습니다!',
-        });
+        if (!rewardGem && !rewardTitle) {
+          await Swal.fire({
+            icon: 'success',
+            title: '레벨 상승 보상이 없습니다!',
+          });
+        } else {
+          // 보상 지급 알림
+          await Swal.fire({
+            icon: 'success',
+            title: '보상이 지급되었습니다!',
+          });
+        }
       } catch (error) {
         console.error('Error inserting user achievement:', error);
       }

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useHandleReward } from '@/hooks/useHandleReward';
-import { getUserCompletedChallenge } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import {
   calculateAchievement,
@@ -10,7 +9,13 @@ import {
 } from '@/utils/getAchievement';
 import AchievementCard from './AchievementCard';
 
-const AchievementCardList = ({ daysSinceJoin }: { daysSinceJoin: number }) => {
+const AchievementCardList = ({
+  daysSinceJoin,
+  completedChallenges,
+}: {
+  daysSinceJoin: number;
+  completedChallenges: number;
+}) => {
   const { achievements, setAchievements, handleReward, handleResetReward } =
     useHandleReward();
   const userExp = useUserStore((state) => state.exp) ?? 0;
@@ -19,18 +24,15 @@ const AchievementCardList = ({ daysSinceJoin }: { daysSinceJoin: number }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getUserCompletedChallenge(userId);
-        const completedChallenges = data?.length ?? 0;
-
-        if (achievements?.length === 0) {
+        if (achievements?.length === 0 && completedChallenges > 0) {
           const values = {
             attendance_days: daysSinceJoin, // 연속 출석 업적은 현재 가입 후 지난 일수로 계산
             exp: userExp,
             completed_challenges: completedChallenges,
           };
 
-          const fetchedAchievements = Object.entries(values).map(
-            ([type, value], index) => {
+          const fetchedAchievements = await Promise.all(
+            Object.entries(values).map(([type, value], index) => {
               const { current, level } = calculateAchievement(type, value);
               const maxValue = getAchievementMaxValue(type);
 
@@ -42,14 +44,14 @@ const AchievementCardList = ({ daysSinceJoin }: { daysSinceJoin: number }) => {
                 total: maxValue,
                 current,
                 level,
-                isMax: current === maxValue,
+                isMax: current != 0 ? current === maxValue : false,
                 isRewarded: false,
                 onReward: () => handleReward(`${index + 1}`, level, type),
                 resetReward: () =>
                   // 테스트용 업적/보상 초기화 함수
                   handleResetReward(`${index + 1}`, level, type),
               };
-            }
+            })
           );
 
           setAchievements(fetchedAchievements);
@@ -66,6 +68,7 @@ const AchievementCardList = ({ daysSinceJoin }: { daysSinceJoin: number }) => {
     userExp,
     daysSinceJoin,
     achievements,
+    completedChallenges,
   ]);
   return (
     <div className="achievement-card-list">

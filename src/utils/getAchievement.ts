@@ -41,7 +41,8 @@ export const calculateAchievement = (type: string, value: number) => {
   const maxValue = getAchievementMaxValue(type);
 
   const level = Math.floor(value / maxValue + 1);
-  const progress = value % maxValue == 0 ? maxValue : value % maxValue;
+  const progress =
+    value > 0 && value % maxValue == 0 ? maxValue : value % maxValue;
 
   return {
     level,

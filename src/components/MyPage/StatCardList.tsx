@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import StatCard from './StatCard';
-import { getUserCompletedChallenge, getUserRank } from '@/lib/api';
+import { getUserRank } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import { StatCardProps } from '@/types/my-page/stat';
 
-function StatCardList({ daysSinceJoin }: { daysSinceJoin: number }) {
+function StatCardList({
+  daysSinceJoin,
+  completedChallenges,
+}: {
+  daysSinceJoin: number;
+  completedChallenges: number;
+}) {
   const { uid: userId, exp: userExp } = useUserStore();
   const [stats, setStats] = useState<StatCardProps[]>([
     { id: 1, name: '함께한 일수', value: daysSinceJoin },
@@ -16,16 +22,13 @@ function StatCardList({ daysSinceJoin }: { daysSinceJoin: number }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [completedChallenges, rankData] = await Promise.all([
-          getUserCompletedChallenge(userId),
-          getUserRank(),
-        ]);
+        const rankData = await getUserRank();
 
         const valueDataMap = {
           // 함께한 일수
           1: daysSinceJoin,
           // 완주 챌린지
-          2: completedChallenges?.length ?? 0,
+          2: completedChallenges,
           // 현재 등수
           3:
             (rankData?.findIndex((user) => user.uid === userId) ?? -1) + 1 ||
@@ -55,7 +58,7 @@ function StatCardList({ daysSinceJoin }: { daysSinceJoin: number }) {
     };
 
     void fetchData();
-  }, [userId, userExp, daysSinceJoin]);
+  }, [userId, userExp, daysSinceJoin, completedChallenges]);
 
   return (
     <div className="stat-card-list">

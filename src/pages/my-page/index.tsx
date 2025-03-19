@@ -7,6 +7,9 @@ import ProfileInfo from '@/components/MyPage/ProfileInfo';
 import StatCardList from '@/components/MyPage/StatCardList';
 import Title from '@/layouts/title';
 import './style.css';
+import { getUserCompletedChallenge } from '@/lib/api';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function MyPage() {
   // 사용자 정보 가져오기
@@ -16,6 +19,7 @@ function MyPage() {
     title: userTitle,
     created_date: joinDate,
     main_hobby: userHobby,
+    uid: userId,
   } = useUserStore((state) => state);
 
   // 취미 아이콘 가져오기
@@ -28,6 +32,23 @@ function MyPage() {
           (1000 * 60 * 60 * 24)
       )
     : 0;
+
+  const [completedChallenges, setCompletedChallenges] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchCompletedChallenges = async () => {
+      try {
+        const challenges = await getUserCompletedChallenge(userId);
+        setCompletedChallenges(challenges?.length ?? 0);
+      } catch (error) {
+        console.error('Error fetching completed challenges:', error);
+      }
+    };
+
+    if (userId) {
+      void fetchCompletedChallenges();
+    }
+  }, [userId]);
 
   return (
     <div className="my-page drag-prevent">
@@ -49,12 +70,18 @@ function MyPage() {
 
           <article className="article-container">
             <h2>통계</h2>
-            <StatCardList daysSinceJoin={daysSinceJoin} />
+            <StatCardList
+              daysSinceJoin={daysSinceJoin}
+              completedChallenges={completedChallenges}
+            />
           </article>
 
           <article className="article-container">
             <h2>업적</h2>
-            <AchievementCardList daysSinceJoin={daysSinceJoin} />
+            <AchievementCardList
+              daysSinceJoin={daysSinceJoin}
+              completedChallenges={completedChallenges}
+            />
           </article>
         </section>
       </main>
