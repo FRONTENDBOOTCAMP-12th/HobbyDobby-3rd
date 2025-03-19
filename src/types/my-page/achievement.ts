@@ -8,8 +8,4 @@ export interface AchievementCardProps {
   description: string;
   isMax: boolean;
   onReward: () => void;
-
-  // 테스트용
-  isRewarded: boolean;
-  resetReward: () => void;
 }
