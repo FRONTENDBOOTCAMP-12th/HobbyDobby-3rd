@@ -19,7 +19,7 @@ function ProfileInfo({
     <article className="article-container profile-details">
       <h2 className="sr-only">프로필 정보</h2>
       {mainHobbyIcon?.trim() && (
-        <span className="profile-details-main-hobby-icon-frame">
+        <span className="profile-details-main-hobby__icon-frame">
           <img
             src={mainHobbyIcon}
             alt={`대표 취미 : ${mainHobby ?? '정보 없음'} 아이콘`}

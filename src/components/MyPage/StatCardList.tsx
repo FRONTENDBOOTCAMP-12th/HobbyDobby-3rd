@@ -58,7 +58,7 @@ function StatCardList({ daysSinceJoin }: { daysSinceJoin: number }) {
   }, [userId, userExp, daysSinceJoin]);
 
   return (
-    <>
+    <div className="stat-card-list">
       {stats.map((statCard) => (
         <StatCard
           key={statCard.id}
@@ -67,7 +67,7 @@ function StatCardList({ daysSinceJoin }: { daysSinceJoin: number }) {
           value={statCard.value}
         />
       ))}
-    </>
+    </div>
   );
 }
 

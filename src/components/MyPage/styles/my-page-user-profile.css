@@ -8,7 +8,8 @@
   flex-shrink: 0;
 }
 
-.edit-profile-btn {
+/* 프로필 편집 버튼 */
+.edit-profile__btn {
   --profile-edit-btn-size: 1.8rem;
 
   background-color: var(--white-color);
@@ -26,7 +27,7 @@
   right: 8px;
 
   border: 2px solid var(--black-color);
-  border-radius: 0.6rem;
+  border-radius: 10px;
 
   &:hover {
     filter: brightness(0.9);
@@ -37,7 +38,7 @@
   }
 }
 
-.profile-image-frame {
+.profile__image-frame {
   background-color: #d9d9d9;
   inline-size: 6.5rem;
   block-size: 6.5rem;
@@ -48,13 +49,10 @@
   align-items: center;
 
   position: absolute;
-
   overflow: hidden;
 
-  /* Center the image frame */
   top: 4rem;
   left: 50%;
-
   transform: translate(-50%, 0);
 
   img {
@@ -80,22 +78,24 @@
     list-style-type: none;
     padding-left: 0;
     margin: 0;
-
     font-size: 18px;
     font-weight: 600;
 
+    /* 닉네임 */
     :nth-child(1) {
       font-size: 20px;
       margin-bottom: 0.4rem;
     }
 
+    /* 대표 칭호 */
     :nth-child(2) {
       color: var(--text-green);
     }
   }
 }
 
-.profile-details-main-hobby-icon-frame {
+/* 대표 취미 아이콘 */
+.profile-details-main-hobby__icon-frame {
   background-color: #d9d9d9;
   inline-size: 2rem;
   block-size: 2rem;
@@ -108,7 +108,6 @@
   padding: 4px;
 
   position: absolute;
-
   top: 3.75rem;
   right: 2.625rem;
 

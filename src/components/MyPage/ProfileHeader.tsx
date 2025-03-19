@@ -14,11 +14,11 @@ function ProfileHeader({ profileImage = null }: ProfileHeaderProps) {
   return (
     <>
       <h2 className="sr-only">프로필 헤더</h2>
-      <span className="profile-image-frame">
+      <span className="profile__image-frame">
         {profileImage ? <img src={profileImage} alt="프로필 이미지" /> : null}
       </span>
       <button
-        className="edit-profile-btn"
+        className="edit-profile__btn"
         type="button"
         onClick={handleEditProfile}
       >

@@ -1,15 +1,14 @@
+/* 디자인 토큰 */
 .my-page {
-  /* 디자인 토큰 */
   --white-color: #ffffff;
   --black-color: #000000;
-
-  --board-padding: 0.9rem;
+  --board-padding: 14px;
   --board-border-radius: 1rem;
+}
 
-  /* 기본 스타일링 */
-
+/* 기본 스타일링 */
+.my-page {
   background-color: transparent;
-
   inline-size: 100%;
   block-size: 100%;
   max-width: 27rem;
@@ -18,34 +17,31 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
+}
+/* 레이아웃 스타일링 */
+.my-page main {
+  background-color: transparent;
+  inline-size: 100%;
+  block-size: 100%;
 
-  /* 바디 영역 */
-  main {
-    background-color: transparent;
-    inline-size: 100%;
-    block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 
-    display: flex;
-    flex-direction: column;
-
-    overflow: auto;
-
-    scrollbar-width: none; /* Firefox */
-  }
-
-  main::-webkit-scrollbar {
-    display: none;
-  }
+  scrollbar-width: none; /* Firefox */
 }
 
-/* 프로필 바디 */
+.my-page main::-webkit-scrollbar {
+  display: none;
+}
+
+/* 프로필 바디 스타일 */
 .profile-body {
   background-color: transparent;
   inline-size: 100%;
-  padding: 48px 1.8rem 1.8rem 1.8rem;
+  padding: 3rem 1.8rem 1.8rem 1.8rem;
 
   flex-grow: 1;
-
   position: relative;
 
   display: flex;
@@ -56,6 +52,7 @@
   gap: 1rem;
 }
 
+/* 아티클(내용별 흰색 블록) 스타일 */
 .article-container {
   background-color: var(--white-color);
   inline-size: 100%;
@@ -64,22 +61,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.5rem;
+  gap: 10px;
 
   padding: var(--board-padding);
 
   border-radius: var(--board-border-radius);
-
-  h2 {
-    font-size: 20px;
-    margin: 0;
-  }
 }
 
-.stat-cards-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  gap: 1rem;
-  flex-wrap: wrap;
+.article-container h2 {
+  font-size: 20px;
+  margin: 0;
 }

@@ -1,11 +1,12 @@
+/* 디자인 토큰 */
 .card {
-  /* 디자인 토큰 */
   --font-size-s: 17px;
   --font-size-l: 18px;
+}
 
-  /* 기본 스타일링 */
+/* 기본 스타일링 */
+.card {
   background-color: var(--secondary-color);
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -14,37 +15,44 @@
   min-width: 15s625rem;
   min-height: 3.75rem;
 
-  padding: 0.8125rem 0.9375rem;
-
+  padding: 13px 15px;
   border-radius: 1rem;
+}
 
-  img {
-    inline-size: 1.8rem;
-    min-width: 1.8rem;
-  }
+.card img {
+  inline-size: 1.8rem;
+  min-width: 1.8rem;
+}
 
-  p,
-  h2 {
-    margin: 0;
-  }
+.card p,
+.card h2 {
+  margin: 0;
+}
 
-  h2 {
-    font-size: var(--font-size-s);
-  }
+.card h2 {
+  font-size: var(--font-size-s);
+}
 
-  p {
-    font-size: var(--font-size-l);
-  }
+.card p {
+  font-size: var(--font-size-l);
 }
 
 /* 통계 카드 */
+.stat-card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .stat-card {
   flex: 1 1 calc(50% - 1rem); /* 기본적으로 2개씩 배치되도록 설정 */
   box-sizing: border-box;
+}
 
-  h2 {
-    font-weight: 400;
-  }
+.stat-card h2 {
+  font-weight: 400;
 }
 
 .stats {
@@ -53,10 +61,17 @@
   justify-content: center;
   align-items: center;
 
-  margin-right: 0.4rem;
+  margin-right: 6.4px;
 }
 
 /* 업적 카드 */
+.achievement-card-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 1rem;
+}
+
 .achievement-card {
   h2 {
     font-size: var(--font-size-l);
@@ -77,7 +92,6 @@
 
 .achievements {
   block-size: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -85,7 +99,6 @@
   gap: 0.5rem;
 
   padding: 0;
-
   flex-grow: 1;
 
   .title-and-progress {

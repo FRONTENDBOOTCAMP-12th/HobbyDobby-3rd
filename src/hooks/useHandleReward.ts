@@ -68,7 +68,7 @@ export const useHandleReward = () => {
                 ...achievement,
                 level: achievement.level,
                 current: 0, // 값 초기화
-                isMax: true,
+                isMax: true, // 우선 테스트를 위해 true로 설정
                 isRewarded: true,
               };
             }
@@ -94,6 +94,7 @@ export const useHandleReward = () => {
     [userId] // userId가 변경될 때만 의존
   );
 
+  /* 테스트용 보상 초기화 함수 */
   const handleResetReward = useCallback(
     async (id: string, level: number, type: string) => {
       try {
@@ -115,7 +116,6 @@ export const useHandleReward = () => {
         if (rewardGem) {
           const userGem = await getUserGem(userId);
 
-          // Gem 지급 (우선 무한 지급을 막기 위해 0으로 처리)
           const newGem = (userGem ?? 0) - rewardGem;
 
           await updateUserGem(userId, newGem);
@@ -149,7 +149,7 @@ export const useHandleReward = () => {
           rewardTitle: rewardTitle,
         });
 
-        // 보상 지급 알림
+        // 보상 초기화 알림
         await Swal.fire({
           icon: 'success',
           title: '업적 완료 초기화',
