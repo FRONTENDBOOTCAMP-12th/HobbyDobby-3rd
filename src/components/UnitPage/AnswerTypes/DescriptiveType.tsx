@@ -3,6 +3,7 @@ import './descriptive-type.css';
 import clsx from 'clsx';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useHandleInput } from '@/hooks/useHandleInput';
+import { hidePlaceholder, showPlaceholder } from '@/utils/placeholder';
 
 interface DescriptiveTypeProps {
   className?: string;
@@ -30,10 +31,8 @@ function DescriptiveType({
         className={filteredClassName}
         placeholder={placeholder}
         minRows={10}
-        onFocus={(placeholder) => (placeholder.target.placeholder = '')}
-        onBlur={(placeholder) =>
-          (placeholder.target.placeholder = '답안을 작성해주세요.')
-        }
+        onFocus={hidePlaceholder}
+        onBlur={(event) => showPlaceholder(event, '답안을 작성해주세요.')}
         onChange={handleInput}
         cacheMeasurements={true}
       ></TextareaAutosize>

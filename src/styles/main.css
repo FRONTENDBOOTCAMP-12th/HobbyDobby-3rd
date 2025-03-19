@@ -9,6 +9,8 @@
   --tertiary-color: #e9e4e6;
   --quatenary-color: #f6f5f5;
 
+  --content-gray: #d9d9d9;
+
   /* hover colors, 10% lighten */
   --lighten-secondary-color: hsl(186, 53%, 59%);
 
