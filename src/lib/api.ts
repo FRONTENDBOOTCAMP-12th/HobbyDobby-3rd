@@ -86,6 +86,15 @@ export const isUserInputDuplicate = async (
 export const getUnitsBySubHobby = async (subHobby: string) =>
   await supabase.from('unit').select('*').eq('sub_hobby', subHobby);
 
+export const getChallengeDetail = async (challengeName: string | undefined) => {
+  const { data } = await supabase
+    .from('challenge')
+    .select('created_date,sub_hobby_name,progress')
+    .eq('name', challengeName!);
+
+  return data;
+};
+
 // update
 
 export const updateUserNowHobby = async (

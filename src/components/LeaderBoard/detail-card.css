@@ -1,12 +1,16 @@
 .leader-board-detail-card {
   width: 100%;
+  max-width: 27rem;
+  position: fixed;
+  z-index: 10;
   height: 5.625rem;
   display: flex;
   gap: 30px;
   background-color: var(--secondary-color);
   border-radius: 10px;
   padding: 10px;
-  margin-block: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 
   h3 {
     margin: 0;
