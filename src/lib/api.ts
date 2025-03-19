@@ -130,6 +130,21 @@ export const getAchievementByLevelType = async (
   return achievement;
 };
 
+export const getUserAchievements = async (userId: string) => {
+  // 유저 업적 데이터를 가져옴
+  const { data, error } = await supabase
+    .from('user_achievements')
+    .select('achievement_id')
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching user achievements:', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 export const getUserGem = async (userId: string) => {
   // 유저의 보석 데이터를 가져옴
   const { data, error } = await supabase

@@ -8,16 +8,18 @@ import {
   getAchievementName,
 } from '@/utils/getAchievement';
 import AchievementCard from './AchievementCard';
+import { getAchievementByLevelType } from '@/lib/api';
 
 const AchievementCardList = ({
   daysSinceJoin,
   completedChallenges,
+  completedAchievements,
 }: {
   daysSinceJoin: number;
   completedChallenges: number;
+  completedAchievements: string[];
 }) => {
-  const { achievements, setAchievements, handleReward, handleResetReward } =
-    useHandleReward();
+  const { achievements, setAchievements, handleReward } = useHandleReward();
   const userExp = useUserStore((state) => state.exp) ?? 0;
   const userId = useUserStore((state) => state.uid) ?? null;
 
@@ -32,9 +34,18 @@ const AchievementCardList = ({
           };
 
           const fetchedAchievements = await Promise.all(
-            Object.entries(values).map(([type, value], index) => {
+            Object.entries(values).map(async ([type, value], index) => {
               const { current, level } = calculateAchievement(type, value);
               const maxValue = getAchievementMaxValue(type);
+
+              const nowCompletedAchievement = await getAchievementByLevelType(
+                level,
+                type as 'attendance_days' | 'exp' | 'completed_challenges'
+              );
+
+              const isOnList = nowCompletedAchievement
+                ? completedAchievements.includes(nowCompletedAchievement.id)
+                : false;
 
               return {
                 id: `${index + 1}`,
@@ -42,14 +53,11 @@ const AchievementCardList = ({
                 description: getAchievementDescription(type),
                 type,
                 total: maxValue,
-                current,
+                current: isOnList && current === maxValue ? 0 : current,
                 level,
-                isMax: current != 0 ? current === maxValue : false,
-                isRewarded: false,
+                isMax:
+                  !isOnList && current !== 0 ? current === maxValue : false,
                 onReward: () => handleReward(`${index + 1}`, level, type),
-                resetReward: () =>
-                  // 테스트용 업적/보상 초기화 함수
-                  handleResetReward(`${index + 1}`, level, type),
               };
             })
           );
@@ -60,6 +68,7 @@ const AchievementCardList = ({
         console.error('Error fetching achievements:', error);
       }
     };
+
     void fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

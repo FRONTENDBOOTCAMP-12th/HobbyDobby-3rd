@@ -10,40 +10,21 @@ function AchievementCard({
 }: {
   achievement: AchievementCardProps;
 }) {
-  const {
-    level,
-    name,
-    total,
-    current,
-    description,
-    isMax,
-    onReward,
-    isRewarded,
-    resetReward,
-  } = achievement;
+  const { level, name, total, current, description, isMax, onReward } =
+    achievement;
 
   return (
     <div className="card achievement-card">
       {/* 아이콘과 레벨 - 좌측 */}
       {isMax ? (
         <span className="level-badge">
-          {!isRewarded ? (
-            <CustomButton
-              type="button"
-              className="level-up-button"
-              buttonText="보상 받기"
-              bgColor="var(--quatenary-color)"
-              onClick={onReward}
-            />
-          ) : (
-            <CustomButton
-              type="button"
-              className="level-up-button"
-              buttonText="보상 초기화"
-              bgColor="var(--quatenary-color)"
-              onClick={resetReward}
-            />
-          )}
+          <CustomButton
+            type="button"
+            className="level-up-button"
+            buttonText="보상 받기"
+            bgColor="var(--quatenary-color)"
+            onClick={onReward}
+          />
         </span>
       ) : (
         <span className="level-badge">
