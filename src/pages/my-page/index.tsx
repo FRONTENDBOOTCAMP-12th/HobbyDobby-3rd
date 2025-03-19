@@ -37,6 +37,11 @@ function MyPage() {
   const [completedAchievements, setCompletedAchievements] = useState<string[]>(
     []
   );
+  // const [isEditingProfile, setIsEditingProfile] = useState<boolean>(false);
+
+  // const toggleEditProfile = () => {
+  //   setIsEditingProfile((prev) => !prev);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
