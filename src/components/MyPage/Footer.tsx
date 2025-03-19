@@ -17,9 +17,21 @@ function MypageFooter() {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          logout();
-          localStorage.removeItem('store/user');
-          void navigate('/');
+          Swal.fire({
+            title: '로그아웃 성공',
+            icon: 'success',
+            confirmButtonColor: `var(--primary-color)`,
+            text: '랜딩페이지로 이동합니다.',
+            heightAuto: false,
+          })
+            .then(() => {
+              logout();
+              localStorage.removeItem('store/user');
+              void navigate('/');
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       })
       .catch((error) => {
