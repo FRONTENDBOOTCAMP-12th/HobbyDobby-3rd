@@ -1,0 +1,13 @@
+.leader-board-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leader-board-detail__conversation {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 7.5rem 5px;
+}

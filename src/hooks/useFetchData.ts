@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 // 제네릭 타입을 사용하여 다양한 데이터 타입을 처리할 수 있는 커스텀 훅 정의
 function useFetchData<T>(
   fetchFunction: (props?: (string | number)[]) => Promise<T>, // 데이터를 가져오는 함수 (비동기)
-  deps: string | number | undefined // 의존성 상태값
+  deps?: string | number // 의존성 상태값
 ) {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
