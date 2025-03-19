@@ -1,9 +1,10 @@
 import { getSubHobbyIcon } from '@/utils/getSubHobbyIcon';
 import './text-left.css';
+import { Json } from '@/lib/schema';
 
 interface LeaderBoardTextLeftProps {
   subHobby: string | undefined;
-  text: string;
+  text: Json | undefined;
   year?: string | number | null;
   month?: string | number | null;
   day?: string | number | null;
@@ -24,7 +25,7 @@ function LeaderBoardTextLeft({
         className="leader-board-detail__img"
       />
       <div className="leader-board-detail__textbox--left">
-        <p>{text}</p>
+        <p>{typeof text === 'string' ? text : JSON.stringify(text)}</p>
       </div>
       {year && month && day && (
         <time

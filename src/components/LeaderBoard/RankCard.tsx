@@ -21,9 +21,13 @@ function LeaderBoardRankCard({
         <p>{rank}</p>
         <div className="leader-board-ranking__user">
           {profileImg ? (
-            <img src={profileImg} alt="사용자 프로필" />
+            <img
+              src={profileImg}
+              alt="사용자 프로필"
+              className="leader-board-ranking__profileImg"
+            />
           ) : (
-            <div className="leader-board-ranking__profileImg-alt"></div>
+            <div className="leader-board-ranking__profileImg--alt"></div>
           )}
           <div className="leader-board-ranking__container--sm">
             <p>{nickname}</p>

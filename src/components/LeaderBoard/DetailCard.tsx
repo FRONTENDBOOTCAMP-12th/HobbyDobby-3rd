@@ -1,16 +1,18 @@
 import './detail-card.css';
-import { Link, useParams, useSearchParams } from 'react-router';
+import { Link } from 'react-router';
 import LeftArrow from '/assets/left-arrow.svg';
 
-function DetailCard() {
-  const [searchParams] = useSearchParams();
-  const params = useParams();
-  const challengeName = params.challenge_name;
+interface LeaderBoardDetailCardProps {
+  challengeName: string | undefined;
+  dateArr: string[] | undefined;
+  period: string | null;
+}
 
-  const date = searchParams.get('date');
-  const dateArr = date?.split('-');
-  const period = searchParams.get('period');
-
+function DetailCard({
+  challengeName,
+  dateArr,
+  period,
+}: LeaderBoardDetailCardProps) {
   return (
     <div className="leader-board-detail-card">
       <Link

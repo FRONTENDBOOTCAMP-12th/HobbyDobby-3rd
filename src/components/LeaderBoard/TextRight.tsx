@@ -1,7 +1,8 @@
+import { Json } from '@/lib/schema';
 import './text-right.css';
 
 interface LeaderBoardTextRightProps {
-  text: string;
+  text: Json | undefined;
   userImage: string | null;
 }
 
@@ -12,15 +13,17 @@ function LeaderBoardTextRight({
   return (
     <div className="leader-board-detail__content--right">
       <div className="leader-board-detail__textbox--right">
-        {text.length > 1 ? (
-          // text.length를 길이로 하는 배열로 변환 후 text를 인덱스로 접근
-          Array.from({ length: text.length }).map((_, index) => (
+        {Array.isArray(text) ? (
+          // 답변 배열의 각 요소를 순회하여 출력
+          text.map((item, index) => (
             <p key={index} className="leader-board-detail__text">
-              {text[index]}
+              {typeof item === 'string' ? item : JSON.stringify(item)}
             </p>
           ))
         ) : (
-          <p className="leader-board-detail__text">{text}</p>
+          <p className="leader-board-detail__text">
+            {typeof text === 'string' ? text : JSON.stringify(text)}
+          </p>
         )}
       </div>
       {userImage ? (

@@ -24,14 +24,16 @@
   display: flex;
   align-items: center;
   gap: 5px;
-
-  img {
-    width: 2.5rem;
-    border-radius: 6.25rem;
-  }
 }
 
-.leader-board-ranking__profileImg-alt {
+.leader-board-ranking__profileImg {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 6.25rem;
+  object-fit: cover;
+}
+
+.leader-board-ranking__profileImg--alt {
   width: 2.5rem;
   height: 2.5rem;
   background-color: var(--primary-color);
