@@ -1,18 +1,18 @@
-import { useUserStore } from '@/stores/user';
-import { getDate } from '@/utils/getDate';
-import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import AchievementCardList from '@/components/MyPage/AchievementCardList';
 import ProfileHeader from '@/components/MyPage/ProfileHeader';
 import ProfileInfo from '@/components/MyPage/ProfileInfo';
 import StatCardList from '@/components/MyPage/StatCardList';
 import Title from '@/layouts/title';
-import './style.css';
 import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useUserStore } from '@/stores/user';
+import { getDate } from '@/utils/getDate';
+import { getHobbyIcon } from '@/utils/getHobbyIcon';
+import { useEffect, useState } from 'react';
+import MyPageEditProfile from '../my-page-edit-profile';
+import './style.css';
+import { useUserAchievementStore } from '@/stores/user-achievement';
 
 function MyPage() {
-  // 사용자 정보 가져오기
   const {
     image: userPhoto,
     nickname: userNickname,
@@ -22,10 +22,10 @@ function MyPage() {
     uid: userId,
   } = useUserStore((state) => state);
 
-  // 취미 아이콘 가져오기
+  const [isEditing, setIsEditing] = useState(false);
+
   const userHobbyIcon = getHobbyIcon(userHobby);
 
-  // 가입 일자로부터 경과한 일수 계산
   const daysSinceJoin = joinDate
     ? Math.floor(
         (new Date().getTime() - new Date(joinDate).getTime()) /
@@ -37,39 +37,66 @@ function MyPage() {
   const [completedAchievements, setCompletedAchievements] = useState<string[]>(
     []
   );
-  // const [isEditingProfile, setIsEditingProfile] = useState<boolean>(false);
-
-  // const toggleEditProfile = () => {
-  //   setIsEditingProfile((prev) => !prev);
-  // };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const challenges = await getUserCompletedChallenge(userId);
-        const userCompletedAchievements = (
-          await getUserAchievements(userId)
-        ).map((achievement) => achievement.achievement_id);
+    let isMounted = true;
 
-        setCompletedChallenges(challenges?.length ?? 0);
-        setCompletedAchievements(userCompletedAchievements);
+    const fetchData = async () => {
+      if (!userId) return;
+
+      // 이미 Zustand에 데이터가 저장되어 있다면 다시 호출하지 않음
+      const storedChallenges =
+        useUserAchievementStore.getState().completedChallenges;
+      const storedAchievements =
+        useUserAchievementStore.getState().completedAchievements;
+
+      if (storedChallenges && storedAchievements) {
+        setCompletedChallenges(storedChallenges);
+        setCompletedAchievements(storedAchievements.map((a) => a));
+        return;
+      }
+
+      try {
+        const [challenges, achievements] = await Promise.all([
+          getUserCompletedChallenge(userId),
+          getUserAchievements(userId),
+        ]);
+
+        if (isMounted) {
+          // Zustand에 상태 저장 (전역 상태로 캐싱)
+          useUserAchievementStore.setState({
+            completedChallenges: challenges.length ?? 0,
+            completedAchievements: achievements.map(
+              (achievement) => achievement.achievement_id
+            ),
+          });
+
+          setCompletedChallenges(challenges?.length ?? 0);
+          setCompletedAchievements(
+            achievements.map((achievement) => achievement.achievement_id)
+          );
+        }
       } catch (error) {
         console.error('Error fetching completed challenges:', error);
       }
     };
 
-    if (userId) {
-      void fetchData();
-    }
+    if (userId) void fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   return (
     <div className="my-page drag-prevent">
       <Title>마이페이지</Title>
-
       <main>
         <section className="profile-header">
-          <ProfileHeader profileImage={userPhoto ?? null} />
+          <ProfileHeader
+            profileImage={userPhoto ?? null}
+            setIsEditing={setIsEditing}
+          />
         </section>
 
         <section className="profile-body">
@@ -99,6 +126,9 @@ function MyPage() {
           </article>
         </section>
       </main>
+      {isEditing && (
+        <MyPageEditProfile isEditing={isEditing} setIsEditing={setIsEditing} />
+      )}
     </div>
   );
 }
