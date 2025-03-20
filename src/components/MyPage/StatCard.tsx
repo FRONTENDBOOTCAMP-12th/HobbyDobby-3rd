@@ -1,10 +1,6 @@
 import './styles/my-page-card.css';
 import { getPublicImage } from '@/utils/getPublic';
-
-interface StatCardProps {
-  name: string;
-  value: number;
-}
+import { StatCardProps } from '@/types/my-page/stat';
 
 // 통계 카드 컴포넌트
 function StatCard({ name, value }: StatCardProps) {
