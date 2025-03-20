@@ -149,3 +149,25 @@ export const insertChallenge = async (
 
   return { data, error };
 };
+
+// sotreitem 불러오기 함수 추가
+export interface Item {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+}
+
+export const fetchItems = async (): Promise<Item[]> => {
+  const { data, error } = await supabase.from('item').select('*');
+
+  if (error) {
+    console.error('아이템 불러오기 오류:', error);
+    throw error;
+  }
+  if (!data) {
+    return [];
+  }
+  return data as Item[];
+};
