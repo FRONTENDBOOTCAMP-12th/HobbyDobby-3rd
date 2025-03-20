@@ -48,12 +48,12 @@ function UnitContent({ question }: UnitContentProps) {
   });
 
   return (
-    <div className="unit-content">
+    <section className="unit-content">
       <h2 className="question" id="question">
         {question?.question}
       </h2>
       {isNeedForm ? <form>{questionContents}</form> : <>{questionContents}</>}
-    </div>
+    </section>
   );
 }
 
