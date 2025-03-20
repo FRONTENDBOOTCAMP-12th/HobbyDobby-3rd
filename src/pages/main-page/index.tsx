@@ -1,22 +1,22 @@
 import './style.css';
 import Title from '@/layouts/title';
+import { useEffect, useState } from 'react';
 import { useUserStore } from '@/stores/user';
 import { getUnitsBySubHobby } from '@/lib/api';
+import { useUnitsStore } from '@/stores/units';
 import { UnitData } from '@/lib/supabase-client';
-import { useEffect, useState } from 'react';
 import MainCard from '@/components/MainComponents/MainCard';
 import UnitButton from '@/components/MainComponents/UnitButton';
 import ChallengeSection from '@/components/MainComponents/ChallengeSection';
-import { useUnitsStore } from '@/stores/units';
 
 function MainPage() {
-  const nowChallenge = useUserStore((store) => store.now_challenge);
-  const nowHobby = useUserStore((store) => store.now_hobby);
+  const nowChallenge = useUserStore((user) => user.now_challenge);
+  const nowHobby = useUserStore((user) => user.now_hobby);
 
   const nowUnit = nowChallenge?.now_unit;
 
-  const sectionList = useUnitsStore((item) => item.sections);
-  const setSections = useUnitsStore((item) => item.setSections);
+  const sectionList = useUnitsStore((units) => units.sections);
+  const setSections = useUnitsStore((units) => units.setSections);
 
   const [openCardSection, setOpenCardSection] = useState<string | null>(null);
 

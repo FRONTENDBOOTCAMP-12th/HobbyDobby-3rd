@@ -5,7 +5,6 @@ interface ChallengeSectionProps {
   unitSection: UnitData[];
   nowUnit: UnitData;
   openCardSection: string | null;
-
   onExpand: (id: string | null) => void;
 }
 
@@ -31,12 +30,13 @@ function ChallengeSection({
             <UnitButton
               id={`unit-${unit.id}`}
               name={unit.name}
-              unitTitle={unit.title}
+              section={unit.section}
               level={unit.level}
+              unitTitle={unit.title}
               buttonState={buttonState}
               maxUnit={unitSection.length}
-              onExpand={onExpand}
               isExpanded={openCardSection === `unit-${unit.id}`}
+              onExpand={onExpand}
             />
           </li>
         );

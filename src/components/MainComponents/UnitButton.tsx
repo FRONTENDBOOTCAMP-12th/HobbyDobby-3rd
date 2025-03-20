@@ -7,14 +7,15 @@ import UnitCard from './UnitCard';
 interface UnitButtonProps {
   id: string;
   unitTitle: string;
-  onExpand: (id: string | null) => void;
   isExpanded: boolean;
+  onExpand: (id: string | null) => void;
   name?: string;
-  maxUnit?: number;
   level?: number;
+  maxUnit?: number;
+  section?: number;
   buttonIcon?: string;
-  buttonState?: 'complete' | 'disabled' | 'now';
   progressVisible?: boolean;
+  buttonState?: 'complete' | 'disabled' | 'now';
 }
 
 function UnitButton({
@@ -22,12 +23,13 @@ function UnitButton({
   name,
   level,
   maxUnit,
-  isExpanded,
+  section,
   unitTitle,
-  onExpand,
+  isExpanded,
   buttonIcon = BurnIcon,
-  buttonState = 'disabled',
   progressVisible = false,
+  buttonState = 'disabled',
+  onExpand,
 }: UnitButtonProps) {
   const handleCardExpand = () => {
     onExpand(isExpanded ? null : id);
@@ -53,11 +55,12 @@ function UnitButton({
       ) : null}
       <UnitCard
         name={name}
+        section={section}
         hidden={!isExpanded}
         cardState={buttonState}
         title={unitTitle}
         level={level}
-        max_level={maxUnit}
+        maxLevel={maxUnit}
       />
     </section>
   );

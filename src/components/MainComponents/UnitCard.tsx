@@ -5,16 +5,18 @@ import { useNavigate } from 'react-router';
 type UnitCardProps = React.ComponentProps<'div'> & {
   title: string;
   name?: string;
+  section?: number;
   level?: number;
-  max_level?: number;
+  maxLevel?: number;
   cardState?: 'complete' | 'disabled' | 'now';
 };
 
 function UnitCard({
   name,
-  title,
   level,
-  max_level,
+  section,
+  title,
+  maxLevel,
   cardState = 'disabled',
   ...restProps
 }: UnitCardProps) {
@@ -25,6 +27,11 @@ function UnitCard({
     void navigate(`/unit/${name}`, {
       state: {
         unitName: name,
+        section,
+        title,
+        level,
+        maxLevel,
+        state: cardState,
       },
     });
   };
@@ -43,7 +50,7 @@ function UnitCard({
             ? '해당 유닛은 잠겨있습니다.'
             : cardState === 'complete'
               ? `유닛 내용 수정하기`
-              : `유닛 진행도 ${level}/${max_level}`}
+              : `유닛 진행도 ${level}/${maxLevel}`}
         </p>
       </div>
       <button
