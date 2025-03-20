@@ -19,13 +19,23 @@ function FillBlank({ contents, questionNumber }: FillBlankProps) {
           {items.map((item, itemIndex) => {
             if (item === 'ㅁ') {
               return (
-                <input
+                <div
+                  className="fill-blank__blank"
                   key={`empty-${questionNumber}-${itemsIndex}`}
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="빈칸을 채워주세요."
-                />
+                >
+                  <label
+                    htmlFor={`empty-${questionNumber}-${itemsIndex}`}
+                    className="sr-only"
+                  >
+                    {`질문 ${questionNumber}번에 대한 빈칸 ${itemsIndex}`}
+                  </label>
+                  <input
+                    type="text"
+                    name=""
+                    id={`empty-${questionNumber}-${itemsIndex}`}
+                    placeholder="빈칸을 채워주세요."
+                  />
+                </div>
               );
             }
             return (

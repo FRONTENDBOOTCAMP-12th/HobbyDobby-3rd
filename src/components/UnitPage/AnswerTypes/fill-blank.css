@@ -20,17 +20,18 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
 
-  input {
-    height: 24px;
+.fill-blank__blank input {
+  width: 100%;
+  height: 24px;
 
-    border-radius: 5px;
-    border: none;
+  border-radius: 5px;
+  border: none;
 
-    background-color: var(--content-gray);
+  background-color: var(--content-gray);
 
-    text-align: center;
-  }
+  text-align: center;
 }
 
 .has-before {
