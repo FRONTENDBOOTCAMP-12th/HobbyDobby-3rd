@@ -300,3 +300,15 @@ export const deleteUserTitle = async (userId: string, titleName: string) => {
 
   return { data, error };
 };
+
+// 회원탈퇴
+export const deleteUserData = async (userId: string, password: string) => {
+  const { error } = await supabase
+    .from('user')
+    .delete()
+    .eq('uid', userId)
+    .eq('password', password);
+
+  const isSuccess = error ? false : true;
+  return { isSuccess, error };
+};

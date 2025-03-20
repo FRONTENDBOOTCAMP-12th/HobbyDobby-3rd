@@ -4,22 +4,29 @@ import RegisterForm from '@/components/Form/RegisterForm';
 import Title from '@/layouts/title';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 function RegisterPage() {
   const navigate = useNavigate();
   const user = localStorage.getItem('store/user');
 
   // 이미 로그인되었을 경우
-  if (user) {
-    void Swal.fire({
-      icon: 'info',
-      text: '이미 로그인되었습니다.',
-      confirmButtonColor: `var(--primary-color)`,
-      heightAuto: false,
-    }).then(() => {
-      void navigate('/home', { replace: true });
-    });
-  }
+  useEffect(() => {
+    if (user) {
+      Swal.fire({
+        icon: 'info',
+        text: '이미 로그인되었습니다.',
+        confirmButtonColor: `var(--primary-color)`,
+        heightAuto: false,
+      })
+        .then(() => {
+          void navigate('/home', { replace: true });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [navigate, user]);
 
   return (
     <div className="register-page">
