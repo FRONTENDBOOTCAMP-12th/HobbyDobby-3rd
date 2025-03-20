@@ -1,37 +1,58 @@
 import './style.css';
 import Swal from 'sweetalert2';
 import Title from '@/layouts/title';
-import { useNavigate } from 'react-router';
+import { useCallback, useState } from 'react';
+import { getQuestionByUnit } from '@/lib/api';
+import useFetchData from '@/hooks/useFetchData';
 import ProgressBar from '@/components/ProgressBar';
 import CustomButton from '@/components/CustomButton';
 import IndexCard from '@/components/UnitPage/IndexCard';
-import UploadFile from '@/components/UnitPage/AnswerTypes/UploadFile';
-import DescriptiveType from '@/components/UnitPage/AnswerTypes/DescriptiveType';
-import MultipleChoices from '@/components/UnitPage/AnswerTypes/MultipleChoices';
-import ShortAnswer from './../../components/UnitPage/AnswerTypes/ShortAnswer';
-import FillBlank from '@/components/UnitPage/AnswerTypes/FillBlank';
+import { useLocation, useNavigate } from 'react-router';
+import UnitContent from '@/components/UnitPage/UnitContent';
 
-interface UnitPageProps {
-  isQuestion: boolean;
-  challengeName: string;
+interface LocationState {
+  unitName: string;
   section: number;
-  currentUnit: number;
-  totalUnits: number;
+  title: string;
+  level: number;
+  maxLevel: number;
+  state: 'complete' | 'now';
 }
 
-function UnitPage({
-  isQuestion,
-  challengeName,
-  section,
-  currentUnit,
-  totalUnits,
-}: UnitPageProps) {
-  const currentStep = 2;
-  const totalSteps = 7;
+// interface NowProgress {
+//   type: string;
+//   answer: string[];
+//   question: string;
+//   answer_values: string[];
+//   question_number: number;
+// }
 
-  // 임시로 만든 닫기 버튼 이벤트 핸들러
+function UnitPage() {
+  // const [nowProgress, setNowProgress] = useState<NowProgress[]>([]);
+
+  const location = useLocation();
+  const { unitName, section, title, level, maxLevel } = {
+    ...(location.state as LocationState),
+  };
+
+  const fetchingFunction = useCallback(
+    () => getQuestionByUnit(unitName),
+    [unitName]
+  );
+  const { data: questions } = useFetchData(fetchingFunction);
+  const [nowQuestion, setNowQuestion] = useState<number>(0);
+
+  let maxOrder = 0;
+  let isLastQuestion = false;
+
+  if (questions) {
+    const questionsLength = questions.length;
+
+    maxOrder = questions[questionsLength - 1].order;
+    isLastQuestion = questionsLength - 1 === nowQuestion;
+  }
+
   const navigate = useNavigate();
-
   const handleClickClose = () => {
     Swal.fire({
       title: '정말 나가시겠습니까?',
@@ -51,66 +72,44 @@ function UnitPage({
       });
   };
 
+  const handleUnitButtonClick = () => {
+    if (isLastQuestion) {
+      console.log('전체 제출 코드');
+    } else {
+      const nextQuestion = nowQuestion + 1;
+      setNowQuestion(nextQuestion);
+    }
+  };
+
   return (
     <div className="unit-page">
-      <Title>{challengeName}</Title>
+      <Title>{unitName}</Title>
       <header className="unit-header">
         <IndexCard
           section={section}
-          totalUnits={totalUnits}
-          currentUnit={currentUnit}
-          unitTitle="책의 중반부"
+          totalUnits={maxLevel}
+          currentUnit={level}
+          unitTitle={title}
           handleClickClose={handleClickClose}
         />
-        <ProgressBar value={currentStep} max={totalSteps} height="0.8rem" />
+        <ProgressBar
+          value={questions ? questions[nowQuestion].order : 0}
+          max={maxOrder}
+          height="0.8rem"
+        />
       </header>
 
       <section className="unit-content">
-        <h2 className="question">문항에 대한 짧은 제목/설명</h2>
-        <form action="post">
-          <DescriptiveType
-            className="answer"
-            placeholder="여기에 생각을 적어주세요!"
-          />
-          <UploadFile name="name" />
-          <MultipleChoices
-            choices={['돌고래', '하마', '악어', '기린']}
-            // 질문을 idRef에 연결해야 함
-            idRef="animals"
-          />
-          <ShortAnswer />
-          <FillBlank
-            contents={[
-              '책 이름 : ㅁ',
-              '제 취미는 ㅁ입니다.',
-              'ㅁ를 즐겨합니다.',
-            ]}
-            questionNumber={1}
-          />
-        </form>
-        {isQuestion ? (
-          <form action="post">
-            <DescriptiveType
-              className="answer"
-              placeholder="여기에 생각을 적어주세요!"
-            />
-          </form>
-        ) : (
-          <div>
-            <p>이 문항은 응답을 요구하는 질문이 아닙니다.</p>
-          </div>
-        )}
+        <UnitContent question={questions ? questions[nowQuestion] : null} />
       </section>
 
       <footer className="unit-footer">
         <CustomButton
-          type="submit"
-          buttonText="작성완료"
+          type="button"
+          buttonText={isLastQuestion ? '제출' : '다음'}
           className="submit-btn"
           bgColor="var(--secondary-color)"
-          onClick={() => {
-            console.log('저장, 다음으로');
-          }}
+          onClick={handleUnitButtonClick}
         />
       </footer>
     </div>

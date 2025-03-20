@@ -145,6 +145,22 @@ export const getUserGem = async (userId: string) => {
   return data?.[0].gem;
 };
 
+export const getQuestionByUnit = async (unit: string) => {
+  const { data, error } = await supabase
+    .from('question')
+    .select('*')
+    .eq('unit', unit)
+    .order('order', { ascending: true })
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching question:', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
