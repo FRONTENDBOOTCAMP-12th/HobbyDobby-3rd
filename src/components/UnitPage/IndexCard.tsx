@@ -22,7 +22,7 @@ function IndexCard({
       <p>
         섹션 {section} <b>|</b> 유닛 {currentUnit}/{totalUnits}
       </p>
-      <h2>{unitTitle}</h2>
+      <h1>{unitTitle}</h1>
     </div>
   );
 }
