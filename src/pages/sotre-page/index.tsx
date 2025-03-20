@@ -9,9 +9,6 @@ function StorePage() {
       <h1 className="sr-only">Hobby Dobby</h1>
       <HobbyCard />
       <StoreItem />
-      <StoreItem />
-      <StoreItem />
-      <StoreItem />
       <BottomNavbar />
     </main>
   );
