@@ -5,10 +5,10 @@ import { useState } from 'react';
 import './style.css';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router';
-import { supabase } from '@/lib/supabase-client';
 import { useUserStore } from '@/stores/user';
+import { deleteUserData } from '@/lib/api';
 
-function Withdraw() {
+function WithdrawPage() {
   const userId = useUserStore((state) => state.uid);
   const logout = useUserStore((state) => state.logout);
   const navigate = useNavigate();
@@ -36,21 +36,6 @@ function Withdraw() {
     PW_REGEX.test(inputData.password)
   );
 
-  const deleteData = async () => {
-    try {
-      const { error } = await supabase
-        .from('user')
-        .delete()
-        .eq('uid', userId)
-        .eq('password', inputData.password);
-
-      const isSuccess = error ? false : true;
-      return isSuccess;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     Swal.fire({
@@ -63,7 +48,7 @@ function Withdraw() {
       // 탈퇴 확인 Swal 후
       .then((result) => {
         if (result.isConfirmed) {
-          deleteData()
+          deleteUserData(userId, inputData.password)
             // delete 통신 후
             .then((isSuccess) => {
               // delete 성공
@@ -152,4 +137,4 @@ function Withdraw() {
   );
 }
 
-export default Withdraw;
+export default WithdrawPage;
