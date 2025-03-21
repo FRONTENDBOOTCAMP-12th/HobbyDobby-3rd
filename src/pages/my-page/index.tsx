@@ -8,7 +8,7 @@ import { useUserStore } from '@/stores/user';
 import { getDate } from '@/utils/getDate';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { useEffect, useState } from 'react';
-// import MyPageEditProfile from '../my-page-edit-profile';
+import MyPageEditProfile from '../my-page-edit-profile';
 import './style.css';
 import { useUserAchievementStore } from '@/stores/user-achievement';
 
@@ -20,6 +20,7 @@ function MyPage() {
     created_date: joinDate,
     main_hobby: userHobby,
     uid: userId,
+    item: userProfileItem,
   } = useUserStore((state) => state);
 
   const [isEditing, setIsEditing] = useState(true);
@@ -88,6 +89,12 @@ function MyPage() {
     };
   }, [userId]);
 
+  useEffect(() => {
+    if (userNickname !== undefined) {
+      setIsEditing(false);
+    }
+  }, [userNickname, userTitle, userHobby]);
+
   console.log(isEditing);
 
   return (
@@ -128,9 +135,17 @@ function MyPage() {
           </article>
         </section>
       </main>
-      {/* {isEditing && (
-        <MyPageEditProfile isEditing={isEditing} setIsEditing={setIsEditing} />
-      )} */}
+      {isEditing && (
+        <MyPageEditProfile
+          userProfileImg={userPhoto}
+          userNickname={userNickname}
+          userTitle={userTitle}
+          userMainHobby={userHobby}
+          userProfileItem={userProfileItem}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        />
+      )}
     </div>
   );
 }

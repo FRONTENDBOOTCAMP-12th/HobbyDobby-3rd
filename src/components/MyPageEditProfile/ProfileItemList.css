@@ -1,15 +1,26 @@
-.profile-item-list__container {
+.profile-item-list__outer-container {
   display: flex;
-  flex-wrap: wrap; /* 아이템이 넘칠 때 다음 줄로 넘김 */
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
+}
 
+.profile-item-list__inner-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 내부 아이템은 왼쪽 정렬 */
+  gap: 20px;
   padding-block: 15px;
+  width: fit-content;
+
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .profile-item__frame {
   border: 2px solid var(--black-color);
   border-radius: 10px;
+
+  width: 60px;
 
   padding: 12px;
 

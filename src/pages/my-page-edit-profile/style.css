@@ -11,12 +11,18 @@
   max-width: 27rem;
   height: 100%;
 
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  top: 50%; /* 화면 세로 중앙 정렬 */
+  left: 50%; /* 화면 가로 중앙 정렬 */
+  transform: translate(-50%, -50%);
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  overflow: auto;
+
+  scrollbar-width: none; /* Firefox */
 
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -24,17 +30,44 @@
   z-index: 1000;
 }
 
+.edit-profile-page::-webkit-scrollbar {
+  display: none;
+}
+
+/* 프로필 상단 버튼 및 제목 */
+.edit-profile__top-header {
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--tertiary-color);
+  z-index: 1010;
+}
+
 .edit-profile__title {
   position: absolute;
-  top: 13px;
+  top: 0;
   right: 50%;
   transform: translateX(50%);
 
+  background-color: var(--secondary-color);
+
+  width: 100%;
+
+  padding: 10px 0;
+
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 21px;
   font-weight: 400;
 
-  z-index: 1001;
+  z-index: 1010;
 }
 
 .top-btns {
@@ -42,13 +75,13 @@
   height: 50px;
 
   position: absolute;
-  top: 5px;
+  top: 0;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  font-size: 17px;
+  font-size: 18px;
 
   padding: 0 15px;
 
@@ -65,7 +98,7 @@
   z-index: 1001;
 }
 
-/*  */
+/* 프로필 편집 바디 */
 .edit-profile__body {
   width: 100%;
   padding: 3rem 1.8rem 1.8rem 1.8rem;
@@ -86,12 +119,11 @@
 .article-container {
   background-color: var(--white-color);
   inline-size: 100%;
-  min-height: 7.45rem;
+  min-height: 140px;
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
+  justify-content: space-between;
 
   padding: var(--board-padding);
 
@@ -99,7 +131,8 @@
 }
 
 .article-container h2 {
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }

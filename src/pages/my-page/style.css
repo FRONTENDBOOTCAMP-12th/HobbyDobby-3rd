@@ -17,9 +17,6 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
-
-  overflow: hidden;
-  position: relative;
 }
 /* 레이아웃 스타일링 */
 .my-page main {

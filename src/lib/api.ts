@@ -9,7 +9,8 @@ export const getUserByID = async (inputID: UserData['id']) =>
     .from('user')
     .select(
       `
-      uid,image,gem,created_date,exp,id,nickname,password,main_hobby,now_hobby,item,title,
+      uid,image,gem,created_date,exp,id,nickname,password,main_hobby,now_hobby,title,
+      item(name,image),
       now_challenge(id,name,created_date,completed_date,progress,sub_hobby_name(*),now_unit(
         *
       ))
@@ -158,6 +159,21 @@ export const getUserGem = async (userId: string) => {
   }
 
   return data?.[0].gem;
+};
+
+export const getUserItems = async (userId: string) => {
+  // 유저의 아이템 데이터를 가져옴
+  const { data, error } = await supabase
+    .from('user_having_items')
+    .select('item(*)')
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching user items:', error.message);
+    throw error;
+  }
+
+  return data;
 };
 
 export const getUserTitles = async (userId: string) => {

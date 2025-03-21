@@ -40,6 +40,7 @@ export const useUserStore = create(
             set(
               {
                 ...user,
+                image: user.image ?? '/assets/profile-none.jpg',
               },
               undefined,
               'login'

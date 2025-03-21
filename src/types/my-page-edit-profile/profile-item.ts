@@ -7,6 +7,6 @@ export interface ItemsType {
 }
 
 export interface ItemType {
-  item: string;
   name: string;
+  image: string;
 }
