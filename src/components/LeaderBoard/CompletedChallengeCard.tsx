@@ -15,7 +15,7 @@ function CompletedChallengeCard({
   // 챌린지 완주 날짜 구하기
   const date = new Date(completedDate!);
   const year = date.getFullYear();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1;
   const day = date.getDate();
 
   // 챌린지 활동 기간 구하기

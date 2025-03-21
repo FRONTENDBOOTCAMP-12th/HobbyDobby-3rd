@@ -6,7 +6,7 @@ import { getUserRank } from '@/lib/api';
 import useFetchData from '@/hooks/useFetchData';
 
 function LeaderBoardRankingPage() {
-  const { data: rank } = useFetchData(getUserRank, undefined);
+  const { data: rank } = useFetchData(getUserRank);
 
   return (
     <>

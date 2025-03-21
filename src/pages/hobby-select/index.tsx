@@ -6,7 +6,7 @@ import Title from '@/layouts/title';
 import useFetchData from '@/hooks/useFetchData';
 
 function HobbySelectPage() {
-  const { data: hobbyData } = useFetchData(getHobby, undefined);
+  const { data: hobbyData } = useFetchData(getHobby);
   const hobbies = hobbyData?.data;
 
   return (

@@ -4,22 +4,29 @@ import LoginForm from '@/components/Form/LoginForm';
 import { Link, useNavigate } from 'react-router';
 import Title from '@/layouts/title';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 function LoginPage() {
   const navigate = useNavigate();
   const user = localStorage.getItem('store/user');
 
   // 이미 로그인되었을 경우
-  if (user) {
-    void Swal.fire({
-      icon: 'info',
-      text: '이미 로그인되었습니다.',
-      confirmButtonColor: `var(--primary-color)`,
-      heightAuto: false,
-    }).then(() => {
-      void navigate('/home', { replace: true });
-    });
-  }
+  useEffect(() => {
+    if (user) {
+      Swal.fire({
+        icon: 'info',
+        text: '이미 로그인되었습니다.',
+        confirmButtonColor: `var(--primary-color)`,
+        heightAuto: false,
+      })
+        .then(() => {
+          void navigate('/home', { replace: true });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [navigate, user]);
 
   return (
     <div className="login-page">

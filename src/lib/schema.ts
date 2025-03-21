@@ -327,7 +327,7 @@ export interface Database {
             columns: ['now_challenge'];
             isOneToOne: false;
             referencedRelation: 'challenge';
-            referencedColumns: ['name'];
+            referencedColumns: ['id'];
           },
           {
             foreignKeyName: 'user_now_hobby_fkey';
@@ -380,19 +380,19 @@ export interface Database {
       };
       user_completed_challenges: {
         Row: {
-          challenge_id: string | null;
+          challenge_id: string;
           id: string;
-          user_id: string | null;
+          user_id: string;
         };
         Insert: {
-          challenge_id?: string | null;
+          challenge_id?: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Update: {
-          challenge_id?: string | null;
+          challenge_id?: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Relationships: [
           {
@@ -414,26 +414,26 @@ export interface Database {
       user_having_items: {
         Row: {
           id: string;
-          item_id: string | null;
-          user_id: string | null;
+          item: string;
+          user_id: string;
         };
         Insert: {
           id?: string;
-          item_id?: string | null;
-          user_id?: string | null;
+          item: string;
+          user_id?: string;
         };
         Update: {
           id?: string;
-          item_id?: string | null;
-          user_id?: string | null;
+          item?: string;
+          user_id?: string;
         };
         Relationships: [
           {
-            foreignKeyName: 'user_having_items_item_id_fkey';
-            columns: ['item_id'];
+            foreignKeyName: 'user_having_items_item_fkey';
+            columns: ['item'];
             isOneToOne: false;
             referencedRelation: 'item';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
           {
             foreignKeyName: 'user_having_items_user_id_fkey';
@@ -479,27 +479,27 @@ export interface Database {
       };
       user_hobbies: {
         Row: {
-          hobby_id: string | null;
+          hobby: string;
           id: string;
-          user_id: string | null;
+          user_id: string;
         };
         Insert: {
-          hobby_id?: string | null;
+          hobby: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Update: {
-          hobby_id?: string | null;
+          hobby?: string;
           id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Relationships: [
           {
-            foreignKeyName: 'user_hobbies_hobby_id_fkey';
-            columns: ['hobby_id'];
+            foreignKeyName: 'user_hobbies_hobby_fkey';
+            columns: ['hobby'];
             isOneToOne: false;
             referencedRelation: 'hobby';
-            referencedColumns: ['id'];
+            referencedColumns: ['name'];
           },
           {
             foreignKeyName: 'user_hobbies_user_id_fkey';

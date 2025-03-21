@@ -11,6 +11,7 @@ const LoginPage = lazy(() => import('@/pages/login'));
 const LandingPage = lazy(() => import('@/pages/landing-page'));
 const HobbySelectPage = lazy(() => import('@/pages/hobby-select'));
 const MyPage = lazy(() => import('@/pages/my-page'));
+const WithdrawPage = lazy(() => import('@/pages/withdraw'));
 const RegisterPage = lazy(() => import('@/pages/register'));
 const LeaderBoardCompletedPage = lazy(
   () => import('@/pages/leader-board-completed')
@@ -19,7 +20,7 @@ const LeaderBoardDetailPage = lazy(() => import('@/pages/leader-board-detail'));
 const LeaderBoardRankingPage = lazy(
   () => import('@/pages/leader-board-ranking')
 );
-const UnitPage = lazy(() => import('@/pages/unit-page'));
+// const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 const StorePage = lazy(() => import('@/pages/store-page'));
@@ -40,6 +41,7 @@ function App() {
             />
             <Route path="/challenge-start" element={<MainPageStart />} />
             <Route path="/challenge-end" element={<ChallengeEndPage />} />
+            <Route path="/withdraw" element={<WithdrawPage />} />
 
             <Route element={<MainLayout />}>
               <Route path="/home">
@@ -58,7 +60,7 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
-            <Route path="/unit-page" element={<UnitPage />} />
+            {/* <Route path="/unit-page" element={<UnitPage />} /> */}
           </Routes>
         </BrowserRouter>
       </Suspense>
