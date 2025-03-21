@@ -1,21 +1,29 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import './multiple-choices.css';
 
 interface MultipleChoicesProps {
+  key: string;
   choices: string[];
   idRef: string;
+  answer: string;
+  setNextAnswers: (value: string[], type: string) => void;
 }
 
-function MultipleChoices({ choices, idRef }: MultipleChoicesProps) {
+function MultipleChoices({
+  key,
+  choices,
+  idRef,
+  answer: nowChoice,
+  setNextAnswers,
+}: MultipleChoicesProps) {
   const radioRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [checkedValue, setCheckedValue] = useState<string | null>(null);
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLDivElement>,
     index: number
   ) => {
     if (e.key === ' ' || e.key === 'Enter') {
-      setCheckedValue(choices[index]);
+      setNextAnswers([choices[index]], 'select');
     } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       const nextIndex = e.key === 'ArrowDown' ? index + 1 : index - 1;
@@ -28,11 +36,12 @@ function MultipleChoices({ choices, idRef }: MultipleChoicesProps) {
 
   return (
     <ul
+      key={key}
       className="multiple-choices"
       role="radiogroup"
       aria-labelledby={idRef}
       tabIndex={0}
-      aria-activedescendant={checkedValue ?? choices[0]}
+      aria-activedescendant={nowChoice ?? choices[0]}
     >
       {choices.map((item, index) => (
         <li key={item} className="multiple-choices__choice">
@@ -44,9 +53,9 @@ function MultipleChoices({ choices, idRef }: MultipleChoicesProps) {
             }}
             role="radio"
             tabIndex={0}
-            aria-checked={checkedValue === item}
+            aria-checked={nowChoice === item}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            onClick={() => setCheckedValue(item)}
+            onClick={() => setNextAnswers([item], 'select')}
           ></div>
         </li>
       ))}

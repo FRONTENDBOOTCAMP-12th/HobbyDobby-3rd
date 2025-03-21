@@ -5,4 +5,5 @@ export interface ButtonUIProps {
   onClick: () => void;
   bgColor?: string;
   color?: string;
+  disabled?: boolean;
 }

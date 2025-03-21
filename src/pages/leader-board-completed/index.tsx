@@ -22,7 +22,7 @@ function LeaderBoardCompletedPage() {
 
   return (
     <div className="leader-board-completed">
-      <Title>리더보드</Title>
+      <Title>리더보드 완주챌린지</Title>
       <LeaderBoardTab />
       <ul className="leader-board-completed__list">
         {challenges?.map((data) => (

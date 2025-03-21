@@ -45,7 +45,7 @@ export const useUserStore = create(
               'login'
             ),
           logout: () => set(initialUser, undefined, 'logout'),
-          updateNowChllange: (hobby: string, challenge: ChallengeData) =>
+          updateNowChllenge: (hobby: string, challenge: ChallengeData) =>
             set(
               {
                 now_hobby: hobby,
