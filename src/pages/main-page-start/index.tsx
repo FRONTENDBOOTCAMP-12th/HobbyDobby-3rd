@@ -16,7 +16,7 @@ function MainPageStart() {
   const navigate = useNavigate();
   const userUid = useUserStore((state) => state.uid);
   const updateStoreNowChallenge = useUserStore(
-    (state) => state.updateNowChllange
+    (state) => state.updateNowChllenge
   );
 
   // 상세 취미
