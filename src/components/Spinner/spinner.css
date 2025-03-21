@@ -5,8 +5,8 @@
 }
 
 .spinner__activist {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 6.25rem;
+  height: 6.25rem;
   border: 0.25rem solid var(--content-gray);
   border-top: 0.25rem solid var(--secondary-color);
   border-radius: 50%;
