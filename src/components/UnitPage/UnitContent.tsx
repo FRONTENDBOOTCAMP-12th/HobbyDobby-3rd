@@ -78,11 +78,6 @@ function UnitContent({
       : Array.isArray(answers.answer)
         ? answers.answer_values.length === 0 || !isAnswerValuesValid
         : false);
-  console.log(
-    isButtonDisabled,
-    question?.is_input_optional,
-    question?.needs_input
-  );
 
   const handleUnitButtonClick = () => {
     if (isLastQuestion) {
