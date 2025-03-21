@@ -5,8 +5,6 @@ import { lazy, Suspense } from 'react';
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
 
-import StorePage from '@/pages/store-page';
-
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
 const LoginPage = lazy(() => import('@/pages/login'));
@@ -24,6 +22,7 @@ const LeaderBoardRankingPage = lazy(
 const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
+const StorePage = lazy(() => import('@/pages/store-page'));
 
 function App() {
   return (
@@ -41,10 +40,13 @@ function App() {
             />
             <Route path="/challenge-start" element={<MainPageStart />} />
             <Route path="/challenge-end" element={<ChallengeEndPage />} />
-            <Route path="storepage" element={<StorePage />} />
+
             <Route element={<MainLayout />}>
               <Route path="/home">
                 <Route index element={<MainPage />} />
+              </Route>
+              <Route path="/storepage">
+                <Route index element={<StorePage />} />
               </Route>
               <Route path="/leader-board">
                 <Route index element={<LeaderBoardCompletedPage />} />
