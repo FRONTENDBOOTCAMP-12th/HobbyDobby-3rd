@@ -1,6 +1,6 @@
 import './style.css';
 import HobbyCard from '@/components/TopNavbar';
-import StoreItem from '@/components/StoreItem/storeitem';
+import StoreItem from '@/components/StoreItem';
 import BottomNavbar from '@/components/BottomNavbar';
 
 function StorePage() {

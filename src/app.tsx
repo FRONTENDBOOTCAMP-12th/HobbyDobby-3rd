@@ -5,7 +5,7 @@ import { lazy, Suspense } from 'react';
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
 
-import StorePage from '@/pages/sotre-page';
+import StorePage from '@/pages/store-page';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
