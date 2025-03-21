@@ -130,6 +130,21 @@ export const getAchievementByLevelType = async (
   return achievement;
 };
 
+export const getUserAchievements = async (userId: string) => {
+  // 유저 업적 데이터를 가져옴
+  const { data, error } = await supabase
+    .from('user_achievements')
+    .select('achievement_id')
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching user achievements:', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 export const getUserGem = async (userId: string) => {
   // 유저의 보석 데이터를 가져옴
   const { data, error } = await supabase
@@ -257,6 +272,27 @@ export const insertChallenge = async (
   return { data, error };
 };
 
+export interface Item {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+}
+
+export const fetchItems = async (): Promise<Item[]> => {
+  const { data, error } = await supabase.from('item').select('*');
+
+  if (error) {
+    console.error('아이템 불러오기 오류:', error);
+    throw error;
+  }
+  if (!data) {
+    return [];
+  }
+  return data as Item[];
+};
+
 export const insertUserAchievement = async (
   // 유저 업적 데이터를 저장
   userId: string,
@@ -324,6 +360,18 @@ export const deleteUserTitle = async (userId: string, titleName: string) => {
     .select(`id,user_id,title`);
 
   return { data, error };
+};
+
+// 회원탈퇴
+export const deleteUserData = async (userId: string, password: string) => {
+  const { error } = await supabase
+    .from('user')
+    .delete()
+    .eq('uid', userId)
+    .eq('password', password);
+
+  const isSuccess = error ? false : true;
+  return { isSuccess, error };
 };
 
 /* -------------------------------------------------------------------------- */

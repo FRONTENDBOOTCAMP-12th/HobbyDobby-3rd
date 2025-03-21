@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
+import Spinner from '@/components/Spinner';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -11,6 +12,7 @@ const LoginPage = lazy(() => import('@/pages/login'));
 const LandingPage = lazy(() => import('@/pages/landing-page'));
 const HobbySelectPage = lazy(() => import('@/pages/hobby-select'));
 const MyPage = lazy(() => import('@/pages/my-page'));
+const WithdrawPage = lazy(() => import('@/pages/withdraw'));
 const RegisterPage = lazy(() => import('@/pages/register'));
 const LeaderBoardCompletedPage = lazy(
   () => import('@/pages/leader-board-completed')
@@ -22,11 +24,12 @@ const LeaderBoardRankingPage = lazy(
 const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
+const StorePage = lazy(() => import('@/pages/store-page'));
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
-      <Suspense fallback={<div role="status">페이지 로딩 중...</div>}>
+      <Suspense fallback={<Spinner />}>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -39,9 +42,14 @@ function App() {
             />
             <Route path="/challenge-start" element={<MainPageStart />} />
             <Route path="/challenge-end" element={<ChallengeEndPage />} />
+            <Route path="/withdraw" element={<WithdrawPage />} />
+
             <Route element={<MainLayout />}>
               <Route path="/home">
                 <Route index element={<MainPage />} />
+              </Route>
+              <Route path="/storepage">
+                <Route index element={<StorePage />} />
               </Route>
               <Route path="/leader-board">
                 <Route index element={<LeaderBoardCompletedPage />} />

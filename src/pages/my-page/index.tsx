@@ -7,7 +7,7 @@ import ProfileInfo from '@/components/MyPage/ProfileInfo';
 import StatCardList from '@/components/MyPage/StatCardList';
 import Title from '@/layouts/title';
 import './style.css';
-import { getUserCompletedChallenge } from '@/lib/api';
+import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -34,19 +34,27 @@ function MyPage() {
     : 0;
 
   const [completedChallenges, setCompletedChallenges] = useState<number>(0);
+  const [completedAchievements, setCompletedAchievements] = useState<string[]>(
+    []
+  );
 
   useEffect(() => {
-    const fetchCompletedChallenges = async () => {
+    const fetchData = async () => {
       try {
         const challenges = await getUserCompletedChallenge(userId);
+        const userCompletedAchievements = (
+          await getUserAchievements(userId)
+        ).map((achievement) => achievement.achievement_id);
+
         setCompletedChallenges(challenges?.length ?? 0);
+        setCompletedAchievements(userCompletedAchievements);
       } catch (error) {
         console.error('Error fetching completed challenges:', error);
       }
     };
 
     if (userId) {
-      void fetchCompletedChallenges();
+      void fetchData();
     }
   }, [userId]);
 
@@ -81,6 +89,7 @@ function MyPage() {
             <AchievementCardList
               daysSinceJoin={daysSinceJoin}
               completedChallenges={completedChallenges}
+              completedAchievements={completedAchievements}
             />
           </article>
         </section>
