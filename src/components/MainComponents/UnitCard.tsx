@@ -1,26 +1,39 @@
 import './unit-card.css';
 import { useId } from 'react';
+import { useNavigate } from 'react-router';
 
 type UnitCardProps = React.ComponentProps<'div'> & {
   title: string;
+  name?: string;
+  section?: number;
   level?: number;
-  max_level?: number;
+  maxLevel?: number;
   cardState?: 'complete' | 'disabled' | 'now';
 };
 
 function UnitCard({
-  title,
+  name,
   level,
-  max_level,
+  section,
+  title,
+  maxLevel,
   cardState = 'disabled',
   ...restProps
 }: UnitCardProps) {
   const unitCardId = useId();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(
-      '클릭 시 해당 유닛 페이지로 이동.(상세 페이지 개발과 함께 진행 예정)'
-    );
+    void navigate(`/unit/${name}`, {
+      state: {
+        unitName: name,
+        section,
+        title,
+        level,
+        maxLevel,
+        state: cardState,
+      },
+    });
   };
 
   return (
@@ -36,20 +49,22 @@ function UnitCard({
           {cardState === 'disabled'
             ? '해당 유닛은 잠겨있습니다.'
             : cardState === 'complete'
-              ? `유닛 내용 수정하기`
-              : `유닛 진행도 ${level}/${max_level}`}
+              ? `완료된 유닛입니다! 🎉`
+              : `유닛 진행도 ${level}/${maxLevel}`}
         </p>
       </div>
       <button
         type="button"
         className="unit-card__link-button"
-        disabled={cardState === 'disabled' ? true : false}
+        disabled={
+          cardState === 'disabled' || cardState === 'complete' ? true : false
+        }
         onClick={handleClick}
       >
         {cardState === 'disabled'
           ? '잠김'
           : cardState === 'complete'
-            ? `수정`
+            ? `완료`
             : `시작`}
       </button>
     </div>

@@ -17,6 +17,7 @@ export type UserData = Tables<'user'>;
 export type HobbyData = Tables<'hobby'>;
 export type SubHobbyData = Tables<'sub_hobby'>;
 export type UnitData = Tables<'unit'>;
+export type QuestionData = Tables<'question'>;
 
 export type ChallengeData = Omit<
   Tables<'challenge'>,

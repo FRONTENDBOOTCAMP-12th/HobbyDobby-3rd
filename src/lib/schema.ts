@@ -1,9 +1,12 @@
+import { Progress } from '@/pages/unit-page';
+
 export type Json =
   | string
   | number
   | boolean
   | null
   | { [key: string]: Json | undefined }
+  | Progress
   | Json[];
 
 export interface Database {
@@ -128,6 +131,7 @@ export interface Database {
           id: number;
           is_answer_record: boolean;
           is_input_optional: boolean;
+          needs_input: boolean;
           not_question_content: string | null;
           order: number;
           parent_question: number | null;
@@ -142,6 +146,7 @@ export interface Database {
           id?: number;
           is_answer_record?: boolean;
           is_input_optional?: boolean;
+          needs_input?: boolean;
           not_question_content?: string | null;
           order: number;
           parent_question?: number | null;
@@ -156,6 +161,7 @@ export interface Database {
           id?: number;
           is_answer_record?: boolean;
           is_input_optional?: boolean;
+          needs_input?: boolean;
           not_question_content?: string | null;
           order?: number;
           parent_question?: number | null;

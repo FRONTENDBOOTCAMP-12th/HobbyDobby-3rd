@@ -1,4 +1,4 @@
-import { supabase, UserData } from './supabase-client';
+import { ChallengeData, supabase, UserData } from './supabase-client';
 
 /* -------------------------------------------------------------------------- */
 /*                                   select                                   */
@@ -169,6 +169,22 @@ export const getUserTitles = async (userId: string) => {
   return { data, error };
 };
 
+export const getQuestionByUnit = async (unit: string) => {
+  const { data, error } = await supabase
+    .from('question')
+    .select('*')
+    .eq('unit', unit)
+    .order('order', { ascending: true })
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching question:', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
@@ -202,6 +218,30 @@ export const updateUserNowChallenge = async (
     .eq('uid', userUid);
 
   return { error };
+};
+
+export const updateChallengeProgress = async (
+  id: ChallengeData['id'],
+  progress: ChallengeData['progress'],
+  nowUnit: string
+) => {
+  // 유저 챌린지 진행상황 업데이트
+  const { data, error } = await supabase
+    .from('challenge')
+    .update({ progress, now_unit: nowUnit })
+    .eq('id', id)
+    .select(
+      `id,name,created_date,completed_date,progress,
+      sub_hobby_name(hobby_name,id,info,name),
+      now_unit(id,level,name,section,sub_hobby,title)`
+    );
+
+  if (error) {
+    console.error('Error updating :', error.message);
+    throw error;
+  }
+
+  return data;
 };
 
 export const updateUserGem = async (uid: UserData['uid'], gem: number | null) =>
@@ -341,4 +381,26 @@ export const deleteUserData = async (userId: string, password: string) => {
 
   const isSuccess = error ? false : true;
   return { isSuccess, error };
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   upload                                   */
+/* -------------------------------------------------------------------------- */
+
+// 스토어에 챌린지 관련 파일 업로드 후 URL 반환
+export const uploadChallengeInputFileToStore = async (file: File) => {
+  const filePath = `/challenge_file/${Date.now()}_${file.name}`;
+
+  const { error } = await supabase.storage.from('image').upload(filePath, file);
+
+  if (error) {
+    console.error('ChallengeInput Upload to Store Error:', error.message);
+    throw error;
+  } else {
+    const { data: urlData } = supabase.storage
+      .from('image')
+      .getPublicUrl(filePath);
+
+    return urlData.publicUrl;
+  }
 };

@@ -2,7 +2,9 @@ import './upload-file.css';
 import { useRef, useState } from 'react';
 
 interface UploadFileProps {
+  key: string;
   name: string;
+  setNextAnswers: (value: File, type: string) => void;
 }
 
 interface FilePreview {
@@ -10,7 +12,7 @@ interface FilePreview {
   preview: string;
 }
 
-function UploadFile({ name }: UploadFileProps) {
+function UploadFile({ key, name, setNextAnswers }: UploadFileProps) {
   const [file, setFile] = useState<FilePreview | null>(null);
   const inputRef = useRef(null);
 
@@ -24,6 +26,7 @@ function UploadFile({ name }: UploadFileProps) {
       };
 
       setFile(nextFile);
+      setNextAnswers(nextFile.file, 'file');
     }
   };
 
@@ -34,7 +37,7 @@ function UploadFile({ name }: UploadFileProps) {
   };
 
   return (
-    <div className="upload-file">
+    <div key={key} className="upload-file">
       {file ? (
         <img src={file?.preview} alt="preview" />
       ) : (

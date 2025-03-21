@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
+import Spinner from '@/components/Spinner';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -20,7 +21,7 @@ const LeaderBoardDetailPage = lazy(() => import('@/pages/leader-board-detail'));
 const LeaderBoardRankingPage = lazy(
   () => import('@/pages/leader-board-ranking')
 );
-// const UnitPage = lazy(() => import('@/pages/unit-page'));
+const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 const StorePage = lazy(() => import('@/pages/store-page'));
@@ -31,7 +32,7 @@ import MypageEditNickname from './pages/mypage-edit-nickname';
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
-      <Suspense fallback={<div role="status">페이지 로딩 중...</div>}>
+      <Suspense fallback={<Spinner />}>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -63,6 +64,7 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
+            <Route path="/unit/:unit_name" element={<UnitPage />} />
 
             <Route path="/mypage-edit-title" element={<MypageEditTitle />} />
             <Route
