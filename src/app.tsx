@@ -21,7 +21,7 @@ const LeaderBoardDetailPage = lazy(() => import('@/pages/leader-board-detail'));
 const LeaderBoardRankingPage = lazy(
   () => import('@/pages/leader-board-ranking')
 );
-// const UnitPage = lazy(() => import('@/pages/unit-page'));
+const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 const StorePage = lazy(() => import('@/pages/store-page'));
@@ -61,7 +61,7 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
-            {/* <Route path="/unit-page" element={<UnitPage />} /> */}
+            <Route path="/unit/:unit_name" element={<UnitPage />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

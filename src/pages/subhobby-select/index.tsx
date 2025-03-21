@@ -9,7 +9,7 @@ import Title from '@/layouts/title';
 import useFetchData from '@/hooks/useFetchData';
 import { useCallback } from 'react';
 
-interface locationState {
+interface LocationState {
   hobbyName: string;
 }
 
@@ -17,7 +17,7 @@ function SubHobbySelectPage() {
   const params = useParams();
   const selectedHobby = params.hobby_name;
   const location = useLocation();
-  const locationState = { ...(location.state as locationState) };
+  const locationState = { ...(location.state as LocationState) };
   const hobbyName = locationState.hobbyName;
 
   const fetchSubHobby = useCallback(() => getSubHobby(hobbyName), [hobbyName]);

@@ -25,12 +25,12 @@
   border-radius: 1rem;
 
   p,
-  h2 {
+  h1 {
     margin: 0;
     padding: 0;
   }
 
-  h2 {
+  h1 {
     font-size: var(--font-size-l);
     font-weight: 700;
   }

@@ -30,8 +30,14 @@
   gap: 1rem;
 
   label {
+    position: relative;
+
     input {
-      display: none;
+      box-sizing: border-box;
+      padding-block-start: 1px;
+      padding-inline-start: 4px;
+      width: 6.25rem;
+      height: 1.6875rem;
     }
 
     span {
@@ -45,6 +51,10 @@
       font-size: 14px;
       font-weight: bold;
       text-align: center;
+
+      position: absolute;
+      top: 0;
+      left: 0;
 
       cursor: pointer;
     }
