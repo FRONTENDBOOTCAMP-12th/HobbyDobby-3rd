@@ -67,6 +67,9 @@ function LoginForm() {
             // 필요한 데이터 저장(zustand Store들에 저장)
             login({
               ...userData,
+              item: userData.item as
+                | (string & { name: string; image: string })
+                | null,
               user_hobbies: userHobbies.map(
                 (item) => item?.name as string | null
               ),

@@ -82,6 +82,7 @@ const AchievementCardList = ({
     if (storedAchievements.length === 0 && completedChallenges > 0) {
       void fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     storedAchievements,
     completedChallenges,

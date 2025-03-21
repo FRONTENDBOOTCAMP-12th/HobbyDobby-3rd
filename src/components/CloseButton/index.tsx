@@ -5,6 +5,7 @@ import { useFilteredClassName } from '@/hooks/useFilteredClassName';
 interface CloseButtonProps {
   size?: number;
   position?: string;
+  strokeWidth?: number;
   fill?: string;
   className?: string;
   onClick: () => void;
@@ -14,6 +15,7 @@ function CloseButton({
   size = 18,
   fill = 'var(--quatenary-color)',
   className = '',
+  strokeWidth = 2,
   onClick,
 }: CloseButtonProps) {
   const filteredClassName = useFilteredClassName(clsx('close-btn', className));
@@ -30,7 +32,7 @@ function CloseButton({
         <path
           d="M17 1L1 17M1 1L17 17"
           stroke={fill}
-          strokeWidth="2"
+          strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeLinejoin="round"
         />

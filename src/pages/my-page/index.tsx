@@ -8,7 +8,7 @@ import { useUserStore } from '@/stores/user';
 import { getDate } from '@/utils/getDate';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { useEffect, useState } from 'react';
-import MyPageEditProfile from '../my-page-edit-profile';
+// import MyPageEditProfile from '../my-page-edit-profile';
 import './style.css';
 import { useUserAchievementStore } from '@/stores/user-achievement';
 
@@ -22,7 +22,7 @@ function MyPage() {
     uid: userId,
   } = useUserStore((state) => state);
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
 
   const userHobbyIcon = getHobbyIcon(userHobby);
 
@@ -88,6 +88,8 @@ function MyPage() {
     };
   }, [userId]);
 
+  console.log(isEditing);
+
   return (
     <div className="my-page drag-prevent">
       <Title>마이페이지</Title>
@@ -126,9 +128,9 @@ function MyPage() {
           </article>
         </section>
       </main>
-      {isEditing && (
+      {/* {isEditing && (
         <MyPageEditProfile isEditing={isEditing} setIsEditing={setIsEditing} />
-      )}
+      )} */}
     </div>
   );
 }

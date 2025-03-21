@@ -4,6 +4,7 @@ import { combine, devtools, persist } from 'zustand/middleware';
 
 type User = Omit<UserData, 'created_date' | 'now_challenge'> & {
   user_hobbies: (string | null)[];
+  item: { name: string; image: string } | null;
   now_challenge: ChallengeData | null;
   created_date: string | null;
 };

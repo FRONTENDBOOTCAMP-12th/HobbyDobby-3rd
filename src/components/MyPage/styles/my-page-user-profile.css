@@ -2,7 +2,7 @@
 .profile-header {
   background-color: var(--secondary-color);
   inline-size: 100%;
-  block-size: 9rem;
+  block-size: 160px;
   position: relative;
 
   flex-shrink: 0;
@@ -38,10 +38,10 @@
   }
 }
 
-.profile__image-frame {
+.profile-img__frame {
   background-color: #d9d9d9;
-  inline-size: 6.5rem;
-  block-size: 6.5rem;
+  inline-size: 7.5rem;
+  block-size: 7.5rem;
   border-radius: 50%;
 
   display: flex;
@@ -51,7 +51,7 @@
   position: absolute;
   overflow: hidden;
 
-  top: 4rem;
+  bottom: -25px;
   left: 50%;
   transform: translate(-50%, 0);
 

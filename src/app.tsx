@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
+import MyPageEditProfile from './pages/my-page-edit-profile';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -54,6 +55,7 @@ function App() {
               <Route path="/mypage" element={<MyPage />} />
             </Route>
             <Route path="/unit-page" element={<UnitPage />} />
+            <Route path="/edit-profile" element={<MyPageEditProfile />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
