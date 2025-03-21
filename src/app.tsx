@@ -43,7 +43,6 @@ function App() {
             <Route path="/challenge-start" element={<MainPageStart />} />
             <Route path="/challenge-end" element={<ChallengeEndPage />} />
             <Route path="/withdraw" element={<WithdrawPage />} />
-            <Route path="/Spinner" element={<Spinner />} />
 
             <Route element={<MainLayout />}>
               <Route path="/home">
