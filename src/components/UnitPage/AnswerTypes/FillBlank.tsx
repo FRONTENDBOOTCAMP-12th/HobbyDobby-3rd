@@ -1,16 +1,54 @@
 import { splitText } from '@/utils/splitBlankText';
 import './fill-blank.css';
+import { useEffect, useState } from 'react';
+import { Answers } from '../UnitContent';
+import { debounce } from '@/utils/debounce';
 
 interface FillBlankProps {
+  key: string;
   contents: string[];
   questionNumber: number | string;
+  setAnswers: React.Dispatch<React.SetStateAction<Answers>>;
 }
 
-function FillBlank({ contents, questionNumber }: FillBlankProps) {
+function FillBlank({
+  key,
+  contents,
+  questionNumber,
+  setAnswers,
+}: FillBlankProps) {
+  const [inputs, setInputs] = useState<string[]>(
+    Array(contents.length).fill('')
+  );
   const splitedContents = contents.map((item) => splitText(item));
 
+  // 연속된 빈칸 채우기의 경우, 이전의 배열이 영향을 주기 때문에 contents가 바뀔 시 아예 초기화
+  useEffect(() => {
+    setInputs(Array(contents.length).fill(''));
+  }, [contents]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const nextInputs = [...inputs];
+    nextInputs[index] = e.target.value;
+    setInputs(nextInputs);
+
+    const nextAnswers: Answers = {
+      answeredType: 'fill',
+      answer_values: [...nextInputs],
+      answer: contents.map((text, index) =>
+        text.replace('ㅁ', nextInputs[index])
+      ),
+    };
+    setAnswers(nextAnswers);
+  };
+
+  const debouncedInputChange = debounce(handleInputChange, 300);
+
   return (
-    <div className="fill-blank">
+    <div className="fill-blank" key={key}>
       {splitedContents.map((items, itemsIndex) => (
         <div
           key={`question-${itemsIndex}`}
@@ -31,9 +69,9 @@ function FillBlank({ contents, questionNumber }: FillBlankProps) {
                   </label>
                   <input
                     type="text"
-                    name=""
                     id={`empty-${questionNumber}-${itemsIndex}`}
                     placeholder="빈칸을 채워주세요."
+                    onChange={(e) => debouncedInputChange(e, itemsIndex)}
                   />
                 </div>
               );
