@@ -51,7 +51,7 @@ function StoreItem() {
               className="store-item__image"
             />
             <br></br>
-            <div className="store-item__gemp-rice">
+            <div className="store-item__gem-price">
               <img src="/assets/gem.svg" alt="" className="store-item__gem" />
               <span className="store-item__price"> {item.price}</span>
             </div>

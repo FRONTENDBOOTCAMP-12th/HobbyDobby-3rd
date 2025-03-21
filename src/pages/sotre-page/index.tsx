@@ -5,7 +5,7 @@ import BottomNavbar from '@/components/BottomNavbar';
 
 function StorePage() {
   return (
-    <main className="storepage">
+    <main className="store-page">
       <h1 className="sr-only">Hobby Dobby</h1>
       <HobbyCard />
       <StoreItem />
