@@ -1,6 +1,10 @@
 .edit-nickname__form {
+  min-width: 22.5rem;
+  width: 100%;
+
   .form-input__wrapper {
     justify-content: center;
+    gap: 1.875rem;
     padding-top: 30px;
   }
 

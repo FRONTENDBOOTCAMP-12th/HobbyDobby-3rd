@@ -11,7 +11,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-inline: 20px;
+  padding-inline: 1.25rem;
 
   /* 라디오 버튼 커스텀 */
   input[type='radio'] {

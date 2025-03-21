@@ -160,6 +160,15 @@ export const getUserGem = async (userId: string) => {
   return data?.[0].gem;
 };
 
+export const getUserTitles = async (userId: string) => {
+  const { data, error } = await supabase
+    .from('user_having_titles')
+    .select('id,title')
+    .eq('user_id', userId);
+
+  return { data, error };
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
@@ -251,8 +260,8 @@ export const fetchItems = async (): Promise<Item[]> => {
     return [];
   }
   return data as Item[];
-}
-  
+};
+
 export const insertUserAchievement = async (
   // 유저 업적 데이터를 저장
   userId: string,
