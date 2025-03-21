@@ -49,20 +49,22 @@ function UnitCard({
           {cardState === 'disabled'
             ? '해당 유닛은 잠겨있습니다.'
             : cardState === 'complete'
-              ? `유닛 내용 수정하기`
+              ? `완료된 유닛입니다! 🎉`
               : `유닛 진행도 ${level}/${maxLevel}`}
         </p>
       </div>
       <button
         type="button"
         className="unit-card__link-button"
-        disabled={cardState === 'disabled' ? true : false}
+        disabled={
+          cardState === 'disabled' || cardState === 'complete' ? true : false
+        }
         onClick={handleClick}
       >
         {cardState === 'disabled'
           ? '잠김'
           : cardState === 'complete'
-            ? `수정`
+            ? `완료`
             : `시작`}
       </button>
     </div>
