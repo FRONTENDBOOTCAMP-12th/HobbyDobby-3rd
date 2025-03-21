@@ -12,6 +12,8 @@ const LoginPage = lazy(() => import('@/pages/login'));
 const LandingPage = lazy(() => import('@/pages/landing-page'));
 const HobbySelectPage = lazy(() => import('@/pages/hobby-select'));
 const MyPage = lazy(() => import('@/pages/my-page'));
+const MypageEditTitle = lazy(() => import('@/pages/mypage-edit-title'));
+const MypageEditNickname = lazy(() => import('@/pages/mypage-edit-nickname'));
 const WithdrawPage = lazy(() => import('@/pages/withdraw'));
 const RegisterPage = lazy(() => import('@/pages/register'));
 const LeaderBoardCompletedPage = lazy(
@@ -25,9 +27,6 @@ const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 const StorePage = lazy(() => import('@/pages/store-page'));
-
-import MypageEditTitle from './pages/mypage-edit-title';
-import MypageEditNickname from './pages/mypage-edit-nickname';
 
 function App() {
   return (
@@ -65,13 +64,11 @@ function App() {
               <Route path="/mypage" element={<MyPage />} />
             </Route>
             <Route path="/unit/:unit_name" element={<UnitPage />} />
-
             <Route path="/mypage-edit-title" element={<MypageEditTitle />} />
             <Route
               path="/mypage-edit-nickname"
               element={<MypageEditNickname />}
             />
-            {/* <Route path="/unit-page" element={<UnitPage />} /> */}
           </Routes>
         </BrowserRouter>
       </Suspense>
