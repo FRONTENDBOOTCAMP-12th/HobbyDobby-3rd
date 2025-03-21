@@ -23,6 +23,7 @@ const LeaderBoardRankingPage = lazy(
 // const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
+const StorePage = lazy(() => import('@/pages/store-page'));
 
 import MypageEditTitle from './pages/mypage-edit-title';
 import MypageEditNickname from './pages/mypage-edit-nickname';
@@ -48,6 +49,9 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/home">
                 <Route index element={<MainPage />} />
+              </Route>
+              <Route path="/storepage">
+                <Route index element={<StorePage />} />
               </Route>
               <Route path="/leader-board">
                 <Route index element={<LeaderBoardCompletedPage />} />
