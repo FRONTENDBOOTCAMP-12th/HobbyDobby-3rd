@@ -1,0 +1,23 @@
+.spinner__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner__activist {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.25rem solid var(--content-gray);
+  border-top: 0.25rem solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
