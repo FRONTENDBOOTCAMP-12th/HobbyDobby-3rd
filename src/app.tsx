@@ -24,6 +24,9 @@ const LeaderBoardRankingPage = lazy(
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
 
+import MypageEditTitle from './pages/mypage-edit-title';
+import MypageEditNickname from './pages/mypage-edit-nickname';
+
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
@@ -56,6 +59,12 @@ function App() {
               </Route>
               <Route path="/mypage" element={<MyPage />} />
             </Route>
+
+            <Route path="/mypage-edit-title" element={<MypageEditTitle />} />
+            <Route
+              path="/mypage-edit-nickname"
+              element={<MypageEditNickname />}
+            />
             {/* <Route path="/unit-page" element={<UnitPage />} /> */}
           </Routes>
         </BrowserRouter>

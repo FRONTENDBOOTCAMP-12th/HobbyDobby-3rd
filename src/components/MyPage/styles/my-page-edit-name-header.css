@@ -1,0 +1,12 @@
+.edit-name-header {
+  display: flex;
+  min-width: 22.5rem;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+
+  button {
+    border: 0;
+    background-color: transparent;
+  }
+}
