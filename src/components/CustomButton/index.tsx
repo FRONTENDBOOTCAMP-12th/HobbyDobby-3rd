@@ -8,6 +8,7 @@ function CustomButton({
   bgColor = 'var(--primary-color)',
   color = 'var(--text-black)',
   className = '',
+  disabled = false,
   onClick,
 }: ButtonUIProps) {
   const filteredClassName = clsx('button-ui', 'square-button', className);
@@ -21,6 +22,7 @@ function CustomButton({
         color: color,
       }}
       onClick={onClick}
+      disabled={disabled}
     >
       {buttonText}
     </button>
