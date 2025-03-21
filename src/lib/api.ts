@@ -251,8 +251,8 @@ export const fetchItems = async (): Promise<Item[]> => {
     return [];
   }
   return data as Item[];
-}
-  
+};
+
 export const insertUserAchievement = async (
   // 유저 업적 데이터를 저장
   userId: string,
