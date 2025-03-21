@@ -160,6 +160,15 @@ export const getUserGem = async (userId: string) => {
   return data?.[0].gem;
 };
 
+export const getUserTitles = async (userId: string) => {
+  const { data, error } = await supabase
+    .from('user_having_titles')
+    .select('id,title')
+    .eq('user_id', userId);
+
+  return { data, error };
+};
+
 export const getQuestionByUnit = async (unit: string) => {
   const { data, error } = await supabase
     .from('question')

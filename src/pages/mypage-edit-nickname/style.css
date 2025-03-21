@@ -1,0 +1,42 @@
+.edit-nickname__form {
+  min-width: 22.5rem;
+  width: 100%;
+
+  .form-input__wrapper {
+    justify-content: center;
+    gap: 1.875rem;
+    padding-top: 30px;
+  }
+
+  label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .form-input__button {
+    width: 6.25rem;
+    height: 2.1875rem;
+
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 10px;
+
+    padding-inline: 0.9375rem;
+
+    &:hover,
+    &:focus {
+      background-color: var(--lighten-secondary-color);
+    }
+  }
+
+  .form-input__alert {
+    margin-left: 20px;
+  }
+}
