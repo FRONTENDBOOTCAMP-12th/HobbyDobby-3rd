@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import PrintError from '@/components/ErrorBoundary';
 import MainLayout from '@/layouts/main-layout';
+import Spinner from '@/components/Spinner';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -28,7 +29,7 @@ const StorePage = lazy(() => import('@/pages/store-page'));
 function App() {
   return (
     <ErrorBoundary FallbackComponent={PrintError}>
-      <Suspense fallback={<div role="status">페이지 로딩 중...</div>}>
+      <Suspense fallback={<Spinner />}>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -42,6 +43,7 @@ function App() {
             <Route path="/challenge-start" element={<MainPageStart />} />
             <Route path="/challenge-end" element={<ChallengeEndPage />} />
             <Route path="/withdraw" element={<WithdrawPage />} />
+            <Route path="/Spinner" element={<Spinner />} />
 
             <Route element={<MainLayout />}>
               <Route path="/home">
