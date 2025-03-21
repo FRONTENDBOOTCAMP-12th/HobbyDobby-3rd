@@ -23,6 +23,7 @@ const LeaderBoardRankingPage = lazy(
 // const UnitPage = lazy(() => import('@/pages/unit-page'));
 const MainPage = lazy(() => import('@/pages/main-page'));
 const MainPageStart = lazy(() => import('@/pages/main-page-start'));
+const StorePage = lazy(() => import('@/pages/store-page'));
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/home">
                 <Route index element={<MainPage />} />
+              </Route>
+              <Route path="/storepage">
+                <Route index element={<StorePage />} />
               </Route>
               <Route path="/leader-board">
                 <Route index element={<LeaderBoardCompletedPage />} />
