@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/hobby-dobby/*"
-  to = "/$1"
-  status = 200
