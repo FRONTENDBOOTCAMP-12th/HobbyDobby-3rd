@@ -61,6 +61,12 @@ export const useUserStore = create(
               undefined,
               'updateNowHobby'
             ),
+          updateGem: (gem: number) =>
+            set({
+              gem: gem,
+            }),
+          endNowChallenge: () =>
+            set({ now_challenge: null }, undefined, 'endNowChallenge'),
         })
       )
     ),

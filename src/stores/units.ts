@@ -19,6 +19,7 @@ export const useUnitsStore = create(
         },
         (set) => ({
           setSections: (units: Units) => set({ ...units }),
+          endChallenge: () => set({ ...initialUnits }),
         })
       )
     ),

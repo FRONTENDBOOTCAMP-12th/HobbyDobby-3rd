@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 const viteConfig = defineConfig((env) => {
   const isDevMode = env.mode.includes('development');
   return {
-    base: isDevMode ? '/' : '/hobby-dobby',
+    // base: isDevMode ? '/' : '/hobby-dobby/',
+    base: isDevMode ? '/' : '/',
     build: {
       rollupOptions: {
         output: {
@@ -29,6 +30,7 @@ const viteConfig = defineConfig((env) => {
         jsxRuntime: 'automatic',
       }),
     ],
+    publicDir: 'public',
     server: {
       host: 'localhost',
       port: 3000,

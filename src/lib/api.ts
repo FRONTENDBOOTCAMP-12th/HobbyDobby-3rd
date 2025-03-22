@@ -185,6 +185,38 @@ export const getQuestionByUnit = async (unit: string) => {
   return data;
 };
 
+export interface Item {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+}
+
+export const fetchItems = async (): Promise<Item[]> => {
+  const { data, error } = await supabase.from('item').select('*');
+
+  if (error) {
+    console.error('아이템 불러오기 오류:', error);
+    throw error;
+  }
+  if (!data) {
+    return [];
+  }
+  return data as Item[];
+};
+
+export const getUserHavingItems = async (userId: string) => {
+  const { data } = await supabase
+    .from('user_having_items')
+    .select('item')
+    .eq('user_id', userId);
+
+  const ownedItems = data ? data.map((item) => item.item) : [];
+
+  return ownedItems;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
@@ -244,9 +276,68 @@ export const updateChallengeProgress = async (
   return data;
 };
 
+// 챌린지 데이터를 완료화 + 완료 테이블에 올리기 + user.now_challenge 삭제
+export const endChallenge = async (challengeId: string, uid: string) => {
+  const { error: updateError } = await supabase
+    .from('challenge')
+    .update({ completed_date: new Date().toISOString() })
+    .eq('id', challengeId);
+
+  if (updateError) {
+    console.error('Error updating :', updateError.message);
+    throw updateError;
+  }
+
+  const { error: insertError } = await supabase
+    .from('user_completed_challenges')
+    .insert({
+      challenge_id: challengeId,
+      user_id: uid,
+    });
+
+  if (insertError) {
+    console.error('Error inserting :', insertError.message);
+    throw insertError;
+  }
+
+  const { data, error } = await supabase
+    .from('user')
+    .update({ now_challenge: null })
+    .eq('uid', uid)
+    .select('*');
+
+  if (error) {
+    console.error('Error updating user data :', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 export const updateUserGem = async (uid: UserData['uid'], gem: number | null) =>
   // 유저 보석 데이터 업데이트
   await supabase.from('user').update({ gem }).eq('uid', uid).select();
+
+export const updateUserGemAtStore = async (
+  userId: string,
+  userGem: number,
+  itemPrice: number
+) => {
+  const { data, error } = await supabase
+    .from('user')
+    .update({
+      gem: userGem ? userGem - itemPrice : null,
+    })
+    .eq('uid', userId)
+    .select('gem');
+
+  if (error) {
+    console.log(error);
+  }
+
+  const gem = data?.[0].gem;
+  return gem;
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                   insert                                   */
@@ -279,27 +370,6 @@ export const insertChallenge = async (
       )`);
 
   return { data, error };
-};
-
-export interface Item {
-  id: string;
-  name: string;
-  description?: string;
-  price: number;
-  image: string;
-}
-
-export const fetchItems = async (): Promise<Item[]> => {
-  const { data, error } = await supabase.from('item').select('*');
-
-  if (error) {
-    console.error('아이템 불러오기 오류:', error);
-    throw error;
-  }
-  if (!data) {
-    return [];
-  }
-  return data as Item[];
 };
 
 export const insertUserAchievement = async (
@@ -338,6 +408,22 @@ export const insertUserTitle = async (userId: string, titleName: string) => {
   }
 
   return { data };
+};
+
+export const updateUserHavingItem = async (
+  userId: string,
+  itemName: string
+) => {
+  const { error } = await supabase.from('user_having_items').insert([
+    {
+      user_id: userId,
+      item: itemName,
+    },
+  ]);
+
+  if (error) {
+    console.log(error);
+  }
 };
 
 /* -------------------------------------------------------------------------- */

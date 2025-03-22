@@ -2,16 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 360px;
-  height: 586px;
   text-align: center;
+  margin-block: auto;
 }
 
 .challenge-end__bookmark {
   width: 110px;
   height: 110px;
-  margin-top: 110px;
-  margin-left: 110px;
 }
 
 .challenge-end__challeng-name {
@@ -20,6 +19,7 @@
   font-weight: 700;
 }
 
+/* 주석 */
 .challenge-end__the-end {
   color: var(--black);
   margin-top: -5%;

@@ -1,14 +1,49 @@
+import ChallengeExit from '@/components/MainpageEnd/ChallengeExit';
 import './style.css';
-import ChallengeFinsh from '@/components/MainpageEnd/ChallengeFinish';
+import ChallengeFinish from '@/components/MainpageEnd/ChallengeFinish';
+import ChallengeReview from '@/components/MainpageEnd/ChallengeReview';
+import ChallengeSave from '@/components/MainpageEnd/ChallengeSave';
+import { useState } from 'react';
+import { useUserStore } from '@/stores/user';
+import { endChallenge } from '@/lib/api';
+import { useUnitsStore } from '@/stores/units';
 
 function MainPageEnd() {
+  const [sequence, setSequence] = useState(0);
+  const uid = useUserStore((user) => user.uid);
+  const challenge = useUserStore((user) => user.now_challenge);
+  const setUserStoreNowChallengeNull = useUserStore(
+    (user) => user.endNowChallenge
+  );
+  const setUnitsEmpty = useUnitsStore((unit) => unit.endChallenge);
+
+  const saveChallenge = async () => {
+    if (challenge) {
+      await endChallenge(challenge?.id, uid);
+      setUserStoreNowChallengeNull();
+      setUnitsEmpty();
+      setSequence(3);
+    }
+  };
+
+  // 0, 1, 2, 3의 단계로 진행(finish -> review -> save -> exit)
+  const nowContent = () => {
+    switch (sequence) {
+      case 0:
+        return <ChallengeFinish onClick={() => setSequence(1)} />;
+      case 1:
+        return <ChallengeReview onClick={() => setSequence(2)} />;
+      case 2:
+        return <ChallengeSave onClick={saveChallenge} />;
+      case 3:
+        return <ChallengeExit />;
+    }
+  };
+
   return (
     <main className="main-page-end">
       <h1 className="sr-only">Hobby Dobby</h1>
-      <ChallengeFinsh />
-      {/* 컴포넌트의 순서는 finish -> review -> save -> exit 의 순서로 진행*/}
-      {/* review 컴포넌트에서 하단에 저장하기 버튼을 누르면 save 컴포넌트로 이동 */}
-      {/* save 컴포넌트에서 review 페이지창에서 입력한 내용이 db에 업로드가 완료되면 exit 컴포넌트로 이동 */}
+      {nowContent()}
     </main>
   );
 }
