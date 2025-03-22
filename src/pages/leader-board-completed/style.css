@@ -12,4 +12,5 @@
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   gap: 10px;
+  padding-top: 3.75rem;
 }
