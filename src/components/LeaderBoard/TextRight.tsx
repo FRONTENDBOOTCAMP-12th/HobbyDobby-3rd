@@ -13,18 +13,21 @@ function LeaderBoardTextRight({
   return (
     <div className="leader-board-detail__content--right">
       <div className="leader-board-detail__textbox--right">
-        {Array.isArray(text) ? (
-          // 답변 배열의 각 요소를 순회하여 출력
-          text.map((item, index) => (
-            <p key={index} className="leader-board-detail__text">
-              {typeof item === 'string' ? item : JSON.stringify(item)}
-            </p>
-          ))
-        ) : (
-          <p className="leader-board-detail__text">
-            {typeof text === 'string' ? text : JSON.stringify(text)}
-          </p>
-        )}
+        {Array.isArray(text) &&
+          text.map((item, index) =>
+            typeof item === 'string' && item.includes('https') ? (
+              <img
+                key={index}
+                src={item}
+                alt=""
+                className="leader-board-detail__text-img"
+              />
+            ) : (
+              <p key={index} className="leader-board-detail__text">
+                {typeof item === 'string' ? item : JSON.stringify(item)}
+              </p>
+            )
+          )}
       </div>
       {userImage ? (
         <img
