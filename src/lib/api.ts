@@ -185,6 +185,38 @@ export const getQuestionByUnit = async (unit: string) => {
   return data;
 };
 
+export interface Item {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+}
+
+export const fetchItems = async (): Promise<Item[]> => {
+  const { data, error } = await supabase.from('item').select('*');
+
+  if (error) {
+    console.error('아이템 불러오기 오류:', error);
+    throw error;
+  }
+  if (!data) {
+    return [];
+  }
+  return data as Item[];
+};
+
+export const getUserHavingItems = async (userId: string) => {
+  const { data } = await supabase
+    .from('user_having_items')
+    .select('item')
+    .eq('user_id', userId);
+
+  const ownedItems = data ? data.map((item) => item.item) : [];
+
+  return ownedItems;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
@@ -248,6 +280,27 @@ export const updateUserGem = async (uid: UserData['uid'], gem: number | null) =>
   // 유저 보석 데이터 업데이트
   await supabase.from('user').update({ gem }).eq('uid', uid).select();
 
+export const updateUserGemAtStore = async (
+  userId: string,
+  userGem: number,
+  itemPrice: number
+) => {
+  const { data, error } = await supabase
+    .from('user')
+    .update({
+      gem: userGem ? userGem - itemPrice : null,
+    })
+    .eq('uid', userId)
+    .select('gem');
+
+  if (error) {
+    console.log(error);
+  }
+
+  const gem = data?.[0].gem;
+  return gem;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   insert                                   */
 /* -------------------------------------------------------------------------- */
@@ -279,27 +332,6 @@ export const insertChallenge = async (
       )`);
 
   return { data, error };
-};
-
-export interface Item {
-  id: string;
-  name: string;
-  description?: string;
-  price: number;
-  image: string;
-}
-
-export const fetchItems = async (): Promise<Item[]> => {
-  const { data, error } = await supabase.from('item').select('*');
-
-  if (error) {
-    console.error('아이템 불러오기 오류:', error);
-    throw error;
-  }
-  if (!data) {
-    return [];
-  }
-  return data as Item[];
 };
 
 export const insertUserAchievement = async (
@@ -338,6 +370,22 @@ export const insertUserTitle = async (userId: string, titleName: string) => {
   }
 
   return { data };
+};
+
+export const updateUserHavingItem = async (
+  userId: string,
+  itemName: string
+) => {
+  const { error } = await supabase.from('user_having_items').insert([
+    {
+      user_id: userId,
+      item: itemName,
+    },
+  ]);
+
+  if (error) {
+    console.log(error);
+  }
 };
 
 /* -------------------------------------------------------------------------- */

@@ -3,3 +3,15 @@
   flex-direction: column;
   align-items: center;
 }
+
+.store-item__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 22.5rem;
+  height: 24.625rem;
+  margin-top: 3.125rem;
+  gap: 1.125rem;
+  padding-inline: 10px;
+}

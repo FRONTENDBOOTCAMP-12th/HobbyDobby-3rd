@@ -61,6 +61,10 @@ export const useUserStore = create(
               undefined,
               'updateNowHobby'
             ),
+          updateGem: (gem: number) =>
+            set({
+              gem: gem,
+            }),
         })
       )
     ),
