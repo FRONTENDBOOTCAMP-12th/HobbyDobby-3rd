@@ -61,6 +61,8 @@ export const useUserStore = create(
               undefined,
               'updateNowHobby'
             ),
+          endNowChallenge: () =>
+            set({ now_challenge: null }, undefined, 'endNowChallenge'),
         })
       )
     ),

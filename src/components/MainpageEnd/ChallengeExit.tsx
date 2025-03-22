@@ -1,11 +1,20 @@
 import './challenge-exit.css';
+import { useNavigate } from 'react-router';
+import CustomButton from '@/components/CustomButton';
 
 function ChallengeExit() {
+  const navigate = useNavigate();
+
   return (
-    <main className="challenge-exit">
-      <h1 className="sr-only">Hobby Dobby</h1>
-      <p className="challenge-exit__savesucceed">저장 완료 !</p>
-    </main>
+    <div className="challenge-exit">
+      <p className="challenge-exit__save-succeed">저장 완료 !</p>
+      <CustomButton
+        type="button"
+        buttonText="메인으로 돌아가기"
+        bgColor="var(--secondary-color)"
+        onClick={() => void navigate('/home')}
+      />
+    </div>
   );
 }
 

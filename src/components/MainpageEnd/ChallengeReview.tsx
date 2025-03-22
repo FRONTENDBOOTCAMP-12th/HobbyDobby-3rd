@@ -1,29 +1,50 @@
+import { useUserStore } from '@/stores/user';
 import './challenge-review.css';
+import LiteratureType from './ChallengeTypes/Literature';
+import { getDate, getDiffDate } from '@/utils/getDate';
+import CustomButton from '@/components/CustomButton';
 
-function ChallengeReview() {
+interface ChallengeReviewProps {
+  onClick: () => void;
+}
+
+function ChallengeReview({ onClick }: ChallengeReviewProps) {
+  const challenge = useUserStore((user) => user.now_challenge);
+
+  const diffInDays = getDiffDate(challenge?.created_date ?? Date.now());
+
   return (
-    <main className="challenge-review">
-      <h1 className="sr-only">Hobby Dobby</h1>
-      <div className="challenge-review__hobbytitle">
-        <p className="challenge-review__hobbytotalday">총 24일</p>
-        <p className="challenge-review__hobbyname">25년 첫 독서 챌린지</p>
-        <div className="challenge-review__hobbyinfo">
-          <p>독서 : 문학</p>
-          <p>책 제목 : 천 개의 파랑</p>
-          <p>작가 : 천선란</p>
-        </div>
+    <div className="challenge-review">
+      <div className="challenge-review__hobby-title">
+        <p className="challenge-review__hobby-total-day">
+          총 {diffInDays + 1}일
+        </p>
+        <p className="challenge-review__hobby-name">{challenge?.name}</p>
       </div>
       <div className="challenge-review__hobby-start-end">
-        <p className="challenge-review__hobbylog">Challenge Log</p>
-        <p className="challenge-review__hobbyday">2025년 1월 25일</p>
-        <p className="challenge-review__hobbyment">챌린지를 시작했어요.</p>
-        <p className="challenge-review__hobbyday">2025년 2월 18일</p>
-        <p className="challenge-review__hobbyment">챌린지를 완주했어요.</p>
+        <p className="challenge-review__hobby-log">Challenge Log</p>
+        <div className="challenge-review__hobby-day-wrapper">
+          <p className="challenge-review__hobby-ment">챌린지 시작 날짜</p>
+          <p className="challenge-review__hobby-day">
+            {getDate(challenge?.created_date ?? Date.now())}
+          </p>
+        </div>
+        <div className="challenge-review__hobby-day-wrapper">
+          <p className="challenge-review__hobby-ment">챌린지 완주 날짜</p>
+          <p className="challenge-review__hobby-day">{getDate(Date.now())}</p>
+        </div>
       </div>
-      <button type="button" className="challenge-review__save">
-        저장
-      </button>
-    </main>
+      {/* 현재는 시나리오 데이터가 독서-문학밖에 없기 때문에, 확인하지 않고 취미가 독서-문학인 경우의 챌린지 리뷰 데이터를 렌더링*/}
+      {/* 챌린지의 취미 정보를 확인 후, 취미 종류별로 챌린지 리뷰 데이터를 다르게 렌더링*/}
+      <LiteratureType />
+      <CustomButton
+        type="button"
+        className="challenge-review__save"
+        bgColor="var(--secondary-color)"
+        onClick={onClick}
+        buttonText="다음으로"
+      />
+    </div>
   );
 }
 

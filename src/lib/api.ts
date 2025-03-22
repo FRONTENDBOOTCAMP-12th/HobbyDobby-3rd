@@ -235,6 +235,44 @@ export const updateChallengeProgress = async (
   return data;
 };
 
+// 챌린지 데이터를 완료화 + 완료 테이블에 올리기 + user.now_challenge 삭제
+export const endChallenge = async (challengeId: string, uid: string) => {
+  const { error: updateError } = await supabase
+    .from('challenge')
+    .update({ completed_date: new Date().toISOString() })
+    .eq('id', challengeId);
+
+  if (updateError) {
+    console.error('Error updating :', updateError.message);
+    throw updateError;
+  }
+
+  const { error: insertError } = await supabase
+    .from('user_completed_challenges')
+    .insert({
+      challenge_id: challengeId,
+      user_id: uid,
+    });
+
+  if (insertError) {
+    console.error('Error inserting :', insertError.message);
+    throw insertError;
+  }
+
+  const { data, error } = await supabase
+    .from('user')
+    .update({ now_challenge: null })
+    .eq('uid', uid)
+    .select('*');
+
+  if (error) {
+    console.error('Error updating user data :', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 export const updateUserGem = async (uid: UserData['uid'], gem: number | null) =>
   // 유저 보석 데이터 업데이트
   await supabase.from('user').update({ gem }).eq('uid', uid).select();
