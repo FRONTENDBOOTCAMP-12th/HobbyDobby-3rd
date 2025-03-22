@@ -7,10 +7,22 @@ function LandingPage() {
       <header>
         <h1 className="sr-only">Hobby Dobby</h1>
         <figure>
-          <img src="/assets/logo.svg" alt="" className="landing__logo" />
+          <img
+            src={`${import.meta.env.BASE_URL}assets/logo.svg`}
+            alt=""
+            className="landing__logo"
+          />
           <div className="landing__logo-text">
-            <img src="/assets/hobby.svg" alt="" className="hobby-image" />
-            <img src="/assets/dobby.svg" alt="" className="dobby-image" />
+            <img
+              src={`${import.meta.env.BASE_URL}assets/hobby.svg`}
+              alt=""
+              className="hobby-image"
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}assets/dobby.svg`}
+              alt=""
+              className="dobby-image"
+            />
           </div>
         </figure>
       </header>
