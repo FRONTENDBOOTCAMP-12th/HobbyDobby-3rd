@@ -22,6 +22,8 @@
 
   /* primary-color을 배경으로 쓸 때의 검정색 */
   --primary-text-black: #0f0e0e;
+
+  background-color: #ffffff;
 }
 
 body {
