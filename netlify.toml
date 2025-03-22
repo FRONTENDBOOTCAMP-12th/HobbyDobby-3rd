@@ -2,3 +2,8 @@
   from = "/hobby-dobby/*"
   to = "/hobby-dobby/index.html"
   status = 200
+
+[[redirects]]
+  from = "/hobby-dobby/*"
+  to = "/$1"
+  status = 200
