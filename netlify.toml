@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/hobby-dobby/*"
+  to = "/hobby-dobby/index.html"
+  status = 200
