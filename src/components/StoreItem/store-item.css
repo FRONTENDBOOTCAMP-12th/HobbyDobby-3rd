@@ -1,19 +1,10 @@
-.store-item__container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 21.5rem;
-  height: 24.625rem;
-  margin-top: 100px;
-  gap: 1.125rem;
-}
-
 .store-item__itemdb {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: relative;
-  width: 21.5rem;
+  min-width: 22.5rem;
+  width: 100%;
   height: 5.3125rem;
   padding: 0.625rem;
   border-radius: 0.625rem;
@@ -21,22 +12,20 @@
 }
 
 .store-item__left {
-  display: flex-col;
-  justify-content: center;
-  align-items: center;
-  width: 2.7837rem;
-  height: 3.875rem;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .store-item__image {
-  width: 2.7212rem;
-  height: 2.1875rem;
-  margin-bottom: 0.1875rem;
+  width: 2.6875rem;
+  height: 2.6875rem;
 }
 
 .store-item__gem-price {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2.625rem;
   height: 1.375rem;
 }
@@ -67,7 +56,7 @@
 }
 .store-item__name {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 0.125rem;
 }
 
@@ -102,4 +91,9 @@
   font-weight: 400;
   text-align: center;
   background-color: var(--secondary-color);
+
+  &:disabled {
+    background-color: var(--content-gray);
+    cursor: not-allowed;
+  }
 }
