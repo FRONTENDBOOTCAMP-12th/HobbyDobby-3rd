@@ -217,6 +217,29 @@ export const getUserHavingItems = async (userId: string) => {
   return ownedItems;
 };
 
+export const isChallengeNameDuplicate = async (
+  userUid: string,
+  challengeName: string
+) => {
+  const { data: response, error } = await supabase
+    .from('user_completed_challenges')
+    .select(`challenge(name)`)
+    .eq('user_id', userUid);
+
+  if (error) {
+    console.log(error);
+
+    return true;
+  }
+
+  // 받아온 데이터 배열에서 중복된 챌린지명이 있는지 하나씩 확인
+  const isDuplicate = response?.some(
+    (challenge) => challenge.challenge.name === challengeName
+  );
+
+  return isDuplicate;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                                   update                                   */
 /* -------------------------------------------------------------------------- */
