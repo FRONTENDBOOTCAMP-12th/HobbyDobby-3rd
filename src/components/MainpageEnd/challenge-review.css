@@ -2,16 +2,11 @@
   align-items: center;
   justify-content: space-between;
   width: 22.5rem;
-  height: 36.625rem;
   padding-bottom: 1.25rem;
   text-align: center;
 }
 
-.challenge-review__hobbytitle {
-  margin-top: 3.75rem;
-}
-
-.challenge-review__hobbytotalday {
+.challenge-review__hobby-total-day {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.3125rem;
@@ -21,33 +16,14 @@
   font-weight: 700;
 }
 
-.challenge-review__hobbyname {
+.challenge-review__hobby-name {
   margin-bottom: 0.625rem;
   color: var(--text-green);
   font-size: 2rem;
   font-weight: 700;
 }
 
-.challenge-review__hobbyinfo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.0625rem;
-  color: var(--text-gray);
-  font-size: 0.875rem;
-  font-weight: 500;
-
-  p {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.challenge-review__hobby-start-end {
-  margin-top: 2.5rem;
-  margin-left: 3.125rem;
-}
-
-.challenge-review__hobbylog {
+.challenge-review__hobby-log {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.3125rem;
@@ -56,32 +32,9 @@
   font-weight: 700;
 }
 
-.challenge-review__hobbyday {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 1.25rem;
-  margin-bottom: 0.3125rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.challenge-review__hobbyment {
-  display: flex;
-  align-items: center;
-  width: 11.9644rem;
-  height: 2.5706rem;
-  padding: 0.3125rem;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  background-color: white;
-}
-
 .challenge-review__save {
   display: block;
   justify-content: center;
-  width: 6.25rem;
-  height: 2.5rem;
   margin: 2.5rem auto 0 auto;
   padding: 0.5rem 0.625rem;
   border: none;
@@ -90,4 +43,38 @@
   color: var(--text-black);
   text-decoration: none;
   background-color: var(--secondary-color);
+}
+
+.challenge-review__hobby-day-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  padding-block: 1rem;
+
+  p {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+  }
+
+  p:first-of-type {
+    font-size: 16px;
+    font-weight: 700;
+
+    text-align: start;
+  }
+
+  ::after {
+    content: '';
+    height: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 1px solid var(--content-gray);
+  }
 }

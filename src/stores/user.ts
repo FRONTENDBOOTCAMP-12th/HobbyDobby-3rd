@@ -65,6 +65,8 @@ export const useUserStore = create(
             set({
               gem: gem,
             }),
+          endNowChallenge: () =>
+            set({ now_challenge: null }, undefined, 'endNowChallenge'),
         })
       )
     ),

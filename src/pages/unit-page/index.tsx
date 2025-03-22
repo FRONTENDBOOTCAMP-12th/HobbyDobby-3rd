@@ -33,6 +33,8 @@ export interface Progress {
   question_number: number;
 }
 
+const FINAL_SECTION = 3;
+
 function UnitPage() {
   const [nowProgress, setNowProgress] = useState<Progress[]>([]);
   const [nowQuestionIndex, setNowQuestionIndex] = useState<number>(0);
@@ -231,6 +233,46 @@ function UnitPage() {
       });
   };
 
+  const handleReviewContentEndButtonClick = () => {
+    updateChallengeProgress(nowChallenge!.id, nowChallenge!.progress, nextUnit)
+      .then((nextNowChallenge) => {
+        updateNowChallenge(nowHobby!, nextNowChallenge[0]);
+      })
+      .then(() => {
+        // 마지막 섹션인 경우(챌린지 엔딩 페이지로 연결)
+        if (section === FINAL_SECTION) {
+          Swal.fire({
+            icon: 'success',
+            title: '저장 완료!',
+            text: '유닛을 마무리하고 챌린지 완료 페이지로 이동합니다.',
+            confirmButtonColor: `var(--primary-color)`,
+          })
+            .then(() => {
+              void navigate('/challenge-end');
+            })
+            .catch((error: Error) => {
+              throw error;
+            });
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: '저장 완료!',
+            text: '유닛을 마무리하고 홈 페이지로 이동합니다.',
+            confirmButtonColor: `var(--primary-color)`,
+          })
+            .then(() => {
+              void navigate('/home');
+            })
+            .catch((error: Error) => {
+              throw error;
+            });
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+
   return (
     <div className="unit-page">
       <Title>{unitName}</Title>
@@ -253,48 +295,7 @@ function UnitPage() {
         <ReviewContent
           section={section}
           progress={nowChallenge!.progress as Progress[]}
-          handleClick={() => {
-            updateChallengeProgress(
-              nowChallenge!.id,
-              nowChallenge!.progress,
-              nextUnit
-            )
-              .then((nextNowChallenge) => {
-                updateNowChallenge(nowHobby!, nextNowChallenge[0]);
-              })
-              .then(() => {
-                if (section === 3) {
-                  Swal.fire({
-                    icon: 'success',
-                    title: '저장 완료!',
-                    text: '유닛을 마무리하고 챌린지 완료 페이지로 이동합니다.',
-                    confirmButtonColor: `var(--primary-color)`,
-                  })
-                    .then(() => {
-                      void navigate('/challenge-end');
-                    })
-                    .catch((error: Error) => {
-                      throw error;
-                    });
-                } else {
-                  Swal.fire({
-                    icon: 'success',
-                    title: '저장 완료!',
-                    text: '유닛을 마무리하고 홈 페이지로 이동합니다.',
-                    confirmButtonColor: `var(--primary-color)`,
-                  })
-                    .then(() => {
-                      void navigate('/home');
-                    })
-                    .catch((error: Error) => {
-                      throw error;
-                    });
-                }
-              })
-              .catch((error) => {
-                throw error;
-              });
-          }}
+          handleClick={handleReviewContentEndButtonClick}
         />
       ) : (
         <UnitContent

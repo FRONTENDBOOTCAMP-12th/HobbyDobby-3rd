@@ -70,7 +70,7 @@ function LeaderBoardDetailPage() {
               <div key={index}>
                 <LeaderBoardTextLeft subHobby={subHobby} text={data.question} />
                 <LeaderBoardTextRight
-                  text={data.answer}
+                  text={data.answer as string[]}
                   userImage={userImage}
                 />
               </div>
