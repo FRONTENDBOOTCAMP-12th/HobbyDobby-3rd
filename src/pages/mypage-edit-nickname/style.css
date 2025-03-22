@@ -36,7 +36,9 @@
     }
   }
 
-  .form-input__alert {
-    margin-left: 20px;
+  .form-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
   }
 }
