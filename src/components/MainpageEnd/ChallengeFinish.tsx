@@ -1,4 +1,4 @@
-import './Challenge-finish.css';
+import './challenge-finish.css';
 import CustomButton from '@/components/CustomButton';
 
 interface ChallengeFinish {
