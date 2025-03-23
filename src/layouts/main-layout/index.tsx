@@ -2,7 +2,7 @@ import BottomNavbar from '@/components/BottomNavbar';
 import TopNavbar from '@/components/TopNavbar';
 import { Outlet } from 'react-router';
 
-const MIN_HEIGHT = '1000px';
+const MIN_HEIGHT = '785px';
 
 function MainLayout() {
   return (
