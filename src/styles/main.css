@@ -22,12 +22,16 @@
 
   /* primary-color을 배경으로 쓸 때의 검정색 */
   --primary-text-black: #0f0e0e;
-
-  background-color: #ffffff;
 }
 
 body {
-  background-color: var(--tertiary-color);
+  background: linear-gradient(
+    to right,
+    #d4cdc9 0,
+    var(--tertiary-color) calc((100vw - 27rem) / 2),
+    var(--tertiary-color) calc(100vw - (100vw - 27rem) / 2),
+    #d4cdc9 100%
+  );
   color: var(--text-black);
 
   input,
@@ -53,8 +57,11 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  min-height: 100vh;
   max-width: 27rem;
+
+  background-color: var(--tertiary-color);
 }
 
 .drag-prevent {
