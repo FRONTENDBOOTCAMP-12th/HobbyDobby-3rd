@@ -56,6 +56,7 @@
   }
 }
 
+/* 프로필 이미지 */
 .profile-img__frame {
   width: 7.5rem;
   height: 7.5rem;
@@ -84,9 +85,25 @@
 
     object-fit: cover;
   }
+}
 
-  &:hover {
-    filter: brightness(0.97);
+.profile-header__container .profile-item__frame {
+  width: 67px;
+
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  border: 0;
+
+  z-index: 50;
+
+  img {
+    width: 100px;
+    height: 100%;
+
+    object-fit: cover;
   }
 }
 
@@ -133,10 +150,6 @@
   border-radius: 50%;
 
   background-color: #d9d9d9;
-
-  &:hover {
-    filter: brightness(0.97);
-  }
 
   img {
     width: 100%;

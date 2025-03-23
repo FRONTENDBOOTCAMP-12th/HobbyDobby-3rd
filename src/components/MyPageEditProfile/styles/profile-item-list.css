@@ -17,19 +17,30 @@
 }
 
 /* 각 아이템 프레임 */
-.profile-item__frame {
+.profile-item-list-item__frame {
   width: 60px;
+  height: 60px;
   padding: 12px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: 2px solid var(--black-color);
+  border: 0px solid var(--secondary-color);
   border-radius: 10px;
+
+  background-color: var(--tertiary-color);
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    filter: none;
+  }
 }
 
-.profile-item__frame img {
+.profile-item-list-item__frame img {
   width: 100%;
   height: 100%;
 

@@ -67,10 +67,10 @@ function ProfileItemList({
           style={{
             border:
               newItem?.name === item.item?.name
-                ? '2px solid var(--secondary-color)'
+                ? '3px solid var(--primary-color)'
                 : '',
           }}
-          className="profile-item__frame"
+          className="profile-item-list-item__frame"
           onClick={() => handleItemClick(item)}
         >
           <img src={item.item?.image} alt={item.item?.name} />
