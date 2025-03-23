@@ -1,21 +1,17 @@
 import './register.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import FormInput from './FormInput';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
 import { isUserInputDuplicate, createUserAccount } from '@/lib/api';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { debounce } from '@/utils/debounce';
 
 export interface RegisterFormInputData {
   id: string;
   password: string;
   passwordCheck: string;
   nickname: string;
-}
-
-interface EventData {
-  name: keyof RegisterFormInputData;
-  value: string;
 }
 
 function RegisterForm() {
@@ -45,16 +41,18 @@ function RegisterForm() {
     PW_REGEX.test(inputData.password)
   );
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget as EventData;
-
-    const nextInputData = {
-      ...inputData,
+  const handleInput = (name: string, value: string) => {
+    setInputData((prev) => ({
+      ...prev,
       [name]: value,
-    };
-
-    setInputData(nextInputData);
+    }));
   };
+
+  const debouncedHandleInput = useRef(
+    debounce((name: string, value: string) => {
+      handleInput(name, value); // debounce 후 value를 직접 처리
+    }, 300)
+  ).current;
 
   // 아이디 입력값 중복 확인 함수, supabase db와 통신
   const handleCheckDuplicationId = async (
@@ -165,7 +163,10 @@ function RegisterForm() {
         placeholder="아이디를 입력해주세요."
         value={inputData.id}
         alertMessage="최소 6자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={ID_REGEX}
         checkDuplicateButton={true}
         onClick={handleCheckDuplicationId}
@@ -177,7 +178,10 @@ function RegisterForm() {
         placeholder="비밀번호를 입력해주세요."
         value={inputData.password}
         alertMessage="최소 8자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={PW_REGEX}
       />
       <FormInput
@@ -187,7 +191,10 @@ function RegisterForm() {
         placeholder="비밀번호를 한번 더 입력해주세요."
         value={inputData.passwordCheck}
         alertMessage="최소 8자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={PW_REGEX}
       />
       <FormInput
@@ -197,7 +204,10 @@ function RegisterForm() {
         placeholder="닉네임을 입력해주세요."
         value={inputData.nickname}
         alertMessage="최소 6자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={ID_REGEX}
         checkDuplicateButton={true}
         onClick={handleCheckDuplicationNickname}
