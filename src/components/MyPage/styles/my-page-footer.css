@@ -9,5 +9,15 @@
   button {
     border: 0;
     background-color: transparent;
+
+    font-size: 15px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      text-decoration: none;
+    }
   }
 }

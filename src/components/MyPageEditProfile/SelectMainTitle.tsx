@@ -1,12 +1,18 @@
-import EditNameHeader from '@/components/MyPage/EditNameHeader';
-import './style.css';
+import './styles/select-main-title.css';
+import EditInfoHeader from '@/components/MyPageEditProfile/EditProfileInfoHeader';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useUserStore } from '@/stores/user';
 import useFetchData from '@/hooks/useFetchData';
 import { getUserTitles } from '@/lib/api';
 
-function MypageEditTitle() {
+function SelectMainTitle({
+  handleClickClose,
+  isDisabled,
+}: {
+  handleClickClose: () => void;
+  isDisabled: boolean;
+}) {
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.uid);
   const [checkedTitle, setCheckedTitle] = useState<string>();
@@ -26,7 +32,11 @@ function MypageEditTitle() {
 
   return (
     <form className="edit-title__form" onSubmit={handleSubmit}>
-      <EditNameHeader header="칭호" />
+      <EditInfoHeader
+        header="칭호"
+        isDisabled={isDisabled}
+        handleClickClose={handleClickClose}
+      />
       {titles?.map((data) => (
         <div className="edit-title__container" key={data.id}>
           <label htmlFor={data.title}>{data.title}</label>
@@ -43,4 +53,4 @@ function MypageEditTitle() {
   );
 }
 
-export default MypageEditTitle;
+export default SelectMainTitle;

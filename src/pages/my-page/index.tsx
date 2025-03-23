@@ -1,16 +1,17 @@
 import AchievementCardList from '@/components/MyPage/AchievementCardList';
+import MypageFooter from '@/components/MyPage/Footer';
 import ProfileHeader from '@/components/MyPage/ProfileHeader';
 import ProfileInfo from '@/components/MyPage/ProfileInfo';
 import StatCardList from '@/components/MyPage/StatCardList';
 import Title from '@/layouts/title';
 import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
+import { useUserAchievementStore } from '@/stores/user-achievement';
 import { getDate } from '@/utils/getDate';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { useEffect, useState } from 'react';
 import MyPageEditProfile from '../my-page-edit-profile';
 import './style.css';
-import { useUserAchievementStore } from '@/stores/user-achievement';
 
 function MyPage() {
   const {
@@ -103,6 +104,7 @@ function MyPage() {
       <main>
         <section className="profile-header">
           <ProfileHeader
+            profileItem={userProfileItem}
             profileImage={userPhoto ?? null}
             setIsEditing={setIsEditing}
           />
@@ -133,6 +135,10 @@ function MyPage() {
               completedAchievements={completedAchievements}
             />
           </article>
+        </section>
+
+        <section className="profile-footer">
+          <MypageFooter />
         </section>
       </main>
       {isEditing && (

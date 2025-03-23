@@ -1,4 +1,9 @@
-.edit-name-header {
+.edit-info-header {
+  background-color: var(--quatenary-color);
+
+  position: sticky;
+  top: 0;
+
   display: flex;
   min-width: 22.5rem;
   width: 100%;

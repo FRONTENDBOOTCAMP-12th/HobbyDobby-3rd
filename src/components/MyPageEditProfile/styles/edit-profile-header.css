@@ -12,7 +12,7 @@
 
   .profile-item__frame {
     position: absolute;
-    bottom: 68px;
+    bottom: 60px;
     left: 50%;
     transform: translate(-50%, 0);
 

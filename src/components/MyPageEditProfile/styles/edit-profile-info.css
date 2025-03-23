@@ -1,4 +1,4 @@
-.info__wrapper {
+.edit-info-page {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,13 +22,14 @@
   gap: 10px;
 }
 
-.edit-info__page {
+/* 각 항목에서 화살표(>) 누르면 뜨는 수정 페이지 */
+.edit-info__warpper {
   background-color: var(--quatenary-color);
 
   position: fixed;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 
   width: 100%;
   max-width: 27rem;
@@ -36,10 +37,18 @@
   min-height: 780px;
 
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 
   gap: 10px;
 
   z-index: 1500;
+}
+
+.edit-info__container {
+  width: 100%;
+  height: 100%;
+  max-width: 27rem;
+  max-height: 780px;
 }

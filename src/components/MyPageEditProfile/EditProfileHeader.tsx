@@ -1,42 +1,29 @@
 import { getPublicImage } from '@/utils/getPublic';
-import './EditProfileHeader.css';
+import './styles/edit-profile-header.css';
 import { useEffect, useRef, useState } from 'react';
+import { useEditProfileStore } from '@/stores/user-profile-edit';
 // import { supabase } from '@/lib/supabase-client';
 
 function EditProfileHeader({
-  setProfileImg,
   profileImg,
   item,
 }: {
-  setProfileImg: (profileImg: string | null) => void;
   profileImg?: string | null;
   item: { image: string; name: string } | null;
 }) {
-  // const uploadChallengeInputFileToStore = async (file: File) => {
-  //   const filePath = `/challenge_file/${Date.now()}_${file.name}`;
-
-  //   const { error } = await supabase.storage.from('image').upload(filePath, file);
-
-  //   if (error) {
-  //     console.error('ChallengeInput Upload to Store Error:', error.message);
-  //     throw error;
-  //   } else {
-  //     const { data: urlData } = supabase.storage
-  //       .from('image')
-  //       .getPublicUrl(filePath);
-
-  //     return urlData.publicUrl;
-  //   }
-  // };
-
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const setNewProfileImg = (profileImg: string | null) => {
+    useEditProfileStore.setState({
+      profile: { ...useEditProfileStore.getState().profile, image: profileImg },
+    });
+  };
 
   const handleEditProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const url = URL.createObjectURL(file);
-      setProfileImg(url);
+      setNewProfileImg(url);
     } else {
       console.log('파일이 없습니다.');
     }
@@ -44,7 +31,7 @@ function EditProfileHeader({
   };
 
   const handleRemoveProfile = () => {
-    setProfileImg('/assets/profile-none.jpg');
+    setNewProfileImg('/assets/profile-none.jpg');
     setMenuOpen(false);
   };
 

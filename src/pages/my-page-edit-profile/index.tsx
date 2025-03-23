@@ -1,17 +1,18 @@
 import CloseButton from '@/components/CloseButton';
-import EditProfileInfo from '@/components/MyPageEditProfile/EditProfileInfo';
 import EditProfileHeader from '@/components/MyPageEditProfile/EditProfileHeader';
-import gsap from 'gsap';
-import { useLayoutEffect, useRef, useState } from 'react';
+import EditProfileInfo from '@/components/MyPageEditProfile/EditProfileInfo';
 import ProfileItemList from '@/components/MyPageEditProfile/ProfileItemList';
-import './style.css';
+import { useEditProfileStore } from '@/stores/user-profile-edit';
 import { ItemType } from '@/types/my-page-edit-profile/profile-item';
+import gsap from 'gsap';
+import { useLayoutEffect, useRef } from 'react';
+import './style.css';
 
 interface MyPageEditProfileProps {
   isEditing: boolean;
   setIsEditing: (isEditing: boolean) => void;
   userProfileImg: string | null;
-  userProfileItem: (string & ItemType) | null;
+  userProfileItem: ItemType | null;
   userNickname: string;
   userTitle: string | null;
   userMainHobby: string | null;
@@ -26,26 +27,14 @@ function MyPageEditProfile({
   userTitle,
   userMainHobby,
 }: MyPageEditProfileProps) {
+  const {
+    nickname: newNickname,
+    image: newProfileImg,
+    item: newItem,
+    title: newTitle,
+  } = useEditProfileStore((state) => state.profile);
+
   const editPageRef = useRef<HTMLDivElement>(null);
-
-  const [nowItem, setNowItem] = useState<ItemType>({
-    name: userProfileItem?.name ?? '',
-    image: userProfileItem?.image ?? '',
-  });
-
-  const [nowProfileImg, setNowProfileImg] = useState<string | null>(
-    userProfileImg ?? '/images/profile-none.png'
-  );
-
-  const [nowUserNickname, setUserNickname] = useState<string>(userNickname);
-  const [nowUserMainTitle, setUserMainTitle] = useState<string | null>(
-    userTitle
-  );
-  // const [nowUserMainHobby, setUserMainHobby] = useState<string | null>(
-  //   userMainHobby
-  // );
-
-  console.log(nowItem, nowProfileImg, nowUserNickname, nowUserMainTitle);
 
   useLayoutEffect(() => {
     if (isEditing && editPageRef.current) {
@@ -62,6 +51,17 @@ function MyPageEditProfile({
           },
         }
       );
+
+      useEditProfileStore.setState({
+        profile: {
+          nickname: userNickname,
+          title: userTitle,
+          main_hobby: userMainHobby,
+          image: userProfileImg,
+          item: userProfileItem,
+        },
+      });
+
       console.log('프로필 수정 페이지 열림', isEditing);
     }
   }, [isEditing]);
@@ -106,26 +106,20 @@ function MyPageEditProfile({
       </header>
 
       <section className="edit-profile-header">
-        <EditProfileHeader
-          profileImg={nowProfileImg}
-          setProfileImg={setNowProfileImg}
-          item={nowItem}
-        />
+        <EditProfileHeader profileImg={newProfileImg} item={newItem} />
       </section>
 
       <section className="edit-profile__body">
         <article className="article-container">
           <h2>보유 아이템</h2>
-          <ProfileItemList nowItem={nowItem} setNowItem={setNowItem} />
+          <ProfileItemList newItem={newItem} />
         </article>
         <article className="article-container profile-details">
           <h2 className="sr-only">프로필 정보</h2>
           <EditProfileInfo
-            nickname={userNickname}
-            mainTitle={userTitle}
+            nickname={newNickname}
+            mainTitle={newTitle}
             mainHobby={userMainHobby}
-            setNickname={setUserNickname}
-            setMainTitle={setUserMainTitle}
           />
         </article>
       </section>

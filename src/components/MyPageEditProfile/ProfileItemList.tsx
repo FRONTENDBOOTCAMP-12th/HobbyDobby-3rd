@@ -1,18 +1,26 @@
 import { getUserItems } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
-import { useEffect, useState } from 'react';
-import './ProfileItemList.css';
+import { useEditProfileStore } from '@/stores/user-profile-edit';
 import { ItemsType } from '@/types/my-page-edit-profile/profile-item';
+import { useEffect, useState } from 'react';
+import './styles/profile-item-list.css';
 
 function ProfileItemList({
-  nowItem,
-  setNowItem,
+  newItem,
 }: {
-  nowItem: { image: string; name: string };
-  setNowItem: (item: { image: string; name: string }) => void;
+  newItem: { image: string; name: string } | null;
 }) {
   const userId = useUserStore((state) => state.uid);
   const [items, setItems] = useState<ItemsType[]>([]);
+
+  const handleNewItem = (newItem: { image: string; name: string }) => {
+    useEditProfileStore.setState({
+      profile: {
+        ...useEditProfileStore.getState().profile,
+        item: newItem,
+      },
+    });
+  };
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -33,15 +41,15 @@ function ProfileItemList({
   const handleItemClick = (item: ItemsType) => {
     const clickedItem = item.item?.name ?? '';
 
-    if (clickedItem === nowItem.name) {
-      setNowItem({
+    if (clickedItem === newItem?.name) {
+      handleNewItem({
         image: '',
         name: '',
       });
-      console.log('아이템');
+      console.log('아이템 적용 해제');
       return;
     } else {
-      setNowItem({
+      handleNewItem({
         image: item.item?.image ?? '',
         name: item.item?.name ?? '',
       });
@@ -58,7 +66,7 @@ function ProfileItemList({
           key={item.item?.id}
           style={{
             border:
-              nowItem.name === item.item?.name
+              newItem?.name === item.item?.name
                 ? '2px solid var(--secondary-color)'
                 : '',
           }}
@@ -73,7 +81,7 @@ function ProfileItemList({
           key={item.item?.id}
           style={{
             border:
-              nowItem.name === item.item?.name
+              newItem?.name === item.item?.name
                 ? '2px solid var(--secondary-color)'
                 : '',
           }}

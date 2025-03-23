@@ -1,4 +1,5 @@
 import { UserData } from '@/lib/supabase-client';
+import { ItemType } from '@/types/my-page-edit-profile/profile-item';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
@@ -7,6 +8,7 @@ type EditableProfile = Pick<
   'nickname' | 'title' | 'main_hobby' | 'image' | 'item'
 > & {
   main_hobby: string | null;
+  item: ItemType | null;
 };
 
 const initialEditableProfile: EditableProfile = {

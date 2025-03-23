@@ -9,8 +9,8 @@
 /* 기본 스타일링 */
 .my-page {
   background-color: transparent;
-  inline-size: 100%;
-  block-size: 100%;
+  width: 100%;
+  height: 100%;
   max-width: 27rem;
 
   display: flex;
@@ -21,8 +21,8 @@
 /* 레이아웃 스타일링 */
 .my-page main {
   background-color: transparent;
-  inline-size: 100%;
-  block-size: 100%;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
 /* 프로필 바디 스타일 */
 .profile-body {
   background-color: transparent;
-  inline-size: 100%;
+  width: 100%;
   padding: 3rem 1.8rem 1.8rem 1.8rem;
 
   flex-grow: 1;
@@ -55,7 +55,7 @@
 /* 아티클(내용별 흰색 블록) 스타일 */
 .article-container {
   background-color: var(--white-color);
-  inline-size: 100%;
+  width: 100%;
   min-height: 7.45rem;
 
   display: flex;
