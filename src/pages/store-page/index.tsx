@@ -45,7 +45,7 @@ function StorePage() {
 
   return (
     <main className="store-page">
-      <h1 className="sr-only">Hobby Dobby</h1>
+      <h2 className="sr-only">스토어 페이지</h2>
       <div className="store-item__container">
         {error && <p>{error}</p>}
         {!loading && items.length === 0 && <p>아이템이 없습니다.</p>}
