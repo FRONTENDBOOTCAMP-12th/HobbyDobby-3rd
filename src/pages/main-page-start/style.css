@@ -1,4 +1,4 @@
-.Challengstart {
+.challenge-start {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +9,7 @@
   background-color: var(--tertiary-color);
 }
 
-.ChallengeName {
+.challenge-name {
   margin-bottom: 5%;
   color: var(--black);
   font-size: 1rem;
@@ -18,7 +18,7 @@
 }
 
 .tip {
-  margin-top: -5%;
+  margin-block: 0;
   color: var(--text-gray);
   font-size: 0.875rem;
   font-weight: 600;
@@ -37,10 +37,15 @@
   border-radius: 0.5rem;
   cursor: pointer;
   border: none;
+
+  &:disabled {
+    background-color: var(--primary-color);
+    cursor: not-allowed;
+  }
 }
 
 /* ----------------------- textarea Form ------------------------ */
-.startform {
+.start-form {
   width: 100%;
   min-width: 18.875rem;
   height: 6.1875rem;

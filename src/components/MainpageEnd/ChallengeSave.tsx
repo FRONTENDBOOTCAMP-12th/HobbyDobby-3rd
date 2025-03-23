@@ -1,17 +1,30 @@
+import { useUserStore } from '@/stores/user';
 import './challenge-save.css';
+import CustomButton from '@/components/CustomButton';
 
-function ChallengeSave() {
+interface ChallengeSaveProps {
+  onClick: () => Promise<void>;
+}
+
+function ChallengeSave({ onClick }: ChallengeSaveProps) {
+  const challenge = useUserStore((user) => user.now_challenge);
+
   return (
-    <main className="challenge-save">
-      <h1 className="sr-only">Hobby Dobby</h1>
+    <div className="challenge-save">
       <p>
         <span className="challenge-save__challenge-target">
-          25년 첫 독서 챌린지
+          {challenge?.name}
         </span>
         <span className="challenge-save__challenge-other">를</span>
       </p>
-      <p className="challenge-save__listsave">를 리스트에 저장할게요....</p>
-    </main>
+      <p className="challenge-save__listsave">완료하고 저장할게요! 🧙‍♂️</p>
+      <CustomButton
+        type="button"
+        buttonText="저장"
+        onClick={() => void onClick()}
+        bgColor="var(--secondary-color)"
+      />
+    </div>
   );
 }
 
