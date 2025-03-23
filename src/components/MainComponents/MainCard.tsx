@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import './main-card.css';
 
 interface MainCardProps {
@@ -8,6 +8,16 @@ interface MainCardProps {
 }
 
 function MainCard({ challengeName, section, hobby }: MainCardProps) {
+  const navigate = useNavigate();
+
+  const handleSelectHobby = () => {
+    void navigate(`/select-hobby/${hobby}`, {
+      state: {
+        hobbyName: hobby,
+      },
+    });
+  };
+
   return challengeName ? (
     <section className="main-card">
       <h3>{challengeName}</h3>
@@ -16,9 +26,9 @@ function MainCard({ challengeName, section, hobby }: MainCardProps) {
   ) : (
     <div className="main-card">
       <p>챌린지를 생성해주세요.🥰</p>
-      <Link className="main-card__link" to={`/select-hobby/${hobby}`}>
+      <button className="main-card__link-button" onClick={handleSelectHobby}>
         새 챌린지 생성
-      </Link>
+      </button>
     </div>
   );
 }
