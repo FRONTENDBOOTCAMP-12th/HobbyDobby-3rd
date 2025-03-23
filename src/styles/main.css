@@ -24,6 +24,10 @@
   --primary-text-black: #0f0e0e;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background: linear-gradient(
     to right,
