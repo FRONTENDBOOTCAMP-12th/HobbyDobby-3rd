@@ -24,7 +24,7 @@ function MyPage() {
     item: userProfileItem,
   } = useUserStore((state) => state);
 
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   const userHobbyIcon = getHobbyIcon(userHobby);
 
@@ -95,8 +95,6 @@ function MyPage() {
       setIsEditing(false);
     }
   }, [userNickname, userTitle, userHobby]);
-
-  console.log(isEditing);
 
   return (
     <div className="my-page drag-prevent">

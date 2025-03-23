@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import EditNickname from './EditNickname';
 import './styles/edit-profile-info.css';
 import SelectMainTitle from './SelectMainTitle';
+import EditProfileInfoHeader from './EditProfileInfoHeader';
 
 function EditProfileInfo({
   nickname,
@@ -23,7 +24,6 @@ function EditProfileInfo({
   const handleClickEditInfo = (label: string) => {
     setClickedEditInfo(label);
     setIsEditingInfo(true);
-    console.log(`${label} 수정하기`);
   };
 
   const infoList = [
@@ -51,7 +51,7 @@ function EditProfileInfo({
           ease: 'power2.out',
         }
       );
-      console.log('프로필 수정 페이지 열림', isEditingInfo);
+      console.log(`${clickedEditInfo} 수정 페이지 열림`);
     }
   }, [isEditingInfo]);
 
@@ -69,7 +69,7 @@ function EditProfileInfo({
         },
       });
       editInfoPageRef.current = null;
-      console.log('프로필 수정 페이지 닫힘');
+      console.log(`${clickedEditInfo} 수정 페이지 닫힘`);
     }
   };
 
@@ -113,7 +113,11 @@ function EditProfileInfo({
               />
             )}
             {clickedEditInfo === '대표 취미' && (
-              <div>대표 취미 수정 컴포넌트 자리</div>
+              <EditProfileInfoHeader
+                header="대표 취미"
+                isDisabled={isDisabled}
+                handleClickClose={handleClickClose}
+              />
             )}
           </div>
         </div>

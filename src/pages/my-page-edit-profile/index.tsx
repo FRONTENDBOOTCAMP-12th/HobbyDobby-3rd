@@ -46,8 +46,7 @@ function MyPageEditProfile({
           duration: 0.25,
           ease: 'power2.out',
           onComplete: () => {
-            // 애니메이션 완료 후 상태 변경
-            // document.body.style.overflow = 'hidden';
+            console.log('프로필 수정 페이지 열림', isEditing);
           },
         }
       );
@@ -61,8 +60,6 @@ function MyPageEditProfile({
           item: userProfileItem,
         },
       });
-
-      console.log('프로필 수정 페이지 열림', isEditing);
     }
   }, [isEditing]);
 
@@ -77,9 +74,9 @@ function MyPageEditProfile({
           // 애니메이션 완료 후 상태 변경
           setIsEditing(!prevIsEditing);
           document.body.style.overflow = 'auto';
+          console.log('프로필 수정 페이지 닫힘', !prevIsEditing);
         },
       });
-      console.log('프로필 수정 페이지 닫힘', !prevIsEditing);
     }
   };
 
