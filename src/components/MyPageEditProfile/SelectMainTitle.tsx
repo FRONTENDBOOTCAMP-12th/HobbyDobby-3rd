@@ -1,33 +1,44 @@
-import './styles/select-main-title.css';
 import EditInfoHeader from '@/components/MyPageEditProfile/EditProfileInfoHeader';
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useUserStore } from '@/stores/user';
 import useFetchData from '@/hooks/useFetchData';
 import { getUserTitles } from '@/lib/api';
+import { useUserStore } from '@/stores/user';
+import { useEditProfileStore } from '@/stores/user-profile-edit';
+import { useCallback, useState } from 'react';
+import './styles/select-main-title.css';
+
+interface SelectMainTitleProps {
+  handleClickClose: () => void;
+  handleClickSave: () => void;
+  isDisabled: boolean;
+  mainTitle: string | null;
+  setIsDisabled: (isDisabled: boolean) => void;
+}
 
 function SelectMainTitle({
   handleClickClose,
+  handleClickSave,
   isDisabled,
-}: {
-  handleClickClose: () => void;
-  isDisabled: boolean;
-}) {
-  const navigate = useNavigate();
+  mainTitle,
+  setIsDisabled,
+}: SelectMainTitleProps) {
   const userId = useUserStore((state) => state.uid);
-  const [checkedTitle, setCheckedTitle] = useState<string>();
+  const [clickedTitle, setClickedTitle] = useState(mainTitle);
 
   const fetchTitles = useCallback(() => getUserTitles(userId), [userId]);
   const { data } = useFetchData(fetchTitles, userId);
   const titles = data?.data;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedTitle(e.target.id);
+    setClickedTitle(e.target.id);
+    setIsDisabled(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    void navigate('/mypage', { state: { checkedTitle } });
+    useEditProfileStore.getState().updateProfile({
+      title: clickedTitle,
+    });
+    handleClickSave();
   };
 
   return (
@@ -44,7 +55,7 @@ function SelectMainTitle({
             type="radio"
             name="title"
             id={data.title}
-            checked={checkedTitle === data.title}
+            checked={clickedTitle === data.title}
             onChange={handleChange}
           />
         </div>

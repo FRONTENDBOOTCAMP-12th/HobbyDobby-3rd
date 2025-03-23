@@ -9,6 +9,7 @@ type EditableProfile = Pick<
 > & {
   main_hobby: string | null;
   item: ItemType | null;
+  file: File | null;
 };
 
 const initialEditableProfile: EditableProfile = {
@@ -16,6 +17,7 @@ const initialEditableProfile: EditableProfile = {
   title: '',
   main_hobby: null,
   image: null,
+  file: null,
   item: null,
 };
 

@@ -1,18 +1,19 @@
-import AchievementCardList from '@/components/MyPage/AchievementCardList';
-import MypageFooter from '@/components/MyPage/Footer';
-import ProfileHeader from '@/components/MyPage/ProfileHeader';
-import ProfileInfo from '@/components/MyPage/ProfileInfo';
-import StatCardList from '@/components/MyPage/StatCardList';
-import Title from '@/layouts/title';
+import { useEffect, useState } from 'react';
 import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import { useUserAchievementStore } from '@/stores/user-achievement';
 import { getDate } from '@/utils/getDate';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
-import { useEffect, useState } from 'react';
+import Title from '@/layouts/title';
+import ProfileHeader from '@/components/MyPage/ProfileHeader';
+import ProfileInfo from '@/components/MyPage/ProfileInfo';
+import StatCardList from '@/components/MyPage/StatCardList';
+import AchievementCardList from '@/components/MyPage/AchievementCardList';
+import MypageFooter from '@/components/MyPage/Footer';
 import MyPageEditProfile from '../my-page-edit-profile';
 import './style.css';
 
+// 마이페이지 컴포넌트
 function MyPage() {
   const {
     image: userPhoto,
@@ -22,12 +23,12 @@ function MyPage() {
     main_hobby: userHobby,
     uid: userId,
     item: userProfileItem,
-  } = useUserStore((state) => state);
+  } = useUserStore();
 
   const [isEditing, setIsEditing] = useState(false);
-
   const userHobbyIcon = getHobbyIcon(userHobby);
 
+  // 가입일 기준으로 경과 일수 계산
   const daysSinceJoin = joinDate
     ? Math.floor(
         (new Date().getTime() - new Date(joinDate).getTime()) /
@@ -40,21 +41,17 @@ function MyPage() {
     []
   );
 
+  // 유저의 완료한 챌린지와 업적 정보 가져오기
   useEffect(() => {
-    let isMounted = true;
-
     const fetchData = async () => {
       if (!userId) return;
 
-      // 이미 Zustand에 데이터가 저장되어 있다면 다시 호출하지 않음
-      const storedChallenges =
-        useUserAchievementStore.getState().completedChallenges;
-      const storedAchievements =
-        useUserAchievementStore.getState().completedAchievements;
+      const { completedChallenges, completedAchievements } =
+        useUserAchievementStore.getState();
 
-      if (storedChallenges && storedAchievements) {
-        setCompletedChallenges(storedChallenges);
-        setCompletedAchievements(storedAchievements.map((a) => a));
+      if (completedChallenges && completedAchievements) {
+        setCompletedChallenges(completedChallenges);
+        setCompletedAchievements(completedAchievements);
         return;
       }
 
@@ -64,50 +61,35 @@ function MyPage() {
           getUserAchievements(userId),
         ]);
 
-        if (isMounted) {
-          // Zustand에 상태 저장 (전역 상태로 캐싱)
-          useUserAchievementStore.setState({
-            completedChallenges: challenges.length ?? 0,
-            completedAchievements: achievements.map(
-              (achievement) => achievement.achievement_id
-            ),
-          });
+        useUserAchievementStore.setState({
+          completedChallenges: challenges.length,
+          completedAchievements: achievements.map((a) => a.achievement_id),
+        });
 
-          setCompletedChallenges(challenges?.length ?? 0);
-          setCompletedAchievements(
-            achievements.map((achievement) => achievement.achievement_id)
-          );
-        }
+        setCompletedChallenges(challenges.length);
+        setCompletedAchievements(achievements.map((a) => a.achievement_id));
       } catch (error) {
         console.error('Error fetching completed challenges:', error);
       }
     };
 
-    if (userId) void fetchData();
-
-    return () => {
-      isMounted = false;
-    };
+    void fetchData();
   }, [userId]);
-
-  useEffect(() => {
-    if (userNickname !== undefined) {
-      setIsEditing(false);
-    }
-  }, [userNickname, userTitle, userHobby]);
 
   return (
     <div className="my-page drag-prevent">
       <Title>마이페이지</Title>
       <main>
+        {/* 프로필 헤더 */}
         <section className="profile-header">
           <ProfileHeader
             profileItem={userProfileItem}
-            profileImage={userPhoto ?? null}
+            profileImage={userPhoto}
             setIsEditing={setIsEditing}
           />
         </section>
 
+        {/* 프로필 정보 */}
         <section className="profile-body">
           <ProfileInfo
             nickName={userNickname}
@@ -117,6 +99,7 @@ function MyPage() {
             joinDate={joinDate ? getDate(joinDate) : ''}
           />
 
+          {/* 통계 */}
           <article className="article-container">
             <h2>통계</h2>
             <StatCardList
@@ -125,6 +108,7 @@ function MyPage() {
             />
           </article>
 
+          {/* 업적 */}
           <article className="article-container">
             <h2>업적</h2>
             <AchievementCardList
@@ -135,12 +119,16 @@ function MyPage() {
           </article>
         </section>
 
+        {/* 프로필 푸터 (로그아웃/회원탈퇴) */}
         <section className="profile-footer">
           <MypageFooter />
         </section>
       </main>
+
+      {/* 프로필 수정 */}
       {isEditing && (
         <MyPageEditProfile
+          userId={userId}
           userProfileImg={userPhoto}
           userNickname={userNickname}
           userTitle={userTitle}

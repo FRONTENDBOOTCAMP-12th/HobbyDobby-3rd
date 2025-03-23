@@ -1,31 +1,30 @@
 .edit-info-page {
+  max-height: 45px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  max-height: 45px;
 }
 
 .info-title,
 .info-and-btn__wrapper {
   margin: 0;
+
   font-size: 18px;
   font-weight: 500;
 }
 
 .info-and-btn__wrapper {
-  display: flex;
   width: fit-content;
+
+  display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 10px;
 }
 
 /* 각 항목에서 화살표(>) 누르면 뜨는 수정 페이지 */
 .edit-info__warpper {
-  background-color: var(--quatenary-color);
-
   position: fixed;
   top: 0;
   left: 50%;
@@ -40,10 +39,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
   gap: 10px;
 
   z-index: 1500;
+
+  background-color: var(--quatenary-color);
 }
 
 .edit-info__container {

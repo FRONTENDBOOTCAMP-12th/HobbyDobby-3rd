@@ -6,6 +6,7 @@
   --board-border-radius: 1rem;
 }
 
+/* 프로필 페이지 */
 .edit-profile-page {
   width: 100%;
   max-width: 27rem;
@@ -21,7 +22,6 @@
   justify-content: flex-start;
 
   overflow: auto;
-
   scrollbar-width: none; /* Firefox */
 
   background-color: #fff;
@@ -40,7 +40,6 @@
 
   position: sticky;
   top: 0;
-
   margin: 0;
 
   display: flex;
@@ -48,6 +47,7 @@
   align-items: center;
 
   background-color: var(--tertiary-color);
+
   z-index: 1010;
 }
 
@@ -58,9 +58,7 @@
   transform: translateX(50%);
 
   background-color: var(--secondary-color);
-
   width: 100%;
-
   padding: 10px 0;
 
   text-align: center;
@@ -73,7 +71,6 @@
 .top-btns {
   width: 100%;
   height: 50px;
-
   position: absolute;
   top: 0;
 
@@ -103,19 +100,19 @@
   width: 100%;
   padding: 3rem 1.8rem 1.8rem 1.8rem;
 
-  flex-grow: 1;
   position: relative;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
+  flex-grow: 1;
   gap: 1rem;
 
   background-color: var(--tertiary-color);
 }
 
+/* 아티클 컨테이너 */
 .article-container {
   background-color: var(--white-color);
   inline-size: 100%;
@@ -126,10 +123,10 @@
   justify-content: space-between;
 
   padding: var(--board-padding);
-
   border-radius: var(--board-border-radius);
 }
 
+/* 아티클 제목 스타일 */
 .article-container h2 {
   font-size: 19px;
   font-weight: 500;

@@ -8,7 +8,6 @@
 
 /* 기본 스타일링 */
 .my-page {
-  background-color: transparent;
   width: 100%;
   height: 100%;
   max-width: 27rem;
@@ -17,16 +16,19 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
+
+  background-color: transparent;
 }
 /* 레이아웃 스타일링 */
 .my-page main {
-  background-color: transparent;
   width: 100%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
   overflow: auto;
+
+  background-color: transparent;
 
   scrollbar-width: none; /* Firefox */
 }
@@ -37,7 +39,6 @@
 
 /* 프로필 바디 스타일 */
 .profile-body {
-  background-color: transparent;
   width: 100%;
   padding: 3rem 1.8rem 1.8rem 1.8rem;
 
@@ -50,11 +51,12 @@
   align-items: center;
 
   gap: 1rem;
+
+  background-color: transparent;
 }
 
 /* 아티클(내용별 흰색 블록) 스타일 */
 .article-container {
-  background-color: var(--white-color);
   width: 100%;
   min-height: 7.45rem;
 
@@ -66,6 +68,8 @@
   padding: var(--board-padding);
 
   border-radius: var(--board-border-radius);
+
+  background-color: var(--white-color);
 }
 
 .article-container h2 {

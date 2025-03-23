@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import { getUserItems } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import { useEditProfileStore } from '@/stores/user-profile-edit';
 import { ItemsType } from '@/types/my-page-edit-profile/profile-item';
-import { useEffect, useState } from 'react';
 import './styles/profile-item-list.css';
 
 function ProfileItemList({
@@ -13,6 +13,7 @@ function ProfileItemList({
   const userId = useUserStore((state) => state.uid);
   const [items, setItems] = useState<ItemsType[]>([]);
 
+  // 프로필 편집 상태 관리 업데이트
   const handleNewItem = (newItem: { image: string; name: string }) => {
     useEditProfileStore.setState({
       profile: {
@@ -20,6 +21,25 @@ function ProfileItemList({
         item: newItem,
       },
     });
+  };
+
+  // 아이템 클릭 이벤트 핸들러
+  const handleItemClick = (item: ItemsType) => {
+    const clickedItem = item.item?.name ?? '';
+
+    // 이미 선택된 아이템을 클릭했을 때 => 아이템 해제
+    if (clickedItem === newItem?.name) {
+      handleNewItem({
+        image: '',
+        name: '',
+      });
+    } else {
+      // 새로운 아이템을 선택했을 때
+      handleNewItem({
+        image: item.item!.image,
+        name: item.item!.name,
+      });
+    }
   };
 
   useEffect(() => {
@@ -38,28 +58,8 @@ function ProfileItemList({
     void fetchItems();
   }, [userId]);
 
-  const handleItemClick = (item: ItemsType) => {
-    const clickedItem = item.item?.name ?? '';
-
-    if (clickedItem === newItem?.name) {
-      handleNewItem({
-        image: '',
-        name: '',
-      });
-      console.log('아이템 적용 해제');
-      return;
-    } else {
-      handleNewItem({
-        image: item.item?.image ?? '',
-        name: item.item?.name ?? '',
-      });
-      console.log('아이템 변경:', clickedItem, item);
-    }
-  };
-
   return (
-    // <div className="profile-item-list__outer-container">
-    <div className="profile-item-list__inner-container">
+    <div className="profile-item-list__container">
       <h2 className="sr-only">프로필 항목 리스트</h2>
       {items.map((item) => (
         <button
@@ -76,23 +76,7 @@ function ProfileItemList({
           <img src={item.item?.image} alt={item.item?.name} />
         </button>
       ))}
-      {items.map((item) => (
-        <button
-          key={item.item?.id}
-          style={{
-            border:
-              newItem?.name === item.item?.name
-                ? '2px solid var(--secondary-color)'
-                : '',
-          }}
-          className="profile-item__frame"
-          onClick={() => handleItemClick(item)}
-        >
-          <img src={item.item?.image} alt={item.item?.name} />
-        </button>
-      ))}
     </div>
-    // </div>
   );
 }
 

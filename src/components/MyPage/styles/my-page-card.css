@@ -6,21 +6,22 @@
 
 /* 기본 스타일링 */
 .card {
-  background-color: var(--secondary-color);
+  min-width: min-content;
+  min-height: 3.75rem;
+  padding: 13px 15px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
-  min-width: 15s625rem;
-  min-height: 3.75rem;
-
-  padding: 13px 15px;
   border-radius: 1rem;
+
+  background-color: var(--secondary-color);
 }
 
 .card img {
-  inline-size: 1.8rem;
+  width: 1.8rem;
   min-width: 1.8rem;
 }
 
@@ -41,9 +42,9 @@
 .stat-card-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: stretch;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .stat-card {
@@ -91,18 +92,18 @@
 }
 
 .achievements {
-  block-size: 100%;
+  height: 100%;
+  padding: 0;
+
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
 
-  padding: 0;
-  flex-grow: 1;
-
   .title-and-progress {
-    inline-size: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
