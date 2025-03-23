@@ -2,8 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-block: auto;
 
-  padding-block-start: 50px;
+  h1 {
+    margin-block-start: 0;
+  }
 
   h2 {
     font-size: 1.875rem;

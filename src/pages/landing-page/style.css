@@ -5,15 +5,17 @@
   align-items: center;
   gap: 1.875rem;
   text-align: center;
-  width: 22.5rem;
-  height: 36.625rem;
   background-color: var(--tertiary-color);
+  margin-block: auto;
+
+  figure {
+    margin-block-start: 0;
+  }
 }
 
 .landing__logo {
   width: 7.125rem;
   height: 7.375rem;
-  margin-top: 5.9375rem;
   margin-bottom: 0.625rem;
 }
 
