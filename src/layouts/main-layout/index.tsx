@@ -2,6 +2,8 @@ import BottomNavbar from '@/components/BottomNavbar';
 import TopNavbar from '@/components/TopNavbar';
 import { Outlet } from 'react-router';
 
+const MIN_HEIGHT = '785px';
+
 function MainLayout() {
   return (
     <>
@@ -9,6 +11,7 @@ function MainLayout() {
       <div
         style={{
           width: '100%',
+          minHeight: `${MIN_HEIGHT}`,
           paddingTop: '4rem',
           paddingBottom: '4.5rem',
           boxSizing: 'border-box',
