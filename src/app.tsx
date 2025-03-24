@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import PrintError from '@/components/ErrorBoundary';
 import Spinner from '@/components/Spinner';
 import MainLayout from '@/layouts/main-layout';
+import ScrollToTop from '@/layouts/scroll-to-top';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -31,6 +32,7 @@ function App() {
     <ErrorBoundary FallbackComponent={PrintError}>
       <Suspense fallback={<Spinner />}>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
