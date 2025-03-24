@@ -30,7 +30,7 @@ function LeaderBoardRankCard({
             <img
               src="/assets/profile-none.jpg"
               alt="사용자 프로필"
-              className="leader-board-detail__user-profile"
+              className="leader-board-ranking__profileImg"
             />
           )}
           <div className="leader-board-ranking__container--sm">
