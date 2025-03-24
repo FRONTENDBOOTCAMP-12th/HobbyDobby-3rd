@@ -1,7 +1,7 @@
 import './register.css';
 import { useRef, useState } from 'react';
 import FormInput from './FormInput';
-import { ID_REGEX, PW_REGEX } from '@/utils/form';
+import { ID_REGEX, PW_REGEX, NICKNAME_REGEX } from '@/utils/form';
 import { isUserInputDuplicate, createUserAccount } from '@/lib/api';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
@@ -160,7 +160,7 @@ function RegisterForm() {
         type="text"
         label="아이디"
         name="id"
-        placeholder="아이디를 입력해주세요."
+        placeholder="영문 아이디를 입력해주세요."
         value={inputData.id}
         alertMessage="최소 6자가 필요합니다."
         onChange={(e) => {
@@ -208,7 +208,7 @@ function RegisterForm() {
           const { name, value } = e.target;
           debouncedHandleInput(name, value); // debouncedHandleInput 사용
         }}
-        regex={ID_REGEX}
+        regex={NICKNAME_REGEX}
         checkDuplicateButton={true}
         onClick={handleCheckDuplicationNickname}
       />

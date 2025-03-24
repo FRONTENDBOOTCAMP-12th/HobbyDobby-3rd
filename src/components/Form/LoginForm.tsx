@@ -141,7 +141,7 @@ function LoginForm() {
         type="text"
         label="아이디"
         name="id"
-        placeholder="아이디를 입력해주세요."
+        placeholder="영문 아이디를 입력해주세요."
         value={inputData.id}
         alertMessage="최소 6자가 필요합니다."
         onChange={(e) => {
