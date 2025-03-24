@@ -28,12 +28,12 @@ function EditProfileInfo({
     { label: '닉네임', value: nickname },
     {
       label: '칭호',
-      value: mainTitle,
+      value: mainTitle ?? '없음',
       onClick: () => handleClickEditInfo('칭호'),
     },
     {
       label: '대표 취미',
-      value: mainHobby,
+      value: mainHobby ?? '없음',
       onClick: () => handleClickEditInfo('대표 취미'),
     },
   ];
