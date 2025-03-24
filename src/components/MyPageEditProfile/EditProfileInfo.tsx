@@ -51,7 +51,7 @@ function EditProfileInfo({
       isEditingInfo
     );
     if (clickedEditInfo !== '') {
-      console.log(`${clickedEditInfo} 수정 페이지 열림`);
+      // console.log(`${clickedEditInfo} 수정 페이지 열림`);
     }
   }, [isEditingInfo, clickedEditInfo]);
 
@@ -62,7 +62,9 @@ function EditProfileInfo({
       editInfoPageRef as RefObject<HTMLDivElement>,
       isEditingInfo,
       setIsEditingInfo,
-      () => console.log(`${clickedEditInfo} 수정 페이지 닫힘`),
+      () => {
+        // console.log(`${clickedEditInfo} 수정 페이지 닫힘`);
+      },
       setClickedEditInfo,
       setIsDisabled
     ).catch((error) => {
@@ -77,7 +79,9 @@ function EditProfileInfo({
       editInfoPageRef as RefObject<HTMLDivElement>,
       isEditingInfo,
       setIsEditingInfo,
-      () => console.log(`${clickedEditInfo} 수정 페이지 저장`),
+      () => {
+        // console.log(`${clickedEditInfo} 수정 페이지 저장`);
+      },
       setClickedEditInfo,
       setIsDisabled
     ).catch((error) => {

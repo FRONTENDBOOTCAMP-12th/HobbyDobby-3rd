@@ -39,7 +39,7 @@ function EditNickname({
         'nickname',
         newNickname
       );
-      console.log(checkDuplicated, newNickname);
+      // console.log(checkDuplicated, newNickname);
 
       nextIsDuplicate = checkDuplicated;
       setIsDuplicate(checkDuplicated);

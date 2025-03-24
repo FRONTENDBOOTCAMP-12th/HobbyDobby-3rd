@@ -301,12 +301,12 @@ export const updateUserProfile = async (
   mainHobby: string | null,
   item: string | null
 ) => {
-  const { data, error } = await supabase
+  await supabase
     .from('user')
     .update({ nickname, image, title, main_hobby: mainHobby, item: item })
     .eq('uid', uid)
     .select('uid,image,nickname,main_hobby,title,item');
-  console.log(data, error);
+  // console.log(data, error);
 };
 
 export const updateChallengeProgress = async (

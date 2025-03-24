@@ -93,7 +93,7 @@ function MyPageEditProfile({
       isEditing,
       setIsEditing as React.Dispatch<React.SetStateAction<boolean>>,
       () => {
-        console.log('프로필 수정 페이지 닫힘');
+        // console.log('프로필 수정 페이지 닫힘');
       }
     )
       .then(() =>
