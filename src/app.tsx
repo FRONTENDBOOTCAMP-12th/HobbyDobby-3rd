@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { ErrorBoundary } from 'react-error-boundary';
 import { lazy, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
 import PrintError from '@/components/ErrorBoundary';
-import MainLayout from '@/layouts/main-layout';
 import Spinner from '@/components/Spinner';
+import MainLayout from '@/layouts/main-layout';
 
 const ChallengeEndPage = lazy(() => import('@/pages/main-page-end'));
 const SubHobbySelectPage = lazy(() => import('@/pages/subhobby-select'));
@@ -12,8 +12,6 @@ const LoginPage = lazy(() => import('@/pages/login'));
 const LandingPage = lazy(() => import('@/pages/landing-page'));
 const HobbySelectPage = lazy(() => import('@/pages/hobby-select'));
 const MyPage = lazy(() => import('@/pages/my-page'));
-const MypageEditTitle = lazy(() => import('@/pages/mypage-edit-title'));
-const MypageEditNickname = lazy(() => import('@/pages/mypage-edit-nickname'));
 const WithdrawPage = lazy(() => import('@/pages/withdraw'));
 const RegisterPage = lazy(() => import('@/pages/register'));
 const LeaderBoardCompletedPage = lazy(
@@ -64,11 +62,6 @@ function App() {
               <Route path="/mypage" element={<MyPage />} />
             </Route>
             <Route path="/unit/:unit_name" element={<UnitPage />} />
-            <Route path="/mypage-edit-title" element={<MypageEditTitle />} />
-            <Route
-              path="/mypage-edit-nickname"
-              element={<MypageEditNickname />}
-            />
           </Routes>
         </BrowserRouter>
       </Suspense>

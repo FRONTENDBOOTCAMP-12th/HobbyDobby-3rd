@@ -1,0 +1,23 @@
+.edit-info-header {
+  width: 100%;
+  min-width: 22.5rem;
+  padding: 10px;
+  margin-bottom: 1.25rem;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: var(--quatenary-color);
+}
+
+.edit-info-header button {
+  background-color: transparent;
+  border: 0;
+}
+
+.edit-info-header button:disabled {
+  color: #7d7d7d;
+}

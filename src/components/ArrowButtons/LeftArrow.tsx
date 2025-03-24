@@ -1,0 +1,42 @@
+import clsx from 'clsx';
+import './arrow.css';
+import { useFilteredClassName } from '@/hooks/useFilteredClassName';
+
+interface RightArrowProps {
+  width?: number;
+  position?: string;
+  fill?: string;
+  className?: string;
+  onClick: () => void;
+}
+
+function CloseButton({
+  width = 11,
+  fill = 'black',
+  className = '',
+  onClick,
+}: RightArrowProps) {
+  const filteredClassName = useFilteredClassName(clsx('arrow__btn', className));
+
+  return (
+    <button type="button" className={filteredClassName} onClick={onClick}>
+      <svg
+        width={width}
+        height="15"
+        viewBox="0 0 9 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          id="Vector"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M0.43868 8.21713C0.157779 7.93588 0 7.55463 0 7.15713C0 6.75963 0.157779 6.37838 0.43868 6.09713L6.09468 0.439127C6.37607 0.157865 6.75768 -9.37265e-05 7.15553 4.17235e-08C7.35253 4.6471e-05 7.5476 0.0388942 7.72958 0.114326C7.91157 0.189757 8.07691 0.300294 8.21618 0.439627C8.35545 0.578959 8.46591 0.744358 8.54125 0.92638C8.6166 1.1084 8.65535 1.30348 8.65531 1.50048C8.65526 1.69748 8.61641 1.89254 8.54098 2.07453C8.46555 2.25651 8.35501 2.42186 8.21568 2.56113L3.62068 7.15713L8.21668 11.7531C8.36001 11.8914 8.47436 12.0569 8.55306 12.2399C8.63176 12.4228 8.67323 12.6196 8.67505 12.8188C8.67688 13.018 8.63902 13.2155 8.56368 13.3999C8.48835 13.5843 8.37705 13.7518 8.23627 13.8927C8.0955 14.0336 7.92808 14.1451 7.74377 14.2206C7.55946 14.2961 7.36196 14.3341 7.16279 14.3325C6.96362 14.3309 6.76677 14.2896 6.58373 14.211C6.40069 14.1325 6.23512 14.0183 6.09668 13.8751L0.43668 8.21713H0.43868Z"
+          fill={fill}
+        />
+      </svg>
+    </button>
+  );
+}
+
+export default CloseButton;

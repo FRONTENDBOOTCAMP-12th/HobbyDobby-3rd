@@ -1,0 +1,48 @@
+.profile-item-list__container {
+  width: 100%;
+  padding-block: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.profile-item-list__container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 각 아이템 프레임 */
+.profile-item-list-item__frame {
+  width: 60px;
+  height: 60px;
+  padding: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0px solid var(--secondary-color);
+  border-radius: 10px;
+
+  background-color: var(--tertiary-color);
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    filter: none;
+  }
+}
+
+.profile-item-list-item__frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}

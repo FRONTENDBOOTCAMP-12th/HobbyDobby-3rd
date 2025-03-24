@@ -1,38 +1,35 @@
 import clsx from 'clsx';
-import './style.css';
+import './arrow.css';
 import { useFilteredClassName } from '@/hooks/useFilteredClassName';
 
-interface CloseButtonProps {
-  size?: number;
+interface RightArrowProps {
+  width?: number;
   position?: string;
-  strokeWidth?: number;
   fill?: string;
   className?: string;
   onClick: () => void;
 }
 
 function CloseButton({
-  size = 18,
-  fill = 'var(--quatenary-color)',
+  width = 11,
+  fill = 'black',
   className = '',
-  strokeWidth = 2,
   onClick,
-}: CloseButtonProps) {
-  const filteredClassName = useFilteredClassName(clsx('close-btn', className));
+}: RightArrowProps) {
+  const filteredClassName = useFilteredClassName(clsx('arrow__btn', className));
 
   return (
     <button type="button" className={filteredClassName} onClick={onClick}>
       <svg
-        width={size}
-        height={size}
-        viewBox="0 0 18 18"
+        width={width}
+        height="16"
+        viewBox="0 0 11 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M17 1L1 17M1 1L17 17"
+          d="M1 15L10 8L1 1"
           stroke={fill}
-          strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeLinejoin="round"
         />

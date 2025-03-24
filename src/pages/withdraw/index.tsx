@@ -1,12 +1,13 @@
+import CustomButton from '@/components/CustomButton';
 import FormInput from '@/components/Form/FormInput';
 import HeadingLogo from '@/components/HeadingLogo';
+import { deleteUserData } from '@/lib/api';
+import { useUserStore } from '@/stores/user';
 import { PW_REGEX } from '@/utils/form';
 import { useState } from 'react';
-import './style.css';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router';
-import { useUserStore } from '@/stores/user';
-import { deleteUserData } from '@/lib/api';
+import './style.css';
 
 function WithdrawPage() {
   const userId = useUserStore((state) => state.uid);
@@ -127,10 +128,22 @@ function WithdrawPage() {
           regex={PW_REGEX}
         />
         <div className="withdraw__button">
-          <button type="submit" disabled={isDisable}>
-            탈퇴하기
-          </button>
-          <Link to="/mypage">돌아가기</Link>
+          <CustomButton
+            type="submit"
+            disabled={isDisable}
+            buttonText="탈퇴하기"
+            onClick={() => {
+              console.log('회원 탈퇴 완료');
+            }}
+          />
+          <CustomButton
+            type="button"
+            buttonText="돌아가기"
+            bgColor="var(--secondary-color)"
+            onClick={() => {
+              void navigate('/mypage');
+            }}
+          />
         </div>
       </form>
     </div>
