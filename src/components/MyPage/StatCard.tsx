@@ -18,7 +18,7 @@ function StatCard({ name, value }: StatCardProps) {
         <p>
           <strong>{formattedValue}</strong>
         </p>
-        <h2>{name}</h2>
+        <h3>{name}</h3>
       </div>
     </div>
   );

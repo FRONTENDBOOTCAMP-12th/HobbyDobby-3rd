@@ -27,18 +27,15 @@
     text-overflow: ellipsis;
   }
 
-  h3 {
-    color: color-mix(in srgb, var(--text-black) 50%, var(--secondary-color));
-  }
-
   p {
     margin: 0;
   }
 }
 
-.main-card__link {
+.main-card__link-button {
   background-color: var(--quatenary-color);
-  border-radius: 8px;
+  border-radius: 6px;
+  border: none;
   color: var(--text-black);
   text-align: center;
   text-decoration: none;

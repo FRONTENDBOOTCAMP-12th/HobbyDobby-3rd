@@ -18,6 +18,12 @@
   align-items: center;
 
   background-color: transparent;
+
+  .article-container h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
 }
 /* 레이아웃 스타일링 */
 .my-page main {
@@ -70,9 +76,4 @@
   border-radius: var(--board-border-radius);
 
   background-color: var(--white-color);
-}
-
-.article-container h2 {
-  font-size: 20px;
-  margin: 0;
 }

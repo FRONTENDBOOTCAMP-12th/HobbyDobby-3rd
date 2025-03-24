@@ -39,13 +39,7 @@ function FormInput({
           {label}
         </label>
         <div className="form-input__wrapper">
-          <input
-            id={id}
-            onChange={onChange}
-            value={value}
-            name={name}
-            {...restProps}
-          />
+          <input id={id} onChange={onChange} name={name} {...restProps} />
           {checkDuplicateButton ? (
             <button
               className="form-input__button"

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { useUserStore } from '@/stores/user';
 
 function MypageFooter() {
+  const userId = useUserStore((user) => user.id);
   const navigate = useNavigate();
   const logout = useUserStore((state) => state.logout);
 
@@ -23,6 +24,7 @@ function MypageFooter() {
             confirmButtonColor: `var(--primary-color)`,
             text: '랜딩페이지로 이동합니다.',
             heightAuto: false,
+            scrollbarPadding: false,
           })
             .then(() => {
               logout();
@@ -39,21 +41,30 @@ function MypageFooter() {
       });
   };
 
-  const handleWithdraw = () => {
-    Swal.fire({
-      text: '탈퇴 페이지로 이동합니다.',
-      confirmButtonColor: `var(--primary-color)`,
-      showCancelButton: true,
-      heightAuto: false,
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          void navigate('/withdraw');
-        }
+  const handleWithdraw = async () => {
+    if (userId !== 'testbot12') {
+      Swal.fire({
+        text: '탈퇴 페이지로 이동합니다.',
+        confirmButtonColor: `var(--primary-color)`,
+        showCancelButton: true,
+        heightAuto: false,
+        scrollbarPadding: false,
       })
-      .catch((error) => {
-        console.log(error);
+        .then((result) => {
+          if (result.isConfirmed) {
+            void navigate('/withdraw');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      await Swal.fire({
+        icon: 'warning',
+        text: '테스트용 계정은 회원 탈퇴가 불가합니다.',
+        scrollbarPadding: false,
       });
+    }
   };
 
   return (
@@ -62,7 +73,7 @@ function MypageFooter() {
         로그아웃
       </button>
       <span aria-hidden="true">|</span>
-      <button type="button" onClick={handleWithdraw}>
+      <button type="button" onClick={() => void handleWithdraw()}>
         회원탈퇴
       </button>
     </footer>

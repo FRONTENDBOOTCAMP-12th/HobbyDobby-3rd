@@ -29,14 +29,14 @@ function AchievementCard({
       ) : (
         <span className="level-badge">
           <img src={getPublicImage('burning.svg')} alt="불꽃 아이콘" />
-          <h2>레벨 {level}</h2>
+          <h3>레벨 {level}</h3>
         </span>
       )}
 
       {/* 업적 내용 - 우측 */}
       <div className="achievements">
         <div className="title-and-progress">
-          <h2 aria-describedby="status">{name}</h2>
+          <h3 aria-describedby="status">{name}</h3>
           <p id="status">
             {current}/{total}
           </p>

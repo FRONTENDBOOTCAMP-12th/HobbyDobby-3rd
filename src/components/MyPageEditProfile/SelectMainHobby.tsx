@@ -36,10 +36,14 @@ function SelectMainHobby({
   // 폼 제출 시 프로필 업데이트
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    useEditProfileStore.getState().updateProfile({
-      main_hobby: selectedHobby, // 선택한 취미로 프로필 업데이트
-    });
-    handleClickSave(); // 저장 처리
+
+    // 현재 개발 된 부분이 독서 뿐이기 때문에, 임시로 막아두었습니다.
+    if (selectedHobby === '막아둠') {
+      useEditProfileStore.getState().updateProfile({
+        main_hobby: selectedHobby, // 선택한 취미로 프로필 업데이트
+      });
+      handleClickSave(); // 저장 처리
+    }
   };
 
   // 취미 옵션을 렌더링하는 함수

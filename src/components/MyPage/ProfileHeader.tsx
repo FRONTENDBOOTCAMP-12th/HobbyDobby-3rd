@@ -15,7 +15,6 @@ function ProfileHeader({
 }: ProfileHeaderProps) {
   const handleEditProfile = () => {
     setIsEditing(true);
-    console.log('프로필 수정하기');
   };
 
   return (

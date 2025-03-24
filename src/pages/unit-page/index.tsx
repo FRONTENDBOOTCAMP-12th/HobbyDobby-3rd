@@ -63,6 +63,7 @@ function UnitPage() {
       confirmButtonColor: '#b60000',
       showCancelButton: true,
       cancelButtonText: '취소',
+      scrollbarPadding: false,
     })
       .then((result) => {
         if (result.isConfirmed) {
@@ -220,6 +221,7 @@ function UnitPage() {
           title: '저장 완료!',
           text: '유닛을 마무리하고 홈 페이지로 이동합니다.',
           confirmButtonColor: `var(--primary-color)`,
+          scrollbarPadding: false,
         })
           .then(() => {
             void navigate('/home');
@@ -246,6 +248,7 @@ function UnitPage() {
             title: '저장 완료!',
             text: '유닛을 마무리하고 챌린지 완료 페이지로 이동합니다.',
             confirmButtonColor: `var(--primary-color)`,
+            scrollbarPadding: false,
           })
             .then(() => {
               void navigate('/challenge-end');
@@ -259,6 +262,7 @@ function UnitPage() {
             title: '저장 완료!',
             text: '유닛을 마무리하고 홈 페이지로 이동합니다.',
             confirmButtonColor: `var(--primary-color)`,
+            scrollbarPadding: false,
           })
             .then(() => {
               void navigate('/home');

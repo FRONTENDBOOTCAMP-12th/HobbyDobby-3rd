@@ -45,7 +45,8 @@ export const getSubHobby = async (hobbyName: string) =>
   await supabase
     .from('sub_hobby')
     .select('id,info,name')
-    .eq('hobby_name', hobbyName);
+    .eq('hobby_name', hobbyName)
+    .order('name');
 
 export const getUserCompletedChallenge = async (userId: string) => {
   const { data, error } = await supabase
@@ -300,12 +301,12 @@ export const updateUserProfile = async (
   mainHobby: string | null,
   item: string | null
 ) => {
-  const { data, error } = await supabase
+  await supabase
     .from('user')
     .update({ nickname, image, title, main_hobby: mainHobby, item: item })
     .eq('uid', uid)
     .select('uid,image,nickname,main_hobby,title,item');
-  console.log(data, error);
+  // console.log(data, error);
 };
 
 export const updateChallengeProgress = async (
@@ -515,13 +516,16 @@ export const deleteUserTitle = async (userId: string, titleName: string) => {
 
 // 회원탈퇴
 export const deleteUserData = async (userId: string, password: string) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('user')
     .delete()
     .eq('uid', userId)
-    .eq('password', password);
+    .eq('password', password)
+    .select();
 
-  const isSuccess = error ? false : true;
+  console.log(data, error);
+
+  const isSuccess = data?.length === 1 ? true : false;
   return { isSuccess, error };
 };
 

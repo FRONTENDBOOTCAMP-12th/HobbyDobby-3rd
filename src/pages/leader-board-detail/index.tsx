@@ -45,6 +45,7 @@ function LeaderBoardDetailPage() {
   return (
     <div className="leader-board-detail">
       <Title>리더보드 상세정보</Title>
+      <h2 className="sr-only">챌린지 상세 정보</h2>
       <DetailCard
         challengeName={challengeName}
         dateArr={dateArr}

@@ -4,10 +4,11 @@ import HeadingLogo from '@/components/HeadingLogo';
 import { deleteUserData } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
 import { PW_REGEX } from '@/utils/form';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import './style.css';
+import { debounce } from '@/utils/debounce';
 
 function WithdrawPage() {
   const userId = useUserStore((state) => state.uid);
@@ -19,16 +20,18 @@ function WithdrawPage() {
     passwordCheck: '',
   });
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
-
-    const nextInputData = {
-      ...inputData,
+  const handleInput = (name: string, value: string) => {
+    setInputData((prev) => ({
+      ...prev,
       [name]: value,
-    };
-
-    setInputData(nextInputData);
+    }));
   };
+
+  const debouncedHandleInput = useRef(
+    debounce((name: string, value: string) => {
+      handleInput(name, value); // debounce 후 value를 직접 처리
+    }, 300)
+  ).current;
 
   // 탈퇴하기 버튼 활성화 조건
   const isDisable = !(
@@ -45,13 +48,14 @@ function WithdrawPage() {
       confirmButtonColor: `var(--primary-color)`,
       showCancelButton: true,
       heightAuto: false,
+      scrollbarPadding: false,
     })
       // 탈퇴 확인 Swal 후
       .then((result) => {
         if (result.isConfirmed) {
           deleteUserData(userId, inputData.password)
             // delete 통신 후
-            .then((isSuccess) => {
+            .then(({ isSuccess, error }) => {
               // delete 성공
               if (isSuccess) {
                 Swal.fire({
@@ -60,6 +64,7 @@ function WithdrawPage() {
                   text: '랜딩페이지로 이동합니다.',
                   confirmButtonColor: `var(--primary-color)`,
                   heightAuto: false,
+                  scrollbarPadding: false,
                 })
                   .then(() => {
                     logout();
@@ -69,11 +74,11 @@ function WithdrawPage() {
                   .catch((error) => console.log(error));
               }
               // delete 실패
-              else if (!isSuccess) {
+              else if (error) {
                 Swal.fire({
                   title: '회원탈퇴 실패',
                   icon: 'error',
-                  text: '비밀번호가 일치하지 않습니다.',
+                  text: '잠시 후 다시 시도해주세요.',
                   confirmButtonColor: `var(--primary-color)`,
                   heightAuto: false,
                 }).catch((error) => console.log(error));
@@ -81,9 +86,10 @@ function WithdrawPage() {
                 Swal.fire({
                   title: '회원탈퇴 실패',
                   icon: 'error',
-                  text: '잠시 후 다시 시도해주세요.',
+                  text: '비밀번호가 일치하지 않습니다.',
                   confirmButtonColor: `var(--primary-color)`,
                   heightAuto: false,
+                  scrollbarPadding: false,
                 }).catch((error) => console.log(error));
               }
             })
@@ -114,7 +120,10 @@ function WithdrawPage() {
           placeholder="비밀번호를 입력해주세요."
           value={inputData.password}
           alertMessage="최소 8자가 필요합니다."
-          onChange={handleInput}
+          onChange={(e) => {
+            const { name, value } = e.target;
+            debouncedHandleInput(name, value); // debouncedHandleInput 사용
+          }}
           regex={PW_REGEX}
         />
         <FormInput
@@ -124,7 +133,10 @@ function WithdrawPage() {
           placeholder="비밀번호를 한번 더 입력해주세요."
           value={inputData.passwordCheck}
           alertMessage="최소 8자가 필요합니다."
-          onChange={handleInput}
+          onChange={(e) => {
+            const { name, value } = e.target;
+            debouncedHandleInput(name, value); // debouncedHandleInput 사용
+          }}
           regex={PW_REGEX}
         />
         <div className="withdraw__button">

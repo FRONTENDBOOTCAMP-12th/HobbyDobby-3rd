@@ -27,6 +27,7 @@ export const handleCloseEditPage = async (
     confirmButtonColor: 'var(--primary-color)',
     showCancelButton: true,
     heightAuto: false,
+    scrollbarPadding: false,
   });
 
   if (result.isConfirmed) {
@@ -81,7 +82,7 @@ const handleProfileUpdate = async (
         newNickname
       );
 
-    console.log('Profile updated successfully');
+    // console.log('Profile updated successfully');
   } catch (error) {
     console.error('Error updating profile or uploading file:', error);
   }

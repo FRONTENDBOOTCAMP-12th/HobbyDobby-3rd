@@ -49,6 +49,7 @@ function MainPageStart() {
             icon: 'warning',
             confirmButtonColor: `var(--primary-color)`,
             heightAuto: false,
+            scrollbarPadding: false,
           });
 
           return;
@@ -80,6 +81,7 @@ function MainPageStart() {
           confirmButtonColor: `var(--primary-color)`,
           text: '메인페이지로 이동합니다.',
           heightAuto: false,
+          scrollbarPadding: false,
         });
 
         void navigate('/home');
@@ -93,6 +95,7 @@ function MainPageStart() {
           confirmButtonColor: `var(--primary-color)`,
           text: '챌린지를 저장하는 도중 문제가 발생했습니다.',
           heightAuto: false,
+          scrollbarPadding: false,
         });
       }
     }

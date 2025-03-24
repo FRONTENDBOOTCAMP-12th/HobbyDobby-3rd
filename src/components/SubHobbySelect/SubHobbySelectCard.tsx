@@ -12,24 +12,33 @@ interface SubHobbySelectCardProps {
 function SubHobbySelectCard({ hobby, name, info }: SubHobbySelectCardProps) {
   const navigate = useNavigate();
 
-  const handleSubHobbySelect = (hobby: string, subHobby: string) => {
-    void Swal.fire({
-      title: '선택하시겠습니까?',
-      confirmButtonText: '선택',
-      showCancelButton: true,
-      cancelButtonText: '취소',
-      confirmButtonColor: `var(--primary-color)`,
-      heightAuto: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        void navigate('/challenge-start', {
-          state: {
-            hobby,
-            subHobby,
-          },
-        });
-      }
-    });
+  const handleSubHobbySelect = async (hobby: string, subHobby: string) => {
+    if (subHobby === '문학') {
+      void Swal.fire({
+        title: '선택하시겠습니까?',
+        confirmButtonText: '선택',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        confirmButtonColor: `var(--primary-color)`,
+        heightAuto: false,
+        scrollbarPadding: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          void navigate('/challenge-start', {
+            state: {
+              hobby,
+              subHobby,
+            },
+          });
+        }
+      });
+    } else {
+      await Swal.fire({
+        icon: 'info',
+        text: '개발 진행 중인 섹션입니다.',
+        scrollbarPadding: false,
+      });
+    }
   };
 
   return (
@@ -43,7 +52,7 @@ function SubHobbySelectCard({ hobby, name, info }: SubHobbySelectCardProps) {
         <button
           type="button"
           className="subhobby-select-card__button"
-          onClick={() => handleSubHobbySelect(hobby, name)}
+          onClick={() => void handleSubHobbySelect(hobby, name)}
         >
           선택
         </button>

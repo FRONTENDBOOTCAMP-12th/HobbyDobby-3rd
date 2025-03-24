@@ -31,6 +31,7 @@ function StoreItem({ item, owned }: StoreItemProps) {
       showCancelButton: true,
       confirmButtonText: '구매',
       cancelButtonText: '취소',
+      scrollbarPadding: false,
     })
       .then((result) => {
         if (result.isConfirmed) {
@@ -52,6 +53,7 @@ function StoreItem({ item, owned }: StoreItemProps) {
                 text: '잠시 후 다시 시도해주세요.',
                 heightAuto: false,
                 confirmButtonColor: `var(--primary-color)`,
+                scrollbarPadding: false,
               }).catch((error) => console.log(error));
             }
 
@@ -61,6 +63,7 @@ function StoreItem({ item, owned }: StoreItemProps) {
               text: '마이페이지에서 사용 가능합니다.',
               heightAuto: false,
               confirmButtonColor: `var(--primary-color)`,
+              scrollbarPadding: false,
             }).catch((error) => {
               console.log(error);
             });
@@ -70,6 +73,7 @@ function StoreItem({ item, owned }: StoreItemProps) {
               icon: 'warning',
               heightAuto: false,
               confirmButtonColor: `var(--primary-color)`,
+              scrollbarPadding: false,
             }).catch((error) => console.log(error));
           }
         }

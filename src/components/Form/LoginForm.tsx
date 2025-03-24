@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './login.css';
 import FormInput from './FormInput';
 import { getUserByID, getUserHobbiesByUID } from '@/lib/api';
@@ -6,15 +6,11 @@ import { useUserStore } from '@/stores/user';
 import { ID_REGEX, PW_REGEX } from '@/utils/form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
+import { debounce } from '@/utils/debounce';
 
 interface LoginFormInputData {
   id: string;
   password: string;
-}
-
-interface EventData {
-  name: keyof LoginFormInputData;
-  value: string;
 }
 
 function LoginForm() {
@@ -36,16 +32,18 @@ function LoginForm() {
     PW_REGEX.test(inputData.password)
   );
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget as EventData;
-
-    const nextInputData = {
-      ...inputData,
+  const handleInput = (name: string, value: string) => {
+    setInputData((prev) => ({
+      ...prev,
       [name]: value,
-    };
-
-    setInputData(nextInputData);
+    }));
   };
+
+  const debouncedHandleInput = useRef(
+    debounce((name: string, value: string) => {
+      handleInput(name, value); // debounce 후 value를 직접 처리
+    }, 300)
+  ).current;
 
   const handleLogIn = async () => {
     const inputID = inputData.id;
@@ -84,6 +82,7 @@ function LoginForm() {
                 text: '메인페이지로 이동합니다.',
                 confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
+                scrollbarPadding: false,
               });
 
               void navigate('/home');
@@ -94,6 +93,7 @@ function LoginForm() {
                 text: '취미선택페이지로 이동합니다.',
                 confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
+                scrollbarPadding: false,
               });
               void navigate('/select-hobby');
             }
@@ -107,6 +107,7 @@ function LoginForm() {
               text: '비밀번호가 올바르지 않습니다.',
               confirmButtonColor: `var(--primary-color)`,
               heightAuto: false,
+              scrollbarPadding: false,
             });
           }
         } else {
@@ -118,6 +119,7 @@ function LoginForm() {
             text: '아이디가 올바르지 않습니다.',
             confirmButtonColor: `var(--primary-color)`,
             heightAuto: false,
+            scrollbarPadding: false,
           }).catch((error) => {
             console.log(error);
           });
@@ -143,10 +145,13 @@ function LoginForm() {
         type="text"
         label="아이디"
         name="id"
-        placeholder="아이디를 입력해주세요."
+        placeholder="영문 아이디를 입력해주세요."
         value={inputData.id}
         alertMessage="최소 6자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={ID_REGEX}
       />
       <FormInput
@@ -157,7 +162,10 @@ function LoginForm() {
         placeholder="비밀번호를 입력해주세요."
         value={inputData.password}
         alertMessage="최소 8자가 필요합니다."
-        onChange={handleInput}
+        onChange={(e) => {
+          const { name, value } = e.target;
+          debouncedHandleInput(name, value); // debouncedHandleInput 사용
+        }}
         regex={PW_REGEX}
       />
       <button type="submit" disabled={isLoginDisable}>

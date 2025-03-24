@@ -18,7 +18,10 @@ function IndexCard({
 }: IndexCardProps) {
   return (
     <div className="index-card">
-      <CloseButton onClick={handleClickClose} className="close-btn btn" />
+      <CloseButton
+        onClick={handleClickClose}
+        className="index-card__close-btn btn"
+      />
       <p>
         섹션 {section} <b>|</b> 유닛 {currentUnit}/{totalUnits}
       </p>

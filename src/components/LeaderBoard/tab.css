@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #c2c1c2;
+    color: var(--text-black);
     font-weight: 600;
   }
 }

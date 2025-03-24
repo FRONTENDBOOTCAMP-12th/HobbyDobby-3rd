@@ -92,6 +92,8 @@ const AchievementCardList = ({
     handleReward,
   ]);
 
+  // console.log(achievements);
+
   return (
     <div className="achievement-card-list">
       {achievements.map((achievement) => (
