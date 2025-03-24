@@ -7,6 +7,7 @@ import { ID_REGEX, PW_REGEX } from '@/utils/form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 import { debounce } from '@/utils/debounce';
+import { useUserAchievementStore } from '@/stores/user-achievement';
 
 interface LoginFormInputData {
   id: string;
@@ -59,6 +60,7 @@ function LoginForm() {
           const userData = user[0];
 
           if (userData.password === inputPW) {
+            useUserAchievementStore.getState().setUid(userData.uid);
             // uid를 바탕으로 데이터 가져오기
             const userHobbies = await getUserHobbiesByUID(userData.uid);
 

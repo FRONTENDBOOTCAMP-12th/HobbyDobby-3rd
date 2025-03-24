@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import './styles/my-page-footer.css';
 import { useNavigate } from 'react-router';
 import { useUserStore } from '@/stores/user';
+import { useUserAchievementStore } from '@/stores/user-achievement';
 
 function MypageFooter() {
   const userId = useUserStore((user) => user.id);
@@ -29,6 +30,8 @@ function MypageFooter() {
             .then(() => {
               logout();
               localStorage.removeItem('store/user');
+              useUserAchievementStore.getState().resetAchievements();
+              localStorage.removeItem('store/user-achievements');
               void navigate('/');
             })
             .catch((error) => {
