@@ -1,7 +1,6 @@
 # 멋쟁이 사자처럼 FrontEnd Final Project 3조<br> Recherin_ThreeStar의 HobbyDobby입니다! 🧙‍♂️
 
-<img src="./public/assets/hobby.svg" width="300">
-<img src="./public/assets/dobby.svg" width="300">
+<img src="./public/assets/large-logo.svg" width="800">
 
 <!-- <img src="./public/assets/logo.svg" width="200"> -->
 
@@ -124,25 +123,25 @@
 
 ### 유저 플로우 차트
 
-<img src="./public/assets/userflow.png" width ="800">
+<img src="./readme-assets/userflow.png" width ="800">
 
 ### 팀 컨벤션
 
 **커밋 컨벤션**<br>
-<img src="./public/assets/commit convention.png" widht="800">
+<img src="./readme-assets/commit-convention.png" widht="800">
 
 **PR 템플릿** <br>
-<img src="./public/assets/pr convention.png" width="800">
+<img src="./readme-assets/pr-convention.png" width="800">
 
 **코딩 컨벤션** <br>
-<img src="./public/assets/coding convention.png" width="800">
+<img src="./readme-assets/coding-convention.png" width="800">
 
 ### 기능 소개
 
 |     제목     | 상세설명                                                                                                                                                     |
 | :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |     주제     | [메인페이지-챌린지 시작하기]()                                                                                                                               |
-|  동작 화면   | <img src="./public/assets/challenge-start.gif"  width="300">                                                                                                 |
+|  동작 화면   | <img src="./readme-assets/challenge-start.gif"  width="300">                                                                                                 |
 | 기능 및 구현 | - 시작 버튼을 누르면 챌린지에 대한 요청사항이 발생 <br> - 설문 진행에 따른 상단의 프로그래스바가 변경 <br> - 답변에 따른 button 선택 및 타이핑으롤 설문 진행 |
 
 <br>
@@ -150,7 +149,7 @@
 |     제목     | 상세설명                                                                                                  |
 | :----------: | :-------------------------------------------------------------------------------------------------------- |
 |     주제     | [마이페이지-로그아웃]()                                                                                   |
-|  동작 화면   | <img src="./public/assets/mypage-logout.gif"  width="300">                                                |
+|  동작 화면   | <img src="./readme-assets/mypage-logout.gif"  width="300">                                                |
 | 기능 및 구현 | - 로그아웃 버튼을 작동하면 로그아웃 하겠냐는 안내창 발생<br> - 로그아웃이 완료되면 랜딩페이지로 자동 이동 |
 
 <br>
@@ -158,7 +157,7 @@
 |     제목     | 상세설명                                                                      |
 | :----------: | :---------------------------------------------------------------------------- |
 |     주제     | [스토어페이지-구매하기]()                                                     |
-|  동작 화면   | <img src="./public/assets/store-buy.gif"  width="300">                        |
+|  동작 화면   | <img src="./readme-assets/store-buy.gif"  width="300">                        |
 | 기능 및 구현 | - 스토어 상품을 구매하기 진행 <br> - 구매 진행시 보석이 구매 금액에 맞게 차감 |
 
 <br>
@@ -166,7 +165,7 @@
 |     제목     | 상세설명                                                                      |
 | :----------: | :---------------------------------------------------------------------------- |
 |     주제     | [마이페이지-아이템 사용하기]()                                                |
-|  동작 화면   | <img src="./public/assets/mypage-itemuse.gif"  width="300">                   |
+|  동작 화면   | <img src="./readme-assets/mypage-itemuse.gif"  width="300">                   |
 | 기능 및 구현 | - 프포필 설정 창으로 이동 <br> - 보유중인 아이템을 클릭 시 프로필 사진에 적용 |
 
 <br>
