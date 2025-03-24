@@ -123,21 +123,18 @@
 
 ### 유저 플로우 차트
 
-test
-<img src="./readme-assets/userflow.png" width ="800">
-<img src="./readme-assets/coding-convention.jpg" width ="800">
-<img src="./public/assets/coding-convention.jpg" width ="800">
+<img src="https://github.com/user-attachments/assets/03d73d03-f021-44ce-8a61-7bd31aa83965" width ="800">
 
 ### 팀 컨벤션
 
 **커밋 컨벤션**<br>
-<img src="./readme-assets/commit-convention.png" widht="800">
+<img src="https://github.com/user-attachments/assets/e4624af6-ecbd-47a8-aa85-6179949cd6ee" widht="800">
 
 **PR 템플릿** <br>
-<img src="./readme-assets/pr-convention.png" width="800">
+<img src="https://github.com/user-attachments/assets/09f97013-2f23-4ee9-8379-34b0930fcb67" width="550">
 
 **코딩 컨벤션** <br>
-<img src="./readme-assets/coding-convention.png" width="800">
+<img src="https://github.com/user-attachments/assets/b7c30e55-f706-4dc0-ab29-f75a8129671c" width="800">
 
 ### 기능 소개
 
