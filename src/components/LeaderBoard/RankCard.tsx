@@ -27,7 +27,11 @@ function LeaderBoardRankCard({
               className="leader-board-ranking__profileImg"
             />
           ) : (
-            <div className="leader-board-ranking__profileImg--alt"></div>
+            <img
+              src="/assets/profile-none.jpg"
+              alt="사용자 프로필"
+              className="leader-board-detail__user-profile"
+            />
           )}
           <div className="leader-board-ranking__container--sm">
             <p>{nickname}</p>
