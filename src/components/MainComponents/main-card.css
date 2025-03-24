@@ -27,10 +27,6 @@
     text-overflow: ellipsis;
   }
 
-  h3 {
-    color: color-mix(in srgb, var(--text-black) 50%, var(--secondary-color));
-  }
-
   p {
     margin: 0;
   }
