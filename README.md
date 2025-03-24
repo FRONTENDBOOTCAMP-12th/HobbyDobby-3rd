@@ -125,6 +125,7 @@
 
 test
 <img src="./readme-assets/userflow.png" width ="800">
+<img src="./readme-assets/coding-convention.jpg" width ="800">
 <img src="./public/assets/coding-convention.jpg" width ="800">
 
 ### 팀 컨벤션
