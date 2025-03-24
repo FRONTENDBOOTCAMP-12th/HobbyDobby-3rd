@@ -27,6 +27,7 @@ export const handleCloseEditPage = async (
     confirmButtonColor: 'var(--primary-color)',
     showCancelButton: true,
     heightAuto: false,
+    scrollbarPadding: false,
   });
 
   if (result.isConfirmed) {

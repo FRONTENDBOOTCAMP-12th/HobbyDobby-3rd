@@ -21,6 +21,7 @@ function SubHobbySelectCard({ hobby, name, info }: SubHobbySelectCardProps) {
         cancelButtonText: '취소',
         confirmButtonColor: `var(--primary-color)`,
         heightAuto: false,
+        scrollbarPadding: false,
       }).then((result) => {
         if (result.isConfirmed) {
           void navigate('/challenge-start', {
@@ -32,7 +33,11 @@ function SubHobbySelectCard({ hobby, name, info }: SubHobbySelectCardProps) {
         }
       });
     } else {
-      await Swal.fire({ icon: 'info', text: '개발 진행 중인 섹션입니다.' });
+      await Swal.fire({
+        icon: 'info',
+        text: '개발 진행 중인 섹션입니다.',
+        scrollbarPadding: false,
+      });
     }
   };
 

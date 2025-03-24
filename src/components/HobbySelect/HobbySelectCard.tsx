@@ -18,7 +18,11 @@ function HobbySelectCard({ name }: HobbySelectCardProps) {
         },
       });
     } else {
-      await Swal.fire({ icon: 'info', text: '개발 진행 중인 섹션입니다.' });
+      await Swal.fire({
+        icon: 'info',
+        text: '개발 진행 중인 섹션입니다.',
+        scrollbarPadding: false,
+      });
     }
   };
 

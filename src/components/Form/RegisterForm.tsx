@@ -72,6 +72,7 @@ function RegisterForm() {
           text: '중복된 ID입니다.',
           confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
+          scrollbarPadding: false,
         });
       } else {
         const nextIsDuplicate = {
@@ -84,6 +85,7 @@ function RegisterForm() {
           text: '사용 가능한 ID입니다.',
           confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
+          scrollbarPadding: false,
         });
       }
     }
@@ -107,6 +109,7 @@ function RegisterForm() {
           text: '중복된 닉네임입니다.',
           confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
+          scrollbarPadding: false,
         });
       } else {
         const nextIsDuplicate = {
@@ -119,6 +122,7 @@ function RegisterForm() {
           text: '사용 가능한 닉네임입니다.',
           confirmButtonColor: `var(--primary-color)`,
           heightAuto: false,
+          scrollbarPadding: false,
         });
       }
     }
@@ -143,6 +147,7 @@ function RegisterForm() {
       text: '로그인 페이지로 이동합니다.',
       confirmButtonColor: `var(--primary-color)`,
       heightAuto: false,
+      scrollbarPadding: false,
     });
     // react-router 함수, 페이지 이동
     void navigate('/login');

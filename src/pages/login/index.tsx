@@ -18,6 +18,7 @@ function LoginPage() {
         text: '이미 로그인되었습니다.',
         confirmButtonColor: `var(--primary-color)`,
         heightAuto: false,
+        scrollbarPadding: false,
       })
         .then(() => {
           void navigate('/home', { replace: true });

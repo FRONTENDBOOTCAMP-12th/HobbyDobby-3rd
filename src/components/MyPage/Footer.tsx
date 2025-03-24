@@ -24,6 +24,7 @@ function MypageFooter() {
             confirmButtonColor: `var(--primary-color)`,
             text: '랜딩페이지로 이동합니다.',
             heightAuto: false,
+            scrollbarPadding: false,
           })
             .then(() => {
               logout();
@@ -47,6 +48,7 @@ function MypageFooter() {
         confirmButtonColor: `var(--primary-color)`,
         showCancelButton: true,
         heightAuto: false,
+        scrollbarPadding: false,
       })
         .then((result) => {
           if (result.isConfirmed) {
@@ -60,6 +62,7 @@ function MypageFooter() {
       await Swal.fire({
         icon: 'warning',
         text: '테스트용 계정은 회원 탈퇴가 불가합니다.',
+        scrollbarPadding: false,
       });
     }
   };

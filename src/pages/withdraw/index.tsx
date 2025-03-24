@@ -48,6 +48,7 @@ function WithdrawPage() {
       confirmButtonColor: `var(--primary-color)`,
       showCancelButton: true,
       heightAuto: false,
+      scrollbarPadding: false,
     })
       // 탈퇴 확인 Swal 후
       .then((result) => {
@@ -63,6 +64,7 @@ function WithdrawPage() {
                   text: '랜딩페이지로 이동합니다.',
                   confirmButtonColor: `var(--primary-color)`,
                   heightAuto: false,
+                  scrollbarPadding: false,
                 })
                   .then(() => {
                     logout();
@@ -87,6 +89,7 @@ function WithdrawPage() {
                   text: '비밀번호가 일치하지 않습니다.',
                   confirmButtonColor: `var(--primary-color)`,
                   heightAuto: false,
+                  scrollbarPadding: false,
                 }).catch((error) => console.log(error));
               }
             })

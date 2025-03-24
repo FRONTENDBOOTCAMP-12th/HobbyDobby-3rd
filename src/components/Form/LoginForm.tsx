@@ -82,6 +82,7 @@ function LoginForm() {
                 text: '메인페이지로 이동합니다.',
                 confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
+                scrollbarPadding: false,
               });
 
               void navigate('/home');
@@ -92,6 +93,7 @@ function LoginForm() {
                 text: '취미선택페이지로 이동합니다.',
                 confirmButtonColor: `var(--primary-color)`,
                 heightAuto: false,
+                scrollbarPadding: false,
               });
               void navigate('/select-hobby');
             }
@@ -105,6 +107,7 @@ function LoginForm() {
               text: '비밀번호가 올바르지 않습니다.',
               confirmButtonColor: `var(--primary-color)`,
               heightAuto: false,
+              scrollbarPadding: false,
             });
           }
         } else {
@@ -116,6 +119,7 @@ function LoginForm() {
             text: '아이디가 올바르지 않습니다.',
             confirmButtonColor: `var(--primary-color)`,
             heightAuto: false,
+            scrollbarPadding: false,
           }).catch((error) => {
             console.log(error);
           });

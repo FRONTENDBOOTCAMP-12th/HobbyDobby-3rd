@@ -51,6 +51,7 @@ function EditNickname({
         text: '중복된 닉네임입니다.',
         confirmButtonColor: `var(--primary-color)`,
         heightAuto: false,
+        scrollbarPadding: false,
       });
     } else {
       await Swal.fire({
@@ -58,6 +59,7 @@ function EditNickname({
         text: '사용 가능한 닉네임입니다.',
         confirmButtonColor: `var(--primary-color)`,
         heightAuto: false,
+        scrollbarPadding: false,
       });
     }
   };
