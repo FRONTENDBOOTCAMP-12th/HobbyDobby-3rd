@@ -20,9 +20,15 @@ function UploadFile({ key, name, setNextAnswers }: UploadFileProps) {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0];
 
+      const ext = selectedFile.name.split('.').pop();
+      const newFileName = `${crypto.randomUUID()}.${ext}`;
+      const renamedFile = new File([selectedFile], newFileName, {
+        type: selectedFile.type,
+      });
+
       const nextFile = {
-        file: selectedFile,
-        preview: URL.createObjectURL(selectedFile),
+        file: renamedFile,
+        preview: URL.createObjectURL(renamedFile),
       };
 
       setFile(nextFile);
