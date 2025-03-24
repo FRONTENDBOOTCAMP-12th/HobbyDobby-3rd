@@ -1,61 +1,92 @@
 import {
   getAchievementByLevelType,
   getUserGem,
-  insertUserAchievement,
   insertUserTitle,
   updateUserGem,
 } from '@/lib/api';
-import { useUserStore } from '@/stores/user';
-import { AchievementCardProps } from '@/types/my-page/achievement';
-import { useCallback, useState } from 'react';
+import { useUserAchievementStore } from '@/stores/user-achievement';
+import { useCallback, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 export const useHandleReward = () => {
-  const [achievements, setAchievements] = useState<AchievementCardProps[]>([]);
-  const userId = useUserStore((state) => state.uid) ?? null;
+  const [userGem, setUserGem] = useState<number | null>(null);
+  const userId = useUserAchievementStore((state) => state.uid) ?? null;
+
+  // Zustand에서 업적 상태 가져오기
+  const [achievements, setAchievements] = useState(
+    useUserAchievementStore((state) => state.achievements)
+  );
+
+  useEffect(() => {
+    if (userId) {
+      const fetchUserGem = async () => {
+        // Zustand에 gem 상태가 있으면 재사용
+        const cachedGem = useUserAchievementStore.getState().gem;
+        if (cachedGem !== null) {
+          setUserGem(cachedGem);
+          return;
+        }
+
+        const gem = await getUserGem(userId);
+        useUserAchievementStore.setState({ gem });
+        setUserGem(gem);
+      };
+
+      void fetchUserGem();
+    }
+  }, [userId]);
 
   const handleReward = useCallback(
     async (id: string, level: number, type: string) => {
       try {
-        // 이미 업적을 가져온 경우 재사용
-        const completedAchievement = await getAchievementByLevelType(
-          level,
-          type as 'attendance_days' | 'exp' | 'completed_challenges'
+        // 상태가 최신이면 API 호출 방지
+        const cachedAchievement = achievements.find(
+          (a) => a.level === level && a.type === type
         );
 
-        if (!completedAchievement) return;
+        if (!cachedAchievement) {
+          const completedAchievement = await getAchievementByLevelType(
+            level,
+            type as 'attendance_days' | 'exp' | 'completed_challenges'
+          );
 
-        const rewardGem = completedAchievement.reward_gem;
-        const rewardTitle = completedAchievement.reward_title;
+          if (!completedAchievement) return;
 
-        // 사용자 업적 테이블에 데이터 저장
-        await insertUserAchievement(userId, completedAchievement.id);
+          // 상태에 저장
+          useUserAchievementStore.setState({
+            achievements: achievements.map((achievement) => ({
+              ...achievement,
+              id: achievement.id,
+              level: achievement.level,
+              type: achievement.type,
+              name: achievement.name,
+              current: achievement.current,
+              total: achievement.total,
+              isMax: achievement.isMax ?? false,
+              onReward: achievement.onReward,
+            })),
+          });
 
-        // Gem 보상 처리
-        if (rewardGem) {
-          const userGem = await getUserGem(userId);
-          const newUserGem = (userGem ?? 0) + rewardGem;
+          // 보상 지급 처리
+          if (completedAchievement.reward_gem) {
+            const newGem = (userGem ?? 0) + completedAchievement.reward_gem;
+            await updateUserGem(userId, newGem);
+            useUserAchievementStore.setState({ gem: newGem });
+            setUserGem(newGem);
+          }
 
-          // Gem 데이터 업데이트
-          if (userGem) {
-            await updateUserGem(userId, newUserGem);
-            useUserStore.setState({ gem: newUserGem });
+          if (completedAchievement.reward_title) {
+            await insertUserTitle(userId, completedAchievement.reward_title);
           }
         }
 
-        // 타이틀 보상 처리
-        if (rewardTitle) {
-          await insertUserTitle(userId, rewardTitle);
-        }
-
-        // 상태를 최신 상태 기반으로 업데이트
         setAchievements((prevAchievements) =>
           prevAchievements.map((achievement) => {
             if (achievement.id === id && achievement.isMax) {
               return {
                 ...achievement,
                 level: achievement.level,
-                current: 0, // 값 초기화
+                current: 0,
                 isMax: false,
               };
             }
@@ -63,34 +94,21 @@ export const useHandleReward = () => {
           })
         );
 
-        console.log('보상 및 완료 챌린지 정보', {
-          achievement: completedAchievement,
-          rewardGem: rewardGem,
-          rewardTitle: rewardTitle,
+        await Swal.fire({
+          icon: 'success',
+          title: '보상이 지급되었습니다!',
         });
-
-        if (!rewardGem && !rewardTitle) {
-          await Swal.fire({
-            icon: 'success',
-            title: '레벨 상승 보상이 없습니다!',
-          });
-        } else {
-          // 보상 지급 알림
-          await Swal.fire({
-            icon: 'success',
-            title: '보상이 지급되었습니다!',
-          });
-        }
       } catch (error) {
         console.error('Error inserting user achievement:', error);
       }
     },
-    [userId] // userId가 변경될 때만 의존
+    [userId, userGem, achievements]
   );
 
   return {
     achievements,
-    setAchievements,
     handleReward,
+    userGem,
+    setAchievements,
   };
 };

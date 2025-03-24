@@ -9,6 +9,7 @@ import {
 } from '@/utils/getAchievement';
 import AchievementCard from './AchievementCard';
 import { getAchievementByLevelType } from '@/lib/api';
+import { useUserAchievementStore } from '@/stores/user-achievement'; // Zustand store import
 
 const AchievementCardList = ({
   daysSinceJoin,
@@ -21,14 +22,19 @@ const AchievementCardList = ({
 }) => {
   const { achievements, setAchievements, handleReward } = useHandleReward();
   const userExp = useUserStore((state) => state.exp) ?? 0;
-  const userId = useUserStore((state) => state.uid) ?? null;
+  const storedAchievements = useUserAchievementStore(
+    (state) => state.achievements
+  ); // Zustand로 저장된 achievements 불러오기
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (achievements?.length === 0 && completedChallenges > 0) {
+        // 업적 데이터가 이미 있다면 fetchData 호출하지 않음
+        if (storedAchievements?.length > 0) return;
+
+        if (completedChallenges > 0) {
           const values = {
-            attendance_days: daysSinceJoin, // 연속 출석 업적은 현재 가입 후 지난 일수로 계산
+            attendance_days: daysSinceJoin,
             exp: userExp,
             completed_challenges: completedChallenges,
           };
@@ -62,23 +68,30 @@ const AchievementCardList = ({
             })
           );
 
+          // 상태에 업적 정보 저장
           setAchievements(fetchedAchievements);
+          useUserAchievementStore.setState({
+            achievements: fetchedAchievements,
+          });
         }
       } catch (error) {
         console.error('Error fetching achievements:', error);
       }
     };
 
-    void fetchData();
+    if (storedAchievements.length === 0 && completedChallenges > 0) {
+      void fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    // useCallback과 setState 함수는 무한루프 방지를 위해 제외
-    userId,
-    userExp,
-    daysSinceJoin,
-    achievements,
+    storedAchievements,
     completedChallenges,
+    completedAchievements,
+    daysSinceJoin,
+    userExp,
+    handleReward,
   ]);
+
   return (
     <div className="achievement-card-list">
       {achievements.map((achievement) => (

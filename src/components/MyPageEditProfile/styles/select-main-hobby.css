@@ -1,0 +1,42 @@
+.edit-main-hobby__form {
+  min-width: 22.5rem;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  /* 폰트 설정 */
+  font-size: 18px;
+}
+
+/* 주요 취미 항목 컨테이너 */
+.edit-main-hobby__container {
+  min-width: 22.5rem;
+  width: 100%;
+  padding-inline: 1.25rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  /* 라디오 버튼 커스텀 */
+  input[type='radio'] {
+    /* 크기 및 모양 */
+    width: 1.25rem;
+    height: 1.25rem;
+
+    -webkit-appearance: none; /* 웹킷 브라우저에서 기본 스타일 제거 */
+    -moz-appearance: none; /* 모질라 브라우저에서 기본 스타일 제거 */
+    appearance: none; /* 기본 브라우저에서 기본 스타일 제거 */
+
+    border: 1px solid var(--text-green);
+    border-radius: 50%;
+
+    /* 체크된 상태 스타일 */
+    &:checked {
+      background-color: var(--text-green);
+      border: 3px solid var(--tertiary-color);
+      box-shadow: 0 0 0 1px var(--text-green);
+    }
+  }
+}

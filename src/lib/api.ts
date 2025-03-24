@@ -9,7 +9,8 @@ export const getUserByID = async (inputID: UserData['id']) =>
     .from('user')
     .select(
       `
-      uid,image,gem,created_date,exp,id,nickname,password,main_hobby,now_hobby,item,title,
+      uid,image,gem,created_date,exp,id,nickname,password,main_hobby,now_hobby,title,
+      item(name,image),
       now_challenge(id,name,created_date,completed_date,progress,sub_hobby_name(*),now_unit(
         *
       ))
@@ -160,6 +161,21 @@ export const getUserGem = async (userId: string) => {
   return data?.[0].gem;
 };
 
+export const getUserItems = async (userId: string) => {
+  // 유저의 아이템 데이터를 가져옴
+  const { data, error } = await supabase
+    .from('user_having_items')
+    .select('item(*)')
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching user items:', error.message);
+    throw error;
+  }
+
+  return data;
+};
+
 export const getUserTitles = async (userId: string) => {
   const { data, error } = await supabase
     .from('user_having_titles')
@@ -273,6 +289,23 @@ export const updateUserNowChallenge = async (
     .eq('uid', userUid);
 
   return { error };
+};
+
+// 프로필 편집 사항 업데이트
+export const updateUserProfile = async (
+  uid: UserData['uid'],
+  nickname: string,
+  image: string | null,
+  title: string | null,
+  mainHobby: string | null,
+  item: string | null
+) => {
+  const { data, error } = await supabase
+    .from('user')
+    .update({ nickname, image, title, main_hobby: mainHobby, item: item })
+    .eq('uid', uid)
+    .select('uid,image,nickname,main_hobby,title,item');
+  console.log(data, error);
 };
 
 export const updateChallengeProgress = async (

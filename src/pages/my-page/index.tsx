@@ -1,18 +1,20 @@
+import { useEffect, useState } from 'react';
+import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
 import { useUserStore } from '@/stores/user';
+import { useUserAchievementStore } from '@/stores/user-achievement';
 import { getDate } from '@/utils/getDate';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
-import AchievementCardList from '@/components/MyPage/AchievementCardList';
+import Title from '@/layouts/title';
 import ProfileHeader from '@/components/MyPage/ProfileHeader';
 import ProfileInfo from '@/components/MyPage/ProfileInfo';
 import StatCardList from '@/components/MyPage/StatCardList';
-import Title from '@/layouts/title';
+import AchievementCardList from '@/components/MyPage/AchievementCardList';
+import MypageFooter from '@/components/MyPage/Footer';
+import MyPageEditProfile from '../my-page-edit-profile';
 import './style.css';
-import { getUserAchievements, getUserCompletedChallenge } from '@/lib/api';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
+// 마이페이지 컴포넌트
 function MyPage() {
-  // 사용자 정보 가져오기
   const {
     image: userPhoto,
     nickname: userNickname,
@@ -20,12 +22,13 @@ function MyPage() {
     created_date: joinDate,
     main_hobby: userHobby,
     uid: userId,
-  } = useUserStore((state) => state);
+    item: userProfileItem,
+  } = useUserStore();
 
-  // 취미 아이콘 가져오기
+  const [isEditing, setIsEditing] = useState(false);
   const userHobbyIcon = getHobbyIcon(userHobby);
 
-  // 가입 일자로부터 경과한 일수 계산
+  // 가입일 기준으로 경과 일수 계산
   const daysSinceJoin = joinDate
     ? Math.floor(
         (new Date().getTime() - new Date(joinDate).getTime()) /
@@ -38,35 +41,55 @@ function MyPage() {
     []
   );
 
+  // 유저의 완료한 챌린지와 업적 정보 가져오기
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const challenges = await getUserCompletedChallenge(userId);
-        const userCompletedAchievements = (
-          await getUserAchievements(userId)
-        ).map((achievement) => achievement.achievement_id);
+      if (!userId) return;
 
-        setCompletedChallenges(challenges?.length ?? 0);
-        setCompletedAchievements(userCompletedAchievements);
+      const { completedChallenges, completedAchievements } =
+        useUserAchievementStore.getState();
+
+      if (completedChallenges && completedAchievements) {
+        setCompletedChallenges(completedChallenges);
+        setCompletedAchievements(completedAchievements);
+        return;
+      }
+
+      try {
+        const [challenges, achievements] = await Promise.all([
+          getUserCompletedChallenge(userId),
+          getUserAchievements(userId),
+        ]);
+
+        useUserAchievementStore.setState({
+          completedChallenges: challenges.length,
+          completedAchievements: achievements.map((a) => a.achievement_id),
+        });
+
+        setCompletedChallenges(challenges.length);
+        setCompletedAchievements(achievements.map((a) => a.achievement_id));
       } catch (error) {
         console.error('Error fetching completed challenges:', error);
       }
     };
 
-    if (userId) {
-      void fetchData();
-    }
+    void fetchData();
   }, [userId]);
 
   return (
     <div className="my-page drag-prevent">
       <Title>마이페이지</Title>
-
       <main>
+        {/* 프로필 헤더 */}
         <section className="profile-header">
-          <ProfileHeader profileImage={userPhoto ?? null} />
+          <ProfileHeader
+            profileItem={userProfileItem}
+            profileImage={userPhoto}
+            setIsEditing={setIsEditing}
+          />
         </section>
 
+        {/* 프로필 정보 */}
         <section className="profile-body">
           <ProfileInfo
             nickName={userNickname}
@@ -76,6 +99,7 @@ function MyPage() {
             joinDate={joinDate ? getDate(joinDate) : ''}
           />
 
+          {/* 통계 */}
           <article className="article-container">
             <h2>통계</h2>
             <StatCardList
@@ -84,6 +108,7 @@ function MyPage() {
             />
           </article>
 
+          {/* 업적 */}
           <article className="article-container">
             <h2>업적</h2>
             <AchievementCardList
@@ -93,7 +118,26 @@ function MyPage() {
             />
           </article>
         </section>
+
+        {/* 프로필 푸터 (로그아웃/회원탈퇴) */}
+        <section className="profile-footer">
+          <MypageFooter />
+        </section>
       </main>
+
+      {/* 프로필 수정 */}
+      {isEditing && (
+        <MyPageEditProfile
+          userId={userId}
+          userProfileImg={userPhoto}
+          userNickname={userNickname}
+          userTitle={userTitle}
+          userMainHobby={userHobby}
+          userProfileItem={userProfileItem}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        />
+      )}
     </div>
   );
 }

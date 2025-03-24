@@ -1,11 +1,29 @@
 /* 프로필 헤더 */
-.profile-header {
+.profile-header__container {
   background-color: var(--secondary-color);
-  inline-size: 100%;
-  block-size: 9rem;
+  width: 100%;
+  height: 10rem;
   position: relative;
 
   flex-shrink: 0;
+
+  .profile-item__frame {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    border: 0;
+    width: 5rem;
+
+    z-index: 10;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
 /* 프로필 편집 버튼 */
@@ -13,8 +31,8 @@
   --profile-edit-btn-size: 1.8rem;
 
   background-color: var(--white-color);
-  inline-size: var(--profile-edit-btn-size);
-  block-size: var(--profile-edit-btn-size);
+  width: var(--profile-edit-btn-size);
+  height: var(--profile-edit-btn-size);
 
   padding: 7px;
 
@@ -38,35 +56,54 @@
   }
 }
 
-.profile__image-frame {
-  background-color: #d9d9d9;
-  inline-size: 6.5rem;
-  block-size: 6.5rem;
-  border-radius: 50%;
+/* 프로필 이미지 */
+.profile-img__frame {
+  width: 7.5rem;
+  height: 7.5rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: absolute;
-  overflow: hidden;
-
-  top: 4rem;
+  bottom: -25px;
   left: 50%;
   transform: translate(-50%, 0);
 
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background-color: #d9d9d9;
+
   img {
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
 
     margin: 0;
     padding: 0;
 
     object-fit: cover;
   }
+}
 
-  &:hover {
-    filter: brightness(0.97);
+.profile-header__container .profile-item__frame {
+  width: 67px;
+
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  border: 0;
+
+  z-index: 50;
+
+  img {
+    width: 100px;
+    height: 100%;
+
+    object-fit: cover;
   }
 }
 
@@ -75,11 +112,13 @@
   min-height: 7.45rem;
 
   ul {
-    list-style-type: none;
     padding-left: 0;
     margin: 0;
+
     font-size: 18px;
     font-weight: 600;
+
+    list-style-type: none;
 
     /* 닉네임 */
     :nth-child(1) {
@@ -96,28 +135,25 @@
 
 /* 대표 취미 아이콘 */
 .profile-details-main-hobby__icon-frame {
-  background-color: #d9d9d9;
-  inline-size: 2rem;
-  block-size: 2rem;
-  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  padding: 4px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  padding: 4px;
-
   position: absolute;
   top: 3.75rem;
   right: 2.625rem;
 
-  &:hover {
-    filter: brightness(0.97);
-  }
+  border-radius: 50%;
+
+  background-color: #d9d9d9;
 
   img {
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
 
     margin: 0;
     padding: 0;

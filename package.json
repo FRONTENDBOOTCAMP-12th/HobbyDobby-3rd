@@ -47,6 +47,7 @@
   "dependencies": {
     "@supabase/supabase-js": "2.49.1",
     "clsx": "2.1.1",
+    "gsap": "3.12.7",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-error-boundary": "5.0.0",

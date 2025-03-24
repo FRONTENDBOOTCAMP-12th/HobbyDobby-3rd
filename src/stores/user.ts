@@ -1,9 +1,11 @@
 import { ChallengeData, UserData } from '@/lib/supabase-client';
+import { ItemType } from '@/types/my-page-edit-profile/profile-item';
 import { create } from 'zustand';
 import { combine, devtools, persist } from 'zustand/middleware';
 
 type User = Omit<UserData, 'created_date' | 'now_challenge'> & {
   user_hobbies: (string | null)[];
+  item: { name: string; image: string } | null;
   now_challenge: ChallengeData | null;
   created_date: string | null;
 };
@@ -39,11 +41,30 @@ export const useUserStore = create(
             set(
               {
                 ...user,
+                image: user.image ?? '/assets/profile-none.jpg',
               },
               undefined,
               'login'
             ),
           logout: () => set(initialUser, undefined, 'logout'),
+          updateProfile: (
+            title: string | null,
+            item: ItemType | null,
+            main_hobby: string | null,
+            image: string | null,
+            nickname: string
+          ) =>
+            set(
+              {
+                title: title,
+                item: item,
+                main_hobby: main_hobby,
+                image: image,
+                nickname: nickname,
+              },
+              undefined,
+              'updateProfile'
+            ),
           updateNowChllenge: (hobby: string, challenge: ChallengeData) =>
             set(
               {
