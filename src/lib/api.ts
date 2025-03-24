@@ -45,7 +45,8 @@ export const getSubHobby = async (hobbyName: string) =>
   await supabase
     .from('sub_hobby')
     .select('id,info,name')
-    .eq('hobby_name', hobbyName);
+    .eq('hobby_name', hobbyName)
+    .order('name');
 
 export const getUserCompletedChallenge = async (userId: string) => {
   const { data, error } = await supabase
