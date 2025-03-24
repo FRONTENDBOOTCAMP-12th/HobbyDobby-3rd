@@ -36,10 +36,17 @@ function LeaderBoardTextRight({
           className="leader-board-detail__user-profile"
         />
       ) : (
-        <div className="leader-board-detail__user-profile--alt"></div>
+        <img
+          src="/assets/profile-none.jpg"
+          alt="사용자 프로필"
+          className="leader-board-detail__user-profile"
+        />
       )}
     </div>
   );
+}
+{
+  /* <div className="leader-board-detail__user-profile--alt"></div> */
 }
 
 export default LeaderBoardTextRight;
