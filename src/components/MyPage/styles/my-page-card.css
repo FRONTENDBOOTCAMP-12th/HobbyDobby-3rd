@@ -50,10 +50,15 @@
 .stat-card {
   flex: 1 1 calc(50% - 1rem); /* 기본적으로 2개씩 배치되도록 설정 */
   box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
-.stat-card h2 {
-  font-weight: 400;
+.stat-card h3 {
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .stats {
@@ -61,8 +66,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin-right: 6.4px;
+  width: 100%;
 }
 
 /* 업적 카드 */
@@ -74,7 +78,7 @@
 }
 
 .achievement-card {
-  h2 {
+  h3 {
     font-size: var(--font-size-l);
   }
 
