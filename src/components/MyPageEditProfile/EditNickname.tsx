@@ -31,19 +31,20 @@ function EditNickname({
     setIsDisabled(true);
   };
 
-  /* -------------------------------------------------------------------------- */
-  /*                                 버그 수정 요함!!                              */
-  /* -------------------------------------------------------------------------- */
-
   const handleCheckDuplicate = async () => {
+    let nextIsDuplicate = true;
+
     if (newNickname && NICKNAME_REGEX.test(newNickname)) {
       const checkDuplicated = await isUserInputDuplicate(
         'nickname',
         newNickname
       );
+      console.log(checkDuplicated, newNickname);
+
+      nextIsDuplicate = checkDuplicated;
       setIsDuplicate(checkDuplicated);
     }
-    if (isDuplicate) {
+    if (nextIsDuplicate) {
       useEditProfileStore.getState().updateProfile({ nickname: '' });
       await Swal.fire({
         icon: 'warning',
