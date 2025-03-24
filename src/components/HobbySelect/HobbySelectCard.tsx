@@ -29,7 +29,7 @@ function HobbySelectCard({ name }: HobbySelectCardProps) {
         className="hobby-select-card__button"
         onClick={() => void handleSelectHobby(name)}
       >
-        <img src={getHobbyIcon(name)} alt={name} />
+        <img src={getHobbyIcon(name)} alt="" />
         <p className="hobby-select-card__desc">{name}</p>
       </button>
     </li>
