@@ -123,18 +123,15 @@
 
 ### 유저 플로우 차트
 
-test
-<img src="./readme-assets/userflow.png" width ="800">
-<img src="./readme-assets/coding-convention.jpg" width ="800">
-<img src="./public/assets/coding-convention.jpg" width ="800">
+<img src="(https://github.com/user-attachments/assets/ddfd0998-00bd-4ad6-8da8-f0c445a1d6e0)" width ="800">
 
 ### 팀 컨벤션
 
 **커밋 컨벤션**<br>
-<img src="./readme-assets/commit-convention.png" widht="800">
+<img src="https://github.com/user-attachments/assets/e4624af6-ecbd-47a8-aa85-6179949cd6ee](https://private-user-images.githubusercontent.com/182604204/426225098-e4624af6-ecbd-47a8-aa85-6179949cd6ee.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI4NDI4NzYsIm5iZiI6MTc0Mjg0MjU3NiwicGF0aCI6Ii8xODI2MDQyMDQvNDI2MjI1MDk4LWU0NjI0YWY2LWVjYmQtNDdhOC1hYTg1LTYxNzk5NDljZDZlZS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyNFQxODU2MTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yZWIwYjlhZjI2OTRlMTNiNDUyZDhkYmYxMDI2YzQ4YjhlNTBkZDNhOTM3MDcxZWUzZjc5ZDY2N2E0ODQxNjU0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.nb-t5zw3u1B5xOLN1cKLHwNWIgd5zQrYtdz-iUoY77s" widht="800">
 
 **PR 템플릿** <br>
-<img src="./readme-assets/pr-convention.png" width="800">
+<img src="(https://private-user-images.githubusercontent.com/182604204/426221446-60696ee0-11fd-4190-bd6b-c8a9d49b8ce8.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI4NDIxNjksIm5iZiI6MTc0Mjg0MTg2OSwicGF0aCI6Ii8xODI2MDQyMDQvNDI2MjIxNDQ2LTYwNjk2ZWUwLTExZmQtNDE5MC1iZDZiLWM4YTlkNDliOGNlOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyNFQxODQ0MjlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xZDc2Mjg5M2QyYWI4YjE0YjM3ZDljODg5Mzc1ZWEzOTRiYjllMTAyNjE5MzQzNTE3NWQzZjA2NTg1MGFjYTUwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.Vtc7JrhUtA00gfDE75fDjgIQjyAE_LvlqD2hx8G_76s)" width="800">
 
 **코딩 컨벤션** <br>
 <img src="./readme-assets/coding-convention.png" width="800">
@@ -165,10 +162,10 @@ test
 
 <br>
 
-|     제목     | 상세설명                                                                      |
-| :----------: | :---------------------------------------------------------------------------- |
-|     주제     | [마이페이지-아이템 사용하기]()                                                |
-|  동작 화면   | <img src="./readme-assets/mypage-itemuse.gif"  width="300">                   |
-| 기능 및 구현 | - 프포필 설정 창으로 이동 <br> - 보유중인 아이템을 클릭 시 프로필 사진에 적용 |
+|     제목     | 상세설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| :----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|     주제     | [마이페이지-아이템 사용하기]()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|  동작 화면   | <img src="https://private-user-images.githubusercontent.com/182604204/426221444-760325a0-d687-43bc-9edf-e87287a5c24f.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI4NDIxNjksIm5iZiI6MTc0Mjg0MTg2OSwicGF0aCI6Ii8xODI2MDQyMDQvNDI2MjIxNDQ0LTc2MDMyNWEwLWQ2ODctNDNiYy05ZWRmLWU4NzI4N2E1YzI0Zi5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzI0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyNFQxODQ0MjlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kZjc3ZmEzOGQ5MDcyNGM1ZWFjMzUxM2MyMzNlOTEyMjU3YWE1ZDk3ZmExNjM3NGZiZmQ2MGIyMjA2NDJiNTQzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.vEcCgHNPPlT7abgovnk0rE75TJ6ldn0mplRtoEQumwM"  width="300"> |
+| 기능 및 구현 | - 프포필 설정 창으로 이동 <br> - 보유중인 아이템을 클릭 시 프로필 사진에 적용                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 <br>
