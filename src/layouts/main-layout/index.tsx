@@ -1,13 +1,17 @@
 import BottomNavbar from '@/components/BottomNavbar';
 import TopNavbar from '@/components/TopNavbar';
+import { useMemo } from 'react';
 import { Outlet } from 'react-router';
 
 const MIN_HEIGHT = '785px';
 
 function MainLayout() {
+  const topNavbar = useMemo(() => <TopNavbar />, []);
+  const bottomNavbar = useMemo(() => <BottomNavbar />, []);
+
   return (
     <>
-      <TopNavbar />
+      {topNavbar}
       <div
         style={{
           width: '100%',
@@ -19,7 +23,7 @@ function MainLayout() {
       >
         <Outlet />
       </div>
-      <BottomNavbar />
+      {bottomNavbar}
     </>
   );
 }
