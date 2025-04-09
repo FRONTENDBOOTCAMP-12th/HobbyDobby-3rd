@@ -1,13 +1,13 @@
 import './style.css';
-import LeftArrow from '/assets/left-arrow.svg';
+import Title from '@/layouts/title';
+import { useCallback } from 'react';
+import { getSubHobby } from '@/lib/api';
 import Logo from '/assets/large-logo.svg';
-import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
+import LeftArrow from '/assets/left-arrow.svg';
+import useFetchData from '@/hooks/useFetchData';
 import { getHobbyIcon } from '@/utils/getHobbyIcon';
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { getSubHobby } from '@/lib/api';
-import Title from '@/layouts/title';
-import useFetchData from '@/hooks/useFetchData';
-import { useCallback } from 'react';
+import SubHobbySelectCard from '@/components/SubHobbySelect/SubHobbySelectCard';
 
 interface LocationState {
   hobbyName: string;
@@ -35,16 +35,16 @@ function SubHobbySelectPage() {
           className="subhobby-select__button"
           aria-label="뒤로 가기"
         >
-          <img src={LeftArrow} alt="뒤로 가기" aria-hidden="true" />
+          <img src={LeftArrow} alt="" />
         </button>
         <h1 className="subhobby-select__logo">
           <span className="sr-only">Hobby Dobby</span>
-          <img src={Logo} alt="Hobby Dobby" aria-hidden="true" />
+          <img src={Logo} alt="" />
         </h1>
       </header>
       <div className="subhobby-select__content">
         <div className="subhobby-select__selected">
-          <img src={getHobbyIcon(selectedHobby)} alt={selectedHobby} />
+          <img src={getHobbyIcon(selectedHobby)} alt="" />
           <span>{selectedHobby}</span>
         </div>
       </div>
