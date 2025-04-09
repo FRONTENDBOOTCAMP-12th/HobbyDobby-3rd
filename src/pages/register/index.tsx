@@ -8,10 +8,11 @@ import { useEffect } from 'react';
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const user = localStorage.getItem('store/user');
 
   // 이미 로그인되었을 경우
   useEffect(() => {
+    const user = localStorage.getItem('store/user');
+
     if (user) {
       Swal.fire({
         icon: 'info',
@@ -27,7 +28,7 @@ function RegisterPage() {
           console.log(error);
         });
     }
-  }, [navigate, user]);
+  }, [navigate]);
 
   return (
     <div className="register-page">
