@@ -2,7 +2,12 @@ import './spinner.css';
 
 function Spinner() {
   return (
-    <div className="spinner__container">
+    <div
+      role="status"
+      aria-live="polite"
+      aria-label="로딩 중..."
+      className="spinner__container"
+    >
       <div className="spinner__activist"></div>
     </div>
   );
